@@ -5,6 +5,11 @@ public class HelloWorldScene : MonoBehaviour
 {
 	//int m_iTime = 0;
 	// Use this for initialization
+
+	public GameObject m_Plane;
+	public GameObject m_Cube;
+	public GameObject m_Camera;
+
 	void Start () 
 	{
 		Debug.Log("1233");
@@ -20,8 +25,9 @@ public class HelloWorldScene : MonoBehaviour
 		//GameObject root = GameObject.Find("Cube");
 		//root.transform.Rotate(0, 100 * Time.deltaTime, 0);
 
-		GameObject root = GameObject.Find("Main Camera");
-		root.transform.Rotate(0, 10 * Time.deltaTime, 0);
+//		GameObject root = GameObject.Find("Main Camera");
+//		root.transform.Rotate(0, 100 * Time.deltaTime, 0);
+		m_Cube.transform.Rotate(100 * Time.deltaTime, 100 * Time.deltaTime, 100 * Time.deltaTime);
 
 
 	}
