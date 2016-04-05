@@ -180,7 +180,7 @@
      <Compile Include="Assets\Lib\NGUI\Scripts\UI\UITexture.cs" />
      <Compile Include="Assets\Lib\NGUI\Scripts\UI\UITooltip.cs" />
      <Compile Include="Assets\Lib\NGUI\Scripts\UI\UIViewport.cs" />
-     <Compile Include="Assets\Resources\Script\HelloWorldScene.cs" />
+     <Compile Include="Assets\Resources\Script\MainCityScene.cs" />
      <None Include="Assets\Lib\NGUI\Examples\Shaders\Unlit - Depth Cutout.shader" />
      <None Include="Assets\Lib\NGUI\ReadMe - 3.7.4.txt" />
      <None Include="Assets\Resources\Shader\Toony-Basic.shader" />
@@ -312,17 +312,11 @@
      <None Include="Assets\Lib\NGUI\Examples\Resources\Localization.txt" />
      <None Include="Assets\Resources\Shader\Own-LightShaftsLogin.shader" />
      <None Include="Assets\Lib\_vertexPainter\Shaders\vB_Diffuse_2tex.shader" />
- <Reference Include="UnityEngine.Advertisements">
- <HintPath>E:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
- </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>E:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
  <HintPath>E:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Analytics">
- <HintPath>E:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="Mono.Cecil">
  <HintPath>E:/Program Files/Unity/Editor/Data/Managed/Mono.Cecil.dll</HintPath>

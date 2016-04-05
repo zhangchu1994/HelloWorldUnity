@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class HelloWorldScene : MonoBehaviour 
+public class MainCityScene : MonoBehaviour 
 {
 	//int m_iTime = 0;
 	// Use this for initialization
@@ -9,11 +9,13 @@ public class HelloWorldScene : MonoBehaviour
 	public GameObject m_Plane;
 	public GameObject m_Cube;
 	public GameObject m_Camera;
+	public GameObject m_Actor;
+	public GameObject m_pos1;
 
 	void Start () 
 	{
 		Debug.Log("1233");
-
+		m_Actor.GetComponent<NavMeshAgent>().destination = m_pos1.transform.position;
 		//GUI.Button(Rect(100,100,100,50),"PLAY");
 	}
 	
@@ -27,7 +29,7 @@ public class HelloWorldScene : MonoBehaviour
 
 //		GameObject root = GameObject.Find("Main Camera");
 //		root.transform.Rotate(0, 100 * Time.deltaTime, 0);
-		m_Cube.transform.Rotate(100 * Time.deltaTime, 100 * Time.deltaTime, 100 * Time.deltaTime);
+//		m_Cube.transform.Rotate(100 * Time.deltaTime, 100 * Time.deltaTime, 100 * Time.deltaTime);
 
 
 	}

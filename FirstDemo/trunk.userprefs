@@ -1,8 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\..\Work\client\trunk\Assets\Script\Scene\BattleSceneMine.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Resources\Script\MainCityScene.cs">
     <Files>
-      <File FileName="..\..\..\Work\client\trunk\Assets\Script\Scene\BattleSceneMine.cs" Line="142" Column="1" />
+      <File FileName="Assets\Resources\Script\MainCityScene.cs" Line="18" Column="36" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
