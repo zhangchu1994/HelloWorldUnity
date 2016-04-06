@@ -7,8 +7,8 @@ local sproto = require "3rd/sproto/sproto"
 local core = require "sproto.core"
 local print_r = require "3rd/sproto/print_r"
 
-PromptCtrl = {};
-local this = PromptCtrl;
+HelloWorldCtrl = {};
+local this = HelloWorldCtrl;
 
 local panel;
 local prompt;
@@ -16,18 +16,20 @@ local transform;
 local gameObject;
 
 --构建函数--
-function PromptCtrl.New()
-	logWarn("PromptCtrl.New--->>");
+function HelloWorldCtrl.New()
+	logWarn("HelloWorldCtrl.New--->>");
 	return this;
 end
 
-function PromptCtrl.Awake()
-	logWarn("PromptCtrl.Awake--->>!!!!!!!!!!!!!!!!!!!!!!");
-	panelMgr:CreatePanel('Prompt', this.OnCreate);
+function HelloWorldCtrl.Awake()
+	logWarn("HelloWorldCtrl.Awake--->>!!!!!!!!!!!!!!!!!!!!!!");
+	-- panelMgr:CreatePanel('Prompt', this.OnCreate);
+    print("11111111111111111111111111111111111111111");
+    panelMgr:CreatePanel('HelloWorld', this.OnCreate);
 end
 
 --启动事件--
-function PromptCtrl.OnCreate(obj)
+function HelloWorldCtrl.OnCreate(obj)
 	gameObject = obj;
 	transform = obj.transform;
 
@@ -36,14 +38,14 @@ function PromptCtrl.OnCreate(obj)
 	logWarn("Start lua--->>"..gameObject.name);
 
 	this.InitPanel();	--初始化面板--
-	prompt:AddClick(PromptPanel.btnOpen, this.OnClick);
+	prompt:AddClick(HelloWorldPanel.btnOpen, this.OnClick);
 end
 
 --初始化面板--
-function PromptCtrl.InitPanel()
+function HelloWorldCtrl.InitPanel()
 	panel.depth = 1;	--设置纵深--
-	local parent = PromptPanel.gridParent;
-	local itemPrefab = prompt:LoadAsset('PromptItem');
+	local parent = HelloWorldPanel.gridParent;
+	local itemPrefab = prompt:LoadAsset('HelloWorldItem');
 	for i = 1, 100 do
 		local go = newObject(itemPrefab);
 		go.name = tostring(i);
@@ -62,12 +64,12 @@ function PromptCtrl.InitPanel()
 end
 
 --滚动项单击事件--
-function PromptCtrl.OnItemClick(go)
+function HelloWorldCtrl.OnItemClick(go)
 	log(go.name);
 end
 
 --单击事件--
-function PromptCtrl.OnClick(go)
+function HelloWorldCtrl.OnClick(go)
 	if TestProtoType == ProtocalType.BINARY then
 		this.TestSendBinary();
 	end
@@ -84,7 +86,7 @@ function PromptCtrl.OnClick(go)
 end
 
 --测试发送SPROTO--
-function PromptCtrl.TestSendSproto()
+function HelloWorldCtrl.TestSendSproto()
     local sp = sproto.parse [[
     .Person {
         name 0 : string
@@ -143,7 +145,7 @@ function PromptCtrl.TestSendSproto()
 end
 
 --测试发送PBC--
-function PromptCtrl.TestSendPbc()
+function HelloWorldCtrl.TestSendPbc()
     local path = Util.DataPath.."lua/3rd/pbc/addressbook.pb";
 
     local addr = io.open(path, "rb")
@@ -169,7 +171,7 @@ function PromptCtrl.TestSendPbc()
 end
 
 --测试发送PBLUA--
-function PromptCtrl.TestSendPblua()
+function HelloWorldCtrl.TestSendPblua()
     local login = login_pb.LoginRequest();
     login.id = 2000;
     login.name = 'game';
@@ -184,7 +186,7 @@ function PromptCtrl.TestSendPblua()
 end
 
 --测试发送二进制--
-function PromptCtrl.TestSendBinary()
+function HelloWorldCtrl.TestSendBinary()
     local buffer = ByteBuffer.New();
     buffer:WriteShort(Protocal.Message);
     buffer:WriteByte(ProtocalType.BINARY);
@@ -194,6 +196,6 @@ function PromptCtrl.TestSendBinary()
 end
 
 --关闭事件--
-function PromptCtrl.Close()
-	panelMgr:ClosePanel(CtrlNames.Prompt);
+function HelloWorldCtrl.Close()
+	panelMgr:ClosePanel(CtrlNames.HelloWorld);
 end

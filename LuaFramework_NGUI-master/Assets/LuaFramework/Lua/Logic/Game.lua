@@ -17,6 +17,7 @@ require "Logic/LuaClass"
 require "Logic/CtrlManager"
 
 require "Controller/PromptCtrl"
+require "Controller/HelloWorldCtrl"
 
 --管理器--
 Game = {};
@@ -52,7 +53,8 @@ function Game.OnInitOK()
     coroutine.start(this.test_coroutine);
 
     CtrlManager.Init();
-    local ctrl = CtrlManager.GetCtrl(CtrlNames.Prompt);
+    -- local ctrl = CtrlManager.GetCtrl(CtrlNames.Prompt);
+    local ctrl = CtrlManager.GetCtrl(CtrlNames.HelloWorld);
     if ctrl ~= nil and AppConst.ExampleMode then
         ctrl:Awake();
     end

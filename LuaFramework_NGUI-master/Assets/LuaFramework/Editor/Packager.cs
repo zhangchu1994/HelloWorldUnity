@@ -131,7 +131,17 @@ public class Packager {
         BuildPipeline.BuildAssetBundle(mainAsset, addis, assetfile, options, target);
         BuildPipeline.PopAssetDependencies();
 
-        ///------------------------------生成MessagePanel素材绑定-----------------------------------
+		///------------------------------生成HelloWorld素材绑定-----------------------------------
+		BuildPipeline.PushAssetDependencies();
+		mainAsset = LoadAsset("HelloWorld/Prefabs/HelloWorldPanel.prefab");
+		addis = new Object[1];
+		addis[0] = LoadAsset("HelloWorld/Prefabs/HelloWorldItem.prefab");
+		assetfile = assetPath + "HelloWorld" + AppConst.ExtName;
+		BuildPipeline.BuildAssetBundle(mainAsset, addis, assetfile, options, target);
+		BuildPipeline.PopAssetDependencies();
+
+		
+		///------------------------------生成MessagePanel素材绑定-----------------------------------
         BuildPipeline.PushAssetDependencies();
         mainAsset = LoadAsset("Message/Prefabs/MessagePanel.prefab");
         assetfile = assetPath + "message" + AppConst.ExtName;
