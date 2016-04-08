@@ -33,7 +33,9 @@ function HelloWorldCtrl.OnCreate(obj)
 	gameObject = obj;
 	transform = obj.transform;
 
-	panel = transform:GetComponent('UIPanel');
+    soundMgr:PlayBacksound('Sound/shijie',true);
+	
+    panel = transform:GetComponent('UIPanel');
 	prompt = transform:GetComponent('LuaBehaviour');
 	logWarn("Start lua--->>"..gameObject.name);
 
@@ -66,6 +68,7 @@ end
 --滚动项单击事件--
 function HelloWorldCtrl.OnItemClick(go)
 	log(go.name);
+    
 end
 
 --单击事件--
