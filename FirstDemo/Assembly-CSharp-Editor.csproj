@@ -6,7 +6,7 @@
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
 	<RootNamespace></RootNamespace>
-	<ProjectGuid>{40CB0B0E-CC78-1750-9836-1F2D679B85F4}</ProjectGuid>
+	<ProjectGuid>{1EDE318D-57BD-D7A4-4216-F8B5F1489D53}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<AssemblyName>Assembly-CSharp-Editor</AssemblyName>
@@ -45,6 +45,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Editor\ExportAssetBundles.cs" />
      <Compile Include="Assets\Lib\Editor\ShowColliderAlert.cs" />
      <Compile Include="Assets\Lib\Editor\VertexPainter2.cs" />
      <Compile Include="Assets\Lib\NGUI\Examples\Scripts\InventorySystem\Editor\InvDatabaseInspector.cs" />
@@ -318,7 +319,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp.csproj">
-      <Project>{C9C5ACED-AF37-B251-9AC8-2374AADD4A08}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
+      <Project>{EFF70ADA-1030-7248-A429-5A4E2DE04913}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
