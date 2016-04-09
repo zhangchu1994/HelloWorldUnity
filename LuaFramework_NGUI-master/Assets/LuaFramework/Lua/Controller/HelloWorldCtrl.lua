@@ -48,7 +48,7 @@ function HelloWorldCtrl.InitPanel()
 	panel.depth = 1;	--设置纵深--
 	local parent = HelloWorldPanel.gridParent;
 	local itemPrefab = prompt:LoadAsset('HelloWorldItem');
-	for i = 1, 100 do
+	for i = 1, 8 do
 		local go = newObject(itemPrefab);
 		go.name = tostring(i);
 		go.transform.parent = parent;

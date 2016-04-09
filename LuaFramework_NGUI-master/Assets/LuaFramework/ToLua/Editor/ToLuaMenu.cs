@@ -887,7 +887,7 @@ public static class ToLuaMenu
         CreateStreamDir(GetOS());
         CreateStreamDir("Lua/Out/");
 
-        Process proc = Process.Start(Application.dataPath + "/ToLua/Lua/Build.bat");
+		Process proc = Process.Start(Application.dataPath + "/LuaFramework/ToLua/Lua/Build.bat");
         proc.WaitForExit();
         UnityEngine.Debug.Log("build tolua fils over");
 

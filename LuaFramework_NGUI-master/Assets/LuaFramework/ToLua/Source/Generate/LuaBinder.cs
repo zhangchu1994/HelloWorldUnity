@@ -13,6 +13,7 @@ public static class LuaBinder
 		UIPanelWrap.Register(L);
 		UILabelWrap.Register(L);
 		UIGridWrap.Register(L);
+		UIWidgetWrap.Register(L);
 		UIWidgetContainerWrap.Register(L);
 		BaseWrap.Register(L);
 		ManagerWrap.Register(L);

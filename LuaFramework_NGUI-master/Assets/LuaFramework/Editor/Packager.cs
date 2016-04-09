@@ -50,11 +50,34 @@ public class Packager {
         BuildAssetResource(BuildTarget.StandaloneWindows);
     }
 
-    /// <summary>
-    /// 生成绑定素材
-    /// </summary>
-    public static void BuildAssetResource(BuildTarget target) {
-        if (Directory.Exists(Util.DataPath)) {
+    [MenuItem("LuaFramework/Build Lua Resource", false, 103)]
+    public static void BuildLuaResource() {
+//		if (Directory.Exists(Util.DataPath)) {
+//			Directory.Delete(Util.DataPath, true);
+//		}
+//		string streamPath = Application.streamingAssetsPath;
+//		if (Directory.Exists(streamPath)) {
+//			Directory.Delete(streamPath, true);
+//		}
+//		AssetDatabase.Refresh();
+//		
+//		if (AppConst.ExampleMode) {
+//			HandleExampleBundle(BuildTarget.StandaloneWindows);
+//		}
+		if (AppConst.LuaBundleMode) {
+			HandleBundle();
+		} else {
+			HandleLuaFile();
+		}
+		BuildFileIndex();
+		AssetDatabase.Refresh();
+	}
+	
+	/// <summary>
+	/// 生成绑定素材
+	/// </summary>
+	public static void BuildAssetResource(BuildTarget target) {
+		if (Directory.Exists(Util.DataPath)) {
             Directory.Delete(Util.DataPath, true);
         }
         string streamPath = Application.streamingAssetsPath;
