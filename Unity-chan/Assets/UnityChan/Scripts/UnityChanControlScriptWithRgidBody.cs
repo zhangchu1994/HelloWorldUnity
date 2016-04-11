@@ -68,28 +68,28 @@ public class UnityChanControlScriptWithRgidBody : MonoBehaviour
 // 以下、メイン処理.リジッドボディと絡めるので、FixedUpdate内で処理を行う.
 	void FixedUpdate ()
 	{
-		float h = Input.GetAxis("Horizontal");				// 入力デバイスの水平軸をhで定義
-		float v = Input.GetAxis("Vertical");				// 入力デバイスの垂直軸をvで定義
+		float h = Input.GetAxis("Horizontal");				// 输入元件的水平轴h下定义
+		float v = Input.GetAxis("Vertical");				// 输入元件的垂直轴v下定义
 		anim.SetFloat("Speed", v);							// Animator側で設定している"Speed"パラメタにvを渡す
 		anim.SetFloat("Direction", h); 						// Animator側で設定している"Direction"パラメタにhを渡す
 		anim.speed = animSpeed;								// Animatorのモーション再生速度に animSpeedを設定する
 		currentBaseState = anim.GetCurrentAnimatorStateInfo(0);	// 参照用のステート変数にBase Layer (0)の現在のステートを設定する
 		rb.useGravity = true;//ジャンプ中に重力を切るので、それ以外は重力の影響を受けるようにする
 		
+		Debug.Log ("h= "+h+" v= "+v);
 		
-		
-		// 以下、キャラクターの移動処理
-		velocity = new Vector3(0, 0, v);		// 上下のキー入力からZ軸方向の移動量を取得
-		// キャラクターのローカル空間での方向に変換
+		// 以下,角色的移动处理
+		velocity = new Vector3(0, 0, v);		// 上下方向轴z开始键入取得量的移动
+		// 人物的局部空间的方向变换
 		velocity = transform.TransformDirection(velocity);
 		//以下のvの閾値は、Mecanim側のトランジションと一緒に調整する
 		if (v > 0.1) {
-			velocity *= forwardSpeed;		// 移動速度を掛ける
+			velocity *= forwardSpeed;		// 三大移动速度
 		} else if (v < -0.1) {
-			velocity *= backwardSpeed;	// 移動速度を掛ける
+			velocity *= backwardSpeed;	// 三大移动速度
 		}
 		
-		if (Input.GetButtonDown("Jump")) {	// スペースキーを入力したら
+		if (Input.GetButtonDown("Jump")) {	// 如果输入空格键
 
 			//アニメーションのステートがLocomotionの最中のみジャンプできる
 			if (currentBaseState.nameHash == locoState){
@@ -103,10 +103,10 @@ public class UnityChanControlScriptWithRgidBody : MonoBehaviour
 		}
 		
 
-		// 上下のキー入力でキャラクターを移動させる
+		// 上下键输入,来转移
 		transform.localPosition += velocity * Time.fixedDeltaTime;
 
-		// 左右のキー入力でキャラクタをY軸で旋回させる
+		// 在键入左右,大致在y轴旋转
 		transform.Rotate(0, h * rotateSpeed, 0);	
 	
 
@@ -150,7 +150,8 @@ public class UnityChanControlScriptWithRgidBody : MonoBehaviour
 							float adjCenterY = orgVectColCenter.y + jumpHeight;
 							col.center = new Vector3(0, adjCenterY, 0);	// 調整されたコライダーのセンター
 						}
-						else{
+						else
+						{
 							// 閾値よりも低い時には初期値に戻す（念のため）					
 							resetCollider();
 						}
