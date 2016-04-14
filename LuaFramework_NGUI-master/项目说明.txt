@@ -1,0 +1,2 @@
+在LuaManager里的StartMain关联的Main.lua
+在GameManager里加载GUI 并调用Game.lua Util.CallMethod("Game", "OnInitOK");
