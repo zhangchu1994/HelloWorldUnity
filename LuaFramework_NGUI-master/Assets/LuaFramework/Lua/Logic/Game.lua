@@ -52,6 +52,27 @@ function Game.OnInitOK()
     this.test_sproto_func();
     coroutine.start(this.test_coroutine);
 
+    this.initGui()
+    this.initPanel()
+end
+
+function Game.initGui()
+    local names = {"LoginUI","GUI"}--,
+    for i=1,#names do
+        local name = names[i];
+        local gui = GameObject.Find(name);
+        
+        if (gui ~= nil) then
+            return;
+        end
+        
+        local prefab = Util.LoadPrefab(name);
+        gui = newObject(prefab);--as GameObject
+        gui.name = name;
+    end
+end
+
+function Game.initPanel()
     CtrlManager.Init();
     -- local ctrl = CtrlManager.GetCtrl(CtrlNames.Prompt);
     local ctrl = CtrlManager.GetCtrl(CtrlNames.HelloWorld);

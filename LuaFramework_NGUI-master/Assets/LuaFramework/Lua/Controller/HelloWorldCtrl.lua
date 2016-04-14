@@ -24,8 +24,8 @@ end
 function HelloWorldCtrl.Awake()
 	logWarn("HelloWorldCtrl.Awake--->>!!!!!!!!!!!!!!!!!!!!!!");
 	-- panelMgr:CreatePanel('Prompt', this.OnCreate);
-    print("11111111111111111111111111111111111111111");
-    panelMgr:CreatePanel('HelloWorld', this.OnCreate);
+    -- print("11111111111111111111111111111111111111111");
+    panelMgr:CreatePanel("LoginUITag",'HelloWorld', this.OnCreate);
 end
 
 --启动事件--
@@ -67,8 +67,13 @@ end
 
 --滚动项单击事件--
 function HelloWorldCtrl.OnItemClick(go)
-	log(go.name);
-    
+	-- log(go.name);
+    destroy(gameObject);
+    local ctrl = CtrlManager.GetCtrl(CtrlNames.Prompt);
+    if ctrl ~= nil and AppConst.ExampleMode then
+        ctrl:Awake();
+    end
+
 end
 
 --单击事件--

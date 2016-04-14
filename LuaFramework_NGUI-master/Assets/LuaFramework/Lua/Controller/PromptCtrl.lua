@@ -23,7 +23,7 @@ end
 
 function PromptCtrl.Awake()
 	logWarn("PromptCtrl.Awake--->>!!!!!!!!!!!!!!!!!!!!!!");
-	panelMgr:CreatePanel('Prompt', this.OnCreate);
+	panelMgr:CreatePanel("GuiCamera",'Prompt', this.OnCreate);
 end
 
 --启动事件--

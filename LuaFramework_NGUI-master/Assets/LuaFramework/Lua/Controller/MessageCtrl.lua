@@ -14,7 +14,7 @@ end
 
 function MessageCtrl.Awake()
 	logWarn("MessageCtrl.Awake--->>");
-	panelMgr:CreatePanel('Message', this.OnCreate);
+	panelMgr:CreatePanel("GuiCamera",'Message', this.OnCreate);
 end
 
 --启动事件--
