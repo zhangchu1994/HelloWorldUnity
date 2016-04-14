@@ -35,23 +35,33 @@ namespace LuaFramework {
         /// <summary>
         /// 初始化GUI
         /// </summary>
-        public void InitGui() {
-            string name = "GUI";
-            GameObject gui = GameObject.Find(name);
-            if (gui != null) return;
+        public void InitGui() 
+		{
+//			ArrayList names = new ArrayList(){"GUI","LoginUI"};//
+//			for (int i = 0; i < names.Count; i++) 
+//			{
+//				string name = names[i].ToString();
+//				
+//				GameObject gui = GameObject.Find(name);
+//				
+//				if (gui != null) return;
+//				
+//				GameObject prefab = Util.LoadPrefab(name);
+//				gui = Instantiate(prefab) as GameObject;
+//				gui.name = name;
+//
+//			}
 
-            GameObject prefab = Util.LoadPrefab(name);
-            gui = Instantiate(prefab) as GameObject;
-            gui.name = name;
         }
 
         /// <summary>
         /// 释放资源
         /// </summary>
-        public void CheckExtractResource() {
-            bool isExists = Directory.Exists(Util.DataPath) &&
-              Directory.Exists(Util.DataPath + "lua/") && File.Exists(Util.DataPath + "files.txt");
-            if (isExists || AppConst.DebugMode) {
+        public void CheckExtractResource() 
+		{
+            bool isExists = Directory.Exists(Util.DataPath) && Directory.Exists(Util.DataPath + "lua/") && File.Exists(Util.DataPath + "files.txt");
+            if (isExists || AppConst.DebugMode) 
+			{
                 StartCoroutine(OnUpdateResource());
                 return;   //文件已经解压过了，自己可添加检查文件列表逻辑
             }
