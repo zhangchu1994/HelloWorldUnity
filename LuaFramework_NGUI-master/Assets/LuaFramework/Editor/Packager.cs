@@ -51,24 +51,18 @@ public class Packager {
     }
 
     [MenuItem("LuaFramework/Build Lua Resource", false, 103)]
-    public static void BuildLuaResource() {
-//		if (Directory.Exists(Util.DataPath)) {
-//			Directory.Delete(Util.DataPath, true);
-//		}
-//		string streamPath = Application.streamingAssetsPath;
-//		if (Directory.Exists(streamPath)) {
-//			Directory.Delete(streamPath, true);
-//		}
-//		AssetDatabase.Refresh();
-//		
-//		if (AppConst.ExampleMode) {
-//			HandleExampleBundle(BuildTarget.StandaloneWindows);
-//		}
-		if (AppConst.LuaBundleMode) {
-			HandleBundle();
-		} else {
-			HandleLuaFile();
+    public static void BuildLuaResource() 
+	{
+		if (Directory.Exists(Util.DataPath)) {
+			Directory.Delete(Util.DataPath, true);
 		}
+		AssetDatabase.Refresh();
+		
+//		if (AppConst.LuaBundleMode) {
+			HandleBundle();
+//		} else {
+//			HandleLuaFile();
+//		}
 		BuildFileIndex();
 		AssetDatabase.Refresh();
 	}
@@ -161,6 +155,13 @@ public class Packager {
 		addis[0] = LoadAsset("HelloWorld/Prefabs/HelloWorldItem.prefab");
 		assetfile = assetPath + "HelloWorld" + AppConst.ExtName;
 		BuildPipeline.BuildAssetBundle(mainAsset, addis, assetfile, options, target);
+		BuildPipeline.PopAssetDependencies();
+
+		///------------------------------生成TabBarPanel素材绑定-----------------------------------
+		BuildPipeline.PushAssetDependencies();
+		mainAsset = LoadAsset("TabBar/Prefabs/TabBarPanel.prefab");
+		assetfile = assetPath + "TabBar" + AppConst.ExtName;
+		BuildPipeline.BuildAssetBundle(mainAsset, null, assetfile, options, target);
 		BuildPipeline.PopAssetDependencies();
 
 		

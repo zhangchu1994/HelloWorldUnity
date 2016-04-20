@@ -14,6 +14,7 @@ local panel;
 local prompt;
 local transform;
 local gameObject;
+-- this.classname;
 
 --构建函数--
 function PromptCtrl.New()
@@ -22,18 +23,19 @@ function PromptCtrl.New()
 end
 
 function PromptCtrl.Awake()
-	logWarn("PromptCtrl.Awake--->>!!!!!!!!!!!!!!!!!!!!!!");
+    this.classname = "PromptCtrl";
+	print("PromptCtrl.Awake--->> classname = "..this.classname);
 	panelMgr:CreatePanel("GuiCamera",'Prompt', this.OnCreate);
 end
 
 --启动事件--
 function PromptCtrl.OnCreate(obj)
-	gameObject = obj;
+	this.gameObject = obj;
 	transform = obj.transform;
 
 	panel = transform:GetComponent('UIPanel');
 	prompt = transform:GetComponent('LuaBehaviour');
-	logWarn("Start lua--->>"..gameObject.name);
+	print("Start lua--->>"..this.gameObject.name);
 
 	this.InitPanel();	--初始化面板--
 	prompt:AddClick(PromptPanel.btnOpen, this.OnClick);

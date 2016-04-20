@@ -64,7 +64,7 @@ function Network.OnMessage(buffer)
 		this.TestLoginSproto(buffer);
 	end
 	----------------------------------------------------
-    local ctrl = CtrlManager.GetCtrl(CtrlNames.Message);
+    local ctrl = MessageCtrl.New();--CtrlManager.GetCtrl(CtrlNames.Message);
     if ctrl ~= nil then
         ctrl:Awake();
     end

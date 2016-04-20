@@ -14,10 +14,9 @@ require "Common/define"
 require "Common/functions"
 
 require "Logic/LuaClass"
-require "Logic/CtrlManager"
 
-require "Controller/PromptCtrl"
-require "Controller/HelloWorldCtrl"
+require "Controller/TabBarCtrl"
+require "Logic/CtrlManager"
 
 --管理器--
 Game = {};
@@ -54,10 +53,11 @@ function Game.OnInitOK()
 
     this.initGui()
     this.initPanel()
+    CtrlManager.Init();
 end
 
 function Game.initGui()
-    local names = {"LoginUI","GUI"}--,
+    local names = {"GUI","TabBar","Main City (3D)"}--"LoginUI",
     for i=1,#names do
         local name = names[i];
         local gui = GameObject.Find(name);
@@ -73,12 +73,14 @@ function Game.initGui()
 end
 
 function Game.initPanel()
-    CtrlManager.Init();
-    -- local ctrl = CtrlManager.GetCtrl(CtrlNames.Prompt);
-    local ctrl = CtrlManager.GetCtrl(CtrlNames.HelloWorld);
-    if ctrl ~= nil and AppConst.ExampleMode then
-        ctrl:Awake();
+
+
+    local ctrl2 = TabBarCtrl.New();
+    if ctrl2 ~= nil and AppConst.ExampleMode then
+        ctrl2:Awake();
     end
+
+
     logWarn('LuaFramework InitOK--->>>');
 end
 

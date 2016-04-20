@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<Project Name="LuaNGUI.luaprj" >
+    <LuaFile RelativePath=".\..\Lua\Logic\CtrlManager.lua" />
+    <LuaFile RelativePath=".\..\Lua\Logic\Game.lua" />
+    <LuaFile RelativePath=".\..\Lua\Logic\LuaClass.lua" />
+    <LuaFile RelativePath=".\..\Lua\Logic\Network.lua" />
+    <LuaFile RelativePath=".\..\Lua\Controller\HelloWorldCtrl.lua" />
+    <LuaFile RelativePath=".\..\Lua\Controller\MessageCtrl.lua" />
+    <LuaFile RelativePath=".\..\Lua\Controller\PromptCtrl.lua" />
+    <LuaFile RelativePath=".\..\Lua\Controller\TabBarCtrl.lua" />
+</Project>
