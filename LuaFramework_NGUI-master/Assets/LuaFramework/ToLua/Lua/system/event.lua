@@ -187,6 +187,7 @@ CoUpdateBeat	= event("CoUpdate")				--只在协同使用
 
 --逻辑update
 function Update(deltaTime, unscaledDeltaTime)
+	-- print("Update deltaTime = "..deltaTime);
 	Time:SetDeltaTime(deltaTime, unscaledDeltaTime)				
 	UpdateBeat()			
 end
