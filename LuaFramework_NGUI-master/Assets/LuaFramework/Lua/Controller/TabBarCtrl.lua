@@ -25,29 +25,24 @@ local gameObject;
 --构建函数--
 function TabBarCtrl.New()
 	print("TabBarCtrl.New--->>");
+    panelMgr:CreatePanel1("TabBarCamera","Prefabs/TabBarPanel","TabBarCtrl", this.OnCreate);--Controller/
 	return this;
 end
 
 
 
 function TabBarCtrl.Awake()
-	print("TabBarCtrl.Awake--->>!!!!!!!!!!!!!!!!!!!!!!");
 	-- panelMgr:CreatePanel('Prompt', this.OnCreate);
-    -- print("11111111111111111111111111111111111111111");
-    classname = "TabBarCtrl";
-    panelMgr:CreatePanel1("TabBarCamera","Prefabs/TabBarPanel","TabBarCtrl", this.OnCreate);--Controller/
 end
 
 function TabBarCtrl.Update()
-    print("TabBarCtrl.Update--->>"..312312312);
+    -- print("TabBarCtrl.Update--->>"..312312312);
 end
 
 --启动事件--
 function TabBarCtrl.OnCreate(obj)
 	this.gameObject = obj;
 	transform = obj.transform;
-
-
 
     -- soundMgr:PlayBacksound('Sound/shijie',true);
 	
@@ -111,10 +106,6 @@ function TabBarCtrl.OnClick(go)
     if this.currentView ~= nil and AppConst.ExampleMode then
         this.currentView:Awake();
     end
-    print(this.currentView.classname);
-    -- for k,v in pairs(currentView) do
-    --     print(k,v)
-    -- end
 end
 
 function TabBarCtrl.OnClick1(go)

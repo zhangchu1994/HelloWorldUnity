@@ -7,14 +7,12 @@ local transform;
 
 --构建函数--
 function MessageCtrl.New()
-	logWarn("MessageCtrl.New--->>");
+	panelMgr:CreatePanel("GuiCamera",'Message', this.OnCreate);
 	return this;
 end
 
 function MessageCtrl.Awake()
-	logWarn("MessageCtrl.Awake--->>");
 
-	panelMgr:CreatePanel("GuiCamera",'Message', this.OnCreate);
 end
 
 --启动事件--

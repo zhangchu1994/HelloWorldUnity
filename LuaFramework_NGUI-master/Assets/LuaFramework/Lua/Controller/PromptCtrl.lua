@@ -18,14 +18,12 @@ local gameObject;
 
 --构建函数--
 function PromptCtrl.New()
-	logWarn("PromptCtrl.New--->>");
+    panelMgr:CreatePanel("GuiCamera",'Prompt', this.OnCreate);
 	return this;
 end
 
 function PromptCtrl.Awake()
-    this.classname = "PromptCtrl";
-	print("PromptCtrl.Awake--->> classname = "..this.classname);
-	panelMgr:CreatePanel("GuiCamera",'Prompt', this.OnCreate);
+
 end
 
 --启动事件--

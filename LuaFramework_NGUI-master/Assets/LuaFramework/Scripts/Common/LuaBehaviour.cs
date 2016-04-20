@@ -26,7 +26,7 @@ namespace LuaFramework {
             Util.CallMethod(name, "OnClick", go);
         }
 
-		protected void Update()
+		void Update()
 		{
 			Util.CallMethod(name, "Update");
 		}

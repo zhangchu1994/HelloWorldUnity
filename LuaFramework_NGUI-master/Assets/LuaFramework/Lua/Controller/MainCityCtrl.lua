@@ -18,16 +18,11 @@ local transform;
 
 --构建函数--
 function MainCityCtrl.New()
-	logWarn("MainCityCtrl.New--->>");
+    panelMgr:CreatePanel1("MainCity3DCamera","Prefabs/MainCityPlane(3D)", this.OnCreate);
 	return this;
 end
 
 function MainCityCtrl.Awake()
-	logWarn("MainCityCtrl.Awake--->>!!!!!!!!!!!!!!!!!!!!!!");
-	-- panelMgr:CreatePanel('Prompt', this.OnCreate);
-    -- print("11111111111111111111111111111111111111111");
-    classname = "MainCityCtrl";
-    panelMgr:CreatePanel1("MainCity3DCamera","Prefabs/MainCityPlane(3D)", this.OnCreate);
 end
 
 --启动事件--

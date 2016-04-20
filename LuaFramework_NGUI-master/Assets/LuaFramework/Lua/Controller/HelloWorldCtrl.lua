@@ -16,15 +16,12 @@ local transform;
 
 --构建函数--
 function HelloWorldCtrl.New()
-	logWarn("HelloWorldCtrl.New--->>");
+    panelMgr:CreatePanel("LoginUITag",'HelloWorld', this.OnCreate);
 	return this;
 end
 
 function HelloWorldCtrl.Awake()
-	logWarn("HelloWorldCtrl.Awake--->>!!!!!!!!!!!!!!!!!!!!!!");
-	-- panelMgr:CreatePanel('Prompt', this.OnCreate);
-    -- print("11111111111111111111111111111111111111111");
-    panelMgr:CreatePanel("LoginUITag",'HelloWorld', this.OnCreate);
+
 end
 
 --启动事件--

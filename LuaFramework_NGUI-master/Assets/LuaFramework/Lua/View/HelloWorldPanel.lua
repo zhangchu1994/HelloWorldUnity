@@ -10,7 +10,6 @@ function HelloWorldPanel.Awake(obj)
 	transform = obj.transform;
 
 	this.InitPanel();
-	logWarn("Awake lua--->>"..gameObject.name);
 end
 
 --初始化面板--

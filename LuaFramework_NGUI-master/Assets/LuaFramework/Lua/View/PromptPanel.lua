@@ -19,6 +19,10 @@ function PromptPanel.InitPanel()
 	this.gridParent = transform:FindChild('ScrollView/Grid');
 end
 
+function PromptPanel.Update()
+    -- print("TabBarCtrl.Update--->>"..312312312);
+end
+
 --单击事件--
 function PromptPanel.OnDestroy()
 	logWarn("OnDestroy---->>>");
