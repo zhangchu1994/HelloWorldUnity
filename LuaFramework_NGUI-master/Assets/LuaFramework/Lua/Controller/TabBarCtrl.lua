@@ -21,26 +21,30 @@ local panel;
 local prompt;
 local transform;
 local gameObject;
--- local currentView;
-local classname;
 
 --构建函数--
 function TabBarCtrl.New()
-	logWarn("TabBarCtrl.New--->>");
+	print("TabBarCtrl.New--->>");
 	return this;
 end
 
+
+
 function TabBarCtrl.Awake()
-	logWarn("TabBarCtrl.Awake--->>!!!!!!!!!!!!!!!!!!!!!!");
+	print("TabBarCtrl.Awake--->>!!!!!!!!!!!!!!!!!!!!!!");
 	-- panelMgr:CreatePanel('Prompt', this.OnCreate);
     -- print("11111111111111111111111111111111111111111");
     classname = "TabBarCtrl";
-    panelMgr:CreatePanel1("TabBarCamera","Prefabs/TabBarPanel", this.OnCreate);
+    panelMgr:CreatePanel1("TabBarCamera","Prefabs/TabBarPanel","TabBarCtrl", this.OnCreate);--Controller/
+end
+
+function TabBarCtrl.Update()
+    print("TabBarCtrl.Update--->>"..312312312);
 end
 
 --启动事件--
 function TabBarCtrl.OnCreate(obj)
-	gameObject = obj;
+	this.gameObject = obj;
 	transform = obj.transform;
 
 
@@ -49,7 +53,7 @@ function TabBarCtrl.OnCreate(obj)
 	
     panel = transform:GetComponent('UIPanel');
 	prompt = transform:GetComponent('LuaBehaviour');
-	logWarn("Start lua--->>"..gameObject.name);
+	print("Start lua--->>"..this.gameObject.name);
 
     for i=1,5 do
         local btnOpen1 = transform:FindChild("Open"..i).gameObject;

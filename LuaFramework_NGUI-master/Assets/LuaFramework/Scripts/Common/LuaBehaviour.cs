@@ -26,6 +26,11 @@ namespace LuaFramework {
             Util.CallMethod(name, "OnClick", go);
         }
 
+		protected void Update()
+		{
+			Util.CallMethod(name, "Update");
+		}
+
         /// <summary>
         /// 初始化面板
         /// </summary>

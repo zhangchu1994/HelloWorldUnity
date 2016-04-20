@@ -45,12 +45,12 @@ namespace LuaFramework {
             Debug.Log("StartCreatePanel------>>>>" + name);
         }
 
-		public void CreatePanel1(string parent,string name, LuaFunction func = null) 
+		public void CreatePanel1(string parent,string name, string luaFile,LuaFunction func = null) 
 		{
-			StartCoroutine(StartCreatePanel1(parent, name, func));
+			StartCoroutine(StartCreatePanel1(parent, name,luaFile, func));
 		}
 		
-		IEnumerator StartCreatePanel1(string parent,string name, LuaFunction func = null) 
+		IEnumerator StartCreatePanel1(string parent,string name, string luaFile,LuaFunction func = null) 
 		{
 			GameObject prefab = Resources.Load<GameObject>(name);//Util.LoadAsset(bundle, name);
 			yield return new WaitForEndOfFrame();
@@ -58,7 +58,7 @@ namespace LuaFramework {
 				yield break;
 			}
 			GameObject go = Instantiate(prefab) as GameObject;
-			go.name = name;
+			go.name = luaFile;
 			go.layer = LayerMask.NameToLayer("Default");
 			go.transform.parent = getParentByName(parent);//Parent;
 			go.transform.localScale = Vector3.one;
