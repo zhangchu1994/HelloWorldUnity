@@ -1,8 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Editor\ExportAssetBundles.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\..\..\Work\client\trunk\Assets\Script\DataTable\DataTables.cs">
     <Files>
-      <File FileName="Assets\Editor\ExportAssetBundles.cs" Line="38" Column="2" />
+      <File FileName="..\..\..\..\Work\client\trunk\Assets\Script\Base\NpcNormal.cs" Line="223" Column="5" />
+      <File FileName="..\..\..\..\Work\client\trunk\Assets\Script\DataTable\DataTables.cs" Line="3690" Column="18" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

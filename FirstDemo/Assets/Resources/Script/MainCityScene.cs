@@ -15,7 +15,8 @@ public class MainCityScene : MonoBehaviour
 	void Start () 
 	{
 		Debug.Log("1233");
-		m_Actor.GetComponent<NavMeshAgent>().destination = m_pos1.transform.position;
+//		m_Actor.GetComponent<NavMeshAgent>().destination = m_pos1.transform.position;
+		m_Cube.GetComponent<NavMeshAgent>().destination = m_pos1.transform.position;
 		//GUI.Button(Rect(100,100,100,50),"PLAY");
 	}
 	
