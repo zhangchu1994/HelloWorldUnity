@@ -1,17 +1,17 @@
 
-CtrlNames = {
-	Prompt = "PromptCtrl",
-	Message = "MessageCtrl",
-	HelloWorld = "HelloWorldCtrl",
-	TabBar = "TabBarCtrl"
-}
+-- CtrlNames = {
+-- 	Prompt = "PromptCtrl",
+-- 	Message = "MessageCtrl",
+-- 	HelloWorld = "HelloWorldCtrl",
+-- 	TabBar = "TabBarCtrl"
+-- }
 
-PanelNames = {
-	"PromptPanel",	
-	"MessagePanel",
-	"HelloWorldPanel",
-	"TabBarPanel",
-}
+-- PanelNames = {
+-- 	"PromptPanel",	
+-- 	"MessagePanel",
+-- 	"HelloWorldPanel",
+-- 	"TabBarPanel",
+-- }
 
 --协议类型--
 ProtocalType = {

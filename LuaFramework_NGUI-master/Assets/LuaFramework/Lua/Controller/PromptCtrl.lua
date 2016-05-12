@@ -18,31 +18,40 @@ local gameObject;
 
 --构建函数--
 function PromptCtrl.New()
-    panelMgr:CreatePanel("GuiCamera",'Prompt', this.OnCreate);
+    panelMgr:CreatePanel("GuiCamera",'Prompt',"PromptCtrl", this.OnCreate);
 	return this;
+end
+
+function PromptCtrl.Start()
+
+end
+
+function PromptCtrl.Update()
+    -- print("PromptCtrl__Update________________________________")
 end
 
 function PromptCtrl.Awake()
 
 end
-
 --启动事件--
 function PromptCtrl.OnCreate(obj)
 	this.gameObject = obj;
 	transform = obj.transform;
+    this.btnOpen = transform:FindChild("Open").gameObject;
+    this.gridParent = transform:FindChild('ScrollView/Grid');
 
 	panel = transform:GetComponent('UIPanel');
 	prompt = transform:GetComponent('LuaBehaviour');
 	print("Start lua--->>"..this.gameObject.name);
 
 	this.InitPanel();	--初始化面板--
-	prompt:AddClick(PromptPanel.btnOpen, this.OnClick);
+	prompt:AddClick(this.btnOpen, this.OnClick);
 end
 
 --初始化面板--
 function PromptCtrl.InitPanel()
 	panel.depth = 1;	--设置纵深--
-	local parent = PromptPanel.gridParent;
+	local parent = this.gridParent;
 	local itemPrefab = prompt:LoadAsset('PromptItem');
 	for i = 1, 100 do
 		local go = newObject(itemPrefab);

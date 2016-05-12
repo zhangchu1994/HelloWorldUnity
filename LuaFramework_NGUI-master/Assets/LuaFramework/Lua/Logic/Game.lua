@@ -27,11 +27,6 @@ local transform;
 local gameObject;
 local WWW = UnityEngine.WWW;
 
-function Game.InitViewPanels()
-	for i = 1, #PanelNames do
-		require ("View/"..tostring(PanelNames[i]))
-	end
-end
 
 --初始化完成，发送链接服务器信息--
 function Game.OnInitOK()
@@ -39,8 +34,6 @@ function Game.OnInitOK()
     AppConst.SocketAddress = "127.0.0.1";
     networkMgr:SendConnect();
 
-    --注册LuaView--
-    this.InitViewPanels();
 
     --测试第三方库功能--
     this.test_class_func();

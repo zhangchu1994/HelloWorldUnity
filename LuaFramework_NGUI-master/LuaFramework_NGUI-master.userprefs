@@ -1,9 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\LuaFramework\ToLua\Source\Generate\LuaFramework_PanelManagerWrap.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\..\..\Work\client\trunk\Assets\Script\Manager\MeshRenderManager.cs">
     <Files>
-      <File FileName="Assets\LuaFramework\Scripts\Manager\PanelManager.cs" Line="63" Column="3" />
-      <File FileName="Assets\LuaFramework\ToLua\Source\Generate\LuaFramework_PanelManagerWrap.cs" Line="16" Column="55" />
+      <File FileName="..\..\..\..\Work\client\trunk\Assets\Script\Manager\WeaponInfo.cs" Line="27" Column="61" />
+      <File FileName="..\..\..\..\Work\client\trunk\Assets\Script\Manager\MeshRenderManager.cs" Line="116" Column="93" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -17,13 +17,13 @@ namespace LuaFramework {
 //            }
 //        }
 
-		public void CreatePanel(string parent,string name, LuaFunction func = null) {
+		public void CreatePanel(string parent,string name, string luaFile,LuaFunction func = null) {
             AssetBundle bundle = ResManager.LoadBundle(name);
-			StartCoroutine(StartCreatePanel(parent, name, bundle, func));
+			StartCoroutine(StartCreatePanel(parent, name, luaFile,bundle, func));
             Debug.LogWarning("CreatePanel::>> " + name + " " + bundle);
         }
 
-		IEnumerator StartCreatePanel(string parent,string name, AssetBundle bundle, LuaFunction func = null) 
+		IEnumerator StartCreatePanel(string parent,string name, string luaFile,AssetBundle bundle, LuaFunction func = null) 
 		{
             name += "Panel";
             GameObject prefab = Util.LoadAsset(bundle, name);
@@ -32,8 +32,8 @@ namespace LuaFramework {
                 yield break;
             }
             GameObject go = Instantiate(prefab) as GameObject;
-            go.name = name;
-            go.layer = LayerMask.NameToLayer("Default");
+			go.name = luaFile;
+			go.layer = LayerMask.NameToLayer("Default");
 			go.transform.parent = getParentByName(parent);//Parent;
             go.transform.localScale = Vector3.one;
             go.transform.localPosition = Vector3.zero;
@@ -45,12 +45,12 @@ namespace LuaFramework {
             Debug.Log("StartCreatePanel------>>>>" + name);
         }
 
-		public void CreatePanel1(string parent,string name, string luaFile,LuaFunction func = null) 
+		public void CreatePanelFromResource(string parent,string name, string luaFile,LuaFunction func = null) 
 		{
-			StartCoroutine(StartCreatePanel1(parent, name,luaFile, func));
+			StartCoroutine(StartCreatePanelFromResource(parent, name,luaFile, func));
 		}
 		
-		IEnumerator StartCreatePanel1(string parent,string name, string luaFile,LuaFunction func = null) 
+		IEnumerator StartCreatePanelFromResource(string parent,string name, string luaFile,LuaFunction func = null) 
 		{
 			GameObject prefab = Resources.Load<GameObject>(name);//Util.LoadAsset(bundle, name);
 			yield return new WaitForEndOfFrame();

@@ -25,7 +25,7 @@ local gameObject;
 --构建函数--
 function TabBarCtrl.New()
 	print("TabBarCtrl.New--->>");
-    panelMgr:CreatePanel1("TabBarCamera","Prefabs/TabBarPanel","TabBarCtrl", this.OnCreate);--Controller/
+    panelMgr:CreatePanelFromResource("TabBarCamera","Prefabs/TabBarPanel","TabBarCtrl", this.OnCreate);--Controller/
 	return this;
 end
 
@@ -59,44 +59,14 @@ function TabBarCtrl.OnCreate(obj)
         end
     end
 
-	this.InitPanel();	--初始化面板--
-	-- prompt:AddClick(TabBarCtrl.btnOpen, this.OnClick);
 end
 
---初始化面板--
-function TabBarCtrl.InitPanel()
-	-- panel.depth = 1;	--设置纵深--
-	-- local parent = TabBarCtrl.gridParent;
-	-- local itemPrefab = prompt:LoadAsset('HelloWorldItem');
-	-- for i = 1, 8 do
-	-- 	local go = newObject(itemPrefab);
-	-- 	go.name = tostring(i);
-	-- 	go.transform.parent = parent;
-	-- 	go.transform.localScale = Vector3.one;
-	-- 	go.transform.localPosition = Vector3.zero;
-	-- 	prompt:AddClick(go, this.OnItemClick);
-
-	-- 	local goo = go.transform:FindChild('Label');
-	-- 	goo:GetComponent('UILabel').text = i;
-	-- end
-	-- local grid = parent:GetComponent('UIGrid');
-	-- grid:Reposition();
-	-- grid.repositionNow = true;
-	-- parent:GetComponent('WrapGrid'):InitGrid();
-end
-
---滚动项单击事件--
-function TabBarCtrl.OnItemClick(go)
-    print("__________________________________________");
-end
-
---单击事件--
 function TabBarCtrl.OnClick(go)
     print("__________________________________________"..go.name);
     if go.name == "Open1" then
         this.currentView = PromptCtrl.New();--CtrlManager.GetCtrl(CtrlNames.Prompt);--
     elseif go.name == "Open2" then
-        this.currentView = HelloWorldCtrl.New();--CtrlManager.GetCtrl(CtrlNames.HelloWorld);--
+        -- this.currentView = HelloWorldCtrl.New();--CtrlManager.GetCtrl(CtrlNames.HelloWorld);--
     elseif go.name == "Open3" then
         this.currentView = MessageCtrl.New();--CtrlManager.GetCtrl(CtrlNames.Message);--
     elseif go.name == "Open4" then

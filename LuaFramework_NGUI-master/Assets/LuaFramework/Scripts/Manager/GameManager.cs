@@ -51,7 +51,6 @@ namespace LuaFramework {
 //				gui.name = name;
 //
 //			}
-
         }
 
         /// <summary>

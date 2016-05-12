@@ -1,2 +1,5 @@
 在LuaManager里的StartMain关联的Main.lua
 在GameManager里加载GUI 并调用Game.lua Util.CallMethod("Game", "OnInitOK");
+参见脚本比如在HelloWorldCtrl.lua调用c#这边的StartCreatePanel来创建Perfab并将Perfab对象回给HelloWorldCtrl.lua来实现脚本和场景中Perfab的关联
+HelloWorldCtrl在Game里创建 HelloWorldPanel在LuaBehaviour端调用 现在准备废弃掉 让LuaBehaviour去调用HelloWorldCtrl
+每一个创建出来的perfab都关联了一个LuaBehaviour LuaBehaviour可以实现Awake Start Update等方法 然后从LuaBehaviour调到lua层
