@@ -46,6 +46,19 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Editor\ExportAssetBundles.cs" />
+     <Compile Include="Assets\Lib\EasyTouchBundle\EasyTouch\Plugins\Editor\EasyTouchInspector.cs" />
+     <Compile Include="Assets\Lib\EasyTouchBundle\EasyTouch\Plugins\Editor\EasyTouchMenu.cs" />
+     <Compile Include="Assets\Lib\EasyTouchBundle\EasyTouch\Plugins\Editor\EasyTouchTriggerInspector.cs" />
+     <Compile Include="Assets\Lib\EasyTouchBundle\EasyTouch\Plugins\Editor\EasytouchHierachyCallBack.cs" />
+     <Compile Include="Assets\Lib\EasyTouchBundle\EasyTouch\Plugins\Editor\HTGuiTools.cs" />
+     <Compile Include="Assets\Lib\EasyTouchBundle\EasyTouchControls\Plugins\Editor\ETCAreaInspector.cs" />
+     <Compile Include="Assets\Lib\EasyTouchBundle\EasyTouchControls\Plugins\Editor\ETCAxisInspector.cs" />
+     <Compile Include="Assets\Lib\EasyTouchBundle\EasyTouchControls\Plugins\Editor\ETCButtonInspector.cs" />
+     <Compile Include="Assets\Lib\EasyTouchBundle\EasyTouchControls\Plugins\Editor\ETCDPadInspector.cs" />
+     <Compile Include="Assets\Lib\EasyTouchBundle\EasyTouchControls\Plugins\Editor\ETCGuiTools.cs" />
+     <Compile Include="Assets\Lib\EasyTouchBundle\EasyTouchControls\Plugins\Editor\ETCJoystickInspector.cs" />
+     <Compile Include="Assets\Lib\EasyTouchBundle\EasyTouchControls\Plugins\Editor\ETCMenu.cs" />
+     <Compile Include="Assets\Lib\EasyTouchBundle\EasyTouchControls\Plugins\Editor\ETCTouchPadInspector.cs" />
      <Compile Include="Assets\Lib\Editor\ShowColliderAlert.cs" />
      <Compile Include="Assets\Lib\Editor\VertexPainter2.cs" />
      <Compile Include="Assets\Lib\NGUI\Examples\Scripts\InventorySystem\Editor\InvDatabaseInspector.cs" />
@@ -161,6 +174,7 @@
      <None Include="Assets\Lib\NGUI\Resources\Shaders\Unlit - Transparent Colored (TextureClip).shader" />
      <None Include="Assets\Lib\_vertexPainter\Shaders\vB_Diffuse_3tex.shader" />
      <None Include="Assets\Lib\NGUI\Examples\Atlases\SciFi\SciFi Font - Header.txt" />
+     <None Include="Assets\Lib\EasyTouchBundle\EasyTouchControls\ReleaseNotes.txt" />
      <None Include="Assets\Resources\Shader\Mobile-Diffuse.shader" />
      <None Include="Assets\Resources\Shader\Mobile-Particle-Add-Color+1.shader" />
      <None Include="Assets\Resources\Shader\ItemShader\Own-Item-MatCapTransparent.shader" />
@@ -190,6 +204,7 @@
      <None Include="Assets\Resources\Shader\Mobile-Particle-Add-Color-1.shader" />
      <None Include="Assets\Lib\_vertexPainter\Shaders\vB_DiffuseNormal_4tex.shader" />
      <None Include="Assets\Lib\NGUI\Resources\Shaders\Unlit - Transparent Packed 2.shader" />
+     <None Include="Assets\Lib\EasyTouchBundle\Readme.txt" />
      <None Include="Assets\Resources\Shader\ItemShader\Own-Item-WaveMagma.shader" />
      <None Include="Assets\Resources\Shader\ItemShader\Own-Item-WaveGlow.shader" />
      <None Include="Assets\Resources\Shader\transparent_rimlight_color.shader" />
@@ -238,9 +253,11 @@
      <None Include="Assets\Resources\Shader\Own-FadeOut.shader" />
      <None Include="Assets\Resources\Shader\Own-LightDiffuse.shader" />
      <None Include="Assets\Resources\Shader\Particle Add+1.shader" />
+     <None Include="Assets\Lib\EasyTouchBundle\EasyTouchControls\Readme.txt" />
      <None Include="Assets\Lib\_vertexPainter\Shaders\vB_DiffuseNormal_2tex.shader" />
      <None Include="Assets\Lib\NGUI\Examples\Shaders\Unlit - Additive Colored.shader" />
      <None Include="Assets\Resources\Shader\ItemShader\Own-Item-PaperTwoFace.shader" />
+     <None Include="Assets\Lib\EasyTouchBundle\EasyTouch\RealseNotes.txt" />
      <None Include="Assets\Resources\Shader\ItemShader\Own-Item-Wave.shader" />
      <None Include="Assets\Lib\NGUI\Examples\Atlases\Refractive\Refractive Font - Header.txt" />
      <None Include="Assets\Lib\NGUI\Examples\Shaders\Refractive.shader" />
