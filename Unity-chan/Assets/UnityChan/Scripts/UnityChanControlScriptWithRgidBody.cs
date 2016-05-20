@@ -76,7 +76,7 @@ public class UnityChanControlScriptWithRgidBody : MonoBehaviour
 		currentBaseState = anim.GetCurrentAnimatorStateInfo(0);	// 参照用のステート変数にBase Layer (0)の現在のステートを設定する
 		rb.useGravity = true;//ジャンプ中に重力を切るので、それ以外は重力の影響を受けるようにする
 		
-		Debug.Log ("h= "+h+" v= "+v);
+//		Debug.Log ("h= "+h+" v= "+v);
 		
 		// 以下,角色的移动处理
 		velocity = new Vector3(0, 0, v);		// 上下方向轴z开始键入取得量的移动
@@ -109,7 +109,7 @@ public class UnityChanControlScriptWithRgidBody : MonoBehaviour
 		// 在键入左右,大致在y轴旋转
 		transform.Rotate(0, h * rotateSpeed, 0);	
 	
-
+		/*
 		// 以下、Animatorの各ステート中での処理
 		// Locomotion中
 		// 現在のベースレイヤーがlocoStateの時
@@ -185,6 +185,7 @@ public class UnityChanControlScriptWithRgidBody : MonoBehaviour
 				anim.SetBool("Rest", false);
 			}
 		}
+		*/
 	}
 
 	void OnGUI()
