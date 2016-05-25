@@ -1,0 +1,13 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\AssetBundle Manager\Assets\AssetBundleSample\Scripts\LoadScenes.cs">
+    <Files>
+      <File FileName="..\AssetBundle Manager\Assets\AssetBundleSample\Scripts\LoadScenes.cs" Line="17" Column="56" />
+      <File FileName="..\AssetBundle Manager\Assets\AssetBundleManager\AssetBundleManager.cs" Line="192" Column="3" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
