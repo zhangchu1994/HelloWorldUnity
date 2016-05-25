@@ -1,0 +1,317 @@
+[
+    
+    {
+        "bundleName" : "LA",        
+        "version" : 49,        
+        "crc" : 1042951600,        
+        "size" : 1023154,        
+        "changeTime" : -8588132013760529028,        
+        "lastBuildDependencies" : 
+        [
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/Textures/constructor_diffuse.png",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/LA.unity",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/worker.FBX",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/Textures/constructor_normals.png",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/Materials/constructor_done.mat"
+        ]
+    },    
+    
+    {
+        "bundleName" : "LB",        
+        "version" : 29,        
+        "crc" : 2774377944,        
+        "size" : 1021800,        
+        "changeTime" : -8588132013871414608,        
+        "lastBuildDependencies" : 
+        [
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/Textures/constructor_diffuse.png",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/LB.unity",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/worker.FBX",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/Textures/constructor_normals.png",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/Materials/constructor_done.mat"
+        ]
+    },    
+    
+    {
+        "bundleName" : "LC",        
+        "version" : 37,        
+        "crc" : 1234159266,        
+        "size" : 1023144,        
+        "changeTime" : -8588132013646217918,        
+        "lastBuildDependencies" : 
+        [
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/Textures/constructor_diffuse.png",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/LC.unity",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/worker.FBX",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/Textures/constructor_normals.png",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/Materials/constructor_done.mat"
+        ]
+    },    
+    
+    {
+        "bundleName" : "LD",        
+        "version" : 20,        
+        "crc" : 2042133775,        
+        "size" : 1023176,        
+        "changeTime" : -8588132013541153868,        
+        "lastBuildDependencies" : 
+        [
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/LD.unity",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/Textures/constructor_diffuse.png",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/worker.FBX",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/Textures/constructor_normals.png",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/Materials/constructor_done.mat"
+        ]
+    },    
+    
+    {
+        "bundleName" : "sub/LBaseA",        
+        "version" : 19,        
+        "crc" : 1349039455,        
+        "size" : 1022129,        
+        "changeTime" : -8588132013408705928,        
+        "lastBuildDependencies" : 
+        [
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/Textures/constructor_diffuse.png",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/worker.FBX",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/Textures/constructor_normals.png",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/Materials/constructor_done.mat",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/LBaseA.unity"
+        ]
+    },    
+    
+    {
+        "bundleName" : "LBaseB",        
+        "version" : 19,        
+        "crc" : 2279382598,        
+        "size" : 1022129,        
+        "changeTime" : -8588132013085812348,        
+        "lastBuildDependencies" : 
+        [
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/LBaseB.unity",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/Textures/constructor_diffuse.png",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/worker.FBX",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/Textures/constructor_normals.png",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/Materials/constructor_done.mat"
+        ]
+    },    
+    
+    {
+        "bundleName" : "ABaseA",        
+        "version" : 20,        
+        "crc" : 3993999738,        
+        "size" : 1357659,        
+        "changeTime" : -8588132012662518718,        
+        "lastBuildDependencies" : 
+        [
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/Textures/constructor_diffuse.png",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/worker.FBX",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/Textures/constructor_normals.png",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/Materials/constructor_done.mat"
+        ]
+    },    
+    
+    {
+        "bundleName" : "ABaseB",        
+        "version" : 20,        
+        "crc" : 3993999738,        
+        "size" : 1357659,        
+        "changeTime" : -8588132012068068688,        
+        "lastBuildDependencies" : 
+        [
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/Textures/constructor_diffuse.png",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/worker.FBX",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/Textures/constructor_normals.png",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/Materials/constructor_done.mat"
+        ]
+    },    
+    
+    {
+        "bundleName" : "AA",        
+        "version" : 20,        
+        "crc" : 3993999738,        
+        "size" : 1358855,        
+        "changeTime" : -8588132011937088628,        
+        "lastBuildDependencies" : 
+        [
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/Textures/constructor_diffuse.png",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/worker.FBX",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/Textures/constructor_normals.png",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/Materials/constructor_done.mat"
+        ]
+    },    
+    
+    {
+        "bundleName" : "ABaseC",        
+        "version" : 19,        
+        "crc" : 1530281650,        
+        "size" : 1588,        
+        "changeTime" : -8588302191355518601,        
+        "lastBuildDependencies" : 
+        [
+            "Assets/BundleManager/textures/assetBundleIcon.png",            
+            "Assets/BundleManager/textures/dependedAsset.png"
+        ]
+    },    
+    
+    {
+        "bundleName" : "LE",        
+        "version" : -1,        
+        "crc" : 0,        
+        "size" : -1,        
+        "changeTime" : -8587969567993863118,        
+        "lastBuildDependencies" : null
+    },    
+    
+    {
+        "bundleName" : "sub/LA-A",        
+        "version" : 19,        
+        "crc" : 4114728399,        
+        "size" : 6714,        
+        "changeTime" : -8588132013312586058,        
+        "lastBuildDependencies" : 
+        [
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/Textures/constructor_diffuse.png",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/LA-A.unity",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/worker.FBX",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/Textures/constructor_normals.png",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/Materials/constructor_done.mat"
+        ]
+    },    
+    
+    {
+        "bundleName" : "AB-A",        
+        "version" : 19,        
+        "crc" : 3857011984,        
+        "size" : 339070,        
+        "changeTime" : -8588132012880918308,        
+        "lastBuildDependencies" : 
+        [
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/Textures/constructor_diffuse.png",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/worker.FBX",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/Textures/constructor_normals.png",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/Materials/constructor_done.mat"
+        ]
+    },    
+    
+    {
+        "bundleName" : "AA-A",        
+        "version" : 19,        
+        "crc" : 701595380,        
+        "size" : 1926,        
+        "changeTime" : -8588132012533861638,        
+        "lastBuildDependencies" : 
+        [
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/Textures/constructor_diffuse.png",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/worker.FBX",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/Textures/constructor_normals.png",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/Materials/constructor_done.mat"
+        ]
+    },    
+    
+    {
+        "bundleName" : "LB-A",        
+        "version" : 20,        
+        "crc" : 1687037304,        
+        "size" : 6799,        
+        "changeTime" : -8588132012110466748,        
+        "lastBuildDependencies" : 
+        [
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/Textures/constructor_diffuse.png",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/worker.FBX",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/Textures/constructor_normals.png",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/Materials/constructor_done.mat",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/LB-A.unity"
+        ]
+    },    
+    
+    {
+        "bundleName" : "AAA",        
+        "version" : 20,        
+        "crc" : 2791254713,        
+        "size" : 1239,        
+        "changeTime" : -8588302191355518601,        
+        "lastBuildDependencies" : 
+        [
+            "Assets/BundleManager/textures/assetBundleIcon.png"
+        ]
+    },    
+    
+    {
+        "bundleName" : "AAAA",        
+        "version" : 20,        
+        "crc" : 931661699,        
+        "size" : 1200,        
+        "changeTime" : -8588302191355518601,        
+        "lastBuildDependencies" : 
+        [
+            "Assets/BundleManager/textures/dependedAsset.png"
+        ]
+    },    
+    
+    {
+        "bundleName" : "LAAAA",        
+        "version" : 20,        
+        "crc" : 2688258653,        
+        "size" : 6796,        
+        "changeTime" : -8588132011599898638,        
+        "lastBuildDependencies" : 
+        [
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/Textures/constructor_diffuse.png",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/worker.FBX",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/Textures/constructor_normals.png",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/Materials/constructor_done.mat",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/LAAAA.unity"
+        ]
+    },    
+    
+    {
+        "bundleName" : "LAAAAA",        
+        "version" : 20,        
+        "crc" : 3724792833,        
+        "size" : 7528,        
+        "changeTime" : -8588132011552295648,        
+        "lastBuildDependencies" : 
+        [
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/mats/sphere.mat",            
+            "Assets/BundleManager/textures/assetBundleIcon.png",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/mats/cube1.mat",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/prefabs/Cube.prefab",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/LAAAAA.unity",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/Textures/constructor_diffuse.png",            
+            "Assets/BundleManager/textures/dependedAsset.png",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/worker.FBX",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/Textures/constructor_normals.png",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/charaterRes/Materials/constructor_done.mat",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/prefabs/Sphere.prefab"
+        ]
+    },    
+    
+    {
+        "bundleName" : "ACA",        
+        "version" : 19,        
+        "crc" : 705756142,        
+        "size" : 2195,        
+        "changeTime" : -8588132011180588828,        
+        "lastBuildDependencies" : 
+        [
+            "Assets/BundleManager/textures/assetBundleIcon.png",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/mats/cube1.mat",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/prefabs/Cube.prefab"
+        ]
+    },    
+    
+    {
+        "bundleName" : "ACB",        
+        "version" : 19,        
+        "crc" : 4013025128,        
+        "size" : 2204,        
+        "changeTime" : -8588132011228689578,        
+        "lastBuildDependencies" : 
+        [
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/mats/sphere.mat",            
+            "Assets/BundleManager/textures/dependedAsset.png",            
+            "Assets/BundleManager/TestDownloadManager/BundleAssets/prefabs/Sphere.prefab"
+        ]
+    }
+]
