@@ -17,7 +17,7 @@ namespace AssetBundles
 		{
 			// Choose the output path according to the build target.
 			string outputPath = Path.Combine(Utility.AssetBundlesOutputPath,  Utility.GetPlatformName());
-			if (!Directory.Exists(outputPath) )
+			if (Directory.Exists(outputPath) == false)
 				Directory.CreateDirectory (outputPath);
 	
 			//@TODO: use append hash... (Make sure pipeline works correctly with it.)

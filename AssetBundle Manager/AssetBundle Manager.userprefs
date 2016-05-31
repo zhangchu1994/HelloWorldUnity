@@ -1,23 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\AssetBundleSample\Scripts\LoadVariants.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\其他Demo\Bundle Manager\Assets\BundleManager\Src\DownloadManager.cs">
     <Files>
-      <File FileName="Assets\AssetBundleManager\AssetBundleManager.cs" Line="236" Column="13" />
-      <File FileName="Assets\AssetBundleSample\Scripts\LoadScenes.cs" Line="1" Column="1" />
-      <File FileName="Assets\AssetBundleManager\Editor\AssetbundlesMenuItems.cs" Line="1" Column="1" />
-      <File FileName="Assets\AssetBundleManager\Editor\BuildScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\AssetBundleManager\Utility.cs" Line="1" Column="1" />
-      <File FileName="Assets\AssetBundleManager\Editor\LaunchAssetBundleServer.cs" Line="1" Column="1" />
-      <File FileName="Assets\AssetBundleManager\AssetBundleLoadOperation.cs" Line="1" Column="1" />
-      <File FileName="Assets\AssetBundleSample\Scripts\LoadAssets.cs" Line="1" Column="1" />
-      <File FileName="Assets\AssetBundleSample\Scripts\LoadTanks.cs" Line="168" Column="40" />
-      <File FileName="Assets\AssetBundleSample\Scripts\LoadVariants.cs" Line="30" Column="26" />
+      <File FileName="..\其他Demo\Bundle Manager\Assets\BundleManager\Src\DownloadManager.cs" Line="745" Column="26" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="E:\WorkSpace_Unity\HelloWorldUnity\trunk\AssetBundle Manager\Assets\AssetBundleManager\Editor\BuildScript.cs" line="20" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

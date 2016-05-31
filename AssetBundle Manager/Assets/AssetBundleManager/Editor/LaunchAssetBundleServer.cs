@@ -66,6 +66,7 @@ namespace AssetBundles
 			}
 			catch
 			{
+
 			}
 		}
 		
