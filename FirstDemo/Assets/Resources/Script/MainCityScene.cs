@@ -36,11 +36,13 @@ public class MainCityScene : MonoBehaviour
 //		m_Cube.transform.Rotate(100 * Time.deltaTime, 100 * Time.deltaTime, 100 * Time.deltaTime);
 	}
 
-	public void MoveStart(){
+	public void MoveStart()
+	{
 
 	}
 	
-	public void Move(){
+	public void Move()
+	{
 		//		anim.SetBool("Move",true);
 
 		m_Camera.transform.position = standardPos.position;	
@@ -53,8 +55,8 @@ public class MainCityScene : MonoBehaviour
 		animation.Play("Run",PlayMode.StopAll);
 	}
 	
-	public void MoveStop(){
+	public void MoveStop()
+	{
 //		anim.SetBool("Move",false);
 	}
-
 }

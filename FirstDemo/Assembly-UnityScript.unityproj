@@ -6,7 +6,7 @@
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
 	<RootNamespace></RootNamespace>
-	<ProjectGuid>{DE4D58B9-9806-231C-1C5A-BFCC2B777495}</ProjectGuid>
+	<ProjectGuid>{B89236F0-E58A-1297-D12C-926907AB784C}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<AssemblyName>Assembly-UnityScript</AssemblyName>
@@ -38,156 +38,161 @@
 	<Reference Include="System.Core" />
 	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-	  <HintPath>D:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>E:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>D:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>E:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Resources\Actor\ArtRes\3_Seffect\Fantasy_Portal\Script\Light_Variation.js" />
+     <Compile Include="Assets\Resources\scene\ImageZoom\Move.js" />
      <None Include="Assets\Lib\NGUI\Examples\Shaders\Unlit - Depth Cutout.shader" />
      <None Include="Assets\Lib\NGUI\ReadMe - 3.7.4.txt" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\Toony-Basic.shader" />
+     <None Include="Assets\Resources\Shader\Toony-Basic.shader" />
      <None Include="Assets\Lib\NGUI\Resources\Shaders\Unlit - Text 2.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\Own-IconShine.shader" />
+     <None Include="Assets\Resources\Shader\Own-IconShine.shader" />
      <None Include="Assets\Lib\NGUI\Examples\Models\Orc\Orc Skin.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\test\warding.shader" />
+     <None Include="Assets\Resources\Shader\test\warding.shader" />
      <None Include="Assets\Lib\_vertexPainter\README.txt" />
      <None Include="Assets\Lib\NGUI\Examples\Atlases\Wooden\Arimo20.txt" />
      <None Include="Assets\Lib\NGUI\Examples\Atlases\Wooden\Arimo14.txt" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\ItemShader\Own-Item-WaveNotCull.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\Own-StoveShift.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\test\solid_rimlight_color.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\Texture\OutLineNew.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\test\solid_envmap.shader" />
+     <None Include="Assets\Resources\Shader\ItemShader\Own-Item-WaveNotCull.shader" />
+     <None Include="Assets\Resources\Shader\Own-StoveShift.shader" />
+     <None Include="Assets\Resources\Shader\test\solid_rimlight_color.shader" />
+     <None Include="Assets\Resources\Shader\Texture\OutLineNew.shader" />
+     <None Include="Assets\Resources\Shader\test\solid_envmap.shader" />
      <None Include="Assets\Lib\NGUI\Resources\Shaders\Unlit - Text 1.shader" />
      <None Include="Assets\Lib\NGUI\Resources\Shaders\Unlit - Premultiplied Colored (TextureClip).shader" />
      <None Include="Assets\Lib\_vertexPainter\Shaders\vB_Diffuse_4tex.shader" />
      <None Include="Assets\Lib\NGUI\Resources\Shaders\Unlit - Transparent Colored (Packed) (TextureClip).shader" />
      <None Include="Assets\Lib\NGUI\Resources\Shaders\Unlit - Transparent Colored 2.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\Own-LightFlow.shader" />
+     <None Include="Assets\Resources\Shader\Own-LightFlow.shader" />
      <None Include="Assets\Lib\NGUI\Examples\Shaders\Unlit - Masked Colored.shader" />
      <None Include="Assets\Lib\NGUI\Resources\Shaders\Unlit - Premultiplied Colored 3.shader" />
      <None Include="Assets\Lib\_vertexPainter\Shaders\vB_map_Diffuse_3tex.shader" />
      <None Include="Assets\Lib\NGUI\Examples\Atlases\Wooden\Arimo18.txt" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\Own-CutBody.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\Texture\ScreenNew.shader" />
+     <None Include="Assets\Resources\Shader\Own-CutBody.shader" />
+     <None Include="Assets\Resources\Shader\Texture\ScreenNew.shader" />
      <None Include="Assets\Lib\NGUI\Resources\Shaders\Unlit - Transparent Colored (TextureClip).shader" />
      <None Include="Assets\Lib\_vertexPainter\Shaders\vB_Diffuse_3tex.shader" />
      <None Include="Assets\Lib\NGUI\Examples\Atlases\SciFi\SciFi Font - Header.txt" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\Mobile-Diffuse.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\Mobile-Particle-Add-Color+1.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\ItemShader\Own-Item-MatCapTransparent.shader" />
+     <None Include="Assets\Lib\EasyTouchBundle\EasyTouchControls\ReleaseNotes.txt" />
+     <None Include="Assets\Resources\Shader\Mobile-Diffuse.shader" />
+     <None Include="Assets\Resources\Shader\Mobile-Particle-Add-Color+1.shader" />
+     <None Include="Assets\Resources\Shader\ItemShader\Own-Item-MatCapTransparent.shader" />
      <None Include="Assets\Lib\_vertexPainter\Shaders\vB_map_DiffuseNormalSpec_3tex.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\test\playerwitheffect.shader" />
+     <None Include="Assets\Resources\Shader\test\playerwitheffect.shader" />
      <None Include="Assets\Lib\_vertexPainter\Shaders\vB_Diffuse_unLit_3tex.shader" />
      <None Include="Assets\Lib\_vertexPainter\Shaders\vB_map_DiffuseNormalSpec_2tex.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\Water Heightmap.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\Terrain\Own-TerrainBase.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\Own-ToonStoneBody.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\test\pre_transparent.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\Texture\Own-Shadow.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\Toony-Basic_EyeOpen.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\ItemShader\Own-Item-WaveBook.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\ItemShader\Own-Item-Logo_Specular.shader" />
+     <None Include="Assets\Resources\Shader\Water Heightmap.shader" />
+     <None Include="Assets\Resources\Shader\Terrain\Own-TerrainBase.shader" />
+     <None Include="Assets\Resources\Shader\Own-ToonStoneBody.shader" />
+     <None Include="Assets\Resources\Shader\test\pre_transparent.shader" />
+     <None Include="Assets\Resources\Shader\Texture\Own-Shadow.shader" />
+     <None Include="Assets\Resources\Shader\Toony-Basic_EyeOpen.shader" />
+     <None Include="Assets\Resources\Shader\ItemShader\Own-Item-WaveBook.shader" />
+     <None Include="Assets\Resources\Shader\ItemShader\Own-Item-Logo_Specular.shader" />
      <None Include="Assets\Lib\NGUI\Resources\Shaders\Unlit - Transparent Colored 1.shader" />
      <None Include="Assets\Lib\NGUI\Examples\Atlases\Fantasy\Fantasy Font - Normal.txt" />
+     <None Include="Assets\Resources\scene\ImageZoom\Diffuse Texture.shader" />
      <None Include="Assets\Lib\NGUI\Resources\Shaders\Unlit - Transparent Colored 3.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\test\solid_rimlight.shader" />
+     <None Include="Assets\Resources\Shader\test\solid_rimlight.shader" />
      <None Include="Assets\Lib\NGUI\Examples\Atlases\Refractive\Refractive Font - Normal.txt" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\test\weapon_spark.shader" />
+     <None Include="Assets\Resources\Shader\test\weapon_spark.shader" />
      <None Include="Assets\Lib\NGUI\Resources\Shaders\Unlit - Premultiplied Colored 2.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\Toony-BasicOutline.shader" />
+     <None Include="Assets\Resources\Shader\Toony-BasicOutline.shader" />
      <None Include="Assets\Lib\_vertexPainter\Shaders\vB_DiffuseNormalSpec_2tex.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\Own-FlashLight.shader" />
+     <None Include="Assets\Resources\Shader\Own-FlashLight.shader" />
      <None Include="Assets\Lib\NGUI\Resources\Shaders\Unlit - Text 3.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\Mobile-Particle-Add-Color-1.shader" />
+     <None Include="Assets\Resources\Shader\Mobile-Particle-Add-Color-1.shader" />
      <None Include="Assets\Lib\_vertexPainter\Shaders\vB_DiffuseNormal_4tex.shader" />
      <None Include="Assets\Lib\NGUI\Resources\Shaders\Unlit - Transparent Packed 2.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\ItemShader\Own-Item-WaveMagma.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\ItemShader\Own-Item-WaveGlow.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\transparent_rimlight_color.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\Own-DeathWingIce.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\Own_MatCap_Plain_AdditiveZ.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\RenderToCenter.shader" />
+     <None Include="Assets\Lib\EasyTouchBundle\Readme.txt" />
+     <None Include="Assets\Resources\Shader\ItemShader\Own-Item-WaveMagma.shader" />
+     <None Include="Assets\Resources\Shader\ItemShader\Own-Item-WaveGlow.shader" />
+     <None Include="Assets\Resources\Shader\transparent_rimlight_color.shader" />
+     <None Include="Assets\Resources\Shader\Own-DeathWingIce.shader" />
+     <None Include="Assets\Resources\Shader\Own_MatCap_Plain_AdditiveZ.shader" />
+     <None Include="Assets\Resources\Shader\RenderToCenter.shader" />
      <None Include="Assets\Lib\NGUI\Resources\Shaders\Unlit - Transparent Packed 1.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\RenderToCenterMinusBlend.shader" />
+     <None Include="Assets\Resources\Shader\RenderToCenterMinusBlend.shader" />
      <None Include="Assets\Lib\NGUI\Resources\Shaders\Unlit - Premultiplied Colored 1.shader" />
      <None Include="Assets\Lib\_vertexPainter\Shaders\VertexColorsOnly_3.0.shader" />
      <None Include="Assets\Lib\NGUI\Resources\Shaders\Unlit - Premultiplied Colored.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\Own-BoxMagma.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\Toony-LightedOutline.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\Texture\Screen.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\Toony-Lighted.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\Toony-BasicLight.shader" />
+     <None Include="Assets\Resources\Shader\Own-BoxMagma.shader" />
+     <None Include="Assets\Resources\Shader\Toony-LightedOutline.shader" />
+     <None Include="Assets\Resources\Shader\Texture\Screen.shader" />
+     <None Include="Assets\Resources\Shader\Toony-Lighted.shader" />
+     <None Include="Assets\Resources\Shader\Toony-BasicLight.shader" />
      <None Include="Assets\Lib\NGUI\Resources\Shaders\Unlit - Transparent Colored.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\Own-IceBody.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\ItemShader\Own-Item-PaperTwoFace-Oppos.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\ItemShader\Own-Item-Geometry.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\Own-LightShafts1.shader" />
+     <None Include="Assets\Resources\Shader\Own-IceBody.shader" />
+     <None Include="Assets\Resources\Shader\ItemShader\Own-Item-PaperTwoFace-Oppos.shader" />
+     <None Include="Assets\Resources\Shader\ItemShader\Own-Item-Geometry.shader" />
+     <None Include="Assets\Resources\Shader\Own-LightShafts1.shader" />
      <None Include="Assets\Lib\_vertexPainter\Shaders\vB_map_DiffuseNormalSpec_4tex.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\Own_MatCap_TextureMult.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\ItemShader\Own-Item-Logo.shader" />
+     <None Include="Assets\Resources\Shader\Own_MatCap_TextureMult.shader" />
+     <None Include="Assets\Resources\Shader\ItemShader\Own-Item-Logo.shader" />
      <None Include="Assets\Lib\NGUI\Resources\Shaders\Unlit - Text.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\Own-Flow.shader" />
+     <None Include="Assets\Resources\Shader\Own-Flow.shader" />
      <None Include="Assets\Lib\_vertexPainter\Shaders\vB_map_DiffuseNormal_2tex.shader" />
      <None Include="Assets\Lib\_vertexPainter\Shaders\vB_DiffuseNormalSpec_4tex.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\Own_MatCap_Gold.shader" />
+     <None Include="Assets\Resources\Shader\Own_MatCap_Gold.shader" />
      <None Include="Assets\Lib\_vertexPainter\Shaders\vB_map_DiffuseNormal_3tex.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\test\solid_rimlight_envmap.shader" />
+     <None Include="Assets\Resources\Shader\test\solid_rimlight_envmap.shader" />
      <None Include="Assets\Lib\NGUI\Resources\Shaders\Unlit - Transparent Packed.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\Own-LightShafts.shader" />
+     <None Include="Assets\Resources\Shader\Own-LightShafts.shader" />
      <None Include="Assets\Lib\NGUI\Resources\Shaders\Unlit - Transparent Packed 3.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\Own-IconGrayScale.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\Terrain\FirstPass.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\ItemShader\Own-Item-TextAlpha.shader" />
+     <None Include="Assets\Resources\Shader\Own-IconGrayScale.shader" />
+     <None Include="Assets\Resources\Shader\Terrain\FirstPass.shader" />
+     <None Include="Assets\Resources\Shader\ItemShader\Own-Item-TextAlpha.shader" />
      <None Include="Assets\Lib\_vertexPainter\Shaders\vB_DiffuseNormal_3tex.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\Texture\Own-PageFixTexture.shader" />
+     <None Include="Assets\Resources\Shader\Texture\Own-PageFixTexture.shader" />
      <None Include="Assets\Lib\_vertexPainter\Shaders\vB_map_DiffuseNormal_4tex.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\Own-ToonIceBody.shader" />
+     <None Include="Assets\Resources\Shader\Own-ToonIceBody.shader" />
      <None Include="Assets\Lib\_vertexPainter\Shaders\vB_Diffuse_unLit_4tex.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\Own-Opaque Bump.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\ItemShader\Own-Item-Wave+10.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\Ngui\Own-NGUITexGrayscale.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\Own-FadeOut.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\Own-LightDiffuse.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\Particle Add+1.shader" />
+     <None Include="Assets\Resources\Shader\Own-Opaque Bump.shader" />
+     <None Include="Assets\Resources\Shader\ItemShader\Own-Item-Wave+10.shader" />
+     <None Include="Assets\Resources\Shader\Ngui\Own-NGUITexGrayscale.shader" />
+     <None Include="Assets\Resources\Shader\Own-FadeOut.shader" />
+     <None Include="Assets\Resources\Shader\Own-LightDiffuse.shader" />
+     <None Include="Assets\Resources\Shader\Particle Add+1.shader" />
+     <None Include="Assets\Lib\EasyTouchBundle\EasyTouchControls\Readme.txt" />
      <None Include="Assets\Lib\_vertexPainter\Shaders\vB_DiffuseNormal_2tex.shader" />
      <None Include="Assets\Lib\NGUI\Examples\Shaders\Unlit - Additive Colored.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\ItemShader\Own-Item-PaperTwoFace.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\ItemShader\Own-Item-Wave.shader" />
+     <None Include="Assets\Resources\Shader\ItemShader\Own-Item-PaperTwoFace.shader" />
+     <None Include="Assets\Lib\EasyTouchBundle\EasyTouch\RealseNotes.txt" />
+     <None Include="Assets\Resources\Shader\ItemShader\Own-Item-Wave.shader" />
      <None Include="Assets\Lib\NGUI\Examples\Atlases\Refractive\Refractive Font - Header.txt" />
      <None Include="Assets\Lib\NGUI\Examples\Shaders\Refractive.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\ItemShader\Own-Item-HeatHaze.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\DepthBlending.shader" />
+     <None Include="Assets\Resources\Shader\ItemShader\Own-Item-HeatHaze.shader" />
+     <None Include="Assets\Resources\Shader\DepthBlending.shader" />
      <None Include="Assets\Lib\NGUI\Resources\Shaders\Unlit - Text (TextureClip).shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\Own-DeathWing.shader" />
+     <None Include="Assets\Resources\Shader\Own-DeathWing.shader" />
      <None Include="Assets\Lib\_vertexPainter\Shaders\vB_map_Diffuse_2tex.shader" />
      <None Include="Assets\Lib\_vertexPainter\Shaders\vB_DiffuseNormalSpec_3tex.shader" />
      <None Include="Assets\Lib\NGUI\Examples\Shaders\Unlit - Depth.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\Mobile-Particle-Add-Color.shader" />
+     <None Include="Assets\Resources\Shader\Mobile-Particle-Add-Color.shader" />
      <None Include="Assets\Lib\NGUI\Examples\Atlases\SciFi\SciFi Font - Normal.txt" />
      <None Include="Assets\Lib\_vertexPainter\Shaders\vB_map_Diffuse_4tex.shader" />
      <None Include="Assets\Lib\_vertexPainter\Shaders\vB_Diffuse_unLit_2tex.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\Own-LightDiffuse-StoneToNomal.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\test\background_smoke.shader" />
+     <None Include="Assets\Resources\Shader\Own-LightDiffuse-StoneToNomal.shader" />
+     <None Include="Assets\Resources\Shader\test\background_smoke.shader" />
      <None Include="Assets\Lib\NGUI\Examples\Models\Orc Armor\Orc Armor.shader" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\ItemShader\Own-Item-Paper.shader" />
+     <None Include="Assets\Resources\Shader\ItemShader\Own-Item-Paper.shader" />
      <None Include="Assets\Lib\NGUI\Examples\Resources\Localization.txt" />
-     <None Include="Assets\Resources\Actor\ArtRes\5_Materials\Shader\Own-LightShaftsLogin.shader" />
+     <None Include="Assets\Resources\Shader\Own-LightShaftsLogin.shader" />
      <None Include="Assets\Lib\_vertexPainter\Shaders\vB_Diffuse_2tex.shader" />
  <Reference Include="UnityEngine.UI">
- <HintPath>D:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ <HintPath>E:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
- <HintPath>D:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ <HintPath>E:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
  <Reference Include="Mono.Cecil">
- <HintPath>D:/Program Files/Unity/Editor/Data/Managed/Mono.Cecil.dll</HintPath>
+ <HintPath>E:/Program Files/Unity/Editor/Data/Managed/Mono.Cecil.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
- <HintPath>D:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+ <HintPath>E:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

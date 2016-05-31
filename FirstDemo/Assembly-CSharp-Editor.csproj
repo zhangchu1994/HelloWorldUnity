@@ -192,6 +192,7 @@
      <None Include="Assets\Resources\Shader\ItemShader\Own-Item-Logo_Specular.shader" />
      <None Include="Assets\Lib\NGUI\Resources\Shaders\Unlit - Transparent Colored 1.shader" />
      <None Include="Assets\Lib\NGUI\Examples\Atlases\Fantasy\Fantasy Font - Normal.txt" />
+     <None Include="Assets\Resources\scene\ImageZoom\Diffuse Texture.shader" />
      <None Include="Assets\Lib\NGUI\Resources\Shaders\Unlit - Transparent Colored 3.shader" />
      <None Include="Assets\Resources\Shader\test\solid_rimlight.shader" />
      <None Include="Assets\Lib\NGUI\Examples\Atlases\Refractive\Refractive Font - Normal.txt" />
@@ -337,6 +338,8 @@
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp.csproj">
       <Project>{EFF70ADA-1030-7248-A429-5A4E2DE04913}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
+    <ProjectReference Include="Assembly-UnityScript.unityproj">
+      <Project>{B89236F0-E58A-1297-D12C-926907AB784C}</Project>      <Name>Assembly-UnityScript</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

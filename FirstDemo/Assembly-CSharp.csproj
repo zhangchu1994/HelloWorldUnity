@@ -294,6 +294,7 @@
      <None Include="Assets\Resources\Shader\ItemShader\Own-Item-Logo_Specular.shader" />
      <None Include="Assets\Lib\NGUI\Resources\Shaders\Unlit - Transparent Colored 1.shader" />
      <None Include="Assets\Lib\NGUI\Examples\Atlases\Fantasy\Fantasy Font - Normal.txt" />
+     <None Include="Assets\Resources\scene\ImageZoom\Diffuse Texture.shader" />
      <None Include="Assets\Lib\NGUI\Resources\Shaders\Unlit - Transparent Colored 3.shader" />
      <None Include="Assets\Resources\Shader\test\solid_rimlight.shader" />
      <None Include="Assets\Lib\NGUI\Examples\Atlases\Refractive\Refractive Font - Normal.txt" />
