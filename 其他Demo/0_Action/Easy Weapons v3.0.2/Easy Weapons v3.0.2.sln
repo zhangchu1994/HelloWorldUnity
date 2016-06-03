@@ -1,0 +1,29 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{13564387-AA83-CB87-6F49-68F13613F781}") = "Easy Weapons v3.0.2", "Assembly-CSharp.csproj", "{837137FC-D7B1-23C4-7824-1BF5A951F15A}"
+EndProject
+Project("{13564387-AA83-CB87-6F49-68F13613F781}") = "Easy Weapons v3.0.2", "Assembly-CSharp-Editor.csproj", "{8FDE991D-2F19-177C-1165-8A7065D9C13E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{837137FC-D7B1-23C4-7824-1BF5A951F15A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{837137FC-D7B1-23C4-7824-1BF5A951F15A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{837137FC-D7B1-23C4-7824-1BF5A951F15A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{837137FC-D7B1-23C4-7824-1BF5A951F15A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FDE991D-2F19-177C-1165-8A7065D9C13E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FDE991D-2F19-177C-1165-8A7065D9C13E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FDE991D-2F19-177C-1165-8A7065D9C13E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FDE991D-2F19-177C-1165-8A7065D9C13E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
