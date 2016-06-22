@@ -1,12 +1,26 @@
-﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Resources\Script\MainCityScene.cs">
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\..\..\Work\client\trunk\Assets\Script\UI\BattleUI\BookPageManager.cs">
     <Files>
-      <File FileName="Assets\Resources\Script\MainCityScene.cs" Line="62" Column="2" />
+      <File FileName="..\..\..\..\Work\client\trunk\Assets\Script\UI\Tutorial\TutorialManager.cs" Line="274" Column="1" />
+      <File FileName="..\..\..\..\Work\client\trunk\Assets\Script\UI\Panel\QuestAndTalk.cs" Line="1528" Column="1" />
+      <File FileName="..\..\..\..\Work\client\trunk\Assets\Script\UI\UIMainCity.cs" Line="1599" Column="1" />
+      <File FileName="..\..\..\..\Work\client\trunk\Assets\Script\NetWork\Message\GameServer\XCMjlmGetQuest.cs" Line="142" Column="1" />
+      <File FileName="..\..\..\..\Work\client\trunk\Assets\Script\UI\Tutorial\TutorialBG.cs" Line="267" Column="1" />
+      <File FileName="..\..\..\..\Work\client\trunk\Assets\Script\UI\UIMountain.cs" Line="534" Column="49" />
+      <File FileName="..\..\..\..\Work\client\trunk\Assets\Script\DataTable\DataTables.cs" Line="3725" Column="42" />
+      <File FileName="..\..\..\..\Work\client\trunk\Assets\Script\NetWork\Message\GameServer\XCCharBaseInfo.cs" Line="78" Column="1" />
+      <File FileName="..\..\..\..\Work\client\trunk\Assets\Scenes\Scene\MainCity\Script\OpenBook.cs" Line="325" Column="1" />
+      <File FileName="..\..\..\..\Work\client\trunk\Assets\Script\UI\BattleUI\BookPageManager.cs" Line="391" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="E:\Work\client\trunk\Assets\Script\UI\Tutorial\TutorialManager.cs" line="168" />
+      <Breakpoint file="E:\Work\client\trunk\Assets\Script\UI\Tutorial\TutorialManager.cs" line="226" />
+      <Breakpoint file="E:\Work\client\trunk\Assets\Scenes\Scene\MainCity\Script\OpenBook.cs" line="325" />
+      <Breakpoint file="E:\Work\client\trunk\Assets\Script\UI\Tutorial\TutorialManager.cs" line="263" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
