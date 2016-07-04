@@ -1,0 +1,23 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{B15DE74D-CF52-4A2B-4936-6B11311DF9BF}") = "Easy Movie Texture (Video Texture)", "Assembly-CSharp.csproj", "{C2839D3E-95DF-141E-FCDA-271034FEB515}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C2839D3E-95DF-141E-FCDA-271034FEB515}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2839D3E-95DF-141E-FCDA-271034FEB515}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2839D3E-95DF-141E-FCDA-271034FEB515}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2839D3E-95DF-141E-FCDA-271034FEB515}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
