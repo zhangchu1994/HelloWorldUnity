@@ -1,0 +1,15 @@
+<Books>
+  <book name="book1" info="book1" xmlfile="images1.xml" coverimage="front_Cover.jpg" isnew="1" x="1" y="1"/>
+  <book name="book2" info="book2" xmlfile="images2.xml" coverimage="front_Cover.jpg" isnew="1" x="1" y="0.6"/>
+   <book name="book3" info="book3" xmlfile="images3.xml" coverimage="front_Cover.jpg" isnew="1" x="1" y="1"/>
+    <book name="book4" info="book4" xmlfile="images4.xml" coverimage="front_Cover.jpg" isnew="1" x="1" y="1"/>
+	  <book name="book1" info="book1" xmlfile="images1.xml" coverimage="front_Cover.jpg" isnew="1" x="1" y="1"/>
+  <book name="book2" info="book2" xmlfile="images2.xml" coverimage="front_Cover.jpg" isnew="1" x="1" y="1"/>
+   <book name="book3" info="book3" xmlfile="images3.xml" coverimage="front_Cover.jpg" isnew="1" x="1" y="1"/>
+    <book name="book4" info="book4" xmlfile="images4.xml" coverimage="front_Cover.jpg" isnew="1" x="1" y="1"/>
+	   <book name="book3" info="book3" xmlfile="images3.xml" coverimage="front_Cover.jpg" isnew="1" x="1" y="1"/>
+    <book name="book4" info="book4" xmlfile="images4.xml" coverimage="front_Cover.jpg" isnew="1" x="1" y="1"/>
+	<book name="book3" info="book3" xmlfile="images3.xml" coverimage="front_Cover.jpg" isnew="1" x="1" y="1"/>
+    <book name="book4" info="book4" xmlfile="images4.xml" coverimage="front_Cover.jpg" isnew="1" x="1" y="1"/>
+	
+</Books>
