@@ -1,0 +1,35 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{69AE2870-CF86-F4E1-583E-F43480D9986F}") = "Base Shader", "Assembly-CSharp-firstpass.csproj", "{991F6ACD-5365-C994-2481-552C76E6F552}"
+EndProject
+Project("{69AE2870-CF86-F4E1-583E-F43480D9986F}") = "Base Shader", "Assembly-UnityScript-firstpass.unityproj", "{B622BFB2-09CE-D8C6-1F06-7FB741869519}"
+EndProject
+Project("{69AE2870-CF86-F4E1-583E-F43480D9986F}") = "Base Shader", "Assembly-UnityScript-Editor.unityproj", "{1AC1CAFF-CC0B-5529-FFCE-C2A76ADB3C92}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{991F6ACD-5365-C994-2481-552C76E6F552}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{991F6ACD-5365-C994-2481-552C76E6F552}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{991F6ACD-5365-C994-2481-552C76E6F552}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{991F6ACD-5365-C994-2481-552C76E6F552}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B622BFB2-09CE-D8C6-1F06-7FB741869519}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B622BFB2-09CE-D8C6-1F06-7FB741869519}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B622BFB2-09CE-D8C6-1F06-7FB741869519}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B622BFB2-09CE-D8C6-1F06-7FB741869519}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AC1CAFF-CC0B-5529-FFCE-C2A76ADB3C92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AC1CAFF-CC0B-5529-FFCE-C2A76ADB3C92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AC1CAFF-CC0B-5529-FFCE-C2A76ADB3C92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AC1CAFF-CC0B-5529-FFCE-C2A76ADB3C92}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
