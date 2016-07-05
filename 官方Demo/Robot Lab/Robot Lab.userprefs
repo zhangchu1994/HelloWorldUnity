@@ -1,0 +1,13 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\FirstDemo\Assets\Lib\EasyTouchBundle\EasyTouchControls\Examples\FPSExample\FPSPlayerControl.cs">
+    <Files>
+      <File FileName="..\FirstDemo\Assets\Lib\EasyTouchBundle\EasyTouchControls\Examples\FPSExample\FPSPlayerControl.cs" Line="100" Column="1" />
+      <File FileName="..\FirstDemo\Assets\Lib\EasyTouchBundle\EasyTouchControls\Plugins\ETCInput.cs" Line="743" Column="2" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
