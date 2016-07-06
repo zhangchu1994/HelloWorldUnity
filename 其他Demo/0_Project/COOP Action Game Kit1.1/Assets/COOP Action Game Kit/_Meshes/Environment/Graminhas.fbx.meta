@@ -1,0 +1,150 @@
+fileFormatVersion: 2
+guid: 2922d8a1a3a0046f99c93e5496f73d1b
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Arbusto1
+    100002: Arbusto2
+    100004: ArbustoTop
+    100006: BladeGrass
+    100008: BladeGrassSmall
+    100010: BladeGressMoreBended
+    100012: //RootNode
+    100014: pSphere13
+    100016: pSphere14
+    100018: pSphere15
+    100020: pSphere16
+    100022: pSphere17
+    100024: pSphere18
+    100026: pSphere19
+    100028: pSphere20
+    100030: pSphere21
+    100032: pSphere22
+    100034: pSphere23
+    100036: pSphere24
+    100038: transform10
+    100040: transform11
+    100042: transform12
+    100044: transform13
+    100046: transform14
+    100048: transform15
+    100050: transform16
+    100052: transform17
+    100054: transform18
+    100056: transform7
+    100058: transform8
+    100060: transform9
+    400000: Arbusto1
+    400002: Arbusto2
+    400004: ArbustoTop
+    400006: BladeGrass
+    400008: BladeGrassSmall
+    400010: BladeGressMoreBended
+    400012: //RootNode
+    400014: pSphere13
+    400016: pSphere14
+    400018: pSphere15
+    400020: pSphere16
+    400022: pSphere17
+    400024: pSphere18
+    400026: pSphere19
+    400028: pSphere20
+    400030: pSphere21
+    400032: pSphere22
+    400034: pSphere23
+    400036: pSphere24
+    400038: transform10
+    400040: transform11
+    400042: transform12
+    400044: transform13
+    400046: transform14
+    400048: transform15
+    400050: transform16
+    400052: transform17
+    400054: transform18
+    400056: transform7
+    400058: transform8
+    400060: transform9
+    2300000: Arbusto1
+    2300002: Arbusto2
+    2300004: ArbustoTop
+    2300006: BladeGrass
+    2300008: BladeGrassSmall
+    2300010: BladeGressMoreBended
+    3300000: Arbusto1
+    3300002: Arbusto2
+    3300004: ArbustoTop
+    3300006: BladeGrass
+    3300008: BladeGrassSmall
+    3300010: BladeGressMoreBended
+    4300000: BladeGrassSmall
+    4300002: BladeGrass
+    4300004: ArbustoTop
+    4300006: Arbusto1
+    4300008: Arbusto2
+    4300010: BladeGressMoreBended
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
