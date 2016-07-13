@@ -1,0 +1,464 @@
+fileFormatVersion: 2
+guid: bc1c3568be2f4f6459b4d48912645f22
+timeCreated: 1459151342
+licenseType: Store
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: hand_parts_1024_0
+    21300002: hand_parts_1024_1
+    21300004: hand_parts_1024_2
+    21300006: hand_parts_1024_3
+    21300008: hand_parts_1024_4
+    21300010: hand_parts_1024_5
+    21300012: hand_parts_1024_6
+    21300014: hand_parts_1024_7
+    21300016: hand_parts_1024_8
+    21300018: hand_parts_1024_9
+    21300020: hand_parts_1024_10
+    21300022: hand_parts_1024_11
+    21300024: hand_parts_1024_12
+    21300026: hand_parts_1024_13
+    21300028: hand_parts_1024_14
+    21300030: hand_parts_1024_15
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: hand_parts_1024_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 768
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -50, y: -110}
+        - {x: -23, y: -120}
+        - {x: -6, y: -120}
+        - {x: 22, y: -116}
+        - {x: 18, y: -110}
+        - {x: 18, y: -101}
+        - {x: 18, y: -104}
+        - {x: 22, y: -108}
+        - {x: 26, y: -111}
+        - {x: 39, y: -112}
+        - {x: 40, y: -109}
+        - {x: 40, y: -101}
+        - {x: 38, y: -84}
+        - {x: 37, y: -77}
+        - {x: 32, y: -71}
+        - {x: 36, y: -67}
+        - {x: 39, y: -88}
+        - {x: 56, y: -109}
+        - {x: 71, y: -120}
+        - {x: 101, y: -120}
+        - {x: 128, y: -106}
+        - {x: 128, y: -36}
+        - {x: 93, y: 0}
+        - {x: -8, y: 0}
+        - {x: -27, y: -5}
+        - {x: -50, y: -49}
+    - name: hand_parts_1024_1
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 768
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 32, y: 7}
+        - {x: -8, y: 7}
+        - {x: -68, y: -39}
+        - {x: -69, y: -48}
+        - {x: -69, y: -84}
+        - {x: -40, y: -98}
+        - {x: -19, y: -100}
+        - {x: -13, y: -100}
+        - {x: -8, y: -95}
+        - {x: -6, y: -87}
+        - {x: -7, y: -86}
+        - {x: -6, y: -86}
+        - {x: -6, y: -90}
+        - {x: -3, y: -96}
+        - {x: 9, y: -102}
+        - {x: 13, y: -101}
+        - {x: 16, y: -98}
+        - {x: 23, y: -81}
+        - {x: 64, y: -119}
+        - {x: 67, y: -120}
+        - {x: 91, y: -120}
+        - {x: 128, y: -93}
+        - {x: 128, y: -37}
+        - {x: 127, y: -35}
+    - name: hand_parts_1024_2
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 768
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 31, y: 17}
+        - {x: -92, y: 17}
+        - {x: -100, y: 5}
+        - {x: -100, y: -70}
+        - {x: -97, y: -87}
+        - {x: -23, y: -119}
+        - {x: 119, y: -119}
+        - {x: 128, y: -104}
+        - {x: 128, y: -41}
+        - {x: 125, y: -31}
+    - name: hand_parts_1024_3
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 768
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -112, y: 34}
+        - {x: -117, y: 29}
+        - {x: -117, y: -52}
+        - {x: -12, y: -118}
+        - {x: 111, y: -118}
+        - {x: 128, y: -104}
+        - {x: 128, y: -22}
+        - {x: -5, y: 34}
+    - name: hand_parts_1024_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -123, y: 20}
+        - {x: -123, y: -67}
+        - {x: -21, y: -118}
+        - {x: 128, y: -118}
+        - {x: 128, y: -20}
+        - {x: 1, y: 20}
+    - name: hand_parts_1024_5
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -101, y: -3}
+        - {x: -127, y: -12}
+        - {x: -127, y: -47}
+        - {x: -125, y: -52}
+        - {x: -72, y: -97}
+        - {x: 32, y: -118}
+        - {x: 101, y: -118}
+        - {x: 128, y: -88}
+        - {x: 128, y: -38}
+        - {x: 64, y: -3}
+    - name: hand_parts_1024_6
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -127, y: -19}
+        - {x: -127, y: -78}
+        - {x: -102, y: -117}
+        - {x: 119, y: -117}
+        - {x: 128, y: -93}
+        - {x: 128, y: -19}
+    - name: hand_parts_1024_7
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -41, y: -24}
+        - {x: -111, y: -52}
+        - {x: -126, y: -72}
+        - {x: -126, y: -93}
+        - {x: -88, y: -128}
+        - {x: 74, y: -128}
+        - {x: 91, y: -126}
+        - {x: 126, y: -87}
+        - {x: 126, y: -42}
+        - {x: 97, y: -24}
+    - name: hand_parts_1024_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 118, y: -41}
+        - {x: 109, y: -44}
+        - {x: 111, y: -23}
+        - {x: -60, y: -23}
+        - {x: -124, y: -55}
+        - {x: -124, y: -92}
+        - {x: -87, y: -127}
+        - {x: 75, y: -127}
+        - {x: 109, y: -125}
+        - {x: 127, y: -82}
+        - {x: 127, y: -44}
+    - name: hand_parts_1024_9
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 56, y: -20}
+        - {x: -21, y: -20}
+        - {x: -39, y: -21}
+        - {x: -113, y: -62}
+        - {x: -116, y: -71}
+        - {x: -116, y: -104}
+        - {x: -99, y: -125}
+        - {x: 114, y: -125}
+        - {x: 127, y: -120}
+        - {x: 127, y: -43}
+        - {x: 105, y: -24}
+    - name: hand_parts_1024_10
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 2, y: -43}
+        - {x: 2, y: -53}
+        - {x: 7, y: -59}
+        - {x: 71, y: -123}
+        - {x: 112, y: -123}
+        - {x: 128, y: -88}
+        - {x: 128, y: -33}
+        - {x: 95, y: -15}
+        - {x: -42, y: -15}
+        - {x: -105, y: -28}
+        - {x: -105, y: -120}
+        - {x: -73, y: -123}
+        - {x: -18, y: -123}
+        - {x: -17, y: -122}
+        - {x: 1, y: -51}
+        - {x: 2, y: -45}
+    - name: hand_parts_1024_11
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 110, y: -27}
+        - {x: 39, y: -10}
+        - {x: -26, y: -10}
+        - {x: -91, y: -57}
+        - {x: -91, y: -107}
+        - {x: -90, y: -110}
+        - {x: -66, y: -115}
+        - {x: -59, y: -114}
+        - {x: -53, y: -120}
+        - {x: 104, y: -120}
+        - {x: 128, y: -76}
+        - {x: 128, y: -48}
+    - name: hand_parts_1024_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 70, y: -6}
+        - {x: -18, y: -6}
+        - {x: -76, y: -50}
+        - {x: -76, y: -112}
+        - {x: -65, y: -119}
+        - {x: 123, y: -119}
+        - {x: 128, y: -102}
+        - {x: 128, y: -38}
+    - name: hand_parts_1024_13
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 58, y: -3}
+        - {x: -15, y: -3}
+        - {x: -63, y: -53}
+        - {x: -63, y: -111}
+        - {x: -57, y: -119}
+        - {x: 16, y: -119}
+        - {x: 25, y: -114}
+        - {x: 29, y: -112}
+        - {x: 26, y: -84}
+        - {x: 65, y: -119}
+        - {x: 97, y: -119}
+        - {x: 128, y: -87}
+        - {x: 128, y: -52}
+        - {x: 114, y: -29}
+    - name: hand_parts_1024_14
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 58, y: -1}
+        - {x: -12, y: -1}
+        - {x: -54, y: -51}
+        - {x: -54, y: -108}
+        - {x: -52, y: -112}
+        - {x: -7, y: -119}
+        - {x: 25, y: -119}
+        - {x: 36, y: -116}
+        - {x: 38, y: -110}
+        - {x: 36, y: -81}
+        - {x: 37, y: -88}
+        - {x: 64, y: -119}
+        - {x: 105, y: -119}
+        - {x: 111, y: -118}
+        - {x: 128, y: -85}
+        - {x: 128, y: -39}
+        - {x: 126, y: -37}
+    - name: hand_parts_1024_15
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -50, y: -110}
+        - {x: -23, y: -120}
+        - {x: -6, y: -120}
+        - {x: 22, y: -116}
+        - {x: 18, y: -110}
+        - {x: 18, y: -101}
+        - {x: 18, y: -104}
+        - {x: 22, y: -108}
+        - {x: 26, y: -111}
+        - {x: 39, y: -112}
+        - {x: 40, y: -109}
+        - {x: 40, y: -101}
+        - {x: 38, y: -84}
+        - {x: 37, y: -77}
+        - {x: 32, y: -71}
+        - {x: 36, y: -67}
+        - {x: 39, y: -88}
+        - {x: 56, y: -109}
+        - {x: 71, y: -120}
+        - {x: 101, y: -120}
+        - {x: 128, y: -106}
+        - {x: 128, y: -36}
+        - {x: 93, y: 0}
+        - {x: -8, y: 0}
+        - {x: -27, y: -5}
+        - {x: -50, y: -49}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
