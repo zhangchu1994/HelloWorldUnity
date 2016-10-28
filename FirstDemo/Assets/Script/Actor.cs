@@ -15,7 +15,6 @@ public class Actor : MonoBehaviour
 //		m_Actor.GetComponent<NavMeshAgent>().destination = m_pos1.transform.position;
 //		m_Cube.GetComponent<NavMeshAgent>().destination = m_pos1.transform.position;
 		//GUI.Button(Rect(100,100,100,50),"PLAY");
-
 	}
 	
 	// Update is called once per frame

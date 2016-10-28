@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 323fd32648515cd4c831dc9fdaef0956
+guid: f97c1ab598603dd48970b02024ac1d0e
 labels:
 - shader
 - parallax
@@ -8,3 +8,5 @@ labels:
 ShaderImporter:
   defaultTextures: []
   userData: 
+  assetBundleName: 
+  assetBundleVariant: 
