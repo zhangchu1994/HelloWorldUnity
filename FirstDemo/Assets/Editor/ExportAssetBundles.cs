@@ -4,30 +4,26 @@ using UnityEngine;
 public class ExportAssetBundles 
 {
 	//在Unity编辑器中添加菜单  
-	[MenuItem("Assets/Build AssetBundle From Selection")]  
+	[MenuItem("AB/Build AssetBundle From Selection")]  
 	static void ExportResourceRGB2()  
 	{  
-//		// 打开保存面板，获得用户选择的路径  
+		//1.按照面板选择打包
 //		string path = EditorUtility.SaveFilePanel("Save Resource", "Assets/ab", "New Resource", "assetbundle");  
 //		
 //		if (path.Length != 0)  
 //		{  
-//			// 选择的要保存的对象  
 //			Object[] selection = Selection.GetFiltered(typeof(Object), SelectionMode.DeepAssets);  
-//			//打包  
 ////			BuildPipeline.BuildAssetBundle(Selection.activeObject, selection, path, BuildAssetBundleOptions.CollectDependencies | BuildAssetBundleOptions.CompleteAssets, BuildTarget.StandaloneWindows);  
 //			BuildPipeline.BuildAssetBundle(Selection.activeObject, selection, path, BuildAssetBundleOptions.CollectDependencies, BuildTarget.StandaloneWindows);  
-//			Debug.Log ("Done");
-//
-//
-//
 //		}  
-		string path = Application.dataPath;
+
+		//2.按照下角标设置打包
+		string path = Application.dataPath + "/ab";
 		Debug.Log ("__________________path = "+path);
 		BuildPipeline.BuildAssetBundles (path,BuildAssetBundleOptions.None,BuildTarget.StandaloneWindows);
 	}
 
-	[MenuItem("Assets/Save Scene")]  
+	[MenuItem("AB/Save Scene")]  
 	static void ExportScene()  
 	{  
 		// 打开保存面板，获得用户选择的路径  
