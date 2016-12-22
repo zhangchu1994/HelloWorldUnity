@@ -7,16 +7,24 @@ public class ExportAssetBundles
 	[MenuItem("Assets/Build AssetBundle From Selection")]  
 	static void ExportResourceRGB2()  
 	{  
-		// 打开保存面板，获得用户选择的路径  
-		string path = EditorUtility.SaveFilePanel("Save Resource", "", "New Resource", "assetbundle");  
-		
-		if (path.Length != 0)  
-		{  
-			// 选择的要保存的对象  
-			Object[] selection = Selection.GetFiltered(typeof(Object), SelectionMode.DeepAssets);  
-			//打包  
-			BuildPipeline.BuildAssetBundle(Selection.activeObject, selection, path, BuildAssetBundleOptions.CollectDependencies | BuildAssetBundleOptions.CompleteAssets, BuildTarget.StandaloneWindows);  
-		}  
+//		// 打开保存面板，获得用户选择的路径  
+//		string path = EditorUtility.SaveFilePanel("Save Resource", "Assets/ab", "New Resource", "assetbundle");  
+//		
+//		if (path.Length != 0)  
+//		{  
+//			// 选择的要保存的对象  
+//			Object[] selection = Selection.GetFiltered(typeof(Object), SelectionMode.DeepAssets);  
+//			//打包  
+////			BuildPipeline.BuildAssetBundle(Selection.activeObject, selection, path, BuildAssetBundleOptions.CollectDependencies | BuildAssetBundleOptions.CompleteAssets, BuildTarget.StandaloneWindows);  
+//			BuildPipeline.BuildAssetBundle(Selection.activeObject, selection, path, BuildAssetBundleOptions.CollectDependencies, BuildTarget.StandaloneWindows);  
+//			Debug.Log ("Done");
+//
+//
+//
+//		}  
+		string path = Application.dataPath;
+		Debug.Log ("__________________path = "+path);
+		BuildPipeline.BuildAssetBundles (path,BuildAssetBundleOptions.None,BuildTarget.StandaloneWindows);
 	}
 
 	[MenuItem("Assets/Save Scene")]  
