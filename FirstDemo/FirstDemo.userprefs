@@ -1,20 +1,17 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\..\..\Work\client\trunk\Assets\Script\NetWork\Base\NetTCPClient.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Editor\ExportAssetBundles.cs">
     <Files>
-      <File FileName="..\..\..\..\Work\client\trunk\Assets\Script\Base\NpcBase.cs" Line="34" Column="2" />
-      <File FileName="..\..\..\..\Work\client\trunk\Assets\Script\UI\UIMainCity.cs" Line="20" Column="1" />
-      <File FileName="..\..\..\..\Work\client\trunk\Assets\Script\Base\NpcNormal.cs" Line="5" Column="34" />
-      <File FileName="..\..\..\..\Work\client\trunk\Assets\Script\Base\NpcGeZi.cs" Line="17" Column="2" />
-      <File FileName="..\..\..\..\Work\client\trunk\Assets\Script\UI\Panel\WarPanel.cs" Line="239" Column="50" />
-      <File FileName="..\..\..\..\Work\client\trunk\Assets\Script\Global\ClientDataManager.cs" Line="196" Column="37" />
-      <File FileName="..\..\..\..\Work\client\trunk\Assets\Script\NetWork\ClientNetworkManager.cs" Line="564" Column="26" />
-      <File FileName="..\..\..\..\Work\client\trunk\Assets\Script\NetWork\NetGameTCPClient.cs" Line="62" Column="22" />
-      <File FileName="..\..\..\..\Work\client\trunk\Assets\Script\NetWork\Base\NetTCPClient.cs" Line="569" Column="43" />
+      <File FileName="Assets\Editor\ExportAssetBundles.cs" Line="23" Column="4" />
+      <File FileName="Assets\Editor\ABInfo.cs" Line="11" Column="96" />
+      <File FileName="Assets\ABLoader.cs" Line="22" Column="3" />
+      <File FileName="Assets\Lib\Editor\VertexPainter2.cs" Line="95" Column="8" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="E:\WorkSpace_Unity\HelloWorldUnity\trunk\FirstDemo\Assets\Editor\ExportAssetBundles.cs" line="31" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
