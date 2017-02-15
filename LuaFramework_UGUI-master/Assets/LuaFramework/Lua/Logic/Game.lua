@@ -25,13 +25,14 @@ local gameObject;
 local WWW = UnityEngine.WWW;
 
 function Game.InitViewPanels()
-	for i = 1, #PanelNames do
-		require ("View/"..tostring(PanelNames[i]))
-	end
+	-- for i = 1, #PanelNames do
+	-- 	require ("View/"..tostring(PanelNames[i]))
+	-- end
 end
 
 --初始化完成，发送链接服务器信息--
 function Game.OnInitOK()
+    log("Game.OnInitOK_____________");
     AppConst.SocketPort = 2012;
     AppConst.SocketAddress = "127.0.0.1";
     networkMgr:SendConnect();
@@ -48,9 +49,10 @@ function Game.OnInitOK()
     coroutine.start(this.test_coroutine);
 
     CtrlManager.Init();
-    local ctrl = CtrlManager.GetCtrl(CtrlNames.Prompt);
+    local ctrl = CtrlManager.GetCtrl(CtrlNames.Login);
     if ctrl ~= nil and AppConst.ExampleMode == 1 then
-        ctrl:Awake();
+        log("Game.OnInitOK_____________ctrl:Show");
+       ctrl:Show();
     end
        
     logWarn('LuaFramework InitOK--->>>');

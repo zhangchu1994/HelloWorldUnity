@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using LuaFramework;
+//using SceneAssetProcesser;
 
 public class Packager {
     public static string platform = string.Empty;
@@ -34,7 +35,7 @@ public class Packager {
     public static void BuildiPhoneResource() {
         BuildTarget target;
 #if UNITY_5
-        target = BuildTarget.iOS;
+		target = BuildTarget.iOS;//iOS
 #else
         target = BuildTarget.iPhone;
 #endif
@@ -50,6 +51,11 @@ public class Packager {
     public static void BuildWindowsResource() {
         BuildAssetResource(BuildTarget.StandaloneWindows);
     }
+
+	[MenuItem("LuaFramework/Build Mac Resource", false, 104)]
+	public static void BuildMacResource() {
+		BuildAssetResource(BuildTarget.StandaloneOSXUniversal);
+	}
 
     /// <summary>
     /// 生成绑定素材
@@ -78,6 +84,7 @@ public class Packager {
         BuildAssetBundleOptions options = BuildAssetBundleOptions.DeterministicAssetBundle | 
                                           BuildAssetBundleOptions.UncompressedAssetBundle;
         BuildPipeline.BuildAssetBundles(resPath, maps.ToArray(), options, target);
+//		Packager.BuildSceneBundle(target);
         BuildFileIndex();
 
         string streamDir = Application.dataPath + "/" + AppConst.LuaTempDir;
@@ -85,7 +92,8 @@ public class Packager {
         AssetDatabase.Refresh();
     }
 
-    static void AddBuildMap(string bundleName, string pattern, string path) {
+    static void AddBuildMap(string bundleName, string pattern, string path)//1.ab名字 2.什么类型文件会被打爆 3.要打包文件的文件夹路径
+	{
         string[] files = Directory.GetFiles(path, pattern);
         if (files.Length == 0) return;
 
@@ -98,6 +106,23 @@ public class Packager {
         maps.Add(build);
     }
 
+	static void getBuildMap(string bundleName, string pattern, string path) 
+	{
+		List<AssetBundleBuild> tempMaps = new List<AssetBundleBuild>();
+
+		string[] files = Directory.GetFiles(path, pattern);
+		if (files.Length == 0) return;
+
+		for (int i = 0; i < files.Length; i++) {
+			files[i] = files[i].Replace('\\', '/');
+		}
+		AssetBundleBuild build = new AssetBundleBuild();
+		build.assetBundleName = bundleName;
+		build.assetNames = files;
+		tempMaps.Add(build);
+	}
+
+
     /// <summary>
     /// 处理Lua代码包
     /// </summary>
@@ -105,7 +130,7 @@ public class Packager {
         string streamDir = Application.dataPath + "/" + AppConst.LuaTempDir;
         if (!Directory.Exists(streamDir)) Directory.CreateDirectory(streamDir);
 
-        string[] srcDirs = { CustomSettings.luaDir, CustomSettings.FrameworkPath + "/ToLua/Lua" };
+		string[] srcDirs = { CustomSettings.luaDir, CustomSettings.FrameworkPath + "/ToLua/Lua",AppDataPath + "/ScriptsLua/" };
         for (int i = 0; i < srcDirs.Length; i++) {
             if (AppConst.LuaByteMode) {
                 string sourceDir = srcDirs[i];
@@ -159,16 +184,65 @@ public class Packager {
     /// <summary>
     /// 处理框架实例包
     /// </summary>
-    static void HandleExampleBundle() {
+    static void HandleExampleBundle() 
+	{
         string resPath = AppDataPath + "/" + AppConst.AssetDir + "/";
         if (!Directory.Exists(resPath)) Directory.CreateDirectory(resPath);
 
-        AddBuildMap("prompt" + AppConst.ExtName, "*.prefab", "Assets/LuaFramework/Examples/Builds/Prompt");
-        AddBuildMap("message" + AppConst.ExtName, "*.prefab", "Assets/LuaFramework/Examples/Builds/Message");
+//        AddBuildMap("prompt" + AppConst.ExtName, "*.prefab", "Assets/LuaFramework/Examples/Builds/Prompt");
+//        AddBuildMap("message" + AppConst.ExtName, "*.prefab", "Assets/LuaFramework/Examples/Builds/Message");
 
-        AddBuildMap("prompt_asset" + AppConst.ExtName, "*.png", "Assets/LuaFramework/Examples/Textures/Prompt");
+		string uiPerfab = "Assets/Perfab/UI/";
+		AddBuildMap("LoginPerfab" + AppConst.ExtName, "*.prefab", uiPerfab + "Login");
+		AddBuildMap("MainCityPerfab" + AppConst.ExtName, "*.prefab", uiPerfab + "MainCity");
+		AddBuildMap("BattleFieldPerfab" + AppConst.ExtName, "*.prefab", uiPerfab + "BattleField");
+
+		string scene = "Assets/Scene/";
+		AddBuildMap("MainCityScene" + AppConst.ExtName, "*.unity", scene + "MainCity");
+		AddBuildMap("FirstBattleScene" + AppConst.ExtName, "*.unity", scene + "FirstBattle");
+
+		AddBuildMap("prompt_asset" + AppConst.ExtName, "*.png", "Assets/LuaFramework/Examples/Textures/Prompt");
         AddBuildMap("shared_asset" + AppConst.ExtName, "*.png", "Assets/LuaFramework/Examples/Textures/Shared");
     }
+
+//	[MenuItem("LuaFramework/Build Scene Resource", false, 101)]
+//	static void BuildSceneBundle(BuildTarget target)
+//	{
+//		// 打开保存面板，获得用户选择的路径  
+////		string path = EditorUtility.SaveFilePanel("Save Resource", "", "New Resource", "unity3d");  
+//		string path = AppDataPath + "/" + AppConst.AssetDir + "/";
+//		if (path.Length != 0)  
+//		{  
+//			// 选择的要保存的对象  
+////			Object[] selection = Selection.GetFiltered(typeof(Object), SelectionMode.DeepAssets);  
+//			string[] scenes = {"Assets/Scene/MainCity.unity"};  
+//			//打包  
+//			BuildPipeline.BuildPlayer(scenes,path+"/zhangchu"+AppConst.ExtName,target,BuildOptions.BuildAdditionalStreamedScenes);  
+//			Util.Log ("BuildSceneBundle_________Done");
+//		} 
+//	}
+
+//	[MenuItem("LuaFramework/Build Select Resource", false, 101)]
+//	static void BuildSelectObjectBundle()
+//	{
+//		//1.按照面板选择打包
+//		string path = "Assets/" + AppConst.AssetDir;//EditorUtility.SaveFilePanel("Save Resource", "Assets/ab", "New Resource", "assetbundle");  
+//				
+//		if (path.Length != 0)  
+//		{  
+//			Object[] selection = Selection.GetFiltered(typeof(Object), SelectionMode.DeepAssets);  
+//			path = path + "/" + selection[0].name;
+////			BuildPipeline.BuildAssetBundle(Selection.activeObject, selection, path, BuildAssetBundleOptions.CollectDependencies | BuildAssetBundleOptions.CompleteAssets, BuildTarget.StandaloneWindows);  
+//			BuildPipeline.BuildAssetBundle(Selection.activeObject, selection, path, BuildAssetBundleOptions.CollectDependencies | BuildAssetBundleOptions.CompleteAssets, BuildTarget.StandaloneWindows);  
+//		} 
+//
+////		AddBuildMap("Login" + AppConst.ExtName, "*.prefab", "Assets/LuaFramework/Examples/Builds/Message");
+//
+////		string resPath = "Assets/" + AppConst.AssetDir;
+////		BuildAssetBundleOptions options = BuildAssetBundleOptions.DeterministicAssetBundle | 
+////			BuildAssetBundleOptions.UncompressedAssetBundle;
+////		BuildPipeline.BuildAssetBundles(resPath, Packager.getBuildMap("Login" + AppConst.ExtName, "*.prefab", "Assets/LuaFramework/Examples/Builds/Message"), options, BuildTarget.StandaloneWindows);
+//	}
 
     /// <summary>
     /// 处理Lua文件
@@ -182,7 +256,8 @@ public class Packager {
             Directory.CreateDirectory(luaPath); 
         }
         string[] luaPaths = { AppDataPath + "/LuaFramework/lua/", 
-                              AppDataPath + "/LuaFramework/Tolua/Lua/" };
+                              AppDataPath + "/LuaFramework/Tolua/Lua/",
+							  AppDataPath + "/ScriptsLua/"	};
 
         for (int i = 0; i < luaPaths.Length; i++) {
             paths.Clear(); files.Clear();

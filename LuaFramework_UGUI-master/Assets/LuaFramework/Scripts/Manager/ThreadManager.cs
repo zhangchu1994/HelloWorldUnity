@@ -124,6 +124,7 @@ namespace LuaFramework {
 
                 data = new NotiData(NotiConst.UPDATE_DOWNLOAD, currDownFile);
                 if (m_SyncEvent != null) m_SyncEvent(data);
+
             }
         }
 

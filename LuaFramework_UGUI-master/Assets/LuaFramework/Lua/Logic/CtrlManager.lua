@@ -1,15 +1,32 @@
 require "Common/define"
 require "Controller/PromptCtrl"
 require "Controller/MessageCtrl"
+require "Login"
+require "MainCityScene"
+require "Actor"
+require "FirstBattleScene"
+
 
 CtrlManager = {};
 local this = CtrlManager;
 local ctrlList = {};	--控制器列表--
 
+CtrlNames = {
+	Prompt = "PromptCtrl",
+	Message = "MessageCtrl",
+	Login = "Login",
+	MainCityScene = "MainCityScene",
+	Actor = "Actor",
+	FirstBattleScene = "FirstBattleScene",
+}
+
 function CtrlManager.Init()
 	logWarn("CtrlManager.Init----->>>");
 	ctrlList[CtrlNames.Prompt] = PromptCtrl.New();
 	ctrlList[CtrlNames.Message] = MessageCtrl.New();
+	ctrlList[CtrlNames.Login] = Login.New();
+	ctrlList[CtrlNames.MainCityScene] = MainCityScene.New();
+	ctrlList[CtrlNames.FirstBattleScene] = FirstBattleScene.New();
 	return this;
 end
 

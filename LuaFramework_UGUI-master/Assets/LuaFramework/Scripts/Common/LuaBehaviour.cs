@@ -7,29 +7,38 @@ using UnityEngine.UI;
 
 namespace LuaFramework {
     public class LuaBehaviour : View {
-        private string data = null;
+//        private string data = null;
         private Dictionary<string, LuaFunction> buttons = new Dictionary<string, LuaFunction>();
+		public string abName;
+		public string luaName;
+
 
         protected void Awake() {
-            Util.CallMethod(name, "Awake", gameObject);
+			Util.CallMethod(luaName, "Awake", gameObject);
         }
 
         protected void Start() {
-            Util.CallMethod(name, "Start");
+			Util.CallMethod(luaName, "Start");
         }
 
         protected void OnClick() {
-            Util.CallMethod(name, "OnClick");
+			Util.CallMethod(luaName, "OnClick");
         }
 
         protected void OnClickEvent(GameObject go) {
-            Util.CallMethod(name, "OnClick", go);
+			Util.CallMethod(luaName, "OnClick", go);
         }
+
+		protected void Update()
+		{
+			Util.CallMethod(luaName, "Update");
+		}
 
         /// <summary>
         /// 添加单击事件
         /// </summary>
-        public void AddClick(GameObject go, LuaFunction luafunc) {
+        public void AddClick(GameObject go, LuaFunction luafunc) 
+		{
             if (go == null || luafunc == null) return;
             buttons.Add(go.name, luafunc);
             go.GetComponent<Button>().onClick.AddListener(
@@ -69,8 +78,9 @@ namespace LuaFramework {
         protected void OnDestroy() {
             ClearClick();
 #if ASYNC_MODE
-            string abName = name.ToLower().Replace("panel", "");
-            ResManager.UnloadAssetBundle(abName + AppConst.ExtName);
+//            string abName = name.ToLower().Replace("panel", "");
+//            ResManager.UnloadAssetBundle(abName + AppConst.ExtName);
+			ResManager.UnloadAssetBundle(abName + AppConst.ExtName);
 #endif
             Util.ClearMemory();
             Debug.Log("~" + name + " was destroy!");

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using LuaInterface;
 using System.Reflection;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 
 namespace LuaFramework {
@@ -23,6 +24,7 @@ namespace LuaFramework {
         /// 初始化
         /// </summary>
         void Init() {
+			
             DontDestroyOnLoad(gameObject);  //防止销毁自己
 
             CheckExtractResource(); //释放资源
@@ -118,8 +120,8 @@ namespace LuaFramework {
             string dataPath = Util.DataPath;  //数据目录
             string url = AppConst.WebUrl;
             string message = string.Empty;
-            string random = DateTime.Now.ToString("yyyymmddhhmmss");
-            string listUrl = url + "files.txt?v=" + random;
+//            string random = DateTime.Now.ToString("yyyymmddhhmmss");
+			string listUrl = url + "files.txt";//?v=" + random
             Debug.LogWarning("LoadUpdate---->>>" + listUrl);
 
             WWW www = new WWW(listUrl); yield return www;
@@ -143,8 +145,9 @@ namespace LuaFramework {
                 if (!Directory.Exists(path)) {
                     Directory.CreateDirectory(path);
                 }
-                string fileUrl = url + f + "?v=" + random;
+				string fileUrl = url + f;// + "?v=" + random;
                 bool canUpdate = !File.Exists(localfile);
+				Debug.Log ("OnUpdateResource fileUrl___________________"+fileUrl + " localfile = "+localfile+" canUpdate = "+canUpdate);
                 if (!canUpdate) {
                     string remoteMd5 = keyValue[1].Trim();
                     string localMd5 = Util.md5file(localfile);
@@ -244,6 +247,8 @@ namespace LuaFramework {
             //方法1
             //objPool.Release(new TestObjectClass("abcd", 100, 200f));
             //var testObj1 = objPool.Get();
+
+
 
             //方法2
             ObjPoolManager.Release<TestObjectClass>(new TestObjectClass("abcd", 100, 200f));

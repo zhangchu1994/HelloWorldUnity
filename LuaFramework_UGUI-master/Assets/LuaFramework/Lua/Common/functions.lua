@@ -48,3 +48,19 @@ function findPanel(str)
 	end
 	return obj:GetComponent("BaseLua");
 end
+
+function addArrayRange(argMian,argAdd)--[]类型
+    -- print(tostring(skeletonTransform));
+    -- print(tostring(skeletonTransform[0]));
+    -- print(tostring(skeletonTransform.Length));
+	for i=1,argAdd.Length do
+         argMian[i] = argAdd[i-1];
+    end
+end
+
+function printArray(argArray)
+	for k,v in pairs(argArray) do
+		print(k,tostring(v));
+	end
+end
+

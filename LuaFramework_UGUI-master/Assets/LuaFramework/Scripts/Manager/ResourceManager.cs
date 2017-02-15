@@ -17,12 +17,19 @@ public class AssetBundleInfo {
     }
 }
 
-namespace LuaFramework {
+namespace LuaFramework 
+{
+	public enum AssetType
+	{
+		Perfab = 0,
+		Scene = 1,
+		ABManifest = 2
+	};
 
     public class ResourceManager : Manager {
         string m_BaseDownloadingURL = "";
-        string[] m_AllManifest = null;
-        AssetBundleManifest m_AssetBundleManifest = null;
+        string[] m_AllManifest = null;//所有的ab 包括代码的和美术的
+		AssetBundleManifest m_AssetBundleManifest = null;//所有ab的AssetBundleManifest
         Dictionary<string, string[]> m_Dependencies = new Dictionary<string, string[]>();
         Dictionary<string, AssetBundleInfo> m_LoadedAssetBundles = new Dictionary<string, AssetBundleInfo>();
         Dictionary<string, List<LoadAssetRequest>> m_LoadRequests = new Dictionary<string, List<LoadAssetRequest>>();
@@ -37,7 +44,7 @@ namespace LuaFramework {
         // Load AssetBundleManifest.
         public void Initialize(string manifestName, Action initOK) {
             m_BaseDownloadingURL = Util.GetRelativePath();
-            LoadAsset<AssetBundleManifest>(manifestName, new string[] { "AssetBundleManifest" }, delegate(UObject[] objs) {
+			LoadAsset<AssetBundleManifest>(manifestName, new string[] { "AssetBundleManifest" },AssetType.ABManifest, delegate(UObject[] objs) {
                 if (objs.Length > 0) {
                     m_AssetBundleManifest = objs[0] as AssetBundleManifest;
                     m_AllManifest = m_AssetBundleManifest.GetAllAssetBundles();
@@ -46,16 +53,20 @@ namespace LuaFramework {
             });
         }
 
+		public void LoadSecne(string abName, string assetName, Action<UObject[]> func) {
+			LoadAsset<GameObject>(abName, new string[] { assetName }, AssetType.Scene,func);
+		}
+
         public void LoadPrefab(string abName, string assetName, Action<UObject[]> func) {
-            LoadAsset<GameObject>(abName, new string[] { assetName }, func);
+			LoadAsset<GameObject>(abName, new string[] { assetName }, AssetType.Perfab,func);
         }
 
         public void LoadPrefab(string abName, string[] assetNames, Action<UObject[]> func) {
-            LoadAsset<GameObject>(abName, assetNames, func);
+			LoadAsset<GameObject>(abName, assetNames,AssetType.Perfab, func);
         }
 
         public void LoadPrefab(string abName, string[] assetNames, LuaFunction func) {
-            LoadAsset<GameObject>(abName, assetNames, null, func);
+			LoadAsset<GameObject>(abName, assetNames, AssetType.Perfab,null, func);
         }
 
         string GetRealAssetPath(string abName) {
@@ -84,7 +95,7 @@ namespace LuaFramework {
         /// <summary>
         /// 载入素材
         /// </summary>
-        void LoadAsset<T>(string abName, string[] assetNames, Action<UObject[]> action = null, LuaFunction func = null) where T : UObject {
+		void LoadAsset<T>(string abName, string[] assetNames, AssetType assetType,Action<UObject[]> action = null, LuaFunction func = null) where T : UObject {
             abName = GetRealAssetPath(abName);
 
             LoadAssetRequest request = new LoadAssetRequest();
@@ -98,13 +109,13 @@ namespace LuaFramework {
                 requests = new List<LoadAssetRequest>();
                 requests.Add(request);
                 m_LoadRequests.Add(abName, requests);
-                StartCoroutine(OnLoadAsset<T>(abName));
+				StartCoroutine(OnLoadAsset<T>(abName,assetType));
             } else {
                 requests.Add(request);
             }
         }
 
-        IEnumerator OnLoadAsset<T>(string abName) where T : UObject {
+		IEnumerator OnLoadAsset<T>(string abName, AssetType assetType) where T : UObject {
             AssetBundleInfo bundleInfo = GetLoadedAssetBundle(abName);
             if (bundleInfo == null) {
                 yield return StartCoroutine(OnLoadAssetBundle(abName, typeof(T)));
@@ -126,11 +137,16 @@ namespace LuaFramework {
                 List<UObject> result = new List<UObject>();
 
                 AssetBundle ab = bundleInfo.m_AssetBundle;
-                for (int j = 0; j < assetNames.Length; j++) {
-                    string assetPath = assetNames[j];
-                    AssetBundleRequest request = ab.LoadAssetAsync(assetPath, list[i].assetType);
-                    yield return request;
-                    result.Add(request.asset);
+                for (int j = 0; j < assetNames.Length; j++) 
+				{
+					string assetPath = assetNames[j];
+					Debug.Log ("assetPath = " + assetPath);
+					if (assetType != AssetType.Scene) 
+					{
+						AssetBundleRequest request = ab.LoadAssetAsync(assetPath, list[i].assetType);
+						yield return request;
+						result.Add(request.asset);
+					}
 
                     //T assetObj = ab.LoadAsset<T>(assetPath);
                     //result.Add(assetObj);

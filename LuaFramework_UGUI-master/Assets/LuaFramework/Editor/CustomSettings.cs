@@ -3,10 +3,12 @@ using System;
 using System.Collections.Generic;
 using LuaInterface;
 using LuaFramework;
+using GlobalGame;
 
 using BindType = ToLuaMenu.BindType;
 using UnityEngine.UI;
 using System.Reflection;
+using UnityEngine.SceneManagement;
 
 public static class CustomSettings
 {
@@ -82,7 +84,7 @@ public static class CustomSettings
         //_GT(typeof(LineRenderer))
         //_GT(typeof(TrailRenderer))
 #endif   
-                        
+                      
         _GT(typeof(Behaviour)),
         _GT(typeof(MonoBehaviour)),        
         _GT(typeof(GameObject)),
@@ -110,7 +112,8 @@ public static class CustomSettings
         _GT(typeof(SkinnedMeshRenderer)),
         _GT(typeof(Space)),        
                                            
-        _GT(typeof(MeshRenderer)),            
+        _GT(typeof(MeshRenderer)),  
+		_GT(typeof(Mesh)),
         _GT(typeof(ParticleEmitter)),
         _GT(typeof(ParticleRenderer)),
         _GT(typeof(ParticleAnimator)), 
@@ -133,7 +136,17 @@ public static class CustomSettings
         _GT(typeof(RenderSettings)),                                                   
         _GT(typeof(BlendWeights)),           
         _GT(typeof(RenderTexture)),       
-          
+		_GT(typeof(SceneManager)),   
+		_GT(typeof(UnityEngine.AI.NavMeshAgent)),
+		_GT(typeof(UnityEngine.AI.NavMeshPathStatus)),
+		_GT(typeof(Resources)),
+		_GT(typeof(CombineInstance)),
+        _GT(typeof(TextureFormat)),
+
+
+		//for self code
+		_GT(typeof(Actor1)),
+
         //for LuaFramework
         _GT(typeof(RectTransform)),
         _GT(typeof(Text)),
@@ -151,7 +164,8 @@ public static class CustomSettings
         _GT(typeof(TimerManager)),
         _GT(typeof(ThreadManager)),
         _GT(typeof(NetworkManager)),
-        _GT(typeof(ResourceManager)),		  
+        _GT(typeof(ResourceManager)),	
+        _GT(typeof(MySceneManager)),	  
     };
 
     public static List<Type> dynamicList = new List<Type>()

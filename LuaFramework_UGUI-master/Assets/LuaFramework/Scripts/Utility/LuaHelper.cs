@@ -29,6 +29,14 @@ namespace LuaFramework {
             return AppFacade.Instance.GetManager<PanelManager>(ManagerName.Panel);
         }
 
+		/// <summary>
+		/// 场景管理器
+		/// </summary>
+		public static MySceneManager GetSceneManager() {
+			return AppFacade.Instance.GetManager<MySceneManager>(ManagerName.MyScene);
+		}
+
+
         /// <summary>
         /// 资源管理器
         /// </summary>

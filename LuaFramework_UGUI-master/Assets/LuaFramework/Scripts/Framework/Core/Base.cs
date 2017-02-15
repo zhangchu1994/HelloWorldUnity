@@ -12,6 +12,7 @@ public class Base : MonoBehaviour {
     private TimerManager m_TimerMgr;
     private ThreadManager m_ThreadMgr;
     private ObjectPoolManager m_ObjectPoolMgr;
+	private MySceneManager m_MySceneManager;
 
     /// <summary>
     /// 注册消息
@@ -104,4 +105,13 @@ public class Base : MonoBehaviour {
             return m_ObjectPoolMgr;
         }
     }
+
+	protected MySceneManager MySceneManager {
+		get {
+			if (m_MySceneManager == null) {
+				m_MySceneManager = facade.GetManager<MySceneManager>(ManagerName.MyScene);
+			}
+			return m_MySceneManager;
+		}
+	}
 }

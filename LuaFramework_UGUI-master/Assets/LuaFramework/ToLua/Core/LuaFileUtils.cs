@@ -79,6 +79,7 @@ namespace LuaInterface
         //格式: 路径/?.lua
         public bool AddSearchPath(string path, bool front = false)
         {
+			Debug.Log ("AddSearchPath111 path = "+path+" front = "+front);
             int index = searchPaths.IndexOf(path);
 
             if (index >= 0)
@@ -156,6 +157,9 @@ namespace LuaInterface
 
             for (int i = 0; i < searchPaths.Count; i++)
             {
+				if (fileName == "Logic/Game" || fileName == "Login")
+					Debug.Log ("FindFile__________________________________file = " + fileName + " num = " + i.ToString() + " Path = " +searchPaths [i]);		
+                    			
                 fullPath = searchPaths[i].Replace("?", fileName);
 
                 if (File.Exists(fullPath))
