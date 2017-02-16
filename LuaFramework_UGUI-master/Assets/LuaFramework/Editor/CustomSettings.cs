@@ -145,7 +145,7 @@ public static class CustomSettings
 
 
 		//for self code
-		_GT(typeof(Actor1)),
+		_GT(typeof(Actor)),
 
         //for LuaFramework
         _GT(typeof(RectTransform)),

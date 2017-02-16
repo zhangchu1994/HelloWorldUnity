@@ -19,7 +19,7 @@ public class FollowTarget : MonoBehaviour {
 //	        playerBip = GameObject.FindGameObjectWithTag("Player").transform.Find("Bip01");
 //	    }
 //		playerBip = TestClass.m_Role.transform;
-		offset = new Vector3(-4f,45f,-8.5f);
+		offset = new Vector3(3.2f,23,-32.5f);
 	}
 	
 	// Update is called once per frame
@@ -31,9 +31,9 @@ public class FollowTarget : MonoBehaviour {
 //			transform.position = new Vector3 (TestClass.m_Role.transform.position.x,TestClass.m_Role.transform.position.y+10,TestClass.m_Role.transform.position.z);
 //		}
 
-		if (TestClass.m_Role != null) 
+		if (BattleScene.Active.m_RoleObject != null) 
 		{
-			playerBip = TestClass.m_Role.transform;
+			playerBip = BattleScene.Active.m_RoleObject.transform;
 			Vector3 targetPos = playerBip.position + offset;
 			transform.position = Vector3.Lerp(transform.position, targetPos, smoothing * Time.deltaTime);
 		}

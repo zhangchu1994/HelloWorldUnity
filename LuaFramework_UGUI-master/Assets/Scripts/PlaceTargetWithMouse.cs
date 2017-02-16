@@ -23,7 +23,7 @@ namespace UnityStandardAssets.SceneUtils
                 return;
             }
             transform.position = hit.point + hit.normal*surfaceOffset;
-			TestClass.SetTarget (transform);
+			BattleScene.Active.SetTarget (transform);
 //            if (setTargetOn != null)
 //            {
 //                setTargetOn.SendMessage("SetTarget", transform);
