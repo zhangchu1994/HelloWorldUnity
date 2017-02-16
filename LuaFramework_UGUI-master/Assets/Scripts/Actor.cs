@@ -274,7 +274,7 @@ namespace GlobalGame
 			m_agent = (NavMeshAgent)m_ActorObject.GetComponent("NavMeshAgent");
 			m_agent.speed = 15;
 			m_agent.stoppingDistance = 0.01f; 
-			m_agent.radius = 2;
+			m_agent.radius = 0.5f;
 			m_agent.acceleration = 15;
 			m_agent.autoRepath = true;
 			m_agent.obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance;
