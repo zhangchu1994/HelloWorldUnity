@@ -46,6 +46,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Lib\NavMeshExtension\Scripts\AgentAnimator.cs" />
+     <Compile Include="Assets\Lib\NavMeshExtension\Scripts\AgentController.cs" />
+     <Compile Include="Assets\Lib\NavMeshExtension\Scripts\NavMeshManager.cs" />
+     <Compile Include="Assets\Lib\NavMeshExtension\Scripts\NavMeshObject.cs" />
+     <Compile Include="Assets\Lib\NavMeshExtension\Scripts\PortalManager.cs" />
+     <Compile Include="Assets\Lib\NavMeshExtension\Scripts\PortalObject.cs" />
      <Compile Include="Assets\LuaFramework\Scripts\Common\LuaBehaviour.cs" />
      <Compile Include="Assets\LuaFramework\Scripts\Common\LuaLoader.cs" />
      <Compile Include="Assets\LuaFramework\Scripts\ConstDefine\AppConst.cs" />
@@ -179,7 +185,6 @@
      <Compile Include="Assets\LuaFramework\ToLua\Reflection\LuaReflection.cs" />
      <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\BaseWrap.cs" />
      <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\DelegateFactory.cs" />
-     <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\GlobalGame_Actor1Wrap.cs" />
      <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\LuaBinder.cs" />
      <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\LuaFramework_AppConstWrap.cs" />
      <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\LuaFramework_ByteBufferWrap.cs" />
@@ -265,14 +270,23 @@
      <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\UnityEngine_WrapModeWrap.cs" />
      <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\ViewWrap.cs" />
      <Compile Include="Assets\LuaFramework\ToLua\Source\LuaConst.cs" />
-     <Compile Include="Assets\Scripts\Actor1.cs" />
+     <Compile Include="Assets\Scripts\Actor.cs" />
+     <Compile Include="Assets\Scripts\ActorAgentManager.cs" />
+     <Compile Include="Assets\Scripts\ActorBodyManager.cs" />
+     <Compile Include="Assets\Scripts\ActorMeshManager.cs" />
+     <Compile Include="Assets\Scripts\ActorUIManager.cs" />
+     <Compile Include="Assets\Scripts\BattleScene.cs" />
      <Compile Include="Assets\Scripts\CombineSkinnedMgr.cs" />
-     <Compile Include="Assets\Scripts\TestClass.cs" />
+     <Compile Include="Assets\Scripts\FollowTarget.cs" />
+     <Compile Include="Assets\Scripts\Global.cs" />
+     <Compile Include="Assets\Scripts\RemovePS.cs" />
+     <None Include="Assets\Shader\Toony-BasicOutline.shader" />
+     <None Include="Assets\Lib\NavMeshExtension\Changelog.txt" />
+     <None Include="Assets\Shader\Toony-Basic.shader" />
      <None Include="Assets\StreamingAssets\files.txt" />
      <None Include="Assets\LuaFramework\ToLua\readme.txt" />
- <Reference Include="UnityEngine.Advertisements">
- <HintPath>E:/Program Files/Unity5.5.0/Editor/Data/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
- </Reference>
+     <None Include="Assets\笔记.txt" />
+     <None Include="Assets\Lib\NavMeshExtension\README.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>E:/Program Files/Unity5.5.0/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
@@ -287,9 +301,6 @@
  </Reference>
  <Reference Include="UnityEngine.HoloLens">
  <HintPath>E:/Program Files/Unity5.5.0/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Purchasing">
- <HintPath>E:/Program Files/Unity5.5.0/Editor/Data/UnityExtensions/Unity/UnityPurchasing/UnityEngine.Purchasing.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.VR">
  <HintPath>E:/Program Files/Unity5.5.0/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>

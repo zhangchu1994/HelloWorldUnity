@@ -1,20 +1,17 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\LuaFramework\Scripts\Manager\GameManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Shader\Toony-BasicOutline.shader">
     <Files>
-      <File FileName="Assets\LuaFramework\Scripts\Manager\GameManager.cs" Line="289" Column="10" />
-      <File FileName="Assets\LuaFramework\Scripts\ConstDefine\AppConst.cs" Line="22" Column="40" />
-      <File FileName="Assets\LuaFramework\ToLua\Misc\LuaClient.cs" Line="1" Column="1" />
-      <File FileName="Assets\LuaFramework\Scripts\ConstDefine\ManagerName.cs" Line="1" Column="1" />
-      <File FileName="Assets\LuaFramework\Scripts\ConstDefine\NotiConst.cs" Line="1" Column="1" />
-      <File FileName="Assets\LuaFramework\Scripts\Common\LuaBehaviour.cs" Line="1" Column="1" />
-      <File FileName="Assets\LuaFramework\Scripts\Manager\ThreadManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\LuaFramework\Scripts\Utility\Util.cs" Line="1" Column="1" />
-      <File FileName="Assets\LuaFramework\Scripts\Manager\MySceneManager.cs" Line="25" Column="29" />
-      <File FileName="Assets\LuaFramework\Scripts\Manager\ResourceManager.cs" Line="57" Column="9" />
-      <File FileName="Assets\LuaFramework\ToLua\Source\Generate\UnityEngine_TransformWrap.cs" Line="246" Column="55" />
-      <File FileName="Assets\Scripts\TestClass.cs" Line="37" Column="2" />
-      <File FileName="Assets\Scripts\Actor1.cs" Line="125" Column="54" />
+      <File FileName="Assets\Scripts\Actor.cs" Line="7" Column="1" />
+      <File FileName="Assets\Scripts\ActorAgentManager.cs" Line="5" Column="1" />
+      <File FileName="Assets\Scripts\BattleScene.cs" Line="7" Column="1" />
+      <File FileName="Assets\Scripts\Global.cs" Line="9" Column="2" />
+      <File FileName="Assets\Scripts\FollowTarget.cs" Line="6" Column="3" />
+      <File FileName="Assets\Scripts\CombineSkinnedMgr.cs" Line="42" Column="1" />
+      <File FileName="Assets\Scripts\RemovePS.cs" Line="17" Column="2" />
+      <File FileName="Assets\Scripts\ActorUIManager.cs" Line="10" Column="2" />
+      <File FileName="Assets\Scripts\ActorBodyManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Shader\Toony-BasicOutline.shader" Line="80" Column="28" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
@@ -24,7 +21,7 @@
       <Breakpoint file="D:\WorkSpace_Unity\trunk\LuaFramework_UGUI-master\Assets\LuaFramework\Scripts\Manager\GameManager.cs" line="139" column="1" />
       <Breakpoint file="D:\WorkSpace_Unity\trunk\LuaFramework_UGUI-master\Assets\LuaFramework\Scripts\Manager\GameManager.cs" line="173" column="1" />
       <Breakpoint file="D:\WorkSpace_Unity\trunk\LuaFramework_UGUI-master\Assets\LuaFramework\Scripts\Manager\GameManager.cs" line="48" column="1" />
-      <Breakpoint file="E:\WorkSpace_Demo\trunk\LuaFramework_UGUI-master\Assets\Scripts\Actor1.cs" line="133" column="15" />
+      <Breakpoint file="E:\WorkSpace_Demo\trunk\LuaFramework_UGUI-master\Assets\Lib\Locomotion\Locomotion.cs" line="40" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

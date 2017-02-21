@@ -46,6 +46,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Lib\NavMeshExtension\Scripts\Editor\AboutNavMeshEditor.cs" />
+     <Compile Include="Assets\Lib\NavMeshExtension\Scripts\Editor\CreateNavMeshManager.cs" />
+     <Compile Include="Assets\Lib\NavMeshExtension\Scripts\Editor\CreatePortalManager.cs" />
+     <Compile Include="Assets\Lib\NavMeshExtension\Scripts\Editor\NavMeshManagerEditor.cs" />
+     <Compile Include="Assets\Lib\NavMeshExtension\Scripts\Editor\NavMeshObjectEditor.cs" />
+     <Compile Include="Assets\Lib\NavMeshExtension\Scripts\Editor\PortalManagerEditor.cs" />
+     <Compile Include="Assets\Lib\NavMeshExtension\Scripts\Editor\PortalObjectEditor.cs" />
      <Compile Include="Assets\LuaFramework\Editor\ABInfo.cs" />
      <Compile Include="Assets\LuaFramework\Editor\CustomSettings.cs" />
      <Compile Include="Assets\LuaFramework\Editor\Packager.cs" />
@@ -66,11 +73,13 @@
      <Compile Include="Assets\LuaFramework\ToLua\Editor\ToLuaExport.cs" />
      <Compile Include="Assets\LuaFramework\ToLua\Editor\ToLuaMenu.cs" />
      <Compile Include="Assets\LuaFramework\ToLua\Editor\ToLuaTree.cs" />
+     <None Include="Assets\Shader\Toony-BasicOutline.shader" />
+     <None Include="Assets\Lib\NavMeshExtension\Changelog.txt" />
+     <None Include="Assets\Shader\Toony-Basic.shader" />
      <None Include="Assets\StreamingAssets\files.txt" />
      <None Include="Assets\LuaFramework\ToLua\readme.txt" />
- <Reference Include="UnityEngine.Advertisements">
- <HintPath>E:/Program Files/Unity5.5.0/Editor/Data/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
- </Reference>
+     <None Include="Assets\笔记.txt" />
+     <None Include="Assets\Lib\NavMeshExtension\README.txt" />
  <Reference Include="UnityEditor.Advertisements">
  <HintPath>E:/Program Files/Unity5.5.0/Editor/Data/UnityExtensions/Unity/Advertisements/Editor/UnityEditor.Advertisements.dll</HintPath>
  </Reference>
@@ -112,9 +121,6 @@
  </Reference>
  <Reference Include="UnityEngine.HoloLens">
  <HintPath>E:/Program Files/Unity5.5.0/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Purchasing">
- <HintPath>E:/Program Files/Unity5.5.0/Editor/Data/UnityExtensions/Unity/UnityPurchasing/UnityEngine.Purchasing.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.VR">
  <HintPath>E:/Program Files/Unity5.5.0/Editor/Data/UnityExtensions/Unity/UnityVR/Editor/UnityEditor.VR.dll</HintPath>
