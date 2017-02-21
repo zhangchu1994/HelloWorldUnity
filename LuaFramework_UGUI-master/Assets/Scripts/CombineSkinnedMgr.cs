@@ -37,8 +37,8 @@ namespace GlobalGame
 		/// <param name="skeleton">combine meshes to this skeleton(a gameobject)</param>
 		/// <param name="meshes">meshes need to be merged</param>
 		/// <param name="combine">merge materials or not</param>
-		public void CombineObject (GameObject skeleton, SkinnedMeshRenderer[] meshes, bool combine = false){
-
+		public void CombineObject (GameObject skeleton, SkinnedMeshRenderer[] meshes, bool combine = false)
+		{
 			// Fetch all bones of the skeleton
 			List<Transform> transforms = new List<Transform>();
 			transforms.AddRange(skeleton.GetComponentsInChildren<Transform>(true));

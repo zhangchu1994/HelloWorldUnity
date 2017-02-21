@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RemovePS : MonoBehaviour 
+namespace GlobalGame 
 {
-	public float deadTime;
-
-	void Awake () 
+	public class RemovePS : MonoBehaviour 
 	{
-		Destroy (gameObject, deadTime);
-	}
+		public float deadTime;
 
+		void Awake () 
+		{
+			Destroy (gameObject, deadTime);
+		}
+
+	}
 }

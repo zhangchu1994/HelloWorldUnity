@@ -3,19 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class Global 
+namespace GlobalGame 
 {
-	public enum BattleAnimationType
+	public class Global 
 	{
-		Stand = 0,
-		Run = 1,
-		Hurt = 2,
-	}
+		public enum BattleAnimationType
+		{
+			Stand = 0,
+			Run = 1,
+			Hurt = 2,
+			Attack = 3,
+		}
 
-	public static ArrayList m_AnimationNameList = new ArrayList(){"stand","run",""};
+		public static ArrayList m_AnimationNameList = new ArrayList(){"stand","run","","Attack"};
 
-	public static string GetAnimation(BattleAnimationType argType)
-	{
-		return (string)m_AnimationNameList[(int)argType];
+		public static string GetAnimation(BattleAnimationType argType)
+		{
+			return (string)m_AnimationNameList[(int)argType];
+		}
+
+
 	}
 }
