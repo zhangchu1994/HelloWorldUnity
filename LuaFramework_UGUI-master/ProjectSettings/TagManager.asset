@@ -6,6 +6,8 @@ TagManager:
   tags:
   - GuiCamera
   - GameManager
+  - Enemy
+  - Ground
   layers:
   - Default
   - TransparentFX

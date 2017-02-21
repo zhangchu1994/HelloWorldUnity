@@ -1,17 +1,13 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Shader\Toony-BasicOutline.shader">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\LuaFramework\Scripts\Network\Protocal.cs">
     <Files>
-      <File FileName="Assets\Scripts\Actor.cs" Line="7" Column="1" />
-      <File FileName="Assets\Scripts\ActorAgentManager.cs" Line="5" Column="1" />
-      <File FileName="Assets\Scripts\BattleScene.cs" Line="7" Column="1" />
-      <File FileName="Assets\Scripts\Global.cs" Line="9" Column="2" />
-      <File FileName="Assets\Scripts\FollowTarget.cs" Line="6" Column="3" />
-      <File FileName="Assets\Scripts\CombineSkinnedMgr.cs" Line="42" Column="1" />
-      <File FileName="Assets\Scripts\RemovePS.cs" Line="17" Column="2" />
-      <File FileName="Assets\Scripts\ActorUIManager.cs" Line="10" Column="2" />
-      <File FileName="Assets\Scripts\ActorBodyManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Shader\Toony-BasicOutline.shader" Line="80" Column="28" />
+      <File FileName="Assets\Scripts\BattleScene.cs" Line="67" Column="7" />
+      <File FileName="Assets\LuaFramework\Scripts\Manager\NetworkManager.cs" Line="61" Column="10" />
+      <File FileName="Assets\LuaFramework\Scripts\ConstDefine\NotiConst.cs" Line="20" Column="1" />
+      <File FileName="Assets\LuaFramework\Scripts\Controller\Command\SocketCommand.cs" Line="13" Column="22" />
+      <File FileName="Assets\LuaFramework\Scripts\Controller\Command\StartUpCommand.cs" Line="9" Column="3" />
+      <File FileName="Assets\LuaFramework\Scripts\Network\Protocal.cs" Line="9" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
