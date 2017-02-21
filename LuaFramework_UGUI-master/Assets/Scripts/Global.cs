@@ -7,6 +7,9 @@ namespace GlobalGame
 {
 	public class Global 
 	{
+		public static string TagName_Enemy = "Enemy";
+		public static string TagName_Ground = "Ground";
+
 		public enum BattleAnimationType
 		{
 			Stand = 0,
@@ -15,7 +18,7 @@ namespace GlobalGame
 			Attack = 3,
 		}
 
-		public static ArrayList m_AnimationNameList = new ArrayList(){"stand","run","","Attack"};
+		public static ArrayList m_AnimationNameList = new ArrayList(){"stand","run","","attack1"};
 
 		public static string GetAnimation(BattleAnimationType argType)
 		{

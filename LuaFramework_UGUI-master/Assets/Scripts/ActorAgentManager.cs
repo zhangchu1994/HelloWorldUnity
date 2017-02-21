@@ -22,37 +22,37 @@ namespace GlobalGame
 
 
 		// Use this for initialization
-		void Start () {
+		void Start () 
+		{
 			m_MainActor = GetComponent<Actor> ();
 			agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
 			agent.updateRotation = false;
 
 			particle = Resources.Load ("Effect/CircleFX_Dark");
-
-	//		animator = GetComponent<Animator>();
-	//		locomotion = new Locomotion(animator);
-
 			particleClone = null;
 
-	//			m_agent = (NavMeshAgent)m_ActorObject.GetComponent("NavMeshAgent");
-	//			m_agent.speed = 15;
-	//			m_agent.stoppingDistance = 0.1f; 
-	//			m_agent.radius = 0.5f;
-	//			m_agent.acceleration = 15;
-	//			m_agent.autoRepath = true;
-	//			m_agent.obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance;
+//		animator = GetComponent<Animator>();
+//		locomotion = new Locomotion(animator);
+
+
+//			m_agent = (NavMeshAgent)m_ActorObject.GetComponent("NavMeshAgent");
+//			m_agent.speed = 15;
+//			m_agent.stoppingDistance = 0.1f; 
+//			m_agent.radius = 0.5f;
+//			m_agent.acceleration = 15;
+//			m_agent.autoRepath = true;
+//			m_agent.obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance;
 		}
 
-		public void SetDestinationWithClick()
-		{
-			// Construct a ray from the current mouse coordinates
-			var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-			RaycastHit hit = new RaycastHit();
-			if (Physics.Raycast(ray, out hit))
-			{
-				SetDestination (hit.point, hit.normal,false);
-			}
-		}
+//		public void SetDestinationWithClick()
+//		{
+//			var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+//			RaycastHit hit = new RaycastHit();
+//			if (Physics.Raycast(ray, out hit))
+//			{
+//				SetDestination (hit.point, hit.normal,false);
+//			}
+//		}
 
 		public void SetDestination(Vector3 point,Vector3 normal,bool argAttack)
 		{
@@ -64,6 +64,11 @@ namespace GlobalGame
 
 			m_AttackMove = argAttack;
 			// Create a particle if hit
+
+			if (argAttack == true)
+				agent.stoppingDistance = 5;
+			else
+				agent.stoppingDistance = 0;
 			Quaternion q = new Quaternion();
 			if (normal != null)
 				q.SetLookRotation(normal, Vector3.forward);
@@ -118,8 +123,8 @@ namespace GlobalGame
 		// Update is called once per frame
 		void Update () 
 		{
-			if (Input.GetButtonDown ("Fire1")) 
-				SetDestinationWithClick();
+//			if (Input.GetButtonDown ("Fire1")) 
+//				SetDestinationWithClick();
 			
 			SetupAgentLocomotion();
 		}

@@ -51,13 +51,10 @@ namespace GlobalGame
 			m_RoleObject.transform.position = new Vector3 (m_StartPoint.transform.position.x, m_StartPoint.transform.position.y, m_StartPoint.transform.position.z);
 			m_Actor = actor;
 
-
-
 			for (int i = 1; i <= 3; i++) 
 			{
-	//			Object monsterRes = Resources.Load ("Actor/Actor1/" + skeleton);
-	//			GameObject monsterObject = GameObject.Instantiate (res) as GameObject;
-	//			monsterObject.transform = 
+//			Object monsterRes = Resources.Load ("Actor/Actor1/" + skeleton);
+//			GameObject monsterObject = GameObject.Instantiate (res) as GameObject;
 				GameObject monsterObject = GameObject.Find("Monster"+i.ToString());
 				m_monsterList.Add (monsterObject);
 			}
@@ -76,38 +73,63 @@ namespace GlobalGame
 	           Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);  
 	           if (Physics.Raycast(ray))  
 	           {  
-	//               	Debug.Log("okok");  
 					RaycastHit[] hits = Physics.RaycastAll(ray);
-					foreach (RaycastHit hit in hits) 
+
+					int monsterHitIndex = -1;
+					int groundHitIndex = -1;
+					for (int i = 0; i < hits.Length; i++) 
 					{
+						RaycastHit hit = hits [i];
 						GameObject obj =  hit.collider.gameObject;
-						Debug.Log ("updateClick________________"+obj.name);
-
-//						for (int i = 0; i < m_monsterList.Count; i++) 
-//						{
-//							GameObject monsterObject = m_monsterList [i];
-//							if (monsterObject == null)
-//								continue;
-//							Renderer render = monsterObject.GetComponentInChildren<Renderer> ();
-//							Debug.Log (render.material.name + "i = "+i);
-//
-//							if (monsterObject.name == obj.name) {
-//								Material mater = new Material (Shader.Find ("Toon/Basic Outline"));
-//								mater.CopyPropertiesFromMaterial (BasicOutLine);
-//								render.material = mater;
-//								m_Actor.m_ActorAgentManager.SetDestination (monsterObject.transform.position,Vector3.zero,true);
-//							} 
-//							else 
-//							{
-//								Material mater = new Material (Shader.Find ("Legacy Shaders/VertexLit"));
-//								mater.CopyPropertiesFromMaterial (NormalMaterial);
-//								render.material = mater;
-//							}
-//						}
-
+						if (obj.CompareTag (Global.TagName_Enemy))
+							monsterHitIndex = i;
+						if (obj.CompareTag (Global.TagName_Ground))
+							groundHitIndex = i;
 					}
+
+					if (monsterHitIndex != -1) 
+					{
+						RaycastHit monsterHit = hits [monsterHitIndex];
+						attackMonster (monsterHit);
+					}
+
+					if (groundHitIndex != -1 && monsterHitIndex == -1) 
+					{
+						RaycastHit groundHit = hits [groundHitIndex];
+						GameObject obj =  groundHit.collider.gameObject;
+						m_Actor.m_ActorAgentManager.SetDestination (groundHit.point,groundHit.normal,false);
+					}
+
 	           }  
 	       }
+		}
+
+		void attackMonster(RaycastHit monsterHit)
+		{
+			GameObject obj =  monsterHit.collider.gameObject;
+			for (int i = 0; i < m_monsterList.Count; i++) 
+			{
+				GameObject monsterObject = m_monsterList [i];
+				if (monsterObject == null)
+					continue;
+				Renderer render = monsterObject.GetComponentInChildren<Renderer> ();
+				Debug.Log (render.material.name + "i = "+i);
+
+				if (monsterObject.name == obj.name) 
+				{
+					Material mater = new Material (Shader.Find ("Toon/Basic Outline"));
+					mater.CopyPropertiesFromMaterial (BasicOutLine);
+					render.material = mater;
+					m_Actor.m_ActorAgentManager.SetDestination (monsterObject.transform.position,Vector3.zero,true);
+					//									m_Actor.m_ActorAgentManager.SetDestination (hit.point,hit.normal,true);
+				} 
+				else 
+				{
+					Material mater = new Material (Shader.Find ("Legacy Shaders/VertexLit"));
+					mater.CopyPropertiesFromMaterial (NormalMaterial);
+					render.material = mater;
+				}
+			}
 		}
 
 
