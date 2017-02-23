@@ -65,7 +65,7 @@ namespace GlobalGame
 					ci.subMeshIndex = sub;
 					combineInstances.Add(ci);
 				}
-				Debug.Log ("Length____________"+smr.bones.Length.ToString()+" i = "+i+" transforms.Count = "+transforms.Count);
+//				Debug.Log ("Length____________"+smr.bones.Length.ToString()+" i = "+i+" transforms.Count = "+transforms.Count);
 				// Collect bones
 				for (int j = 0 ; j < smr.bones.Length; j ++)
 				{
@@ -109,7 +109,7 @@ namespace GlobalGame
 					}
 					oldUV.Add(combineInstances[j].mesh.uv);
 					combineInstances[j].mesh.uv = uvb;
-					Debug.Log ("j = "+j+" length = "+uvb.Length);
+//					Debug.Log ("j = "+j+" length = "+uvb.Length);
 				}
 			}
 

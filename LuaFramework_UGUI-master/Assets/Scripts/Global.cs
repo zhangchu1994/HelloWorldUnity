@@ -9,6 +9,7 @@ namespace GlobalGame
 	{
 		public static string TagName_Enemy = "Enemy";
 		public static string TagName_Ground = "Ground";
+		public static string ActorName = "Ian1970";
 
 		public enum BattleAnimationType
 		{
@@ -25,6 +26,22 @@ namespace GlobalGame
 			return (string)m_AnimationNameList[(int)argType];
 		}
 
+		//缩放粒子及模型
+		public static void ChangeParticleScale(GameObject Obj,float SetScale)
+		{
+			if (SetScale > 0) 
+			{
+				ParticleSystem[] systems = Obj.GetComponentsInChildren<ParticleSystem> ();
+
+				for (int i = 0; i < systems.Length; i++ )
+				{
+					systems[i].startSize = systems[i].startSize * SetScale;
+					systems[i].startSpeed = systems[i].startSpeed * SetScale;
+				}
+
+				Obj.transform.localScale *= SetScale;
+			}
+		}
 
 	}
 }

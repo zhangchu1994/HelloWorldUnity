@@ -75,7 +75,7 @@ namespace GlobalGame
 			particleClone = Instantiate(particle, point, q);
 
 			agent.destination = point;
-			m_MainActor.PlayAnimation (Global.BattleAnimationType.Run, WrapMode.Loop);
+			m_MainActor.m_ActorAnimationManager.PlayAnimation (Global.BattleAnimationType.Run, WrapMode.Loop);
 			m_MainActor.m_ActorObject.transform.LookAt (point);
 			agent.updateRotation = true;
 		}
@@ -90,10 +90,15 @@ namespace GlobalGame
 					GameObject.Destroy(particleClone);
 					particleClone = null;
 				}
-				if (m_AttackMove == true)
-					m_MainActor.PlayAnimation (Global.BattleAnimationType.Attack, WrapMode.Loop);
-				else						
-					m_MainActor.PlayAnimation (Global.BattleAnimationType.Stand, WrapMode.Loop);
+				if (m_AttackMove == true) 
+				{
+					m_MainActor.m_ActorAnimationManager.PlayAnimation (Global.BattleAnimationType.Attack, WrapMode.Loop);
+					BattleScene.Active.MonsterLoseBlood ();
+				} 
+				else 
+				{
+					m_MainActor.m_ActorAnimationManager.PlayAnimation (Global.BattleAnimationType.Stand, WrapMode.Loop);
+				}
 			}
 			else
 			{
