@@ -10,10 +10,11 @@ local print_r = require "3rd/sproto/print_r"
 MainCityUIManager = {};
 local this = MainCityUIManager;
 
-local panel;
-local prompt;
-local transform;
-local gameObject;
+local m_panel;
+local m_LuaBehaviour;
+local m_transform;
+local m_gameObject;
+local m_firstCreate = false;
 
 function MainCityUIManager.New()
     return this;
@@ -32,51 +33,40 @@ function MainCityUIManager.Show()
 end
 
 function MainCityUIManager.Update()
-
+    if m_firstCreate == false then
+        m_firstCreate = true;
+        this.InitView();
+    end
 end
 
 function MainCityUIManager.OnCreate(obj)
-    -- log('MainCityUIManager.OnCreate____________');
-    gameObject = obj;
-    transform = obj.transform;
+end
 
-    panel = transform:GetComponent('loginPanel');
-    prompt = transform:GetComponent('LuaBehaviour');
+function MainCityUIManager.InitView()
+    log('MainCityUIManager.OnCreate____________');
+    m_gameObject = GameObject.Find("Canvas/MainCityPanel");
+    m_transform = m_gameObject.transform;
 
-    local loginButton = transform:FindChild("MainCityUIManager").gameObject;
+    -- m_panel = m_transform:GetComponent('loginPanel');
+    m_LuaBehaviour = m_transform:GetComponent('LuaBehaviour');
 
-    prompt:AddClick(loginButton, this.OnClick);
+    for i=1,6 do
+        log("Left"..tostring(i));
+        local loginButton = m_transform:FindChild("Left"..tostring(i)).gameObject;
+        m_LuaBehaviour:AddClick(loginButton, this.OnClick);
+    end
     -- resMgr:LoadPrefab('prompt', { 'PromptItem' }, this.InitPanel);
 end
 
--- --初始化面板--
--- function MainCityUIManager.InitPanel(objs)
---     local count = 100; 
---     local parent = PromptPanel.gridParent;
---     for i = 1, count do
---         local go = newObject(objs[0]);
---         go.name = 'Item'..tostring(i);
---         go.transform:SetParent(parent);
---         go.transform.localScale = Vector3.one;
---         go.transform.localPosition = Vector3.zero;
---         prompt:AddClick(go, this.OnItemClick);
 
---         local label = go.transform:FindChild('Text');
---         label:GetComponent('Text').text = tostring(i);
---     end
--- end
-
--- --滚动项单击--
--- function MainCityUIManager.OnItemClick(go)
---     log(go.name);
--- end
 
 --单击事件--
 function MainCityUIManager.OnClick(go)
-    sceneMgr:GoToScene('maincityscene',"MainCity","MainCityScene",this.SceneDone); 
-    -- sceneMgr:GoToScene('firstbattlescene',"FirstBattle","FirstBattleScene",this.SceneDone); 
-
-
+    log("________________________"..go.name);--
+    if (go.name == "Left6") then
+        sceneMgr:GoToScene('firstbattlescene',"FirstBattle","FirstBattleScene",this.SceneDone); 
+    end
+    -- sceneMgr:GoToScene('maincityscene',"MainCity","MainCityScene",this.SceneDone); 
 end
 
 function MainCityUIManager.SceneDone(obj)

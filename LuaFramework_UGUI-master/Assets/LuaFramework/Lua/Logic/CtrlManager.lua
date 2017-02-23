@@ -5,6 +5,7 @@ require "Login"
 require "MainCityScene"
 require "Actor"
 require "FirstBattleScene"
+require "MainCityUIManager"
 
 
 CtrlManager = {};
@@ -18,6 +19,7 @@ CtrlNames = {
 	MainCityScene = "MainCityScene",
 	Actor = "Actor",
 	FirstBattleScene = "FirstBattleScene",
+	MainCityUIManager = "MainCityUIManager",
 }
 
 function CtrlManager.Init()
@@ -27,6 +29,7 @@ function CtrlManager.Init()
 	ctrlList[CtrlNames.Login] = Login.New();
 	ctrlList[CtrlNames.MainCityScene] = MainCityScene.New();
 	ctrlList[CtrlNames.FirstBattleScene] = FirstBattleScene.New();
+	ctrlList[CtrlNames.MainCityUIManager] = MainCityUIManager.New();
 	return this;
 end
 
