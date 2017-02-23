@@ -1664,59 +1664,59 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100048, guid: 1d6425232f4be8f42a075e0b9e8dfd38, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 4294967287
       objectReference: {fileID: 0}
     - target: {fileID: 100046, guid: 1d6425232f4be8f42a075e0b9e8dfd38, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 4294967287
       objectReference: {fileID: 0}
     - target: {fileID: 100058, guid: 1d6425232f4be8f42a075e0b9e8dfd38, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 4294967287
       objectReference: {fileID: 0}
     - target: {fileID: 100042, guid: 1d6425232f4be8f42a075e0b9e8dfd38, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 4294967287
       objectReference: {fileID: 0}
     - target: {fileID: 100054, guid: 1d6425232f4be8f42a075e0b9e8dfd38, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 4294967287
       objectReference: {fileID: 0}
     - target: {fileID: 100052, guid: 1d6425232f4be8f42a075e0b9e8dfd38, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 4294967287
       objectReference: {fileID: 0}
     - target: {fileID: 100036, guid: 1d6425232f4be8f42a075e0b9e8dfd38, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 4294967287
       objectReference: {fileID: 0}
     - target: {fileID: 100050, guid: 1d6425232f4be8f42a075e0b9e8dfd38, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 4294967287
       objectReference: {fileID: 0}
     - target: {fileID: 100044, guid: 1d6425232f4be8f42a075e0b9e8dfd38, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 4294967287
       objectReference: {fileID: 0}
     - target: {fileID: 100040, guid: 1d6425232f4be8f42a075e0b9e8dfd38, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 4294967287
       objectReference: {fileID: 0}
     - target: {fileID: 100056, guid: 1d6425232f4be8f42a075e0b9e8dfd38, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 4294967287
       objectReference: {fileID: 0}
     - target: {fileID: 100030, guid: 1d6425232f4be8f42a075e0b9e8dfd38, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 4294967287
       objectReference: {fileID: 0}
     - target: {fileID: 100038, guid: 1d6425232f4be8f42a075e0b9e8dfd38, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 4294967287
       objectReference: {fileID: 0}
     - target: {fileID: 100032, guid: 1d6425232f4be8f42a075e0b9e8dfd38, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 4294967287
       objectReference: {fileID: 0}
     - target: {fileID: 100052, guid: 1d6425232f4be8f42a075e0b9e8dfd38, type: 2}
       propertyPath: m_IsActive
@@ -1854,8 +1854,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_StartPoint: {fileID: 0}
-  m_EndPonit: {fileID: 0}
-  m_RoleObject: {fileID: 0}
+  m_ActorObject: {fileID: 0}
   m_Actor: {fileID: 0}
   m_monsterList: []
   BasicOutLine: {fileID: 2100000, guid: 011781635a5fed3409154d299f531be3, type: 2}
@@ -1990,6 +1989,18 @@ Prefab:
     - target: {fileID: 100018, guid: 8eb63d31060a91d4fb1b227658843dac, type: 2}
       propertyPath: m_Name
       value: Monster3
+      objectReference: {fileID: 0}
+    - target: {fileID: 400018, guid: 8eb63d31060a91d4fb1b227658843dac, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 400018, guid: 8eb63d31060a91d4fb1b227658843dac, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 400018, guid: 8eb63d31060a91d4fb1b227658843dac, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8eb63d31060a91d4fb1b227658843dac, type: 2}
