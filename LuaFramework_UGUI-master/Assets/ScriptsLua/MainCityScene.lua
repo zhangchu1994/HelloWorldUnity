@@ -26,6 +26,7 @@ end
 
 function MainCityScene.Show()
     -- panelMgr:CreatePanel('login', this.OnCreate,'Login');
+    panelMgr:CreatePanel('loginperfab', 'MainCityPanel','MainCityUIManager', this.OnCreate);
 end
 
 function MainCityScene.Awake()

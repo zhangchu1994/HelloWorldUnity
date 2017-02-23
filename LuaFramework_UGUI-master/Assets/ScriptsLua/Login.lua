@@ -14,6 +14,7 @@ local panel;
 local prompt;
 local transform;
 local gameObject;
+local m_firstCreate = false;
 
 function Login.New()
     return this;
@@ -32,21 +33,30 @@ function Login.Show()
 end
 
 function Login.Update()
-
+    if m_firstCreate == false then
+        m_firstCreate = true;
+        this.InitView();
+    end
+    -- log("Login.Update______________________________");
 end
 
 function Login.OnCreate(obj)
     -- log('Login.OnCreate____________');
-    gameObject = obj;
-    transform = obj.transform;
+    -- resMgr:LoadPrefab('prompt', { 'PromptItem' }, this.InitPanel);
+
+end
+
+function Login.InitView()
+    log('Login.InitView____________');
+    gameObject = GameObject.Find("LoginCanvas");
+    transform =  GameObject.Find("LoginCanvas").transform;
 
     panel = transform:GetComponent('loginPanel');
     prompt = transform:GetComponent('LuaBehaviour');
 
-    local loginButton = transform:FindChild("Login").gameObject;
+    local loginButton = transform:FindChild("Image/Login").gameObject;
 
     prompt:AddClick(loginButton, this.OnClick);
-    -- resMgr:LoadPrefab('prompt', { 'PromptItem' }, this.InitPanel);
 end
 
 -- --初始化面板--
@@ -73,8 +83,8 @@ end
 
 --单击事件--
 function Login.OnClick(go)
-    -- sceneMgr:GoToScene('maincityscene',"MainCity","MainCityScene",this.SceneDone); 
-    sceneMgr:GoToScene('firstbattlescene',"FirstBattle","FirstBattleScene",this.SceneDone); 
+    sceneMgr:GoToScene('maincityscene',"MainCity","MainCityScene",this.SceneDone); 
+    -- sceneMgr:GoToScene('firstbattlescene',"FirstBattle","FirstBattleScene",this.SceneDone); 
 
 
 end

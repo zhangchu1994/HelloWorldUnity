@@ -45,5 +45,5 @@ TextureFormat = UnityEngine.TextureFormat;
 Mesh = UnityEngine.Mesh;
 
 
-Actor1 = GlobalGame.Actor1;
+-- Actor1 = GlobalGame.Actor1;
 

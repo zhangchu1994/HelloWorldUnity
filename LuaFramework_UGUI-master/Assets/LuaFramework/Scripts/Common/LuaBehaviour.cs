@@ -17,9 +17,18 @@ namespace LuaFramework {
 			Util.CallMethod(luaName, "Awake", gameObject);
         }
 
-        protected void Start() {
+        protected void Start() 
+		{
+//			Debug.Log ("LuaBehaviour_Start");
 			Util.CallMethod(luaName, "Start");
+//			StartCoroutine(AllLoadDone());
         }
+
+//		private IEnumerator AllLoadDone() 
+//		{
+//			yield return new WaitForEndOfFrame();
+//		}
+
 
         protected void OnClick() {
 			Util.CallMethod(luaName, "OnClick");
