@@ -67,8 +67,8 @@ namespace LuaFramework {
 				LuaBehaviour luaBehaviour = go.AddComponent<LuaBehaviour>();
 				luaBehaviour.abName = abName;
 				luaBehaviour.luaName = luaName;
+               if (func != null) func.Call(go);
 
-                if (func != null) func.Call(go);
                 Debug.LogWarning("CreatePanel::>> " + name + " " + prefab);
 
             });

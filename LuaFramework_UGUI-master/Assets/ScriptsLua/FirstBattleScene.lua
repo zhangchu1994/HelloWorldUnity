@@ -52,9 +52,9 @@ function FirstBattleScene.Start()
     --    ctrl:Show();
     -- end
 
-    local go = GameObject.New();
-    go.name = "Actor";
-    go:AddComponent(typeof(Actor1));
+    -- local go = GameObject.New();
+    -- go.name = "Actor";
+    -- go:AddComponent(typeof(Actor1));
 end
 
 function FirstBattleScene.ActorDone()

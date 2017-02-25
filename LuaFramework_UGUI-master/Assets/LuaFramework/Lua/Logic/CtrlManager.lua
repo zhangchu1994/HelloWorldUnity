@@ -6,13 +6,17 @@ require "MainCityScene"
 require "Actor"
 require "FirstBattleScene"
 require "MainCityUIManager"
+require "BattleSceneUIManager"
+require "BossPanel"
+require "ShopPanel"
 
 
 CtrlManager = {};
 local this = CtrlManager;
 local ctrlList = {};	--控制器列表--
 
-CtrlNames = {
+CtrlNames = 
+{
 	Prompt = "PromptCtrl",
 	Message = "MessageCtrl",
 	Login = "Login",
@@ -20,6 +24,9 @@ CtrlNames = {
 	Actor = "Actor",
 	FirstBattleScene = "FirstBattleScene",
 	MainCityUIManager = "MainCityUIManager",
+	BattleSceneUIManager = "BattleSceneUIManager",
+	BossPanel = "BossPanel",
+	ShopPanel = "ShopPanel",
 }
 
 function CtrlManager.Init()
@@ -30,6 +37,8 @@ function CtrlManager.Init()
 	ctrlList[CtrlNames.MainCityScene] = MainCityScene.New();
 	ctrlList[CtrlNames.FirstBattleScene] = FirstBattleScene.New();
 	ctrlList[CtrlNames.MainCityUIManager] = MainCityUIManager.New();
+	ctrlList[CtrlNames.BossPanel] = BossPanel.New();
+	ctrlList[CtrlNames.ShopPanel] = ShopPanel.New();
 	return this;
 end
 

@@ -9,8 +9,9 @@ namespace LuaFramework {
     public class LuaBehaviour : View {
 //        private string data = null;
         private Dictionary<string, LuaFunction> buttons = new Dictionary<string, LuaFunction>();
-		public string abName;
+		public string abName = null;
 		public string luaName;
+		private string m_iTweenCallBackName;
 
 
         protected void Awake() {
@@ -41,6 +42,25 @@ namespace LuaFramework {
 		protected void Update()
 		{
 			Util.CallMethod(luaName, "Update");
+		}
+
+
+		public void AddiTween(GameObject obj,string callBackName)
+		{
+			m_iTweenCallBackName = callBackName;
+			Hashtable args = new Hashtable();
+			args["amount"] =  new Vector3(0,400,0);
+			args["time"] =  0.5f;
+			args["easetype"] = iTween.EaseType.linear;
+			args["oncomplete"] = "iTweenDone";
+			args["oncompletetarget"] = gameObject;
+			args["oncompleteparams"] = obj;
+			iTween.MoveBy (obj, args);
+		}
+
+		void iTweenDone(GameObject obj)
+		{
+			Util.CallMethod(luaName, m_iTweenCallBackName,obj);
 		}
 
         /// <summary>
@@ -89,7 +109,8 @@ namespace LuaFramework {
 #if ASYNC_MODE
 //            string abName = name.ToLower().Replace("panel", "");
 //            ResManager.UnloadAssetBundle(abName + AppConst.ExtName);
-			ResManager.UnloadAssetBundle(abName + AppConst.ExtName);
+			if(abName != null && abName != "")
+				ResManager.UnloadAssetBundle(abName + AppConst.ExtName);
 #endif
             Util.ClearMemory();
             Debug.Log("~" + name + " was destroy!");

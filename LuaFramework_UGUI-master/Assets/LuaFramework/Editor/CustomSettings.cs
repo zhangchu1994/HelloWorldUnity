@@ -143,7 +143,7 @@ public static class CustomSettings
 		_GT(typeof(CombineInstance)),
         _GT(typeof(TextureFormat)),
 
-
+		_GT(typeof(iTween)),
 		//for self code
 //		_GT(typeof(Actor)),
 
