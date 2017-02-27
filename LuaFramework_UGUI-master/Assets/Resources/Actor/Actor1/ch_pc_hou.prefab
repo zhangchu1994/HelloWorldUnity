@@ -1264,15 +1264,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 115852}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d011d532a1f84cf4a8976e5f49b128a1, type: 3}
+  m_Script: {fileID: 11500000, guid: 34bcd459820d8b14ebda171e7277358b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_ActorObject: {fileID: 0}
-  animationController: {fileID: 0}
   m_ActorAgentManager: {fileID: 0}
   m_ActorBodyManager: {fileID: 0}
   m_ActorUIManager: {fileID: 0}
   m_ActorMeshManager: {fileID: 0}
+  m_ActorAnimationManager: {fileID: 0}
+  m_ActorAIManager: {fileID: 0}
 --- !u!136 &136569143662065430
 CapsuleCollider:
   m_ObjectHideFlags: 1
