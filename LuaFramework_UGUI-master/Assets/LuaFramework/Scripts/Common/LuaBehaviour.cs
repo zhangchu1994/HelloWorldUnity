@@ -49,8 +49,8 @@ namespace LuaFramework {
 		{
 			m_iTweenCallBackName = callBackName;
 			Hashtable args = new Hashtable();
-			args["amount"] =  new Vector3(0,400,0);
-			args["time"] =  0.5f;
+			args["amount"] =  new Vector3(0,100,0);
+			args["time"] =  2f;
 			args["easetype"] = iTween.EaseType.linear;
 			args["oncomplete"] = "iTweenDone";
 			args["oncompletetarget"] = gameObject;
