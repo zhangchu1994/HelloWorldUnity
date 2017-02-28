@@ -157,7 +157,7 @@ namespace LuaInterface
 
             for (int i = 0; i < searchPaths.Count; i++)
             {
-				if (fileName == "Logic/Game" || fileName == "Login")
+				if (fileName == "Login")//fileName == "Logic/Game" || 
 					Debug.Log ("FindFile__________________________________file = " + fileName + " num = " + i.ToString() + " Path = " +searchPaths [i]);		
                     			
                 fullPath = searchPaths[i].Replace("?", fileName);

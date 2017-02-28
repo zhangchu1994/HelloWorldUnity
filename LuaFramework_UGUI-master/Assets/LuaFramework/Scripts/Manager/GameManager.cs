@@ -7,23 +7,24 @@ using System.Reflection;
 using System.IO;
 using UnityEngine.SceneManagement;
 
-
-namespace LuaFramework {
-    public class GameManager : Manager {
+namespace LuaFramework 
+{
+    public class GameManager : Manager 
+	{
         protected static bool initialize = false;
         private List<string> downloadFiles = new List<string>();
 
         /// <summary>
         /// 初始化游戏管理器
         /// </summary>
-        void Awake() {
+        void Awake() 
+		{
             Init();
         }
 
-        /// <summary>
         /// 初始化
-        /// </summary>
-        void Init() {
+        void Init() 
+		{
 			
             DontDestroyOnLoad(gameObject);  //防止销毁自己
 
@@ -32,20 +33,21 @@ namespace LuaFramework {
             Application.targetFrameRate = AppConst.GameFrameRate;
         }
 
-        /// <summary>
-        /// 释放资源
-        /// </summary>
-        public void CheckExtractResource() {
-            bool isExists = Directory.Exists(Util.DataPath) &&
-              Directory.Exists(Util.DataPath + "lua/") && File.Exists(Util.DataPath + "files.txt");
-            if (isExists || AppConst.DebugMode) {
+		//检查资源是否需要释放
+        public void CheckExtractResource() 
+		{
+            bool isExists = Directory.Exists(Util.DataPath) && Directory.Exists(Util.DataPath + "lua/") && File.Exists(Util.DataPath + "files.txt");
+			if (isExists || AppConst.DebugMode) //文件已经解压过了，自己可添加检查文件列表逻辑
+			{
                 StartCoroutine(OnUpdateResource());
-                return;   //文件已经解压过了，自己可添加检查文件列表逻辑
+                return;   
             }
-            StartCoroutine(OnExtractResource());    //启动释放协成 
+            StartCoroutine(OnExtractResource());//启动释放协成 
         }
 
-        IEnumerator OnExtractResource() {
+		/// 释放资源
+		IEnumerator OnExtractResource() 
+		{
             string dataPath = Util.DataPath;  //数据目录
             string resPath = Util.AppContentPath(); //游戏包资源目录
 
@@ -109,11 +111,11 @@ namespace LuaFramework {
             StartCoroutine(OnUpdateResource());
         }
 
-        /// <summary>
         /// 启动更新下载，这里只是个思路演示，此处可启动线程下载更新
-        /// </summary>
-        IEnumerator OnUpdateResource() {
-            if (!AppConst.UpdateMode) {
+        IEnumerator OnUpdateResource() 
+		{
+            if (!AppConst.UpdateMode) 
+			{
                 OnResourceInited();
                 yield break;
             }
@@ -136,27 +138,41 @@ namespace LuaFramework {
             string filesText = www.text;
             string[] files = filesText.Split('\n');
 
-            for (int i = 0; i < files.Length; i++) {
-                if (string.IsNullOrEmpty(files[i])) continue;
+            for (int i = 0; i < files.Length; i++) 
+			{
+                if (string.IsNullOrEmpty(files[i])) 
+					continue;
                 string[] keyValue = files[i].Split('|');
                 string f = keyValue[0];
                 string localfile = (dataPath + f).Trim();
                 string path = Path.GetDirectoryName(localfile);
-                if (!Directory.Exists(path)) {
+                if (Directory.Exists(path) == false) 
+				{
                     Directory.CreateDirectory(path);
                 }
 				string fileUrl = url + f;// + "?v=" + random;
-                bool canUpdate = !File.Exists(localfile);
-				Debug.Log ("OnUpdateResource fileUrl___________________"+fileUrl + " localfile = "+localfile+" canUpdate = "+canUpdate);
-                if (!canUpdate) {
+				bool isExists = File.Exists(localfile);
+
+//				Debug.Log ("OnUpdateResource isExists = "+isExists+" fileUrl = "+fileUrl + " localfile = "+localfile);
+				if (isExists == true) 
+				{
                     string remoteMd5 = keyValue[1].Trim();
                     string localMd5 = Util.md5file(localfile);
-                    canUpdate = !remoteMd5.Equals(localMd5);
-                    if (canUpdate) File.Delete(localfile);
+					if (remoteMd5.Equals (localMd5) == false) 
+					{
+						File.Delete(localfile);
+						isExists = false;
+					}
                 }
-                if (canUpdate) {   //本地缺少文件
-                    Debug.Log(fileUrl);
-                    message = "downloading>>" + fileUrl;
+
+//				//这两句为测试代码 用于测试资源更新
+//				isExists = false;
+//				File.Delete(localfile);
+
+				if (isExists == false) //本地缺少文件
+				{
+//                    Debug.Log(fileUrl);
+//                    message = "downloading>>" + fileUrl;
                     facade.SendMessageCommand(NotiConst.UPDATE_MESSAGE, message);
                     /*
                     www = new WWW(fileUrl); yield return www;
@@ -168,7 +184,10 @@ namespace LuaFramework {
                      */
                     //这里都是资源文件，用线程下载
                     BeginDownload(fileUrl, localfile);
-                    while (!(IsDownOK(localfile))) { yield return new WaitForEndOfFrame(); }
+                    while (!(IsDownOK(localfile))) 
+					{ 
+						yield return new WaitForEndOfFrame(); 
+					}
                 }
             }
             yield return new WaitForEndOfFrame();
@@ -179,7 +198,8 @@ namespace LuaFramework {
             OnResourceInited();
         }
 
-        void OnUpdateFailed(string file) {
+        void OnUpdateFailed(string file) 
+		{
             string message = "更新失败!>" + file;
             facade.SendMessageCommand(NotiConst.UPDATE_MESSAGE, message);
         }
@@ -187,14 +207,16 @@ namespace LuaFramework {
         /// <summary>
         /// 是否下载完成
         /// </summary>
-        bool IsDownOK(string file) {
+        bool IsDownOK(string file) 
+		{
             return downloadFiles.Contains(file);
         }
 
         /// <summary>
         /// 线程下载
         /// </summary>
-        void BeginDownload(string url, string file) {     //线程下载
+		void BeginDownload(string url, string file) //线程下载
+		{     
             object[] param = new object[2] { url, file };
 
             ThreadEvent ev = new ThreadEvent();
@@ -207,13 +229,16 @@ namespace LuaFramework {
         /// 线程完成
         /// </summary>
         /// <param name="data"></param>
-        void OnThreadCompleted(NotiData data) {
-            switch (data.evName) {
+        void OnThreadCompleted(NotiData data) 
+		{
+            switch (data.evName) 
+			{
                 case NotiConst.UPDATE_EXTRACT:  //解压一个完成
                 //
                 break;
                 case NotiConst.UPDATE_DOWNLOAD: //下载一个完成
-                downloadFiles.Add(data.evParam.ToString());
+					Debug.Log("OnThreadCompleted__"+data.evParam.ToString());
+                	downloadFiles.Add(data.evParam.ToString());
                 break;
             }
         }
@@ -221,9 +246,11 @@ namespace LuaFramework {
         /// <summary>
         /// 资源初始化结束
         /// </summary>
-        public void OnResourceInited() {
+        public void OnResourceInited() 
+		{
 #if ASYNC_MODE
-            ResManager.Initialize(AppConst.AssetDir, delegate() {
+            ResManager.Initialize(AppConst.AssetDir, delegate() 
+				{
                 Debug.Log("Initialize OK!!!");
                 this.OnInitialize();
             });
@@ -233,7 +260,8 @@ namespace LuaFramework {
 #endif
         }
 
-        void OnInitialize() {
+        void OnInitialize() 
+		{
             LuaManager.InitStart();
             LuaManager.DoFile("Logic/Game");         //加载游戏
             LuaManager.DoFile("Logic/Network");      //加载网络

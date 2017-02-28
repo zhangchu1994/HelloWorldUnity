@@ -69,12 +69,18 @@ namespace LuaFramework {
         /// 初始化Lua代码加载路径
         /// </summary>
         void InitLuaPath() {
-            if (AppConst.DebugMode) {
+            if (AppConst.DebugMode) 
+			{
                 string rootPath = AppConst.FrameworkRoot;
                 lua.AddSearchPath(rootPath + "/Lua");
                 lua.AddSearchPath(rootPath + "/ToLua/Lua");
-            } else {
-				lua.AddSearchPath(Application.dataPath + "/ScriptsLua");
+            } 
+			else 
+			{
+				if (Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsEditor) 
+				{
+					lua.AddSearchPath(Application.dataPath + "/ScriptsLua");
+				}
 				lua.AddSearchPath(Util.DataPath + "lua");
             }
         }

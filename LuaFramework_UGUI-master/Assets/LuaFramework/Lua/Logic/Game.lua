@@ -49,14 +49,18 @@ function Game.OnInitOK()
     coroutine.start(this.test_coroutine);
 
     CtrlManager.Init();
-    -- local ctrl = CtrlManager.GetCtrl(CtrlNames.Login);
-    -- if ctrl ~= nil and AppConst.ExampleMode == 1 then
-    --     log("Game.OnInitOK_____________ctrl:Show");
-    --     ctrl:Show();
-    -- end
+    local ctrl = CtrlManager.GetCtrl(CtrlNames.Login);
+    if ctrl ~= nil and AppConst.ExampleMode == 1 then
+        -- log("Game.OnInitOK_____________ctrl:Show");
+        ctrl:InitView();
+    end
        
     logWarn('LuaFramework InitOK--->>>');
 end
+
+-- function Game.InitLogin()
+    
+-- end
 
 --测试协同--
 function Game.test_coroutine()    

@@ -71,6 +71,7 @@ public class Packager {
         Directory.CreateDirectory(streamPath);
         AssetDatabase.Refresh();
 
+
         maps.Clear();
         if (AppConst.LuaBundleMode) {
             HandleLuaBundle();
@@ -83,13 +84,15 @@ public class Packager {
         string resPath = "Assets/" + AppConst.AssetDir;
         BuildAssetBundleOptions options = BuildAssetBundleOptions.DeterministicAssetBundle | 
                                           BuildAssetBundleOptions.UncompressedAssetBundle;
-        BuildPipeline.BuildAssetBundles(resPath, maps.ToArray(), options, target);
+		BuildPipeline.BuildAssetBundles(resPath, maps.ToArray(), options, BuildTarget.Android);
 //		Packager.BuildSceneBundle(target);
         BuildFileIndex();
 
         string streamDir = Application.dataPath + "/" + AppConst.LuaTempDir;
         if (Directory.Exists(streamDir)) Directory.Delete(streamDir, true);
-        AssetDatabase.Refresh();
+		Util.Log("_______________________________Util.DataPath = "+Util.DataPath+" streamPath = "+streamPath+" streamDir = "+streamDir);
+
+		AssetDatabase.Refresh();
     }
 
     static void AddBuildMap(string bundleName, string pattern, string path)//1.ab名字 2.什么类型文件会被打爆 3.要打包文件的文件夹路径
@@ -187,6 +190,7 @@ public class Packager {
     static void HandleExampleBundle() 
 	{
         string resPath = AppDataPath + "/" + AppConst.AssetDir + "/";
+//		Util.Log ("HandleExampleBundle_______________________"+resPath);
         if (!Directory.Exists(resPath)) Directory.CreateDirectory(resPath);
 
 //        AddBuildMap("prompt" + AppConst.ExtName, "*.prefab", "Assets/LuaFramework/Examples/Builds/Prompt");
@@ -201,8 +205,8 @@ public class Packager {
 		AddBuildMap("MainCityScene" + AppConst.ExtName, "*.unity", scene + "MainCity");
 		AddBuildMap("FirstBattleScene" + AppConst.ExtName, "*.unity", scene + "FirstBattle");
 
-		AddBuildMap("prompt_asset" + AppConst.ExtName, "*.png", "Assets/LuaFramework/Examples/Textures/Prompt");
-        AddBuildMap("shared_asset" + AppConst.ExtName, "*.png", "Assets/LuaFramework/Examples/Textures/Shared");
+//		AddBuildMap("prompt_asset" + AppConst.ExtName, "*.png", "Assets/LuaFramework/Examples/Textures/Prompt");
+//        AddBuildMap("shared_asset" + AppConst.ExtName, "*.png", "Assets/LuaFramework/Examples/Textures/Shared");
     }
 
 //	[MenuItem("LuaFramework/Build Scene Resource", false, 101)]

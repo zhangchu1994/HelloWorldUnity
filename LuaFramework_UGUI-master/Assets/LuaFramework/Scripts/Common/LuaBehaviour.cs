@@ -12,6 +12,7 @@ namespace LuaFramework {
 		public string abName = null;
 		public string luaName;
 		private string m_iTweenCallBackName;
+		private int m_TestIndex = 1;
 
 
         protected void Awake() {
@@ -41,7 +42,11 @@ namespace LuaFramework {
 
 		protected void Update()
 		{
-			Util.CallMethod(luaName, "Update");
+			if (m_TestIndex <= 3) 
+			{
+				Util.CallMethod(luaName, "Update");
+				m_TestIndex++;
+			}
 		}
 
 
