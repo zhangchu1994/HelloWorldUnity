@@ -1090,6 +1090,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5da6c98e9311df43aac677c4b0fe0e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Index: 0
   m_ActorObject: {fileID: 0}
   m_ActorAgentManager: {fileID: 0}
   m_ActorBodyManager: {fileID: 0}
@@ -1097,4 +1098,7 @@ MonoBehaviour:
   m_ActorMeshManager: {fileID: 0}
   m_ActorAnimationManager: {fileID: 0}
   m_ActorAIManager: {fileID: 0}
+  m_ActorSkillManager: {fileID: 0}
+  m_ActorStatus: 0
+  m_CurrentTarget: {fileID: 0}
   m_isHightLight: 0

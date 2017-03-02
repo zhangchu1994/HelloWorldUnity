@@ -73,7 +73,7 @@ public class AppView : View
 	{
 //        GUI.Label(new Rect(10, 120, 960, 50), message);
 		m_InfoText.text = message;
-		m_InfoText.fontSize = 20;
+//		m_InfoText.fontSize = 20;
 
 //        GUI.Label(new Rect(10, 0, 500, 50), "(1) 单击 \"Lua/Gen Lua Wrap Files\"。");
 //        GUI.Label(new Rect(10, 20, 500, 50), "(2) 运行Unity游戏");

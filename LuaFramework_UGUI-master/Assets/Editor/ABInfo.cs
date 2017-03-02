@@ -41,4 +41,10 @@ public class ABInfo
 		//		}
 	}
 
+	[MenuItem("AB/Delete AB #%D")]
+	static void DeleteAB()
+	{
+		FileUtil.DeleteFileOrDirectory ( "c:/" + "luaframework" + "/");
+	}
+
 }
