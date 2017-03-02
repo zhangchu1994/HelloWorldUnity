@@ -32,9 +32,9 @@ namespace GlobalGame
 	//			transform.position = new Vector3 (TestClass.m_Role.transform.position.x,TestClass.m_Role.transform.position.y+10,TestClass.m_Role.transform.position.z);
 	//		}
 
-//			if (BattleScene.Active.m_ActorObject != null) 
+			if (BattleScene.Active.GetFllowActor() != null) 
 			{
-				playerBip = BattleScene.Active.m_ActorObject.transform;
+				playerBip = BattleScene.Active.GetFllowActor().transform;
 				Vector3 targetPos = playerBip.position + offset;
 				transform.position = Vector3.Lerp(transform.position, targetPos, smoothing * Time.deltaTime);
 			}

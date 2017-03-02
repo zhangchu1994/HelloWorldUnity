@@ -12,7 +12,7 @@ namespace GlobalGame
 	//	protected Animator animator;
 	//	protected Locomotion locomotion;
 		public Actor m_MainActor;
-		bool m_AttackMove = false;
+//		bool m_AttackMove = false;
 		protected Object particleClone;
 
 		public ActorAgentManager()
@@ -54,19 +54,18 @@ namespace GlobalGame
 //			}
 //		}
 
-		public void SetDestination(Vector3 point,Vector3 normal,bool argAttack)
+		public void SetDestination(Vector3 point,Vector3 normal)
 		{
+//			m_MainActor.SetActorStatus (Actor.ActorStatus.Agent);
 			if (particleClone != null)
 			{
 				GameObject.Destroy(particleClone);
 				particleClone = null;
 			}
 
-			m_AttackMove = argAttack;
-			// Create a particle if hit
 
-			if (argAttack == true)
-				agent.stoppingDistance = 5;
+			if (m_MainActor.IsActorStatus(Actor.ActorStatus.AgentToAttack) == true)
+				agent.stoppingDistance = 2;
 			else
 				agent.stoppingDistance = 0;
 			Quaternion q = new Quaternion();
@@ -80,42 +79,34 @@ namespace GlobalGame
 			agent.updateRotation = true;
 		}
 
-		protected void SetupAgentLocomotion()
+		protected void UpdateAgent()
 		{
-			if (AgentDone())
+			if (IsAgentDone())
 			{
-	//			locomotion.Do(0, 0);
 				if (particleClone != null)
 				{
 					GameObject.Destroy(particleClone);
 					particleClone = null;
 				}
-				if (m_AttackMove == true) 
+				if (m_MainActor.IsActorStatus(Actor.ActorStatus.AgentToAttack) == true) 
 				{
-					m_MainActor.m_ActorAnimationManager.PlayAnimation (Global.BattleAnimationType.Attack, WrapMode.Loop);
-					BattleScene.Active.MonsterLoseBlood ();
+					m_MainActor.StartAttack ();
+					m_MainActor.SetActorStatus(Actor.ActorStatus.Attack);
 				} 
-				else 
+				else if (m_MainActor.IsActorStatus(Actor.ActorStatus.Agent) == true) 
 				{
 					m_MainActor.m_ActorAnimationManager.PlayAnimation (Global.BattleAnimationType.Stand, WrapMode.Loop);
+					m_MainActor.SetActorStatus(Actor.ActorStatus.Stand);
 				}
 			}
 			else
 			{
-	//			float speed = agent.desiredVelocity.magnitude;
-	//			Vector3 velocity = Quaternion.Inverse(transform.rotation) * agent.desiredVelocity;
-	//			float angle = Mathf.Atan2(velocity.x, velocity.z) * 180.0f / 3.14159f;
-	//			locomotion.Do(speed, angle);
+				
 			}
 		}
 
-	//    void OnAnimatorMove()
-	//    {
-	//        agent.velocity = animator.deltaPosition / Time.deltaTime;
-	//		transform.rotation = animator.rootRotation;
-	//    }
 
-		protected bool AgentDone()
+		protected bool IsAgentDone()
 		{
 			return !agent.pathPending && AgentStopping();
 		}
@@ -125,13 +116,10 @@ namespace GlobalGame
 			return agent.remainingDistance <= agent.stoppingDistance;
 		}
 
-		// Update is called once per frame
 		void Update () 
 		{
-//			if (Input.GetButtonDown ("Fire1")) 
-//				SetDestinationWithClick();
-			
-			SetupAgentLocomotion();
+			if (m_MainActor.m_ActorStatus == Actor.ActorStatus.Agent || m_MainActor.m_ActorStatus == Actor.ActorStatus.AgentToAttack)
+				UpdateAgent();
 		}
 	}
 }

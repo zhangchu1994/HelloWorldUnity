@@ -18,6 +18,7 @@ namespace GlobalGame
 		public void InitActor (GameObject obj) 
 		{
 			m_ActorObject = obj;
+			m_ActorData = new ActorData ();
 
 //			m_ActorAgentManager = m_ActorObject.AddComponent<ActorAgentManager> ();
 

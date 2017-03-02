@@ -32,11 +32,28 @@ namespace GlobalGame
 		{
 			if (animationController.IsPlaying (Global.GetAnimation (argType)) == true)
 				return;
+//			if (m_MainActor.name == "Actor2")
+//				Debug.Log ("Name = "+m_MainActor.name+" Type = "+argType);
 			animationController.Stop ();
 			animationController.wrapMode = mode;
 			animationController.Play(Global.GetAnimation(argType));
 		}
 
+		public void PlayAnimations(List<Global.BattleAnimationType> argTypes,WrapMode mode,bool isStop=false)
+		{
+//			if (animationController.IsPlaying (Global.GetAnimation (argType)) == true)
+//				return;
+			//			if (m_MainActor.name == "Actor2")
+			//				Debug.Log ("Name = "+m_MainActor.name+" Type = "+argType);
+			animationController.Stop ();
+			animationController.wrapMode = mode;
+
+			for (int i = 0; i < argTypes.Count; i++) 
+			{
+				Global.BattleAnimationType type = argTypes [i];
+				animationController.PlayQueued(Global.GetAnimation(type));
+			}
+		}
 		//		public void PlayStand () {
 		//			animationController.wrapMode = WrapMode.Loop;
 		//			animationController.Play((Global.GetAnimation(Global.BattleAnimationType.Stand)));

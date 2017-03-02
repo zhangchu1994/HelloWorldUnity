@@ -9,7 +9,9 @@ namespace GlobalGame
 	{
 		public static string TagName_Enemy = "Enemy";
 		public static string TagName_Ground = "Ground";
-		public static string ActorName = "Ian1970";
+		public static string TagName_Actor = "Actor";
+
+//		public static string ActorName = "Ian1970";
 
 		public enum BattleAnimationType
 		{
@@ -19,7 +21,28 @@ namespace GlobalGame
 			Attack = 3,
 		}
 
+		public static ArrayList m_ActorNameList = new ArrayList(){"Actor1","Actor2","Actor3","Actor4","Actor5"};
+		public static ArrayList m_MonsterNameList = new ArrayList(){"Monster1","Monster2","Monster3","Monster4","Monster5"};
 		public static ArrayList m_AnimationNameList = new ArrayList(){"stand","run","","attack1"};
+
+		public static List<BattleAnimationType> GetAttackList(BattleAnimationType argType)
+		{
+			List<BattleAnimationType> animationList = new List<BattleAnimationType> ();
+			animationList.Add(argType);
+			animationList.Add(BattleAnimationType.Stand);
+
+			return animationList;
+		}
+
+		public static string GetActorNmae(int index)
+		{
+			return (string)m_ActorNameList[index];
+		}
+
+		public static string GetMonsterNmae(int index)
+		{
+			return (string)m_MonsterNameList[index];
+		}
 
 		public static string GetAnimation(BattleAnimationType argType)
 		{
@@ -41,6 +64,12 @@ namespace GlobalGame
 
 				Obj.transform.localScale *= SetScale;
 			}
+		}
+
+		public static void BattleLog(Actor actor,string argString)
+		{
+			if (actor != null && actor.name == "Actor1")
+				Debug.Log ("Nmae = "+actor.name+" Info = "+argString);
 		}
 
 	}

@@ -28,12 +28,15 @@ namespace GlobalGame
 		private const bool DEFAULT_COMBINEMATERIAL = true;
 		public Actor m_MainActor;
 
-
+		void Awake()
+		{
+			m_MainActor = this.transform.GetComponent<Actor> ();
+		}
 
 		// Use this for initialization
 		void Start () 
 		{
-			m_MainActor = GetComponent<Actor> ();
+			
 		}
 		
 		// Update is called once per frame
@@ -44,21 +47,21 @@ namespace GlobalGame
 
 		public void InitBoby()
 		{
-			int index = 1;
+			int index = m_MainActor.m_Index;
+			this.index = index;
+			this.skeleton = skeleton;
+			bool combine = true;
+
 			string weapon = "ch_we_one_hou_" + m_Index [DEFAULT_WEAPON];
 			string head = "ch_pc_hou_" + m_Index [DEFAULT_HEAD] + "_tou"; 
 			string chest = "ch_pc_hou_" + m_Index [DEFAULT_CHEST] + "_shen"; 
 			string hand = "ch_pc_hou_" + m_Index [DEFAULT_HAND] + "_shou";
 			string feet = "ch_pc_hou_" + m_Index [DEFAULT_FEET] + "_jiao";
-			bool combine = true;
 
-			this.index = index;
-			this.skeleton = skeleton;
 			this.equipment_head = head;
 			this.equipment_chest = chest;
 			this.equipment_hand = hand;
 			this.equipment_feet = feet;
-
 
 			string[] equipments = new string[4];
 			equipments [0] = head;
@@ -66,7 +69,6 @@ namespace GlobalGame
 			equipments [2] = hand;
 			equipments [3] = feet;
 
-			// Create and collect other parts SkinnedMeshRednerer
 			SkinnedMeshRenderer[] meshes = new SkinnedMeshRenderer[4];
 			GameObject[] objects = new GameObject[4];
 			for (int i = 0; i < equipments.Length; i++) {
@@ -76,16 +78,13 @@ namespace GlobalGame
 				meshes[i] = objects[i].GetComponentInChildren<SkinnedMeshRenderer> ();
 			}
 
-			// Combine meshes
 			CombineSkinnedMgr.Instance.CombineObject (this.transform.gameObject, meshes, combine);
 
-			// Delete temporal resources
 			for (int i = 0; i < objects.Length; i++) {
 
 				GameObject.DestroyImmediate (objects [i].gameObject);
 			}
 
-			// Create weapon
 			Object res1 = Resources.Load ("Actor/Actor1/" + weapon);
 			WeaponInstance = GameObject.Instantiate (res1) as GameObject;
 
@@ -97,11 +96,9 @@ namespace GlobalGame
 				}	
 			}
 
-			// Init weapon relative informations
 			WeaponInstance.transform.localScale = Vector3.one;
 			WeaponInstance.transform.localPosition = Vector3.zero;
 			WeaponInstance.transform.localRotation = Quaternion.identity;
-
 		}
 
 		public void ChangeHeadEquipment (string equipment,bool combine = false)

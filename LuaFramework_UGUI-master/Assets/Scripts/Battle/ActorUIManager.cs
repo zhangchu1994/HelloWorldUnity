@@ -10,6 +10,13 @@ namespace GlobalGame
 		public GameObject m_CanvasParent;
 //		public Object m_TextPrefab;
 		private bool m_testBlood;
+		GameObject m_Blood;
+		Slider m_Slider;
+		GameObject m_BloodText;
+
+		void Awake()
+		{
+		}
 
 		// Use this for initialization
 		void Start () 
@@ -25,8 +32,9 @@ namespace GlobalGame
 		}
 
 
-		public void InitLoseBlood()
+		public void InitLoseBlood(float blood)
 		{
+//			Debug.Log ("LoseBlood name = "+attacker.gameObject.name+" damage = "+damage);
 			if (m_testBlood == false) 
 			{
 				Object m_TextPrefab = Resources.Load ("BloodText");
@@ -35,7 +43,7 @@ namespace GlobalGame
 				t.name = "BloodText" + this.name;
 				m_testBlood = true;
 				Text text = t.GetComponent<Text> ();
-				text.text = "-20";
+				text.text = blood.ToString();
 
 
 				Hashtable args = new Hashtable();
@@ -49,7 +57,7 @@ namespace GlobalGame
 
 
 //				iTween.MoveBy(t,new Vector3(0,10,0),0.3f);
-				iTween.ScaleBy(t,new Vector3(2,2,2),0.5f);
+				iTween.ScaleBy(t,new Vector3(2.5f,2.5f,2.5f),0.5f);
 			}
 		}
 
@@ -66,6 +74,15 @@ namespace GlobalGame
 			GameObject t = Instantiate(m_TextPrefab) as GameObject;
 			t.transform.SetParent(m_CanvasParent.transform, false);
 			t.name = "Blood" + this.name;
+
+			m_Blood = GameObject.Find ("Canvas/Blood" + this.name);
+			m_Slider = m_Blood.GetComponent<Slider>();
+			m_BloodText = GameObject.Find ("Canvas/BloodText" + this.name);
+		}
+
+		public void UpdateBloodRatio(float ratio)
+		{
+			m_Slider.value = ratio;
 		}
 
 		void UpdatePosition(string argName)
