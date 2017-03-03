@@ -56,7 +56,7 @@ namespace GlobalGame
 			if (m_MainActor.m_Index == 0) 
 			{
 				m_SkillData.m_SkillId = 1;
-				m_SkillData.m_Radius = 2;
+				m_SkillData.m_Radius = 3;
 				m_SkillData.m_SkillType = SkillType.CutDown;
 
 			} 
@@ -70,7 +70,7 @@ namespace GlobalGame
 
 		public void StartSkill()
 		{
-			m_MainActor.m_ActorAnimationManager.PlayAnimations (Global.GetAttackList(Global.BattleAnimationType.Attack), WrapMode.Once);
+			m_MainActor.m_ActorAnimationManager.PlayAnimations (Global.GetAnimRestoreList(Global.BattleAnimationType.Attack), WrapMode.Once);
 			GetSkillTarget();
 			SkillTakeEffect();
 		}

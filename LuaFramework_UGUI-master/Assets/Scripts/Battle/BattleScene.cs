@@ -29,6 +29,14 @@ namespace GlobalGame
 
 		public int m_FightIndex = 0;
 
+		public enum BattleSequence
+		{
+			ClockWise,
+			AntiClockWise
+		}
+
+		public BattleSequence m_Sequence;
+
 		void Awake()
 		{
 			if (Active == null)
@@ -37,7 +45,7 @@ namespace GlobalGame
 
 		void Start () 
 		{
-
+			m_Sequence = BattleSequence.ClockWise;
 			InitBattleRole ();
 
 			StartCoroutine(StartBattle());  
@@ -175,9 +183,34 @@ namespace GlobalGame
 
 		public void CurrentMonsterDie()
 		{
-			m_FightIndex++;
-			if (m_FightIndex >= 4)
-				m_FightIndex = 0;
+//			Debug.Log ("CurrentMonsterDie index = "+m_FightIndex);
+			for (int i = 0; i < m_monsterList.Count; i++) 
+			{
+				if (i == m_FightIndex)
+					continue;
+				Monster lastDie = m_monsterList [i];
+				lastDie.GetAlive ();
+			}
+
+			if (m_FightIndex == 3) 
+			{
+				m_Sequence = BattleSequence.AntiClockWise;
+			}
+			else if (m_FightIndex == 0)
+			{
+				m_Sequence = BattleSequence.ClockWise;
+			}
+
+			if (m_Sequence == BattleSequence.ClockWise)
+				m_FightIndex++;
+			else if (m_Sequence == BattleSequence.AntiClockWise)
+				m_FightIndex--;
+
+//			int lastIndex = m_FightIndex-1;
+//			if (lastIndex == -1)
+//				lastIndex = 3;
+//			Monster lastDie = m_monsterList [lastIndex];
+//			lastDie.GetAlive ();
 		}
 
 		void ChangeHeightLightMonster(GameObject obj)//怪物的选中状态

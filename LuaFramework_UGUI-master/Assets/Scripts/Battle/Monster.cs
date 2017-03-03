@@ -19,6 +19,7 @@ namespace GlobalGame
 		{
 			m_ActorObject = obj;
 			m_ActorData = new ActorData ();
+			m_ActorType = ActorType.Monster;
 
 //			m_ActorAgentManager = m_ActorObject.AddComponent<ActorAgentManager> ();
 
@@ -30,10 +31,10 @@ namespace GlobalGame
 
 //			m_ActorMeshManager = m_ActorObject.AddComponent<ActorMeshManager> ();
 //
-//			m_ActorAnimationManager = m_ActorObject.AddComponent<ActorAnimationManager> ();
-//			m_ActorAnimationManager.InitAnimation ();
+			m_ActorAnimationManager = m_ActorObject.AddComponent<ActorAnimationManager> ();
+			m_ActorAnimationManager.InitAnimation ();
 //
-//			m_ActorAIManager = m_ActorObject.AddComponent<ActorAIManager> ();
+			m_MonsterAIManager = m_ActorObject.AddComponent<MonsterAIManager> ();
 
 			//			Util.CallMethod("FirstBattleScene", "ActorDone");
 		}

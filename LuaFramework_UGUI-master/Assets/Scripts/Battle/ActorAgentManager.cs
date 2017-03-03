@@ -65,7 +65,7 @@ namespace GlobalGame
 
 
 			if (m_MainActor.IsActorStatus(Actor.ActorStatus.AgentToAttack) == true)
-				agent.stoppingDistance = 2;
+				agent.stoppingDistance = 3.5f;
 			else
 				agent.stoppingDistance = 0;
 			Quaternion q = new Quaternion();

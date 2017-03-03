@@ -8,76 +8,67 @@ namespace GlobalGame
 	public class ActorUIManager : MonoBehaviour 
 	{
 		public GameObject m_CanvasParent;
-//		public Object m_TextPrefab;
-		private bool m_testBlood;
-		GameObject m_Blood;
-		Slider m_Slider;
-		GameObject m_BloodText;
+		GameObject m_Blood;//血条GameObject
+		Slider m_Slider;//血条Slider
+		List<GameObject> m_DamageText = new List<GameObject>();//掉的血
 
 		void Awake()
 		{
+			m_CanvasParent = GameObject.Find ("Canvas");
 		}
 
-		// Use this for initialization
 		void Start () 
 		{
-			m_testBlood = false;
+			
 		}
 		
-		// Update is called once per frame
 		void Update () 
 		{
-			UpdatePosition ("Canvas/Blood" + this.name);
-			UpdatePosition ("Canvas/BloodText" + this.name);
+			UpdatePosition (m_Blood);
+			for (int i = 0; i < m_DamageText.Count; i++) 
+			{
+				GameObject text = m_DamageText [i];
+				UpdatePosition (text);
+			}
 		}
 
 
 		public void InitLoseBlood(float blood)
 		{
-//			Debug.Log ("LoseBlood name = "+attacker.gameObject.name+" damage = "+damage);
-			if (m_testBlood == false) 
-			{
-				Object m_TextPrefab = Resources.Load ("BloodText");
-				GameObject t = Instantiate(m_TextPrefab) as GameObject;
-				t.transform.SetParent(m_CanvasParent.transform, false);
-				t.name = "BloodText" + this.name;
-				m_testBlood = true;
-				Text text = t.GetComponent<Text> ();
-				text.text = blood.ToString();
+			Object m_TextPrefab = Resources.Load ("BloodText");
+			GameObject t = Instantiate(m_TextPrefab) as GameObject;
+			t.transform.SetParent(m_CanvasParent.transform, false);
+			t.name = "BloodText" + this.name+m_DamageText.Count.ToString();
+			Text text = t.GetComponent<Text> ();
+			text.text = blood.ToString();
+			m_DamageText.Add (t);
 
+			Hashtable args = new Hashtable();
+			args["amount"] =  new Vector3(0,10,0);
+			args["time"] =  0.5f;
+			args["easetype"] = iTween.EaseType.linear;
+			args["oncomplete"] = "DamageLabelMove";
+			args["oncompletetarget"] = gameObject;
+			args["oncompleteparams"] = t;
+			iTween.MoveBy (t, args);
 
-				Hashtable args = new Hashtable();
-				args["amount"] =  new Vector3(0,10,0);
-				args["time"] =  0.5f;
-				args["easetype"] = iTween.EaseType.linear;
-				args["oncomplete"] = "DamageLabelMove";
-				args["oncompletetarget"] = gameObject;
-				args["oncompleteparams"] = t;
-				iTween.MoveBy (t, args);
-
-
-//				iTween.MoveBy(t,new Vector3(0,10,0),0.3f);
-				iTween.ScaleBy(t,new Vector3(2.5f,2.5f,2.5f),0.5f);
-			}
+			iTween.ScaleBy(t,new Vector3(2.5f,2.5f,2.5f),0.5f);
 		}
 
 		void DamageLabelMove(GameObject t)
 		{
-			m_testBlood = false;
+			m_DamageText.Remove (t);
 			Destroy (t);
 		}
 
 		public void InitActorBlood()
 		{
-			m_CanvasParent = GameObject.Find ("Canvas");
 			Object m_TextPrefab = Resources.Load ("Blood");
-			GameObject t = Instantiate(m_TextPrefab) as GameObject;
-			t.transform.SetParent(m_CanvasParent.transform, false);
-			t.name = "Blood" + this.name;
+			m_Blood = Instantiate(m_TextPrefab) as GameObject;
+			m_Blood.transform.SetParent(m_CanvasParent.transform, false);
+			m_Blood.name = "Blood" + this.name;
 
-			m_Blood = GameObject.Find ("Canvas/Blood" + this.name);
 			m_Slider = m_Blood.GetComponent<Slider>();
-			m_BloodText = GameObject.Find ("Canvas/BloodText" + this.name);
 		}
 
 		public void UpdateBloodRatio(float ratio)
@@ -85,17 +76,12 @@ namespace GlobalGame
 			m_Slider.value = ratio;
 		}
 
-		void UpdatePosition(string argName)
+		void UpdatePosition(GameObject obj)
 		{
 			Transform trans = this.transform;
-			GameObject t = GameObject.Find (argName);
-			if (t == null)
+			if (obj == null)
 				return;
-			if (argName == "Canvas/BloodText(Clone)") 
-			{
-				Debug.Log ("UpdatePosition__________________"+this.transform.name);
-			}
-			RectTransform Rect = t.GetComponent<RectTransform> ();
+			RectTransform Rect = obj.GetComponent<RectTransform> ();
 			Vector3 position = trans.GetComponent<Collider>().bounds.center + (((Vector3.up * trans.GetComponent<Collider>().bounds.size.y) * 0.6f));
 			Vector3 front = position - Camera.main.transform.position;
 

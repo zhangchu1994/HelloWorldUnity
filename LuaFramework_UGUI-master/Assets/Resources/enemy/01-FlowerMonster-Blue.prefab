@@ -1100,5 +1100,6 @@ MonoBehaviour:
   m_ActorAIManager: {fileID: 0}
   m_ActorSkillManager: {fileID: 0}
   m_ActorStatus: 0
+  m_ActorType: 0
   m_CurrentTarget: {fileID: 0}
   m_isHightLight: 0

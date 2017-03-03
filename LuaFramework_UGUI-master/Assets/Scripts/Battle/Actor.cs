@@ -28,6 +28,14 @@ namespace GlobalGame
 			AgentToAttack,
 		}
 
+		public enum ActorType
+		{
+			Actor,
+			Partner1,
+			Partner2,
+			Monster,
+		}
+
 		public int m_Index;
 		public GameObject m_ActorObject = null;
 
@@ -37,10 +45,12 @@ namespace GlobalGame
 		public ActorMeshManager m_ActorMeshManager;
 		public ActorAnimationManager m_ActorAnimationManager;
 		public ActorAIManager m_ActorAIManager;
+		public MonsterAIManager m_MonsterAIManager;
 		public ActorSkillManager m_ActorSkillManager;
 
 		public ActorData m_ActorData;
 		public ActorStatus m_ActorStatus;
+		public ActorType m_ActorType;
 
 		public GameObject m_CurrentTarget;
 
@@ -63,17 +73,33 @@ namespace GlobalGame
 			if (m_ActorStatus == status)
 				return;
 
-			Global.BattleLog (this, status.ToString());
+//			Global.BattleLog (this, status.ToString());
 			m_ActorStatus = status;
+
+			if (status == Actor.ActorStatus.Stand) 
+			{
+				m_ActorData.m_CurCd = -1f;
+			}
+
+
 			if (needPlayAnimation == true) 
 			{
 				if (status == Actor.ActorStatus.Stand) 
 				{
-					m_ActorData.m_CurCd = -1f;
-					m_ActorAnimationManager.PlayAnimation (Global.BattleAnimationType.Stand, WrapMode.Loop);// 改变动画
+//					Color color = gameObject.GetComponentInChildren<Renderer> ().material.color;
+//					gameObject.GetComponentInChildren<Renderer>().material.color = new Color(color.r ,color.g , color.b, 1f);;
+					m_ActorAnimationManager.PlayAnimation (Global.BattleAnimationType.Stand, WrapMode.Loop);
+				} 
+				else if (status == Actor.ActorStatus.Agent || status == Actor.ActorStatus.Follow) 
+				{
+					m_ActorAnimationManager.PlayAnimation (Global.BattleAnimationType.Run, WrapMode.Loop);
+				} 
+				else if (status == Actor.ActorStatus.Dead ) 
+				{
+//					Color color = gameObject.GetComponentInChildren<Renderer> ().material.color;
+//					gameObject.GetComponentInChildren<Renderer>().material.color = new Color(color.r ,color.g , color.b, 0.4f);;
+					m_ActorAnimationManager.PlayAnimation (Global.BattleAnimationType.Dead, WrapMode.Once);
 				}
-				else if (status == Actor.ActorStatus.Agent || status == Actor.ActorStatus.Follow)
-					m_ActorAnimationManager.PlayAnimation (Global.BattleAnimationType.Run, WrapMode.Loop);// 改变动画
 			}
 		}
 
@@ -81,6 +107,11 @@ namespace GlobalGame
 		{
 			m_ActorStatus = ActorStatus.Stand;
 
+			if (argIndex == 0)
+				m_ActorType = ActorType.Actor;
+			else if (argIndex == 1)
+				m_ActorType = ActorType.Partner1;
+			
 			m_Index = argIndex;
 			m_ActorObject = obj;
 
@@ -141,10 +172,13 @@ namespace GlobalGame
 			m_ActorUIManager.UpdateBloodRatio (percent);
 
 
-			if (hp <= 0) 
-			{
-				SetActorStatus(Actor.ActorStatus.Dead);
+			if (hp <= 0 && IsActorStatus (Actor.ActorStatus.Dead) == false) {
+				SetActorStatus (Actor.ActorStatus.Dead, true);
 				BattleScene.Active.CurrentMonsterDie ();
+			} 
+			else 
+			{
+				m_ActorAnimationManager.PlayAnimation (Global.BattleAnimationType.Hurt,WrapMode.Once);
 			}
 		}
 
@@ -169,6 +203,7 @@ namespace GlobalGame
 		{
 			m_ActorUIManager.InitLoseBlood(damage);
 			AddHp (damage);
+//			m_ActorAnimationManager.PlayAnimations (Global.GetAnimRestoreList(Global.BattleAnimationType.Hurt),WrapMode.Once);
 		}
 
 		public void SetCurrentTarget(GameObject Obj)
@@ -193,6 +228,16 @@ namespace GlobalGame
 //			GameObject monsterObject = m_actorObjList [0];
 			bulletScripte.InitBullet (m_ActorObject, obj);
 			actor.m_ActorAnimationManager.PlayAnimation (Global.BattleAnimationType.Attack, WrapMode.Loop, true);
+		}
+
+		public void GetAlive()
+		{
+			if (IsActorStatus(ActorStatus.Dead))
+			{
+				Debug.Log ("GetAlive live = "+this.gameObject.name);
+				SetActorStatus (ActorStatus.Stand,true);
+				AddHp (100);
+			}
 		}
 //		}
 	}

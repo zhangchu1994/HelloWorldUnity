@@ -82,12 +82,13 @@ namespace GlobalGame
 		void OnTriggerEnter(Collider other) 
 		{
 			
-//			Destroy(other.gameObject);
+//			
 			if (other.gameObject.name == m_defender.name) 
 			{
-				Debug.Log ("OnTriggerEnter______________" + other.gameObject.name);
+//				Debug.Log ("OnTriggerEnter______________" + other.gameObject.name);
 				Monster monster = m_defender.GetComponent<Monster> ();
 				monster.LoseBlood (m_AttActor,-10f);
+//				Destroy(this.gameObject);
 			}
 
 		}

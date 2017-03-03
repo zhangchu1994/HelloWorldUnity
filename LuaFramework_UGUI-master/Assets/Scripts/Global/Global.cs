@@ -19,13 +19,14 @@ namespace GlobalGame
 			Run = 1,
 			Hurt = 2,
 			Attack = 3,
+			Dead = 10,
 		}
 
 		public static ArrayList m_ActorNameList = new ArrayList(){"Actor1","Actor2","Actor3","Actor4","Actor5"};
 		public static ArrayList m_MonsterNameList = new ArrayList(){"Monster1","Monster2","Monster3","Monster4","Monster5"};
-		public static ArrayList m_AnimationNameList = new ArrayList(){"stand","run","","attack1"};
+		public static ArrayList m_AnimationNameList = new ArrayList(){"stand","run","hurt","attack1","4","5","6","7","8","9","die"};
 
-		public static List<BattleAnimationType> GetAttackList(BattleAnimationType argType)
+		public static List<BattleAnimationType> GetAnimRestoreList(BattleAnimationType argType)
 		{
 			List<BattleAnimationType> animationList = new List<BattleAnimationType> ();
 			animationList.Add(argType);

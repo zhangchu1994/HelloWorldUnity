@@ -41,21 +41,21 @@ namespace GlobalGame
 //				}
 //			}
 
-
-			if (m_MainActor.m_Index != 0) //目前Index1标记为主角
-			{
-				ShouldAttack ();
-				FllowTarget ();
-			}
-			else if (m_MainActor.m_Index == 0)
+			if (m_MainActor.m_ActorType == Actor.ActorType.Actor)
 			{
 				if (m_MainActor.IsActorStatus (Actor.ActorStatus.Stand)) 
 				{
 					GameObject monster = BattleScene.Active.GetCurrentMonsterObj ();
+//					Debug.Log ("UpdateAI Name = "+monster.name);
 					m_MainActor.SetCurrentTarget (monster);
 					m_MainActor.MonsterToAttack (monster);
 //				&& m_MainActor.m_ActorSkillManager.GetAvailableSkill () != null
 				}
+			}
+			else if (m_MainActor.m_ActorType == Actor.ActorType.Partner1) //目前Index1标记为主角
+			{
+				ShouldAttack ();
+				FllowTarget ();
 			}
 		}
 
