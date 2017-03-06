@@ -60,7 +60,7 @@ namespace GlobalGame
 				m_SkillData.m_SkillType = SkillType.CutDown;
 
 			} 
-			else if (m_MainActor.m_Index == 1) 
+			else if (m_MainActor.m_Index == 1 || m_MainActor.m_Index == 2) 
 			{
 				m_SkillData.m_SkillId = 2;
 				m_SkillData.m_Radius = 6;

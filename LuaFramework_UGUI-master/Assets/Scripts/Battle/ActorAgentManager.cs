@@ -54,54 +54,48 @@ namespace GlobalGame
 //			}
 //		}
 
-		public void SetDestination(Vector3 point,Vector3 normal)
+		public void SetDestinationParent(Vector3 point)
 		{
-//			m_MainActor.SetActorStatus (Actor.ActorStatus.Agent);
-			if (particleClone != null)
-			{
-				GameObject.Destroy(particleClone);
-				particleClone = null;
-			}
-
-
-			if (m_MainActor.IsActorStatus(Actor.ActorStatus.AgentToAttack) == true)
-				agent.stoppingDistance = 3.5f;
-			else
-				agent.stoppingDistance = 0;
-			Quaternion q = new Quaternion();
-			if (normal != null)
-				q.SetLookRotation(normal, Vector3.forward);
-			particleClone = Instantiate(particle, point, q);
-
+			agent.stoppingDistance = 1f;
 			agent.destination = point;
 			m_MainActor.m_ActorAnimationManager.PlayAnimation (Global.BattleAnimationType.Run, WrapMode.Loop);
 			m_MainActor.m_ActorObject.transform.LookAt (point);
 			agent.updateRotation = true;
 		}
 
-		protected void UpdateAgent()
+
+		public void SetDestination(Vector3 point,Vector3 normal)
 		{
-			if (IsAgentDone())
-			{
-				if (particleClone != null)
-				{
-					GameObject.Destroy(particleClone);
-					particleClone = null;
-				}
-				if (m_MainActor.IsActorStatus(Actor.ActorStatus.AgentToAttack) == true) 
-				{
-					m_MainActor.StartAttack ();
-					m_MainActor.SetActorStatus(Actor.ActorStatus.Attack);
-				} 
-				else if (m_MainActor.IsActorStatus(Actor.ActorStatus.Agent) == true) 
-				{
-					m_MainActor.m_ActorAnimationManager.PlayAnimation (Global.BattleAnimationType.Stand, WrapMode.Loop);
-					m_MainActor.SetActorStatus(Actor.ActorStatus.Stand);
-				}
-			}
+//			m_MainActor.SetActorStatus (Actor.ActorStatus.Agent);
+			RemoveAgentFlag();
+
+			if (m_MainActor.IsActorStatus(Actor.ActorStatus.AgentToAttack) == true)
+				agent.stoppingDistance = 3.5f;
 			else
+				agent.stoppingDistance = 0;
+
+			InitAgentFlag (point,normal);
+			agent.destination = point;
+			m_MainActor.m_ActorAnimationManager.PlayAnimation (Global.BattleAnimationType.Run, WrapMode.Loop);
+			m_MainActor.m_ActorObject.transform.LookAt (point);
+			agent.updateRotation = true;
+		}
+
+
+		void InitAgentFlag(Vector3 point,Vector3 normal)
+		{
+			Quaternion q = new Quaternion();
+			if (normal != null)
+				q.SetLookRotation(normal, Vector3.forward);
+			particleClone = Instantiate(particle, point, q);
+		}
+
+		void RemoveAgentFlag()
+		{
+			if (particleClone != null)
 			{
-				
+				GameObject.Destroy(particleClone);
+				particleClone = null;
 			}
 		}
 
@@ -118,8 +112,20 @@ namespace GlobalGame
 
 		void Update () 
 		{
-			if (m_MainActor.m_ActorStatus == Actor.ActorStatus.Agent || m_MainActor.m_ActorStatus == Actor.ActorStatus.AgentToAttack)
-				UpdateAgent();
+			if (m_MainActor.m_ActorStatus == Actor.ActorStatus.Agent || m_MainActor.m_ActorStatus == Actor.ActorStatus.AgentToAttack) 
+			{
+				if (IsAgentDone())
+				{
+					RemoveAgentFlag ();
+					m_MainActor.AgentDone ();
+				}
+				else
+				{
+
+				}
+			}
 		}
+
+
 	}
 }

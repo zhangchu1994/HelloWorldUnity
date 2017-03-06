@@ -10,8 +10,11 @@ namespace GlobalGame
 	{
 		public static BattleScene Active = null;
 
+		private int m_MonsterPlaceCount = 4;//有几处怪
+		private int m_MonsterCount = 5;
 
-		public List<GameObject> m_StartPoints;
+
+		public GameObject m_StartPoint;
 		public List<GameObject> m_MonsterPoints;
 
 //		public GameObject m_ActorObject;
@@ -58,7 +61,7 @@ namespace GlobalGame
 
 		void InitBattleRole()
 		{
-			for (int i = 0; i < 2; i++) 
+			for (int i = 0; i < 3; i++) 
 			{
 				string skeleton = "ch_pc_hou";
 				Object res = Resources.Load ("Actor/Actor1/" + skeleton);
@@ -68,25 +71,61 @@ namespace GlobalGame
 				actor.InitActor (ActorObject,i);
 				m_actorObjList.Add(ActorObject);
 				m_actorList.Add (actor);
+				ActorObject.transform.rotation = m_StartPoint.transform.rotation;
 
-				GameObject startPoint = m_StartPoints [i];
-				ActorObject.transform.position = new Vector3 (startPoint.transform.position.x, startPoint.transform.position.y, startPoint.transform.position.z);
+				if (i == 0) 
+				{
+					ActorObject.transform.position = new Vector3 (m_StartPoint.transform.position.x, m_StartPoint.transform.position.y, m_StartPoint.transform.position.z);
+//					ActorObject.transform.rotation = new Vector3 (m_StartPoint.transform.Rotate, m_StartPoint.transform.position.y, m_StartPoint.transform.position.z);
+				}
+				else if (i == 1) 
+				{
+					GameObject ActorObject0 = m_actorObjList[0];
+					Actor actor0 = ActorObject0.GetComponent<Actor>();
+					ActorObject.transform.position = new Vector3 (actor0.m_Fllow1.transform.position.x, actor0.m_Fllow1.transform.position.y, actor0.m_Fllow1.transform.position.z);
+				} 
+				else if (i == 2) 
+				{
+					GameObject ActorObject0 = m_actorObjList[0];
+					Actor actor0 = ActorObject0.GetComponent<Actor>();
+					ActorObject.transform.position = new Vector3 (actor0.m_Fllow2.transform.position.x, actor0.m_Fllow2.transform.position.y, actor0.m_Fllow2.transform.position.z);
+				}
 			}
 
+			InitMonster();
+		}
 
-			for (int i = 0; i < 4; i++) 
+		void InitMonster()
+		{
+//			DestoryMonster ();
+			m_monsterObjList.Clear ();
+			m_monsterList.Clear ();
+			string[] nameList = { "enemy/01-FlowerMonster-Blue", "enemy/03-MaskedOrc-Grey","enemy/01-FlowerMonster-Blue","enemy/03-MaskedOrc-Grey" };
+			string name = nameList [m_FightIndex];
+			GameObject startPoint = m_MonsterPoints [m_FightIndex];
+			for (int i = 0; i < m_MonsterCount; i++) 
 			{
-				Object monsterRes = Resources.Load ("enemy/01-FlowerMonster-Blue");
+				Object monsterRes = Resources.Load (name);
 				GameObject monsterObject = GameObject.Instantiate (monsterRes) as GameObject;
-//				GameObject monsterObject = GameObject.Find("Monster"+i.ToString());
+				//				GameObject monsterObject = GameObject.Find("Monster"+i.ToString());
 				Monster monster = monsterObject.GetComponent<Monster>();
 				monster.name = Global.GetMonsterNmae (i);
 				monster.InitActor (monsterObject);
 				m_monsterObjList.Add (monsterObject);
 				m_monsterList.Add (monster);
 
-				GameObject startPoint = m_MonsterPoints [i];
-				monsterObject.transform.position = new Vector3 (startPoint.transform.position.x, startPoint.transform.position.y, startPoint.transform.position.z);
+				monsterObject.transform.position = new Vector3 (startPoint.transform.position.x+i*1.5f, startPoint.transform.position.y, startPoint.transform.position.z);
+			}
+		}
+
+		void DestoryMonster()
+		{
+			if (m_monsterObjList.Count <= 0)
+				return;
+			for (int i = 0; i < m_monsterObjList.Count; i++) 
+			{
+				GameObject obj = m_monsterObjList [i];
+				Destroy (obj);
 			}
 		}
 
@@ -173,26 +212,44 @@ namespace GlobalGame
 
 		public GameObject GetCurrentMonsterObj()
 		{
-			return m_monsterObjList [m_FightIndex];
+			for (int i = 0; i < m_monsterObjList.Count; i++) //m_actorList.Count
+			{
+				GameObject monsterObj = m_monsterObjList [i];
+				Monster monster = m_monsterList [i];
+				if (monster.IsActorStatus (Actor.ActorStatus.Dead) == false)
+					return monsterObj;
+			}
+			return null;
 		}
 
 		public Monster GetCurrentMonster()
 		{
-			return m_monsterList [m_FightIndex];
+			for (int i = 0; i < m_monsterObjList.Count; i++) //m_actorList.Count
+			{
+				GameObject monsterObj = m_monsterObjList [i];
+				Monster monster = m_monsterList [i];
+				if (monster.IsActorStatus (Actor.ActorStatus.Dead) == false)
+					return monster;
+			}
+			return null;
 		}
 
 		public void CurrentMonsterDie()
 		{
 //			Debug.Log ("CurrentMonsterDie index = "+m_FightIndex);
-			for (int i = 0; i < m_monsterList.Count; i++) 
-			{
-				if (i == m_FightIndex)
-					continue;
-				Monster lastDie = m_monsterList [i];
-				lastDie.GetAlive ();
-			}
+//			for (int i = 0; i < m_monsterList.Count; i++) 
+//			{
+//				if (i == m_FightIndex)
+//					continue;
+//				Monster lastDie = m_monsterList [i];
+//				lastDie.GetAlive ();
+//			}
 
-			if (m_FightIndex == 3) 
+			if (IsCurrentMonsterHasAlive () == true)
+				return;
+				
+
+			if (m_FightIndex == m_MonsterPlaceCount-1) 
 			{
 				m_Sequence = BattleSequence.AntiClockWise;
 			}
@@ -211,6 +268,19 @@ namespace GlobalGame
 //				lastIndex = 3;
 //			Monster lastDie = m_monsterList [lastIndex];
 //			lastDie.GetAlive ();
+			InitMonster();
+		}
+
+		bool IsCurrentMonsterHasAlive()
+		{
+			bool hasAlive = false;
+			for (int i = 0; i < m_monsterList.Count; i++) 
+			{
+				Monster monster = m_monsterList [i];
+				if (monster.IsActorStatus (Actor.ActorStatus.Dead) == false)
+					return true;
+			}
+			return hasAlive;
 		}
 
 		void ChangeHeightLightMonster(GameObject obj)//怪物的选中状态

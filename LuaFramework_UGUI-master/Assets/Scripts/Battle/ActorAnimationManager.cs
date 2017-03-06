@@ -37,6 +37,17 @@ namespace GlobalGame
 			animationController.Stop ();
 			animationController.wrapMode = mode;
 			animationController.Play(Global.GetAnimation(argType));
+			if (argType == Global.BattleAnimationType.Dead)
+				StartCoroutine (WaitThenDoThings(animationController[Global.Die].length));
+		}
+
+		IEnumerator WaitThenDoThings(float time)
+		{
+			yield return new WaitForSeconds(time);
+
+			// Now do some stuff...
+//			animation.CrossFade("anotherAnim", 0.5f);
+			Debug.Log("Next Animation____"+time);
 		}
 
 		public void PlayAnimations(List<Global.BattleAnimationType> argTypes,WrapMode mode,bool isStop=false)
@@ -73,8 +84,14 @@ namespace GlobalGame
 
 		void UpdateAnimation()
 		{
-
+//			animationController.
+//			if (animationController.AddClip)
+//			{
+//				// animation finished...
+//				Debug.Log("UpdateAnimation____________________"+AnimationState.name);
+//			}
 		}
+
 
 	}
 }

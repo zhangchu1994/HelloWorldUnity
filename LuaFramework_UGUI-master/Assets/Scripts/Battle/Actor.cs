@@ -47,6 +47,8 @@ namespace GlobalGame
 		public ActorAIManager m_ActorAIManager;
 		public MonsterAIManager m_MonsterAIManager;
 		public ActorSkillManager m_ActorSkillManager;
+		public GameObject m_Fllow1;
+		public GameObject m_Fllow2;
 
 		public ActorData m_ActorData;
 		public ActorStatus m_ActorStatus;
@@ -111,6 +113,8 @@ namespace GlobalGame
 				m_ActorType = ActorType.Actor;
 			else if (argIndex == 1)
 				m_ActorType = ActorType.Partner1;
+			else if (argIndex == 2)
+				m_ActorType = ActorType.Partner2;
 			
 			m_Index = argIndex;
 			m_ActorObject = obj;
@@ -141,6 +145,20 @@ namespace GlobalGame
 		{
 			m_ActorData.m_CurCd = 0;
 			m_ActorSkillManager.StartUseSkill ();
+		}
+
+		public void AgentDone()
+		{
+			if (IsActorStatus(Actor.ActorStatus.AgentToAttack) == true) 
+			{
+				StartAttack ();
+				SetActorStatus(Actor.ActorStatus.Attack);
+			} 
+			else if (IsActorStatus(Actor.ActorStatus.Agent) == true) 
+			{
+				m_ActorAnimationManager.PlayAnimation (Global.BattleAnimationType.Stand, WrapMode.Loop);
+				SetActorStatus(Actor.ActorStatus.Stand);
+			}
 		}
 
 		void Update () 

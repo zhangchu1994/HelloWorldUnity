@@ -22,9 +22,21 @@ namespace GlobalGame
 			Dead = 10,
 		}
 
+		public static string Stand = "stand";
+		public static string Run = "run";
+		public static string Hurt = "hurt";
+		public static string Attack1 = "attack1";
+//		public static string Stand = "4",
+//		public static string Stand = "5",
+//		public static string Stand = "6",
+//		public static string Stand = "7",
+//		public static string Stand = "8",
+//		public static string Stand = "9",
+		public static string Die = "die";
+
 		public static ArrayList m_ActorNameList = new ArrayList(){"Actor1","Actor2","Actor3","Actor4","Actor5"};
 		public static ArrayList m_MonsterNameList = new ArrayList(){"Monster1","Monster2","Monster3","Monster4","Monster5"};
-		public static ArrayList m_AnimationNameList = new ArrayList(){"stand","run","hurt","attack1","4","5","6","7","8","9","die"};
+		public static ArrayList m_AnimationNameList = new ArrayList(){Stand,Run,Hurt,Attack1,"4","5","6","7","8","9",Die};
 
 		public static List<BattleAnimationType> GetAnimRestoreList(BattleAnimationType argType)
 		{
