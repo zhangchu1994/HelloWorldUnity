@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EndlessWord : MonoBehaviour 
 {
 
-	public List<GameObject> m_Panes;
+//	public List<GameObject> m_Panes;
 
 	public GameObject[] objs;
 	private Camera cam;
@@ -14,72 +15,154 @@ public class EndlessWord : MonoBehaviour
 
 	bool cacheInit;
 	int m_ZoneCount;
+	public Text m_Text;
 
 	// Use this for initialization
 	void Start () 
 	{
 		objs = GameObject.FindGameObjectsWithTag ("Ground");
 		cam = Camera.main;
+		cam.transform.position = new Vector3 (210,30,193);
 
+//		cam.cameraToWorldMatrix
+//		GameObject obj = objs [0];
+//		List<string> names = getBorder (obj);
+//
+//		for (int i = 0; i < names.Count; i++) 
+//		{
+//			string str = names [i];
+//			Debug.Log (" i = "+i+" name = "+str);
+//		}
 	}
+
+//	void OnDrawGizmosSelected() {
+//		Matrix4x4 m = cam.cameraToWorldMatrix;
+//		Vector3 p = m.MultiplyPoint(new Vector3(0, 0, 10));
+//		Gizmos.color = Color.yellow;
+//		Gizmos.DrawSphere(p, 0.2F);
+//	}
+
+
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		LogCount++;
-		if (LogCount > 1)
-			return;
+//		LogCount++;
+//		if (LogCount > 1)
+//			return;
+//		Matrix4x4 m = cam.cameraToWorldMatrix;
+//		Vector3 p = m.MultiplyPoint(new Vector3(0, 0, 0));
+//		Debug.Log ("p x = "+p.x+" p.y = "+p.y + " p.z = "+p.z);
+
+//		check0 ();
+
+//		
+//		70显示8列
+		objs = GameObject.FindGameObjectsWithTag ("Ground");
+		int width = 10;
+		int height = 10;
+		int offetX = (int)(cam.transform.position.x - 30)/width;
+		int offetZ = (int)(cam.transform.position.z - 13)/height;
+		int offetX1 = (int)(cam.transform.position.x - 30);
+		int offetZ1 = (int)(cam.transform.position.z - 13);
+
+		m_Text.text = "X = " + offetX1 + " Y = " + offetZ1;
+		for (int i = 0; i < 8; i++) 
+		{
+			int newX = i + offetX;
+			for (int j = 0; j < 5; j++) 
+			{
+				int newY = j + offetZ;
+				string name = "X" + newX.ToString () + "Z" + newY.ToString();
+				if (IsExist (name) == false) 
+				{
+					Object res = Resources.Load ("DPanel");
+					GameObject ActorObject = GameObject.Instantiate (res) as GameObject;
+					ActorObject.name = name;
+					ActorObject.tag = "Ground";
+					ActorObject.transform.position = new Vector3 (newX * 10, 0, newY*10);
+					TextMesh text = ActorObject.GetComponentInChildren<TextMesh> ();
+					text.text = name;
+				}
+
+			}
+		}
+	}
+
+	void check0()
+	{
+		
+	}
+
+	void check()
+	{
+		objs = GameObject.FindGameObjectsWithTag ("Ground");
 		planes = GeometryUtility.CalculateFrustumPlanes(cam);
 		for (int i = 0; i < objs.Length; i++) 
 		{
 			GameObject anObject = objs [i];
 			if (GeometryUtility.TestPlanesAABB (planes, anObject.GetComponent<Collider> ().bounds)) 
 			{
-//				List<string> nameList = getBorder (anObject);
+				List<string> nameList = getBorder (anObject);
 //				for (int j = 0; j < nameList.Count; i++) 
 //				{
 //					string name = nameList [j];
 //					Debug.Log (name);
-////					bool isExist = IsExist (name);
-////					if (isExist == false) 
-////					{
-////						Object res = Resources.Load ("DPanel");
-////						GameObject ActorObject = GameObject.Instantiate (res) as GameObject;
-////						ActorObject.name = name;
-////						TextMesh text = ActorObject.GetComponentInChildren<TextMesh> ();
-////						text.text = name;
-////					}
+//					bool isExist = IsExist (name);
+//					if (isExist == false) 
+//					{
+//						Object res = Resources.Load ("DPanel");
+//						GameObject ActorObject = GameObject.Instantiate (res) as GameObject;
+//						ActorObject.name = name;
+//						ActorObject.tag = "Ground";
+//						TextMesh text = ActorObject.GetComponentInChildren<TextMesh> ();
+//						text.text = name;
+//						int x = 0;
+//						int z = 0;
+//						getXZNum (name,ref x,ref z);
+//						ActorObject.transform.position = new Vector3 (x * 10, 0, z * 10);
+//						check();
+//						break;
+//					}
 //				}
-
 				Debug.Log(anObject.name + " has been detected!");
 			}
 			else
 				Debug.Log("Nothing has been detected = " + anObject.name);	
 		}
-		Debug.Log("_________________________________________");	
+//		Debug.Log("_________________________________________");	
 	}
 
+
+	void getXZNum(string name,ref int x,ref int z)
+	{
+		string[] names=name.Split('Z');
+		x = int.Parse(names[0].Replace ("X", ""));
+		z = int.Parse(names[1]);
+	}
 
 
 	List<string> getBorder(GameObject obj)
 	{
 		string name = obj.name;
-//		string[] names = name.Split (
-		string[] names=name.Split('Z');
-		int x = int.Parse(names [0].Replace ("X", ""));
-		int z = int.Parse(names[1]);
+		int x = 0;
+		int z = 0;
+		getXZNum (obj.name, ref x, ref z);
 		List<string> strList = new List<string>();
 
 		int[] zList = { -1, 0, 1 };
 		int[] xList = { -1, 0, 1 };
 		int index = 0;
-		for (int i = 0; i < xList.Length; i++) 
+		for (int i = 0; i < zList.Length; i++) 
 		{
-			for (int j = 0; j < zList.Length; j++) 
+			int zTemp = zList [i];
+			for (int j = 0; j < xList.Length; j++) 
 			{
-				int newX = x;
-				int newY = z;
-				strList.Add("X"+newX.ToString()+"Z"+newY.ToString());
+				int xTemp = xList [j];
+				int newX = x+xTemp;
+				int newZ = z+zTemp;
+				if (x != newX || z != newZ) 
+					strList.Add("X"+newX.ToString()+"Z"+newZ.ToString());
 				index++;
 			}
 		}
