@@ -7,6 +7,7 @@ namespace GlobalGame
 	public class ActorAIManager : MonoBehaviour 
 	{
 		public Actor m_MainActor;
+//		bool grounded = true;
 
 		void Awake()
 		{
@@ -40,6 +41,9 @@ namespace GlobalGame
 //					t.transform.localScale = new Vector3 (2f, 2f, 2f);
 //				}
 //			}
+
+//			if(Input.GetButtonDown("Jump"))
+//				Jump ();
 //			return;
 			if (m_MainActor.m_ActorType == Actor.ActorType.Actor)
 			{
@@ -58,6 +62,28 @@ namespace GlobalGame
 				FllowTarget ();
 			}
 		}
+
+		void Jump ()
+		{
+			if(m_MainActor.IsActorStatus(Actor.ActorStatus.Jump) == false)
+			{
+				m_MainActor.SetActorStatus (Actor.ActorStatus.Jump);
+				m_MainActor.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
+//				Debug.Log("Jump____________________");
+				Rigidbody rigidbody = this.gameObject.GetComponent<Rigidbody> ();
+				rigidbody.isKinematic = false;
+				rigidbody.useGravity = true;
+				rigidbody.AddForce(Vector3.up * 500);
+			}
+		}
+
+		void OnCollisionEnter(Collision hit)
+		{
+			m_MainActor.SetActorStatus (Actor.ActorStatus.Stand);
+			m_MainActor.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = true;
+			Debug.Log("I'm colliding with something!");
+		}
+
 
 		void ShouldAttack()
 		{

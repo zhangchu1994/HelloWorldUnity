@@ -94,5 +94,10 @@ namespace GlobalGame
 //			}
 
 		}
+
+		public void ActorDead()
+		{
+			Destroy (m_Blood);
+		}
 	}
 }

@@ -49,14 +49,16 @@ namespace GlobalGame
 		void Start () 
 		{
 			m_Sequence = BattleSequence.ClockWise;
-			InitBattleRole ();
 
 			StartCoroutine(StartBattle());  
 		}
 
 		public GameObject GetFllowActor()
 		{
-			return m_actorObjList [0];
+			if (m_actorObjList != null && m_actorObjList.Count >= 1)
+				return m_actorObjList [0];
+			else
+				return null;
 		}
 
 		void InitBattleRole()
@@ -118,7 +120,13 @@ namespace GlobalGame
 			}
 		}
 
-		void DestoryMonster()
+		public void DestoryMonster(GameObject monsterObj,Actor monster)
+		{
+			Debug.Log ("DestoryMonster = "+monsterObj.name);
+			Destroy (monsterObj);
+		}
+
+		public void DestoryMonsters()
 		{
 			if (m_monsterObjList.Count <= 0)
 				return;
@@ -132,6 +140,7 @@ namespace GlobalGame
 		IEnumerator StartBattle()  
 	    {  
 	    	yield return new WaitForSeconds(2);
+			InitBattleRole ();
 	    }  
 
 		void UpdateClick()
@@ -314,7 +323,9 @@ namespace GlobalGame
 		void Update () 
 		{
 			UpdateClick ();
+
 		}
+
 	}
 }
 	

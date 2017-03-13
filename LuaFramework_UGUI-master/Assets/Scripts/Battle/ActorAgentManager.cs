@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using GlobalGame;
+using UnityEngine.AI;
 
 namespace GlobalGame 
 {
@@ -8,7 +9,7 @@ namespace GlobalGame
 	{
 
 		public Object particle;
-		protected UnityEngine.AI.NavMeshAgent agent;
+		public NavMeshAgent agent;
 	//	protected Animator animator;
 	//	protected Locomotion locomotion;
 		public Actor m_MainActor;

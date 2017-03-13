@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class CameraFly : MonoBehaviour 
+public class CameraKeyBoardControl : MonoBehaviour 
 {
     [SerializeField]
     float speed = 60f;
@@ -26,10 +26,10 @@ public class CameraFly : MonoBehaviour
 		float x = transform.position.x + left_right * speed * Time.deltaTime;
 		float y = transform.position.y;
 		float z = transform.position.z + for_back * speed * Time.deltaTime;
-		if (x < 30 || x > 980)
-			return;
-		if (z < 13 || x > 1013)
-			return;
+//		if (x < 30 || x > 980)
+//			return;
+//		if (z < 13 || x > 1013)
+//			return;
 
 
 		transform.position = new Vector3 (x, y, z);

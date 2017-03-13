@@ -57,5 +57,10 @@ namespace GlobalGame
 		{
 			m_SkillList [0].StartSkill ();
 		}
+
+		public Skill GetCurrentSkill()
+		{
+			return m_SkillList [0];
+		}
 	}
 }

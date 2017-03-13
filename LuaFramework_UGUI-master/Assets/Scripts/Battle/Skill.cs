@@ -11,14 +11,14 @@ namespace GlobalGame
 		Magic,//法术
 	}
 
-	public class SkillData
-	{
-		public int m_SkillId = 1;
-		public float m_Radius = 2;
-		public SkillType m_SkillType = SkillType.CutDown;
-		public List<GameObject> m_TargetObjList = new List<GameObject>();
-		public List<Actor> m_TargetActorList = new List<Actor>();
-	}
+//	public class SkillData
+//	{
+//		public int m_SkillId = 1;
+//		public float m_Radius = 2;
+//		public SkillType m_SkillType = SkillType.CutDown;
+//		public List<GameObject> m_TargetObjList = new List<GameObject>();
+//		public List<Actor> m_TargetActorList = new List<Actor>();
+//	}
 
 	public class Skill 
 	{
@@ -53,19 +53,25 @@ namespace GlobalGame
 			m_MainActor = argActor;
 			m_SkillData = new SkillData ();
 
-			if (m_MainActor.m_Index == 0) 
-			{
-				m_SkillData.m_SkillId = 1;
-				m_SkillData.m_Radius = 3;
-				m_SkillData.m_SkillType = SkillType.CutDown;
+			if (m_MainActor.m_Index == 0) {
+				m_SkillData = DataTables.GetSkillData (1);
+//				m_SkillData.m_Radius = 3;
+//				m_SkillData.m_SkillType = SkillType.CutDown;
 
 			} 
-			else if (m_MainActor.m_Index == 1 || m_MainActor.m_Index == 2) 
+			else if (m_MainActor.m_Index == 1) 
 			{
-				m_SkillData.m_SkillId = 2;
-				m_SkillData.m_Radius = 6;
-				m_SkillData.m_SkillType = SkillType.Shoot;
+				m_SkillData = DataTables.GetSkillData (2);
+//				m_SkillData.m_SkillId = 2;
+//				m_SkillData.m_Radius = 6;
+//				m_SkillData.m_SkillType = SkillType.Shoot;
+			} 
+			else if (m_MainActor.m_Index == 2) 
+			{
+				m_SkillData = DataTables.GetSkillData (3);
 			}
+
+			Debug.Log ("InitSkill______________________________");
 		}
 
 		public void StartSkill()
@@ -77,7 +83,7 @@ namespace GlobalGame
 
 		public void SkillTakeEffect()
 		{
-			if (m_SkillData.m_SkillType == SkillType.Shoot) //远程根据是否打到计算伤害
+			if (m_SkillData.m_SkillType1 == (int)SkillType.Shoot) //远程根据是否打到计算伤害
 			{
 //				Debug.Log ("SkillTakeEffect__________________________");
 				for (int i = 0; i < m_SkillData.m_TargetObjList.Count; i++) {

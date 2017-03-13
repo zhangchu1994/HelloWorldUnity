@@ -26,6 +26,7 @@ namespace GlobalGame
 			Follow,
 			Dead,
 			AgentToAttack,
+			Jump,
 		}
 
 		public enum ActorType
@@ -246,6 +247,11 @@ namespace GlobalGame
 //			GameObject monsterObject = m_actorObjList [0];
 			bulletScripte.InitBullet (m_ActorObject, obj);
 			actor.m_ActorAnimationManager.PlayAnimation (Global.BattleAnimationType.Attack, WrapMode.Loop, true);
+		}
+
+		public void ActorDeadAnimationDone()
+		{
+			BattleScene.Active.DestoryMonster (this.gameObject,this);
 		}
 
 		public void GetAlive()

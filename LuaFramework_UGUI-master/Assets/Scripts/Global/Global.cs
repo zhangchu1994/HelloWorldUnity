@@ -85,5 +85,12 @@ namespace GlobalGame
 				Debug.Log ("Nmae = "+actor.name+" Info = "+argString);
 		}
 
+		public static bool isMobile()
+		{
+			if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
+				return true;
+			else
+				return false;
+		}
 	}
 }

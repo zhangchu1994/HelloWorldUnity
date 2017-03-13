@@ -44,10 +44,11 @@ namespace GlobalGame
 		IEnumerator WaitThenDoThings(float time)
 		{
 			yield return new WaitForSeconds(time);
-
+			m_MainActor.ActorDeadAnimationDone ();
+			m_MainActor.m_ActorUIManager.ActorDead ();
 			// Now do some stuff...
 //			animation.CrossFade("anotherAnim", 0.5f);
-			Debug.Log("Next Animation____"+time);
+//			Debug.Log("Next Animation____"+time);
 		}
 
 		public void PlayAnimations(List<Global.BattleAnimationType> argTypes,WrapMode mode,bool isStop=false)
