@@ -65,17 +65,12 @@
      <Compile Include="Assets\LuaFramework\ToLua\Editor\ToLuaExport.cs" />
      <Compile Include="Assets\LuaFramework\ToLua\Editor\ToLuaMenu.cs" />
      <Compile Include="Assets\LuaFramework\ToLua\Editor\ToLuaTree.cs" />
-     <None Include="Assets\codeandweb.com\Editor\SettingsTexturePackerImporter.txt" />
      <None Include="Assets\Shader\Toony-BasicOutline.shader" />
      <None Include="Assets\Shader\Toony-Basic.shader" />
      <None Include="Assets\StreamingAssets\files.txt" />
      <None Include="Assets\LuaFramework\ToLua\readme.txt" />
-     <None Include="Assets\codeandweb.com\Readme.txt" />
  <Reference Include="Assembly-UnityScript">
  <HintPath>E:/WorkSpace_Demo/trunk/LuaFramework_UGUI-master/Library/ScriptAssemblies/Assembly-UnityScript.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Advertisements">
- <HintPath>E:/Program Files/Unity5.5.0/Editor/Data/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Advertisements">
  <HintPath>E:/Program Files/Unity5.5.0/Editor/Data/UnityExtensions/Unity/Advertisements/Editor/UnityEditor.Advertisements.dll</HintPath>
@@ -119,17 +114,11 @@
  <Reference Include="UnityEngine.HoloLens">
  <HintPath>E:/Program Files/Unity5.5.0/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
  </Reference>
- <Reference Include="UnityEngine.Purchasing">
- <HintPath>E:/Program Files/Unity5.5.0/Editor/Data/UnityExtensions/Unity/UnityPurchasing/UnityEngine.Purchasing.dll</HintPath>
- </Reference>
  <Reference Include="UnityEditor.VR">
  <HintPath>E:/Program Files/Unity5.5.0/Editor/Data/UnityExtensions/Unity/UnityVR/Editor/UnityEditor.VR.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.VR">
  <HintPath>E:/Program Files/Unity5.5.0/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
- </Reference>
- <Reference Include="TexturePackerImporter">
- <HintPath>E:/WorkSpace_Demo/trunk/LuaFramework_UGUI-master/Assets/codeandweb.com/Editor/TexturePackerImporter.dll</HintPath>
  </Reference>
  <Reference Include="Debugger">
  <HintPath>E:/WorkSpace_Demo/trunk/LuaFramework_UGUI-master/Assets/Plugins/Debugger.dll</HintPath>

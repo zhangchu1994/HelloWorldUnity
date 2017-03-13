@@ -246,6 +246,7 @@
      <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\UnityEngine_ResourcesWrap.cs" />
      <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\UnityEngine_RigidbodyWrap.cs" />
      <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\UnityEngine_SceneManagement_SceneManagerWrap.cs" />
+     <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\UnityEngine_SceneManagement_SceneWrap.cs" />
      <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\UnityEngine_ScreenWrap.cs" />
      <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\UnityEngine_ShaderWrap.cs" />
      <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\UnityEngine_SkinnedMeshRendererWrap.cs" />
@@ -281,23 +282,22 @@
      <Compile Include="Assets\Scripts\Battle\Monster.cs" />
      <Compile Include="Assets\Scripts\Battle\MonsterAIManager.cs" />
      <Compile Include="Assets\Scripts\Battle\Skill.cs" />
-     <Compile Include="Assets\Scripts\CameraFly.cs" />
+     <Compile Include="Assets\Scripts\CameraControl.cs" />
+     <Compile Include="Assets\Scripts\CameraKeyBoardControl.cs" />
+     <Compile Include="Assets\Scripts\DPanel.cs" />
      <Compile Include="Assets\Scripts\EndlessWord.cs" />
      <Compile Include="Assets\Scripts\Global\ContentScaler.cs" />
+     <Compile Include="Assets\Scripts\Global\DataTables.cs" />
      <Compile Include="Assets\Scripts\Global\Global.cs" />
      <Compile Include="Assets\Scripts\Global\Loading.cs" />
      <Compile Include="Assets\Scripts\Global\RemovePS.cs" />
      <Compile Include="Assets\Scripts\Global\SetRenderQ.cs" />
+     <Compile Include="Assets\Scripts\Global\Utility.cs" />
      <Compile Include="Assets\Scripts\TestClass.cs" />
-     <None Include="Assets\codeandweb.com\Editor\SettingsTexturePackerImporter.txt" />
      <None Include="Assets\Shader\Toony-BasicOutline.shader" />
      <None Include="Assets\Shader\Toony-Basic.shader" />
      <None Include="Assets\StreamingAssets\files.txt" />
      <None Include="Assets\LuaFramework\ToLua\readme.txt" />
-     <None Include="Assets\codeandweb.com\Readme.txt" />
- <Reference Include="UnityEngine.Advertisements">
- <HintPath>E:/Program Files/Unity5.5.0/Editor/Data/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
- </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>E:/Program Files/Unity5.5.0/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
@@ -312,9 +312,6 @@
  </Reference>
  <Reference Include="UnityEngine.HoloLens">
  <HintPath>E:/Program Files/Unity5.5.0/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Purchasing">
- <HintPath>E:/Program Files/Unity5.5.0/Editor/Data/UnityExtensions/Unity/UnityPurchasing/UnityEngine.Purchasing.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.VR">
  <HintPath>E:/Program Files/Unity5.5.0/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
