@@ -26,6 +26,7 @@ end
 
 function BattleSceneUIManager.Start()
     -- log("BattleSceneUIManager.Start______________________________");
+    this.InitView();
 end
 
 function BattleSceneUIManager.Show()
@@ -33,10 +34,10 @@ function BattleSceneUIManager.Show()
 end
 
 function BattleSceneUIManager.Update()
-    if m_firstCreate == false then
-        m_firstCreate = true;
-        this.InitView();
-    end
+    -- if m_firstCreate == false then
+    --     m_firstCreate = true;
+    --     this.InitView();
+    -- end
 end
 
 function BattleSceneUIManager.OnCreate(obj)

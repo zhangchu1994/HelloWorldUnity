@@ -23,11 +23,12 @@ function MainCityUIManager.New()
 end
 
 function MainCityUIManager.Awake()
-    -- log("MainCityUIManager.Awake______________________________");
+    log("MainCityUIManager.Awake______________________________");
 end
 
 function MainCityUIManager.Start()
-    -- log("MainCityUIManager.Start______________________________");
+    log("MainCityUIManager.Start______________________________");
+    this.InitView();
 end
 
 function MainCityUIManager.Show()
@@ -35,19 +36,21 @@ function MainCityUIManager.Show()
 end
 
 function MainCityUIManager.Update()
-    if m_firstCreate == false then
-        m_firstCreate = true;
-        this.InitView();
-    end
+    -- print("Update m_firstCreate = "..tostring(m_firstCreate))
+    -- if m_firstCreate == false then
+    --     m_firstCreate = true;
+    --     this.InitView();
+    -- end
 end
 
 function MainCityUIManager.OnCreate(obj)
+
 end
 
 function MainCityUIManager.InitView()
     log('MainCityUIManager.OnCreate____________');
 
-    m_gameObject = GameObject.Find("Canvas/MainCityPanel");
+    m_gameObject = GameObject.Find("UICamera/Canvas/MainCityPanel");
     m_transform = m_gameObject.transform;
 
     m_Canvas = GameObject.Find("Canvas");
@@ -57,7 +60,7 @@ function MainCityUIManager.InitView()
     m_LuaBehaviour = m_transform:GetComponent('LuaBehaviour');
 
     for i=1,7 do
-        log("Left"..tostring(i));
+        -- log("Left"..tostring(i));
         local loginButton = m_transform:FindChild("Left"..tostring(i)).gameObject;
         m_LuaBehaviour:AddClick(loginButton, this.OnClick);
     end
@@ -75,9 +78,9 @@ function MainCityUIManager.OnClick(go)
     elseif (go.name == "Left2") then
         this.InitGetItemAlert();
     elseif (go.name == "Left3") then
-
+        this.InitGetItemAlert();
     elseif (go.name == "Left4") then
-
+        sceneMgr:GoToScene('bigworld',"BigWorld","BigWorldScene",this.SceneDone); 
     elseif (go.name == "Left5") then
         local ShopPanel = m_CanvasTransform:FindChild("ShopPanel").gameObject;
         ShopPanel.SetActive(ShopPanel,true);
@@ -93,7 +96,7 @@ function MainCityUIManager.InitGetItemAlert()
     go.transform.localScale = Vector3.one;
     go.transform.localPosition = Vector3.zero;
     local LuaBehaviour = go.transform:GetComponent('LuaBehaviour');
-    LuaBehaviour.luaName = "MainCityUIManager";
+    -- LuaBehaviour.luaName = "MainCityUIManager";
     LuaBehaviour:AddiTween(go,"iTweenDone")
 
 
