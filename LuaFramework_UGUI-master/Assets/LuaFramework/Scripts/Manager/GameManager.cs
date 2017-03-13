@@ -6,6 +6,7 @@ using LuaInterface;
 using System.Reflection;
 using System.IO;
 using UnityEngine.SceneManagement;
+using GlobalGame;
 
 namespace LuaFramework 
 {
@@ -266,6 +267,8 @@ namespace LuaFramework
             LuaManager.DoFile("Logic/Game");         //加载游戏
             LuaManager.DoFile("Logic/Network");      //加载网络
             NetManager.OnInit();                     //初始化网络
+			DataTables.Instance.Init();
+
             Util.CallMethod("Game", "OnInitOK");     //初始化完成
 
             initialize = true;

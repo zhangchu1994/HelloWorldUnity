@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
-using System.Collections;
 using LuaInterface;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace LuaFramework {
     public class LuaManager : Manager {
@@ -77,9 +79,10 @@ namespace LuaFramework {
             } 
 			else 
 			{
-				if (Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsEditor) 
+				if (GlobalGame.Global.isMobile() == false) 
 				{
 					lua.AddSearchPath(Application.dataPath + "/ScriptsLua");
+					lua.AddSearchPath(Application.dataPath + "/ScriptsLua/Table");
 				}
 				lua.AddSearchPath(Util.DataPath + "lua");
             }
@@ -91,6 +94,8 @@ namespace LuaFramework {
         void InitLuaBundle() {
             if (loader.beZip) {
                 loader.AddBundle("lua/lua.unity3d");
+				loader.AddBundle("lua/lua_ui.unity3d");
+				loader.AddBundle("lua/lua_table.unity3d");
                 loader.AddBundle("lua/lua_math.unity3d");
                 loader.AddBundle("lua/lua_system.unity3d");
                 loader.AddBundle("lua/lua_system_reflection.unity3d");
@@ -122,6 +127,23 @@ namespace LuaFramework {
             }
             return null;
         }
+
+		// Update is called once per frame
+		public object[] GetLuaTable(string TableName) 
+		{
+			object[] list0 = lua.DoFile(TableName);       
+			LuaTable table = (LuaTable)list0 [0];//lua.GetTable(TableName);
+			object[] list = table.ToArray();
+
+//			for (int i = 0; i < list.Length; i++)
+//			{
+//				LuaTable row = (LuaTable)list [i];
+//				Debugger.Log("_______________________{0}  {1} {2}", row["Id"],row["name"],row["Att"]); 
+//			}
+			table.Dispose();                        
+
+			return list;
+		}
 
         public void LuaGC() {
             lua.LuaGC(LuaGCOptions.LUA_GCCOLLECT);

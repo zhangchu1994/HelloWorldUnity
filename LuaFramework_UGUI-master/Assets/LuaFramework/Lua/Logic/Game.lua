@@ -49,8 +49,10 @@ function Game.OnInitOK()
     coroutine.start(this.test_coroutine);
 
     CtrlManager.Init();
-    local ctrl = CtrlManager.GetCtrl(CtrlNames.Login);
-    if ctrl ~= nil and AppConst.ExampleMode == 1 then
+    local ctrl = CtrlManager.GetCtrl("Login");
+    local scene = SceneManager.GetActiveScene();
+    
+    if ctrl ~= nil and AppConst.ExampleMode == 1 and scene.name == "Login" then
         -- log("Game.OnInitOK_____________ctrl:Show");
         ctrl:InitView();
     end

@@ -1,44 +1,29 @@
 require "Common/define"
-require "Controller/PromptCtrl"
-require "Controller/MessageCtrl"
-require "Login"
-require "MainCityScene"
-require "Actor"
-require "FirstBattleScene"
-require "MainCityUIManager"
-require "BattleSceneUIManager"
-require "BossPanel"
-require "ShopPanel"
+-- require "Controller/PromptCtrl"
+-- require "Controller/MessageCtrl"
+require "UI/Login"
+require "UI/MainCityUIManager"
+require "UI/BattleSceneUIManager"
+require "UI/BossPanel"
+require "UI/ShopPanel"
+require "UI/BigWorld"
 
 
 CtrlManager = {};
 local this = CtrlManager;
 local ctrlList = {};	--控制器列表--
 
-CtrlNames = 
-{
-	Prompt = "PromptCtrl",
-	Message = "MessageCtrl",
-	Login = "Login",
-	MainCityScene = "MainCityScene",
-	Actor = "Actor",
-	FirstBattleScene = "FirstBattleScene",
-	MainCityUIManager = "MainCityUIManager",
-	BattleSceneUIManager = "BattleSceneUIManager",
-	BossPanel = "BossPanel",
-	ShopPanel = "ShopPanel",
-}
-
 function CtrlManager.Init()
 	logWarn("CtrlManager.Init----->>>");
-	ctrlList[CtrlNames.Prompt] = PromptCtrl.New();
-	ctrlList[CtrlNames.Message] = MessageCtrl.New();
-	ctrlList[CtrlNames.Login] = Login.New();
-	ctrlList[CtrlNames.MainCityScene] = MainCityScene.New();
-	ctrlList[CtrlNames.FirstBattleScene] = FirstBattleScene.New();
-	ctrlList[CtrlNames.MainCityUIManager] = MainCityUIManager.New();
-	ctrlList[CtrlNames.BossPanel] = BossPanel.New();
-	ctrlList[CtrlNames.ShopPanel] = ShopPanel.New();
+	-- ctrlList["PromptCtrl"] = PromptCtrl.New();
+	-- ctrlList["MessageCtrl"] = MessageCtrl.New();
+	ctrlList["Login"] = Login.New();
+	-- ctrlList["MainCityScene"] = MainCityScene.New();
+	-- ctrlList["FirstBattleScene"] = FirstBattleScene.New();
+	ctrlList["MainCityUIManager"] = MainCityUIManager.New();
+	ctrlList["BossPanel"] = BossPanel.New();
+	ctrlList["ShopPanel"] = ShopPanel.New();
+	ctrlList["BigWorld"] = BigWorld.New();
 	return this;
 end
 
