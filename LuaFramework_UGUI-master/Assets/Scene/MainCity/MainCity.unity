@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 1389089}
   - component: {fileID: 1389088}
   m_Layer: 5
-  m_Name: LoginCanvas
+  m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -938,10 +938,6 @@ Light:
   m_BounceIntensity: 5.83
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!1 &590696294 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 100000, guid: 43932416695638548b4e690a15ca5d1b, type: 2}
-  m_PrefabInternal: {fileID: 1708501199}
 --- !u!1 &662356707
 GameObject:
   m_ObjectHideFlags: 0
@@ -1209,8 +1205,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 897794021}
-  m_LocalRotation: {x: -0.028234184, y: 0.971017, z: -0.18605086, w: -0.14735673}
-  m_LocalPosition: {x: 140.32675, y: 13.314812, z: 30.671295}
+  m_LocalRotation: {x: -0.0069794813, y: -0.96978116, z: 0.24227124, w: -0.02793786}
+  m_LocalPosition: {x: 117.85785, y: 29.252533, z: 42.70677}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1227,7 +1223,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e19a9953f53099c449bd98a8a62557ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PS: {fileID: 590696294}
+  m_Start: {fileID: 0}
+  m_End: {fileID: 0}
 --- !u!114 &897794028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1242,6 +1239,8 @@ MonoBehaviour:
   minFov: 15
   maxFov: 90
   sensitivity: 10
+  perspectiveZoomSpeed: 0.5
+  orthoZoomSpeed: 0.5
 --- !u!1 &1104973308
 GameObject:
   m_ObjectHideFlags: 0
@@ -1434,7 +1433,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1119616074}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e86ebbc782f0f64d809698999d8dcf6, type: 3}
   m_Name: 
@@ -1464,7 +1463,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!92 &1184078107
 Behaviour:
   m_ObjectHideFlags: 0
@@ -2476,12 +2475,12 @@ GameObject:
   - component: {fileID: 1768077369}
   - component: {fileID: 1768077368}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: TestGameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1768077368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2909,7 +2908,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 0
-  m_Text: "\u953B\u9020"
+  m_Text: "\u4E16\u754C"
 --- !u!222 &1995380213
 CanvasRenderer:
   m_ObjectHideFlags: 0
