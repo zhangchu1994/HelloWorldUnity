@@ -6,15 +6,6 @@ using UnityEngine.AI;
 
 namespace GlobalGame 
 {
-	public class ActorData
-	{
-		public float m_Hp = 100f;
-		public float m_MaxHp = 100f;
-		public float m_Cd = 1f;
-		public float m_CurCd = -1f;
-	}
-
-
 	public class Actor : MonoBehaviour
 	{
 		public enum ActorStatus
@@ -57,53 +48,10 @@ namespace GlobalGame
 
 		public GameObject m_CurrentTarget;
 
+		#region Init
 		void Start()
 		{
-			
-		}
 
-		public bool IsActorStatus(ActorStatus status)
-		{
-			if (m_ActorStatus == status) 
-				return true;
-			else
-				return false;
-		}
-
-
-		public void SetActorStatus(ActorStatus status,bool needPlayAnimation = false)
-		{	
-			if (m_ActorStatus == status)
-				return;
-
-//			Global.BattleLog (this, status.ToString());
-			m_ActorStatus = status;
-
-			if (status == Actor.ActorStatus.Stand) 
-			{
-				m_ActorData.m_CurCd = -1f;
-			}
-
-
-			if (needPlayAnimation == true) 
-			{
-				if (status == Actor.ActorStatus.Stand) 
-				{
-//					Color color = gameObject.GetComponentInChildren<Renderer> ().material.color;
-//					gameObject.GetComponentInChildren<Renderer>().material.color = new Color(color.r ,color.g , color.b, 1f);;
-					m_ActorAnimationManager.PlayAnimation (Global.BattleAnimationType.Stand, WrapMode.Loop);
-				} 
-				else if (status == Actor.ActorStatus.Agent || status == Actor.ActorStatus.Follow) 
-				{
-					m_ActorAnimationManager.PlayAnimation (Global.BattleAnimationType.Run, WrapMode.Loop);
-				} 
-				else if (status == Actor.ActorStatus.Dead ) 
-				{
-//					Color color = gameObject.GetComponentInChildren<Renderer> ().material.color;
-//					gameObject.GetComponentInChildren<Renderer>().material.color = new Color(color.r ,color.g , color.b, 0.4f);;
-					m_ActorAnimationManager.PlayAnimation (Global.BattleAnimationType.Dead, WrapMode.Once);
-				}
-			}
 		}
 
 		public void InitActor (GameObject obj,int argIndex) 
@@ -120,12 +68,14 @@ namespace GlobalGame
 			m_Index = argIndex;
 			m_ActorObject = obj;
 
-			m_ActorData = new ActorData ();
+			m_ActorData = DataTables.GetUserData (m_Index+1);
 
 			m_ActorAgentManager = m_ActorObject.AddComponent<ActorAgentManager> ();
-
-			m_ActorBodyManager = m_ActorObject.AddComponent<ActorBobyManager> ();
-			m_ActorBodyManager.InitBoby ();
+			if (argIndex == 0) 
+			{
+				m_ActorBodyManager = m_ActorObject.AddComponent<ActorBobyManager> ();
+				m_ActorBodyManager.InitBoby ();
+			}
 
 			m_ActorUIManager = m_ActorObject.AddComponent<ActorUIManager> ();
 			m_ActorUIManager.InitActorBlood();
@@ -141,33 +91,16 @@ namespace GlobalGame
 			m_ActorSkillManager.InitSkillManager ();
 //			Util.CallMethod("FirstBattleScene", "ActorDone");
 		}
+		#endregion
 
-		public void StartAttack()
-		{
-			m_ActorData.m_CurCd = 0;
-			m_ActorSkillManager.StartUseSkill ();
-		}
-
-		public void AgentDone()
-		{
-			if (IsActorStatus(Actor.ActorStatus.AgentToAttack) == true) 
-			{
-				StartAttack ();
-				SetActorStatus(Actor.ActorStatus.Attack);
-			} 
-			else if (IsActorStatus(Actor.ActorStatus.Agent) == true) 
-			{
-				m_ActorAnimationManager.PlayAnimation (Global.BattleAnimationType.Stand, WrapMode.Loop);
-				SetActorStatus(Actor.ActorStatus.Stand);
-			}
-		}
-
+		#region Update
 		void Update () 
 		{
 			if (m_ActorData.m_CurCd == -1f)
 				return;
 			m_ActorData.m_CurCd += Time.deltaTime;
-//			Debug.Log ("Update____CurCd = "+m_ActorData.m_CurCd);
+//			if (this.name == "Actor1")
+//				Debug.Log ("Update____CurCd = "+m_ActorData.m_CurCd);
 			if (m_ActorData.m_CurCd >= m_ActorData.m_Cd && IsActorStatus(Actor.ActorStatus.Attack) == true) 
 			{
 				if (BattleScene.Active.GetCurrentMonsterObj () != m_CurrentTarget)
@@ -176,22 +109,70 @@ namespace GlobalGame
 					StartAttack();
 			}
 		}
+		#endregion
 
+		#region Status
+		public bool IsActorStatus(ActorStatus status)
+		{
+			if (m_ActorStatus == status) 
+				return true;
+			else
+				return false;
+		}
+
+
+		public void SetActorStatus(ActorStatus status,bool needPlayAnimation = false)
+		{	
+			if (m_ActorStatus == status)
+				return;
+
+			//			Global.BattleLog (this, status.ToString());
+			m_ActorStatus = status;
+
+			if (status == Actor.ActorStatus.Stand) 
+			{
+				m_ActorData.m_CurCd = -1f;
+			}
+
+			if (needPlayAnimation == true) 
+			{
+				if (status == Actor.ActorStatus.Stand) 
+				{
+					m_ActorAnimationManager.PlayAnimation (Global.BattleAnimationType.Stand, WrapMode.Loop);
+				} 
+				else if (status == Actor.ActorStatus.Agent || status == Actor.ActorStatus.Follow) 
+				{
+					m_ActorAnimationManager.PlayAnimation (Global.BattleAnimationType.Run, WrapMode.Loop);
+				} 
+				else if (status == Actor.ActorStatus.Dead ) 
+				{
+					m_ActorAnimationManager.PlayAnimation (Global.BattleAnimationType.Dead, WrapMode.Once);
+				}
+			}
+		}
+		#endregion
+
+
+		#region HP
 		public void AddHp(float arghp)
 		{
-			float hp = m_ActorData.m_Hp + arghp;
+			if (m_ActorData.m_CurHp <= 0)
+				return;
+			m_ActorUIManager.InitLoseBlood(arghp);
+			float hp = m_ActorData.m_CurHp + arghp;
 			if (hp > m_ActorData.m_MaxHp)
 				hp = m_ActorData.m_MaxHp;
 			else if (hp < 0)
 				hp = 0;
-			m_ActorData.m_Hp = hp;
+			m_ActorData.m_CurHp = hp;
 
-			float percent = m_ActorData.m_Hp / m_ActorData.m_MaxHp;
-//			Debug.Log ("percent = " + percent);
+			float percent = m_ActorData.m_CurHp / m_ActorData.m_MaxHp;
+//			Debug.Log ("percent = " + percent+" name = "+this.name+" m_CurHp = "+m_ActorData.m_CurHp+" arghp = "+arghp);
 			m_ActorUIManager.UpdateBloodRatio (percent);
 
 
-			if (hp <= 0 && IsActorStatus (Actor.ActorStatus.Dead) == false) {
+			if (hp <= 0 && IsActorStatus (Actor.ActorStatus.Dead) == false) 
+			{
 				SetActorStatus (Actor.ActorStatus.Dead, true);
 				BattleScene.Active.CurrentMonsterDie ();
 			} 
@@ -199,6 +180,18 @@ namespace GlobalGame
 			{
 				m_ActorAnimationManager.PlayAnimation (Global.BattleAnimationType.Hurt,WrapMode.Once);
 			}
+		}
+
+		public void LoseBlood(Actor attacker,float damage)//怪物掉血
+		{
+			AddHp (damage);
+		}
+		#endregion
+
+		#region Attack
+		public void SetCurrentTarget(GameObject Obj)
+		{
+			m_CurrentTarget = Obj;
 		}
 
 		public void MonsterToAttack(GameObject obj)
@@ -211,23 +204,11 @@ namespace GlobalGame
 					continue;
 				if (monsterObject.name == obj.name) 
 				{
-//					Actor actor = m_actorList[0];
+					//					Actor actor = m_actorList[0];
 					SetActorStatus(ActorStatus.AgentToAttack);
 					m_ActorAgentManager.SetDestination (monsterObject.transform.position,Vector3.zero);
 				} 
 			}
-		}
-
-		public void LoseBlood(Actor attacker,float damage)//怪物掉血
-		{
-			m_ActorUIManager.InitLoseBlood(damage);
-			AddHp (damage);
-//			m_ActorAnimationManager.PlayAnimations (Global.GetAnimRestoreList(Global.BattleAnimationType.Hurt),WrapMode.Once);
-		}
-
-		public void SetCurrentTarget(GameObject Obj)
-		{
-			m_CurrentTarget = Obj;
 		}
 
 		public void ShootFront(GameObject obj)//RaycastHit hit
@@ -249,20 +230,30 @@ namespace GlobalGame
 			actor.m_ActorAnimationManager.PlayAnimation (Global.BattleAnimationType.Attack, WrapMode.Loop, true);
 		}
 
+		public void StartAttack()
+		{
+			m_ActorData.m_CurCd = 0;
+			m_ActorSkillManager.StartUseSkill ();
+		}
+
+		public void AgentDone()
+		{
+			if (IsActorStatus(Actor.ActorStatus.AgentToAttack) == true) 
+			{
+				StartAttack ();
+				SetActorStatus(Actor.ActorStatus.Attack);
+			} 
+			else if (IsActorStatus(Actor.ActorStatus.Agent) == true) 
+			{
+				m_ActorAnimationManager.PlayAnimation (Global.BattleAnimationType.Stand, WrapMode.Loop);
+				SetActorStatus(Actor.ActorStatus.Stand);
+			}
+		}
+		#endregion
+
 		public void ActorDeadAnimationDone()
 		{
 			BattleScene.Active.DestoryMonster (this.gameObject,this);
 		}
-
-		public void GetAlive()
-		{
-			if (IsActorStatus(ActorStatus.Dead))
-			{
-				Debug.Log ("GetAlive live = "+this.gameObject.name);
-				SetActorStatus (ActorStatus.Stand,true);
-				AddHp (100);
-			}
-		}
-//		}
 	}
 }

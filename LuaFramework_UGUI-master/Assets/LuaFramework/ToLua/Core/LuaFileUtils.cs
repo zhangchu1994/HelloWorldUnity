@@ -79,7 +79,7 @@ namespace LuaInterface
         //格式: 路径/?.lua
         public bool AddSearchPath(string path, bool front = false)
         {
-			Debug.Log ("AddSearchPath111 path = "+path+" front = "+front);
+//			Debug.Log ("AddSearchPath111 path = "+path+" front = "+front);
             int index = searchPaths.IndexOf(path);
 
             if (index >= 0)

@@ -30,9 +30,9 @@ return {
 		Id = 3,
 		Name = "抛物线",
 		SkillType1 = 1,
-		SkillType2 = 4,
+		SkillType2 = 6,
 		Target = 0,
 		Range = 0,
-		Radius = 7,
+		Radius = 5.1,
 	},
 }

@@ -6,17 +6,22 @@ using LuaInterface;
 
 namespace GlobalGame 
 {
-	public class UserData
+	public class ActorData
 	{
 		public int m_Id;	
 		public string m_Name;	
 		public int m_Professional;
-		public int m_Life;
+		public int m_MaxHp;
 		public int m_Attack;
 		public int m_Defence;
 		public int m_Speed;
 		public int m_AttackSpeed;	
 		public int m_AttackDis;
+		public float m_Cd;
+
+		//非表字段
+		public float m_CurCd = -1;
+		public float m_CurHp = -1;
 	}
 
 	public class SkillData
@@ -57,7 +62,7 @@ namespace GlobalGame
 		}
 
 		private static Dictionary<int, SkillData> m_SkillTable = null;
-		private static Dictionary<int, UserData> m_UserTable = null;
+		private static Dictionary<int, ActorData> m_UserTable = null;
 		private LuaManager luaManager;
 
 		public void Init()
@@ -75,7 +80,7 @@ namespace GlobalGame
 				ReadUserTable ();
 //				yield return Utility.CoroutineContainer.StartCoroutine(ReadUserTable());
 			}
-			Debug.Log ("Init_____________________________________");
+//			Debug.Log ("Init_____________________________________");
 		}
 
 		private void ReadSkillTable()
@@ -87,7 +92,7 @@ namespace GlobalGame
 			{
 				LuaTable row = (LuaTable)list [i];
 				SkillData data = new SkillData();
-				Debugger.Log ("{0},{1},{2}",row ["Id"],row ["Name"],row ["SkillType1"]);
+//				Debugger.Log ("{0},{1},{2}",row ["Id"],row ["Name"],row ["SkillType1"]);
 
 				data.m_Id = int.Parse (row ["Id"].ToString ());
 				data.m_Name = row ["Name"].ToString ();
@@ -121,33 +126,35 @@ namespace GlobalGame
 		private void ReadUserTable()
 		{
 			object[] list = luaManager.GetLuaTable ("User.lua");
-			m_UserTable = new Dictionary<int, UserData>();
+			m_UserTable = new Dictionary<int, ActorData>();
 
 			for (int i = 0; i < list.Length; i++)
 			{
 				LuaTable row = (LuaTable)list [i];
-				UserData data = new UserData();
+				ActorData data = new ActorData();
 
 				data.m_Id = int.Parse (row ["Id"].ToString());
 				data.m_Name = (string)row ["Name"];	
 				data.m_Professional = int.Parse (row ["Professional"].ToString());
-				data.m_Life = int.Parse (row ["Life"].ToString());
+				data.m_MaxHp = int.Parse (row ["Life"].ToString());
 				data.m_Attack =int.Parse (row ["Attack"].ToString());
 				data.m_Defence = int.Parse (row ["Defence"].ToString());
 				data.m_Speed = int.Parse (row ["Speed"].ToString());
 				data.m_AttackSpeed = int.Parse (row ["AttackSpeed"].ToString());
 				data.m_AttackDis = int.Parse (row ["AttackDis"].ToString());
+				data.m_Cd = float.Parse (row ["CD"].ToString());
 
+				data.m_CurHp = data.m_MaxHp;
 				m_UserTable [data.m_Id] = data;
 			}
 		}
 
-		static public UserData GetUserData(int Id)
+		static public ActorData GetUserData(int Id)
 		{
 			if (m_UserTable != null && Id > 0)
 			{
 
-				UserData sd;
+				ActorData sd;
 				if (m_UserTable.TryGetValue(Id, out sd))
 				{
 					return sd;

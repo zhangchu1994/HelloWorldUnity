@@ -32,9 +32,9 @@ namespace LuaFramework {
 //        public const string WebUrl = "http://localhost:6688/";      //测试更新地址
 		public const string WebUrl = "http://192.168.1.101:9080/luaframework/";      //测试更新地址
 
-        public static string UserId = string.Empty;                 //用户ID
-        public static int SocketPort = 0;                           //Socket服务器端口
-        public static string SocketAddress = string.Empty;          //Socket服务器地址
+        public static string UserId = "0";                 //用户ID
+		public static int SocketPort = 8003;                           //Socket服务器端口
+		public static string SocketAddress = "120.92.63.207";//string.Empty;          //Socket服务器地址
 
         public static string FrameworkRoot {
             get {

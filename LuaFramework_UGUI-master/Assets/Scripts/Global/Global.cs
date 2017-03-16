@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Newtonsoft.Json;
 
 namespace GlobalGame 
 {
@@ -77,6 +78,12 @@ namespace GlobalGame
 
 				Obj.transform.localScale *= SetScale;
 			}
+		}
+
+		public static T Clone<T>(T source)
+		{
+			var serialized = JsonConvert.SerializeObject(source);
+			return JsonConvert.DeserializeObject<T>(serialized);
 		}
 
 		public static void BattleLog(Actor actor,string argString)

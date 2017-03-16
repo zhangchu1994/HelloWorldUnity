@@ -8,6 +8,7 @@
 -- Speed                            int                              移动速度
 -- AttackSpeed                      int                              攻击速度
 -- AttackDis                        int                              攻击距离
+-- CD                               float                            CD时间
 
 return {
 	[1] = {
@@ -20,6 +21,7 @@ return {
 		Speed = 10,
 		AttackSpeed = 10,
 		AttackDis = 10,
+		CD = 1,
 	},
 	[2] = {
 		Id = 2,
@@ -31,6 +33,7 @@ return {
 		Speed = 10,
 		AttackSpeed = 10,
 		AttackDis = 10,
+		CD = 1.5,
 	},
 	[3] = {
 		Id = 3,
@@ -42,5 +45,6 @@ return {
 		Speed = 10,
 		AttackSpeed = 10,
 		AttackDis = 10,
+		CD = 1.5,
 	},
 }

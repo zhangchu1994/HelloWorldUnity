@@ -8,12 +8,14 @@ namespace GlobalGame
 	public class ActorUIManager : MonoBehaviour 
 	{
 		public GameObject m_CanvasParent;
+		private Actor m_MainActor;
 		GameObject m_Blood;//血条GameObject
 		Slider m_Slider;//血条Slider
 		List<GameObject> m_DamageText = new List<GameObject>();//掉的血
 
 		void Awake()
 		{
+			m_MainActor = this.transform.GetComponent<Actor> ();
 			m_CanvasParent = GameObject.Find ("Canvas");
 		}
 
@@ -32,13 +34,21 @@ namespace GlobalGame
 			}
 		}
 
+//		int Rom()
+//		{
+//			
+//		}
+
 
 		public void InitLoseBlood(float blood)
 		{
 			Object m_TextPrefab = Resources.Load ("BloodText");
 			GameObject t = Instantiate(m_TextPrefab) as GameObject;
 			t.transform.SetParent(m_CanvasParent.transform, false);
-			t.name = "BloodText" + this.name+m_DamageText.Count.ToString();
+//			t.name = "BloodText" + this.name+m_DamageText.Count.ToString();
+			float number = Random.Range(-1.0f, 1.0f);
+			t.name =  number.ToString();
+			t.tag = "LoseBloodText";
 			Text text = t.GetComponent<Text> ();
 			text.text = blood.ToString();
 			m_DamageText.Add (t);
@@ -81,8 +91,19 @@ namespace GlobalGame
 			Transform trans = this.transform;
 			if (obj == null)
 				return;
+			
 			RectTransform Rect = obj.GetComponent<RectTransform> ();
-			Vector3 position = trans.GetComponent<Collider>().bounds.center + (((Vector3.up * trans.GetComponent<Collider>().bounds.size.y) * 0.6f));
+			Vector3 center0 = trans.GetComponent<Collider>().bounds.center;
+
+			Vector3 center = new Vector3(center0.x,center0.y,center0.z);
+			if (obj.CompareTag ("LoseBloodText")) 
+			{
+				float x = float.Parse (obj.name); 
+//				if (m_MainActor.name == "Monster1" && obj != m_Blood)
+//				Debug.Log ("UpdatePosition_______ = "+x);
+				center = new Vector3(center0.x+x,center0.y,center0.z);
+			}
+			Vector3 position = center + (((Vector3.up * trans.GetComponent<Collider>().bounds.size.y) * 0.6f));
 			Vector3 front = position - Camera.main.transform.position;
 
 			//its in camera view

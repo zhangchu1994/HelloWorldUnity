@@ -45,7 +45,7 @@ function Login.OnCreate(obj)
 end
 
 function Login.InitView()
-    log('Login.InitView____________');
+    -- log('Login.InitView____________');
     m_gameObject = GameObject.Find("LoginCanvas");
     m_transform =  GameObject.Find("LoginCanvas").transform;
 

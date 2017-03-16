@@ -33,7 +33,17 @@ namespace GlobalGame
 		Skill m_Skill;
 		SkillData m_SkillData;
 
-		// Use this for initialization
+		//抛物线相关参数
+		public float m_ParabolaGravity = 3.8f;  
+		private float m_ParabolaFlyTime;  
+
+		public float m_ParabolaSpeed = 5;  
+		private float  m_ParabolaVerticalSpeed;  
+		private Vector3 m_ParabolaMoveDirection;  
+
+		private float m_ParabolaAngleSpeed;  
+		private float m_ParabolaAngle;  
+
 		void Start() 
 		{
 			
@@ -64,7 +74,7 @@ namespace GlobalGame
 			}
 			else if (m_type == Type.PARABOLA_MOTION_WITHTARGET) 
 			{
-				InitParabolaMotionWithTarget ();
+//				InitParabolaMotionWithTarget ();
 			}
 			else if (m_type == Type.PARABOLA_MOTION_NOTARGET) 
 			{
@@ -72,43 +82,32 @@ namespace GlobalGame
 			}
 			else if (m_type == Type.Spiral) 
 			{
-				InitSpiral ();
+//				InitSpiral ();
 			}
 		}
 
-		void InitSpiral()
-		{
-			
-		}
+//		void InitSpiral()
+//		{
+//			
+//		}
 
-
-		public float m_ParabolaGravity = 3.8f;  
-		private float m_ParabolaFlyTime;  
-
-		public float m_ParabolaSpeed = 5;  
-		private float  m_ParabolaVerticalSpeed;  
-		private Vector3 m_ParabolaMoveDirection;  
-
-		private float m_ParabolaAngleSpeed;  
-		private float m_ParabolaAngle;  
-
-		void InitParabolaMotionWithTarget()
-		{
-			float tmepDistance = Vector3.Distance(transform.position, m_defender.transform.position);  
-			float tempTime = tmepDistance / m_ParabolaSpeed;  
-			float riseTime, downTime;  
-			riseTime = downTime = tempTime / 2;  
-			m_ParabolaVerticalSpeed = m_ParabolaGravity * riseTime;  
-			transform.LookAt(m_defender.transform.position);  
-
-			float tempTan = m_ParabolaVerticalSpeed / m_ParabolaSpeed;  
-			double hu = Math.Atan(tempTan);  
-			m_ParabolaAngle = (float)(180 / Math.PI * hu);  
-			transform.eulerAngles = new Vector3(-m_ParabolaAngle, transform.eulerAngles.y, transform.eulerAngles.z);  
-			m_ParabolaAngleSpeed = m_ParabolaAngle / riseTime;  
-
-			m_ParabolaMoveDirection = m_defender.transform.position - transform.position;  
-		}
+//		void InitParabolaMotionWithTarget()
+//		{
+//			float tmepDistance = Vector3.Distance(transform.position, m_defender.transform.position);  
+//			float tempTime = tmepDistance / m_ParabolaSpeed;  
+//			float riseTime, downTime;  
+//			riseTime = downTime = tempTime / 2;  
+//			m_ParabolaVerticalSpeed = m_ParabolaGravity * riseTime;  
+//			transform.LookAt(m_defender.transform.position);  
+//
+//			float tempTan = m_ParabolaVerticalSpeed / m_ParabolaSpeed;  
+//			double hu = Math.Atan(tempTan);  
+//			m_ParabolaAngle = (float)(180 / Math.PI * hu);  
+//			transform.eulerAngles = new Vector3(-m_ParabolaAngle, transform.eulerAngles.y, transform.eulerAngles.z);  
+//			m_ParabolaAngleSpeed = m_ParabolaAngle / riseTime;  
+//
+//			m_ParabolaMoveDirection = m_defender.transform.position - transform.position;  
+//		}
 
 		void FixedUpdate () 
 		{
@@ -119,64 +118,65 @@ namespace GlobalGame
 			} 
 			else if (m_type == Type.TARGET_RECTILINEAR_MOTION) 
 			{
-//				UpdateRectilinearMotion ();
+				UpdateRectilinearMotion ();
 			}
 			else if (m_type == Type.PARABOLA_MOTION_WITHTARGET) 
 			{
-				UpdateParabolaMotionWithTarget ();
+//				UpdateParabolaMotionWithTarget ();
 			}
 			else if (m_type == Type.PARABOLA_MOTION_NOTARGET) 
 			{
-				UpdateParabolaMotionNoTarget ();
+//				UpdateParabolaMotionNoTarget ();
 			}
 			else if (m_type == Type.Spiral) 
 			{
-				UpdateSpiral ();
+//				UpdateSpiral ();
 			}
 		}
 
-		void UpdateSpiral()//12.螺旋
-		{
-			this.gameObject.transform.Translate(Vector3.forward *5* Time.deltaTime);
-
-			GameObject dot = this.gameObject.transform.FindChild ("Dot").gameObject;
-			GameObject particle = this.gameObject.transform.FindChild ("Flash_Main").gameObject;
-			particle.transform.RotateAround(dot.transform.position,Vector3.up*10,300*Time.deltaTime);
-			particle.transform.Rotate(Vector3.up, 20*Time.deltaTime, Space.World);
-
-		}
-
-		void UpdateParabolaMotionNoTarget()//5.抛物线
-		{
-			if( GetComponent<Rigidbody>() )
-			{
-				Vector3 forward = transform.forward;
-				//			Vector3 forward = transform.TransformDirection(Vector3.forward);
-				GetComponent<Rigidbody>().AddForce(new Vector3(10,15,0));
-			}
-		}
-
-		void UpdateParabolaMotionWithTarget()//4.抛物线
-		{
-			if (m_defender == null)
-				return;
-			if (transform.position.y < m_defender.transform.position.y)  
-			{  
-				return;  
-			}  
-			m_ParabolaFlyTime += Time.deltaTime;  
-			float test = m_ParabolaVerticalSpeed - m_ParabolaGravity * m_ParabolaFlyTime;  
-			transform.Translate(m_ParabolaMoveDirection.normalized * m_ParabolaSpeed * Time.deltaTime, Space.World);  
-			transform.Translate(new Vector3(0f,1f,0f)* test * Time.deltaTime,Space.World);  
-			float testAngle = -m_ParabolaAngle + m_ParabolaAngleSpeed * m_ParabolaFlyTime;  
-			transform.eulerAngles = new Vector3(testAngle, transform.eulerAngles.y, transform.eulerAngles.z);  
-//			Debug.Log ("position = "+transform.position.ToString()+" testAngle = "+testAngle);
-		}
+//		void UpdateSpiral()//12.螺旋
+//		{
+//			this.gameObject.transform.Translate(Vector3.forward *5* Time.deltaTime);
+//
+//			GameObject dot = this.gameObject.transform.FindChild ("Dot").gameObject;
+//			GameObject particle = this.gameObject.transform.FindChild ("Flash_Main").gameObject;
+//			particle.transform.RotateAround(dot.transform.position,Vector3.up*10,300*Time.deltaTime);
+//			particle.transform.Rotate(Vector3.up, 20*Time.deltaTime, Space.World);
+//
+//		}
+//
+//		void UpdateParabolaMotionNoTarget()//5.抛物线
+//		{
+//			if( GetComponent<Rigidbody>() )
+//			{
+//				Vector3 forward = transform.forward;
+//				//			Vector3 forward = transform.TransformDirection(Vector3.forward);
+//				GetComponent<Rigidbody>().AddForce(new Vector3(10,15,0));
+//			}
+//		}
+//
+//		void UpdateParabolaMotionWithTarget()//4.抛物线
+//		{
+//			if (m_defender == null)
+//				return;
+//			if (transform.position.y < m_defender.transform.position.y)  
+//			{  
+//				return;  
+//			}  
+//			m_ParabolaFlyTime += Time.deltaTime;  
+//			float test = m_ParabolaVerticalSpeed - m_ParabolaGravity * m_ParabolaFlyTime;  
+//			transform.Translate(m_ParabolaMoveDirection.normalized * m_ParabolaSpeed * Time.deltaTime, Space.World);  
+//			transform.Translate(new Vector3(0f,1f,0f)* test * Time.deltaTime,Space.World);  
+//			float testAngle = -m_ParabolaAngle + m_ParabolaAngleSpeed * m_ParabolaFlyTime;  
+//			transform.eulerAngles = new Vector3(testAngle, transform.eulerAngles.y, transform.eulerAngles.z);  
+////			Debug.Log ("position = "+transform.position.ToString()+" testAngle = "+testAngle);
+//		}
 
 		void UpdateRectilinearMotion()//6.直线运动
 		{
 			if( GetComponent<Rigidbody>() )
 			{
+//				Debug.Log (this.gameObject.transform.position.ToString());
 				Vector3 forward = transform.forward;
 //			Vector3 forward = transform.TransformDirection(Vector3.forward);
 				GetComponent<Rigidbody>().MovePosition( GetComponent<Rigidbody>().position + forward * m_Speed * Time.fixedDeltaTime );
@@ -187,10 +187,10 @@ namespace GlobalGame
 		void OnTriggerEnter(Collider other) 
 		{
 //			
-			if (other.gameObject != null && m_defender != null && other.gameObject.name == m_defender.name) 
+			if (other.gameObject != null && m_defender != null && other.gameObject.CompareTag(Global.TagName_Enemy)) //&& other.gameObject.name == m_defender.name
 			{
 //				Debug.Log ("OnTriggerEnter______________" + other.gameObject.name);
-				Monster monster = m_defender.GetComponent<Monster> ();
+				Monster monster = other.gameObject.GetComponent<Monster> ();
 				monster.LoseBlood (m_AttActor,-10f);
 //				Destroy(this.gameObject);
 			}

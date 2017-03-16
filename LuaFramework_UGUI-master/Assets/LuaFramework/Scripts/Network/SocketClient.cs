@@ -125,7 +125,7 @@ public class SocketClient {
         ByteBuffer buffer = new ByteBuffer();
         buffer.WriteShort((ushort)protocal);
         NetworkManager.AddEvent(protocal, buffer);
-        Debug.LogError("Connection was closed by the server:>" + msg + " Distype:>" + dis);
+//        Debug.LogError("Connection was closed by the server:>" + msg + " Distype:>" + dis);
     }
 
     /// <summary>

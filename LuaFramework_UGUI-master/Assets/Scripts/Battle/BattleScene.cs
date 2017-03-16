@@ -11,7 +11,7 @@ namespace GlobalGame
 		public static BattleScene Active = null;
 
 		private int m_MonsterPlaceCount = 4;//有几处怪
-		private int m_MonsterCount = 5;
+//		private int m_MonsterCount = 5;
 
 
 		public GameObject m_StartPoint;
@@ -63,10 +63,10 @@ namespace GlobalGame
 
 		void InitBattleRole()
 		{
+			string[] names = {"Actor/Actor1/ch_pc_hou","Actor/Actor2","Actor/Actor2"};
 			for (int i = 0; i < 3; i++) 
 			{
-				string skeleton = "ch_pc_hou";
-				Object res = Resources.Load ("Actor/Actor1/" + skeleton);
+				Object res = Resources.Load (names[i]);
 				GameObject ActorObject = GameObject.Instantiate (res) as GameObject;
 				Actor actor = ActorObject.GetComponent<Actor>();
 				ActorObject.name = Global.GetActorNmae(i);
@@ -103,21 +103,37 @@ namespace GlobalGame
 			m_monsterObjList.Clear ();
 			m_monsterList.Clear ();
 			string[] nameList = { "enemy/01-FlowerMonster-Blue", "enemy/03-MaskedOrc-Grey","enemy/01-FlowerMonster-Blue","enemy/03-MaskedOrc-Grey" };
+			float num = 1.5f;
+			float[] xOffet = {0,-num,num,-num,num };
+			float[] zOffet = {0,-num,-num,num,num };
 			string name = nameList [m_FightIndex];
 			GameObject startPoint = m_MonsterPoints [m_FightIndex];
-			for (int i = 0; i < m_MonsterCount; i++) 
+			int monsterCount = GetMonsterCount ();
+			for (int i = 0; i < monsterCount; i++) 
 			{
+				if (m_FightIndex == 3)
+					name = "enemy/Boss";
 				Object monsterRes = Resources.Load (name);
 				GameObject monsterObject = GameObject.Instantiate (monsterRes) as GameObject;
 				//				GameObject monsterObject = GameObject.Find("Monster"+i.ToString());
+				if (m_FightIndex == 3)
+					monsterObject.transform.localScale = new Vector3 (3, 3, 3);
 				Monster monster = monsterObject.GetComponent<Monster>();
 				monster.name = Global.GetMonsterNmae (i);
 				monster.InitActor (monsterObject);
 				m_monsterObjList.Add (monsterObject);
 				m_monsterList.Add (monster);
 
-				monsterObject.transform.position = new Vector3 (startPoint.transform.position.x+i*1.5f, startPoint.transform.position.y, startPoint.transform.position.z);
+				monsterObject.transform.position = new Vector3 (startPoint.transform.position.x+xOffet[i], startPoint.transform.position.y, startPoint.transform.position.z+zOffet[i]);
 			}
+		}
+
+		int GetMonsterCount()
+		{
+			if (m_FightIndex == 3)
+				return 1;
+			else
+				return 5;
 		}
 
 		public void DestoryMonster(GameObject monsterObj,Actor monster)
@@ -139,56 +155,56 @@ namespace GlobalGame
 
 		IEnumerator StartBattle()  
 	    {  
-	    	yield return new WaitForSeconds(2);
+	    	yield return new WaitForSeconds(0.2f);
 			InitBattleRole ();
 	    }  
 
-		void UpdateClick()
-		{
-			if (Input.GetMouseButtonDown (0)) 
-			{  
-				HandleLeftClick();
-			} 
-			else if (Input.GetMouseButtonDown (1)) 
-			{
-				HandleRightClick ();
-			}
-		}
+//		void UpdateClick()
+//		{
+//			if (Input.GetMouseButtonDown (0)) 
+//			{  
+//				HandleLeftClick();
+//			} 
+//			else if (Input.GetMouseButtonDown (1)) 
+//			{
+//				HandleRightClick ();
+//			}
+//		}
 
-		void HandleRightClick()
-		{
-			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);  
-			if (Physics.Raycast (ray)) 
-			{  
-				RaycastHit[] hits = Physics.RaycastAll (ray);
-				for (int i = 0; i < hits.Length; i++) 
-				{
-					RaycastHit hit = hits [i];
-//					ShootFront (hit.point);
-				}
-			}
-		}
+//		void HandleRightClick()
+//		{
+//			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);  
+//			if (Physics.Raycast (ray)) 
+//			{  
+//				RaycastHit[] hits = Physics.RaycastAll (ray);
+//				for (int i = 0; i < hits.Length; i++) 
+//				{
+//					RaycastHit hit = hits [i];
+////					ShootFront (hit.point);
+//				}
+//			}
+//		}
 
 
-		void HandleLeftClick()//鼠标左键
-		{
-			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);  
-			if (Physics.Raycast (ray)) 
-			{  
-				RaycastHit[] hits = Physics.RaycastAll (ray);
-
-				int monsterHitIndex = -1;
-				int groundHitIndex = -1;
-				for (int i = 0; i < hits.Length; i++) 
-				{
-					RaycastHit hit = hits [i];
-					GameObject obj = hit.collider.gameObject;
-					if (obj.CompareTag (Global.TagName_Enemy))
-						monsterHitIndex = i;
-					if (obj.CompareTag (Global.TagName_Ground))
-						groundHitIndex = i;
-				}
-
+//		void HandleLeftClick()//鼠标左键
+//		{
+//			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);  
+//			if (Physics.Raycast (ray)) 
+//			{  
+//				RaycastHit[] hits = Physics.RaycastAll (ray);
+//
+//				int monsterHitIndex = -1;
+//				int groundHitIndex = -1;
+//				for (int i = 0; i < hits.Length; i++) 
+//				{
+//					RaycastHit hit = hits [i];
+//					GameObject obj = hit.collider.gameObject;
+//					if (obj.CompareTag (Global.TagName_Enemy))
+//						monsterHitIndex = i;
+//					if (obj.CompareTag (Global.TagName_Ground))
+//						groundHitIndex = i;
+//				}
+//
 //				if (monsterHitIndex != -1) //点击到怪物
 //				{
 //					RaycastHit monsterHit = hits [monsterHitIndex];
@@ -205,19 +221,19 @@ namespace GlobalGame
 //					MoveToPoint (groundHit);
 //					ChangeHeightLightMonster (null);
 //				}
-			}  
-		}
+//			}  
+//		}
 
-		void MoveToPoint(RaycastHit groundHit)
-		{
-			for (int i = 0; i < 1; i++) //m_actorList.Count
-			{
-				GameObject actorObj = m_actorObjList [i];
-				Actor actor = m_actorList [i];
-				actor.SetActorStatus (Actor.ActorStatus.Agent);
-				actor.m_ActorAgentManager.SetDestination (groundHit.point, groundHit.normal);
-			}
-		}
+//		void MoveToPoint(RaycastHit groundHit)
+//		{
+//			for (int i = 0; i < 1; i++) //m_actorList.Count
+//			{
+//				GameObject actorObj = m_actorObjList [i];
+//				Actor actor = m_actorList [i];
+//				actor.SetActorStatus (Actor.ActorStatus.Agent);
+//				actor.m_ActorAgentManager.SetDestination (groundHit.point, groundHit.normal);
+//			}
+//		}
 
 		public GameObject GetCurrentMonsterObj()
 		{
@@ -231,29 +247,8 @@ namespace GlobalGame
 			return null;
 		}
 
-		public Monster GetCurrentMonster()
-		{
-			for (int i = 0; i < m_monsterObjList.Count; i++) //m_actorList.Count
-			{
-				GameObject monsterObj = m_monsterObjList [i];
-				Monster monster = m_monsterList [i];
-				if (monster.IsActorStatus (Actor.ActorStatus.Dead) == false)
-					return monster;
-			}
-			return null;
-		}
-
 		public void CurrentMonsterDie()
 		{
-//			Debug.Log ("CurrentMonsterDie index = "+m_FightIndex);
-//			for (int i = 0; i < m_monsterList.Count; i++) 
-//			{
-//				if (i == m_FightIndex)
-//					continue;
-//				Monster lastDie = m_monsterList [i];
-//				lastDie.GetAlive ();
-//			}
-
 			if (IsCurrentMonsterHasAlive () == true)
 				return;
 				
@@ -272,11 +267,6 @@ namespace GlobalGame
 			else if (m_Sequence == BattleSequence.AntiClockWise)
 				m_FightIndex--;
 
-//			int lastIndex = m_FightIndex-1;
-//			if (lastIndex == -1)
-//				lastIndex = 3;
-//			Monster lastDie = m_monsterList [lastIndex];
-//			lastDie.GetAlive ();
 			InitMonster();
 		}
 
@@ -292,40 +282,38 @@ namespace GlobalGame
 			return hasAlive;
 		}
 
-		void ChangeHeightLightMonster(GameObject obj)//怪物的选中状态
-		{
-			for (int i = 0; i < m_monsterObjList.Count; i++) 
-			{
-				GameObject monsterObject = m_monsterObjList [i];
-				if (monsterObject == null)
-					continue;
-				Renderer render = monsterObject.GetComponentInChildren<Renderer> ();
-				Monster monster = monsterObject.GetComponent<Monster> ();
-//				Debug.Log (render.material.name + "i = "+i);
-
-				if (obj != null && monsterObject.name == obj.name && monster.m_isHightLight == false) 
-				{
-					Material mater = new Material (Shader.Find ("Toon/Basic Outline"));
-					mater.CopyPropertiesFromMaterial (BasicOutLine);
-					render.material = mater;
-					monster.m_isHightLight = true;
-				} 
-				else if ( monster.m_isHightLight == true )
-				{
-					Material mater = new Material (Shader.Find ("Legacy Shaders/VertexLit"));
-					mater.CopyPropertiesFromMaterial (NormalMaterial);
-					render.material = mater;
-					monster.m_isHightLight = false;
-				}
-			}
-		}
+//		void ChangeHeightLightMonster(GameObject obj)//怪物的选中状态
+//		{
+//			for (int i = 0; i < m_monsterObjList.Count; i++) 
+//			{
+//				GameObject monsterObject = m_monsterObjList [i];
+//				if (monsterObject == null)
+//					continue;
+//				Renderer render = monsterObject.GetComponentInChildren<Renderer> ();
+//				Monster monster = monsterObject.GetComponent<Monster> ();
+////				Debug.Log (render.material.name + "i = "+i);
+//
+//				if (obj != null && monsterObject.name == obj.name && monster.m_isHightLight == false) 
+//				{
+//					Material mater = new Material (Shader.Find ("Toon/Basic Outline"));
+//					mater.CopyPropertiesFromMaterial (BasicOutLine);
+//					render.material = mater;
+//					monster.m_isHightLight = true;
+//				} 
+//				else if ( monster.m_isHightLight == true )
+//				{
+//					Material mater = new Material (Shader.Find ("Legacy Shaders/VertexLit"));
+//					mater.CopyPropertiesFromMaterial (NormalMaterial);
+//					render.material = mater;
+//					monster.m_isHightLight = false;
+//				}
+//			}
+//		}
 
 		void Update () 
 		{
-			UpdateClick ();
-
+//			UpdateClick ();
 		}
-
 	}
 }
 	

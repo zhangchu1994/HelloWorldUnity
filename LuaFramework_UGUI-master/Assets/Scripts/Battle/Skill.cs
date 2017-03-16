@@ -85,8 +85,9 @@ namespace GlobalGame
 		{
 			if (m_SkillData.m_SkillType1 == (int)SkillType.Shoot) //远程根据是否打到计算伤害
 			{
-//				Debug.Log ("SkillTakeEffect__________________________");
-				for (int i = 0; i < m_SkillData.m_TargetObjList.Count; i++) {
+				Debug.Log ("SkillTakeEffect__________________________ count = "+m_SkillData.m_TargetObjList.Count);
+				for (int i = 0; i < m_SkillData.m_TargetObjList.Count; i++) 
+				{
 					GameObject obj = m_SkillData.m_TargetObjList [i];
 					m_MainActor.ShootFront (obj);
 				}
@@ -113,8 +114,10 @@ namespace GlobalGame
 			m_SkillData.m_TargetActorList.Clear ();
 			m_SkillData.m_TargetObjList.Clear ();
 
-			m_SkillData.m_TargetActorList.Add(BattleScene.Active.GetCurrentMonster());
-			m_SkillData.m_TargetObjList.Add(BattleScene.Active.GetCurrentMonsterObj());
+			GameObject obj = BattleScene.Active.GetCurrentMonsterObj ();
+			Monster monster = obj.GetComponent<Monster> ();
+			m_SkillData.m_TargetActorList.Add(monster);
+			m_SkillData.m_TargetObjList.Add(obj);
 		}
 	}
 }
