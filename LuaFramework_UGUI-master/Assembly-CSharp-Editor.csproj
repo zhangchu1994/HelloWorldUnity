@@ -65,7 +65,9 @@
      <Compile Include="Assets\LuaFramework\ToLua\Editor\ToLuaExport.cs" />
      <Compile Include="Assets\LuaFramework\ToLua\Editor\ToLuaMenu.cs" />
      <Compile Include="Assets\LuaFramework\ToLua\Editor\ToLuaTree.cs" />
+     <None Include="Assets\Art\ModelActor\Actor2\5_Materials\Shader\Toony-Basic.shader" />
      <None Include="Assets\Shader\Toony-BasicOutline.shader" />
+     <None Include="Assets\Plugins\NewtonJson\Newtonsoft.Json.xml" />
      <None Include="Assets\Shader\Toony-Basic.shader" />
      <None Include="Assets\StreamingAssets\files.txt" />
      <None Include="Assets\LuaFramework\ToLua\readme.txt" />
@@ -131,6 +133,9 @@
  </Reference>
  <Reference Include="UnityEditor.WindowsStandalone.Extensions">
  <HintPath>E:/Program Files/Unity5.5.0/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
+ </Reference>
+ <Reference Include="Newtonsoft.Json">
+ <HintPath>E:/WorkSpace_Demo/trunk/LuaFramework_UGUI-master/Assets/Plugins/NewtonJson/Newtonsoft.Json.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>

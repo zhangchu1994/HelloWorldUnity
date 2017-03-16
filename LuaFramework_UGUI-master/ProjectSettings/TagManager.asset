@@ -8,6 +8,7 @@ TagManager:
   - GameManager
   - Enemy
   - Ground
+  - LoseBloodText
   layers:
   - Default
   - TransparentFX

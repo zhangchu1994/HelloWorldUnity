@@ -294,7 +294,9 @@
      <Compile Include="Assets\Scripts\Global\SetRenderQ.cs" />
      <Compile Include="Assets\Scripts\Global\Utility.cs" />
      <Compile Include="Assets\Scripts\TestClass.cs" />
+     <None Include="Assets\Art\ModelActor\Actor2\5_Materials\Shader\Toony-Basic.shader" />
      <None Include="Assets\Shader\Toony-BasicOutline.shader" />
+     <None Include="Assets\Plugins\NewtonJson\Newtonsoft.Json.xml" />
      <None Include="Assets\Shader\Toony-Basic.shader" />
      <None Include="Assets\StreamingAssets\files.txt" />
      <None Include="Assets\LuaFramework\ToLua\readme.txt" />
@@ -318,6 +320,9 @@
  </Reference>
  <Reference Include="Debugger">
  <HintPath>E:/WorkSpace_Demo/trunk/LuaFramework_UGUI-master/Assets/Plugins/Debugger.dll</HintPath>
+ </Reference>
+ <Reference Include="Newtonsoft.Json">
+ <HintPath>E:/WorkSpace_Demo/trunk/LuaFramework_UGUI-master/Assets/Plugins/NewtonJson/Newtonsoft.Json.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

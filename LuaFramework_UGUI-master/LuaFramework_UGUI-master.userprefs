@@ -1,23 +1,21 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Battle\Skill.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Battle\Actor.cs">
     <Files>
-      <File FileName="Assets\Scripts\TestClass.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Battle\Bullet.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Battle\BattleScene.cs" Line="58" Column="57" />
-      <File FileName="Assets\Scripts\Battle\ActorAIManager.cs" Line="96" Column="1" />
-      <File FileName="Assets\Scripts\Battle\ActorAnimationManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Battle\Actor.cs" Line="264" Column="5" />
-      <File FileName="Assets\Scripts\Battle\ActorUIManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\LuaFramework\Scripts\Manager\LuaManager.cs" Line="143" Column="16" />
-      <File FileName="Assets\Scripts\Global\DataTables.cs" Line="105" Column="3" />
-      <File FileName="Assets\LuaFramework\ToLua\Core\LuaTable.cs" Line="26" Column="23" />
-      <File FileName="Assets\Scripts\Battle\Skill.cs" Line="54" Column="1" />
-      <File FileName="Assets\LuaFramework\Scripts\Manager\ThreadManager.cs" Line="146" Column="1" />
-      <File FileName="Assets\Scripts\Global\Utility.cs" Line="9" Column="37" />
-      <File FileName="Assets\LuaFramework\Scripts\Manager\GameManager.cs" Line="271" Column="4" />
-      <File FileName="Assets\LuaFramework\ToLua\Core\LuaBaseRef.cs" Line="67" Column="10" />
-      <File FileName="Assets\Scripts\Battle\FollowTarget.cs" Line="35" Column="33" />
+      <File FileName="Assets\LuaFramework\Scripts\Manager\NetworkManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\LuaFramework\Scripts\ConstDefine\AppConst.cs" Line="1" Column="1" />
+      <File FileName="Assets\LuaFramework\Scripts\Manager\MySceneManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Battle\BattleScene.cs" Line="73" Column="15" />
+      <File FileName="Assets\Scripts\Battle\Actor.cs" Line="187" Column="40" />
+      <File FileName="Assets\Scripts\Battle\ActorBodyManager.cs" Line="48" Column="3" />
+      <File FileName="Assets\Scripts\Battle\Bullet.cs" Line="63" Column="10" />
+      <File FileName="Assets\Scripts\Battle\ActorUIManager.cs" Line="43" Column="28" />
+      <File FileName="Assets\Scripts\Battle\Skill.cs" Line="74" Column="1" />
+      <File FileName="Assets\Scripts\Global\DataTables.cs" Line="145" Column="53" />
+      <File FileName="Assets\Scripts\Battle\Monster.cs" Line="21" Column="59" />
+      <File FileName="Assets\Scripts\Global\Global.cs" Line="83" Column="3" />
+      <File FileName="Assets\Plugins\NewtonJson\Newtonsoft.Json.xml" Line="4" Column="30" />
+      <File FileName="Assets\Scripts\Battle\ActorSkillManager.cs" Line="11" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
@@ -32,8 +30,6 @@
       <Breakpoint file="E:\WorkSpace_Demo\trunk\LuaFramework_UGUI-master\Assets\Scripts\Battle\ActorBodyManager.cs" line="47" column="17" />
       <Breakpoint file="E:\WorkSpace_Demo\trunk\LuaFramework_UGUI-master\Assets\Scripts\Battle\ActorBodyManager.cs" line="36" column="1" />
       <Breakpoint file="E:\WorkSpace_Demo\trunk\LuaFramework_UGUI-master\Assets\Scripts\Global\Loading.cs" line="20" column="20" />
-      <Breakpoint file="E:\WorkSpace_Demo\trunk\LuaFramework_UGUI-master\Assets\Scripts\Global\DataTables.cs" line="100" column="1" />
-      <Breakpoint file="E:\WorkSpace_Demo\trunk\LuaFramework_UGUI-master\Assets\Scripts\Global\DataTables.cs" line="141" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
