@@ -279,6 +279,7 @@
      <Compile Include="Assets\Scripts\Battle\Bullet.cs" />
      <Compile Include="Assets\Scripts\Battle\CombineSkinnedMgr.cs" />
      <Compile Include="Assets\Scripts\Battle\FollowTarget.cs" />
+     <Compile Include="Assets\Scripts\Battle\MagicZone.cs" />
      <Compile Include="Assets\Scripts\Battle\Monster.cs" />
      <Compile Include="Assets\Scripts\Battle\MonsterAIManager.cs" />
      <Compile Include="Assets\Scripts\Battle\Skill.cs" />

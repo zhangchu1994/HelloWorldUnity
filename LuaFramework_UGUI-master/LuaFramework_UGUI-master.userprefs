@@ -1,21 +1,15 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Battle\Actor.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Battle\BattleScene.cs">
     <Files>
-      <File FileName="Assets\LuaFramework\Scripts\Manager\NetworkManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\LuaFramework\Scripts\ConstDefine\AppConst.cs" Line="1" Column="1" />
-      <File FileName="Assets\LuaFramework\Scripts\Manager\MySceneManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Battle\BattleScene.cs" Line="73" Column="15" />
-      <File FileName="Assets\Scripts\Battle\Actor.cs" Line="187" Column="40" />
-      <File FileName="Assets\Scripts\Battle\ActorBodyManager.cs" Line="48" Column="3" />
-      <File FileName="Assets\Scripts\Battle\Bullet.cs" Line="63" Column="10" />
-      <File FileName="Assets\Scripts\Battle\ActorUIManager.cs" Line="43" Column="28" />
-      <File FileName="Assets\Scripts\Battle\Skill.cs" Line="74" Column="1" />
-      <File FileName="Assets\Scripts\Global\DataTables.cs" Line="145" Column="53" />
-      <File FileName="Assets\Scripts\Battle\Monster.cs" Line="21" Column="59" />
-      <File FileName="Assets\Scripts\Global\Global.cs" Line="83" Column="3" />
-      <File FileName="Assets\Plugins\NewtonJson\Newtonsoft.Json.xml" Line="4" Column="30" />
-      <File FileName="Assets\Scripts\Battle\ActorSkillManager.cs" Line="11" Column="3" />
+      <File FileName="Assets\Scripts\Battle\BattleScene.cs" Line="159" Column="22" />
+      <File FileName="Assets\Scripts\Battle\Actor.cs" Line="217" Column="7" />
+      <File FileName="Assets\Scripts\Battle\ActorAIManager.cs" Line="31" Column="50" />
+      <File FileName="Assets\Scripts\Battle\Bullet.cs" Line="192" Column="3" />
+      <File FileName="Assets\Scripts\Battle\Skill.cs" Line="117" Column="53" />
+      <File FileName="Assets\Scripts\Battle\Monster.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Global\Global.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Battle\ActorSkillManager.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
