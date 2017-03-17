@@ -47,6 +47,7 @@ namespace GlobalGame
 		public ActorType m_ActorType;
 
 		public GameObject m_CurrentTarget;
+		public Actor m_CurrentTargetActor;
 
 		#region Init
 		void Start()
@@ -96,18 +97,7 @@ namespace GlobalGame
 		#region Update
 		void Update () 
 		{
-			if (m_ActorData.m_CurCd == -1f)
-				return;
-			m_ActorData.m_CurCd += Time.deltaTime;
-//			if (this.name == "Actor1")
-//				Debug.Log ("Update____CurCd = "+m_ActorData.m_CurCd);
-			if (m_ActorData.m_CurCd >= m_ActorData.m_Cd && IsActorStatus(Actor.ActorStatus.Attack) == true) 
-			{
-				if (BattleScene.Active.GetCurrentMonsterObj () != m_CurrentTarget)
-					SetActorStatus (Actor.ActorStatus.Stand);
-				else
-					StartAttack();
-			}
+			
 		}
 		#endregion
 
@@ -128,11 +118,6 @@ namespace GlobalGame
 
 			//			Global.BattleLog (this, status.ToString());
 			m_ActorStatus = status;
-
-			if (status == Actor.ActorStatus.Stand) 
-			{
-				m_ActorData.m_CurCd = -1f;
-			}
 
 			if (needPlayAnimation == true) 
 			{
@@ -192,6 +177,7 @@ namespace GlobalGame
 		public void SetCurrentTarget(GameObject Obj)
 		{
 			m_CurrentTarget = Obj;
+			m_CurrentTargetActor = m_CurrentTarget.GetComponent<Actor>();
 		}
 
 		public void MonsterToAttack(GameObject obj)
@@ -206,12 +192,13 @@ namespace GlobalGame
 				{
 					//					Actor actor = m_actorList[0];
 					SetActorStatus(ActorStatus.AgentToAttack);
-					m_ActorAgentManager.SetDestination (monsterObject.transform.position,Vector3.zero);
+					Collider collider = obj.GetComponent<Collider> ();//.bounds.size.y
+					m_ActorAgentManager.SetDestination (monsterObject.transform.position,Vector3.zero,collider.bounds.size.x/2);
 				} 
 			}
 		}
 
-		public void ShootFront(GameObject obj)//RaycastHit hit
+		public void ShootFront(GameObject obj,SkillData data)//RaycastHit hit
 		{
 //			for (int j = 0; j < m_actorObjList.Count; j++) 
 //			{
@@ -220,14 +207,30 @@ namespace GlobalGame
 			Actor actor = this;
 			m_ActorObject.transform.LookAt (target);
 
-			Object psObj = Resources.Load ("Effect/CloudFlashFX");
+			Object psObj = Resources.Load (data.m_EffectPath);
 			GameObject t = Instantiate(psObj) as GameObject;
-			Global.ChangeParticleScale (t,2.5f);
+			Global.ChangeParticleScale (t,data.m_Scale);
 			t.transform.position = m_ActorObject.transform.position;
 			Bullet bulletScripte = t.GetComponent<Bullet>();
 //			GameObject monsterObject = m_actorObjList [0];
 			bulletScripte.InitBullet (m_ActorObject, obj);
-			actor.m_ActorAnimationManager.PlayAnimation (Global.BattleAnimationType.Attack, WrapMode.Loop, true);
+//			actor.m_ActorAnimationManager.PlayAnimation (Global.BattleAnimationType.Attack, WrapMode.Loop, true);
+		}
+
+		public void MagicZone(GameObject obj,SkillData data)
+		{
+			Vector3 target = obj.transform.position;
+			Actor actor = this;
+			m_ActorObject.transform.LookAt (target);
+
+			Object psObj = Resources.Load (data.m_EffectPath);
+			GameObject t = Instantiate(psObj) as GameObject;
+			Global.ChangeParticleScale (t,data.m_Scale);
+			t.transform.position = obj.transform.position;
+//			Bullet bulletScripte = t.GetComponent<Bullet>();
+			//			GameObject monsterObject = m_actorObjList [0];
+//			bulletScripte.InitBullet (m_ActorObject, obj);
+//			actor.m_ActorAnimationManager.PlayAnimation (Global.BattleAnimationType.Attack, WrapMode.Loop, true);
 		}
 
 		public void StartAttack()
@@ -238,17 +241,20 @@ namespace GlobalGame
 
 		public void AgentDone()
 		{
-			if (IsActorStatus(Actor.ActorStatus.AgentToAttack) == true) 
-			{
-				StartAttack ();
-				SetActorStatus(Actor.ActorStatus.Attack);
-			} 
-			else if (IsActorStatus(Actor.ActorStatus.Agent) == true) 
-			{
-				m_ActorAnimationManager.PlayAnimation (Global.BattleAnimationType.Stand, WrapMode.Loop);
-				SetActorStatus(Actor.ActorStatus.Stand);
-			}
+			Global.BattleLog (this,"AgentDone");
+
+//			if (IsActorStatus(Actor.ActorStatus.AgentToAttack) == true) 
+//			{
+//				SetActorStatus(Actor.ActorStatus.Attack);
+//				//				m_MainActor.StartAttack ();
+//			} 
+//			else if (IsActorStatus(Actor.ActorStatus.Agent) == true) 
+//			{
+//				SetActorStatus(Actor.ActorStatus.Stand,true);
+//			}
 		}
+
+
 		#endregion
 
 		public void ActorDeadAnimationDone()

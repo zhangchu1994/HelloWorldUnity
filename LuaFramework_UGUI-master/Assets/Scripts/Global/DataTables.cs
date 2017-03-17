@@ -18,10 +18,11 @@ namespace GlobalGame
 		public int m_AttackSpeed;	
 		public int m_AttackDis;
 		public float m_Cd;
+		public string m_SkillIds;
 
 		//非表字段
-		public float m_CurCd = -1;
-		public float m_CurHp = -1;
+		public float m_CurCd = 0;
+		public float m_CurHp = 0;
 	}
 
 	public class SkillData
@@ -33,6 +34,8 @@ namespace GlobalGame
 		public int m_Target;	
 		public int m_Range;
 		public float m_Radius;
+		public string m_EffectPath;
+		public float m_Scale;
 
 		//非表字段
 		public List<GameObject> m_TargetObjList = new List<GameObject>();
@@ -101,6 +104,8 @@ namespace GlobalGame
 				data.m_Target = int.Parse(row ["Target"].ToString ());
 				data.m_Range = int.Parse(row ["Range"].ToString ());
 				data.m_Radius = float.Parse(row ["Radius"].ToString ());
+				data.m_EffectPath = row ["EffectPath"].ToString ();
+				data.m_Scale = float.Parse(row ["Scale"].ToString ());
 
 				m_SkillTable[data.m_Id] = data;
 			}
@@ -143,6 +148,7 @@ namespace GlobalGame
 				data.m_AttackSpeed = int.Parse (row ["AttackSpeed"].ToString());
 				data.m_AttackDis = int.Parse (row ["AttackDis"].ToString());
 				data.m_Cd = float.Parse (row ["CD"].ToString());
+				data.m_SkillIds = row ["Skills"].ToString ();
 
 				data.m_CurHp = data.m_MaxHp;
 				m_UserTable [data.m_Id] = data;

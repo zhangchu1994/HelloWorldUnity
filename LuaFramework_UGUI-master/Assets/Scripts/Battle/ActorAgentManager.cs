@@ -57,6 +57,8 @@ namespace GlobalGame
 
 		public void SetDestinationParent(Vector3 point)
 		{
+			agent.ResetPath();
+			agent.Resume ();
 			agent.stoppingDistance = 1f;
 			agent.destination = point;
 			m_MainActor.m_ActorAnimationManager.PlayAnimation (Global.BattleAnimationType.Run, WrapMode.Loop);
@@ -65,29 +67,35 @@ namespace GlobalGame
 		}
 
 
-		public void SetDestination(Vector3 point,Vector3 normal)
+		public void SetDestination(Vector3 point,Vector3 normal,float stopDis)
 		{
 //			m_MainActor.SetActorStatus (Actor.ActorStatus.Agent);
+			agent.ResetPath();
+			agent.Resume ();
+			Global.BattleLog(m_MainActor,"SetDestination");
 			RemoveAgentFlag();
 
-			if (m_MainActor.IsActorStatus(Actor.ActorStatus.AgentToAttack) == true)
-				agent.stoppingDistance = 3.5f;
+			if (m_MainActor.IsActorStatus (Actor.ActorStatus.AgentToAttack) == true) 
+			{
+//				Debug.Log(this.gameObject.name + " Width = "+stopDis);
+				agent.stoppingDistance = stopDis;//3.5f;
+			}
 			else
 				agent.stoppingDistance = 0;
 
-			InitAgentFlag (point,normal);
+//			InitAgentFlag (point,normal);
 			agent.destination = point;
 			m_MainActor.m_ActorAnimationManager.PlayAnimation (Global.BattleAnimationType.Run, WrapMode.Loop);
 			m_MainActor.m_ActorObject.transform.LookAt (point);
 			agent.updateRotation = true;
 		}
 
-
+		#region Flag
 		void InitAgentFlag(Vector3 point,Vector3 normal)
 		{
 			Quaternion q = new Quaternion();
-			if (normal != null)
-				q.SetLookRotation(normal, Vector3.forward);
+//			if (normal != null)
+//				q.SetLookRotation(normal, Vector3.forward);
 			particleClone = Instantiate(particle, point, q);
 		}
 
@@ -99,20 +107,32 @@ namespace GlobalGame
 				particleClone = null;
 			}
 		}
-
+		#endregion
 
 		protected bool IsAgentDone()
 		{
-			return !agent.pathPending && AgentStopping();
+			return !agent.pathPending && (agent.remainingDistance <= agent.stoppingDistance);
 		}
 
-		protected bool AgentStopping()
+//		protected bool AgentStopping()
+//		{
+//			return ;
+//		}
+
+		public void StopAgent()
 		{
-			return agent.remainingDistance <= agent.stoppingDistance;
+			Global.BattleLog (m_MainActor,"StopAgent");
+			agent.Stop (true);
 		}
 
 		void Update () 
 		{
+//			if (m_MainActor.IsActorStatus (Actor.ActorStatus.Attack)) 
+//			{
+//				Debug.Log ("(m_MainActor.IsActorStatus (Actor.ActorStatus.Attack)__________________");
+//				agent.Stop ();
+//				return;
+//			}
 			if (m_MainActor.m_ActorStatus == Actor.ActorStatus.Agent || m_MainActor.m_ActorStatus == Actor.ActorStatus.AgentToAttack) 
 			{
 				if (IsAgentDone())

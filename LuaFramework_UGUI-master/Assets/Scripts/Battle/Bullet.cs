@@ -183,10 +183,8 @@ namespace GlobalGame
 			}
 		}
 
-
 		void OnTriggerEnter(Collider other) 
 		{
-//			
 			if (other.gameObject != null && m_defender != null && other.gameObject.CompareTag(Global.TagName_Enemy)) //&& other.gameObject.name == m_defender.name
 			{
 //				Debug.Log ("OnTriggerEnter______________" + other.gameObject.name);
@@ -194,8 +192,6 @@ namespace GlobalGame
 				monster.LoseBlood (m_AttActor,-10f);
 //				Destroy(this.gameObject);
 			}
-
 		}
-
 	}
 }

@@ -26,7 +26,6 @@ namespace GlobalGame
 				m_ActorData.m_MaxHp = 500;
 			}
 				
-
 //			m_ActorAgentManager = m_ActorObject.AddComponent<ActorAgentManager> ();
 
 //			m_ActorBodyManager = m_ActorObject.AddComponent<ActorBobyManager> ();
@@ -41,6 +40,9 @@ namespace GlobalGame
 			m_ActorAnimationManager.InitAnimation ();
 //
 			m_MonsterAIManager = m_ActorObject.AddComponent<MonsterAIManager> ();
+
+			m_ActorSkillManager = m_ActorObject.AddComponent<ActorSkillManager> ();
+			m_ActorSkillManager.InitSkillManager ();
 
 //			Util.CallMethod("FirstBattleScene", "ActorDone");
 		}

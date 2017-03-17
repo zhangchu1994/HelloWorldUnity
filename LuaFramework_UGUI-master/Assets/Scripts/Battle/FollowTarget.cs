@@ -20,7 +20,7 @@ namespace GlobalGame
 	//	        playerBip = GameObject.FindGameObjectWithTag("Player").transform.Find("Bip01");
 	//	    }
 	//		playerBip = TestClass.m_Role.transform;
-			offset = new Vector3(3.2f,23,-32.5f);
+			offset = new Vector3(0,23,-32.5f);
 		}
 		
 		// Update is called once per frame

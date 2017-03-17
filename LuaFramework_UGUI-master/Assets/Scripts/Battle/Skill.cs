@@ -48,30 +48,30 @@ namespace GlobalGame
 //			}
 		}
 
-		public void InitSkill(Actor argActor)
+		public void InitSkill(Actor argActor,int argSkillId)
 		{
 			m_MainActor = argActor;
 			m_SkillData = new SkillData ();
 
-			if (m_MainActor.m_Index == 0) {
-				m_SkillData = DataTables.GetSkillData (1);
-//				m_SkillData.m_Radius = 3;
-//				m_SkillData.m_SkillType = SkillType.CutDown;
+			m_SkillData = DataTables.GetSkillData (argSkillId);
 
-			} 
-			else if (m_MainActor.m_Index == 1) 
-			{
-				m_SkillData = DataTables.GetSkillData (2);
-//				m_SkillData.m_SkillId = 2;
-//				m_SkillData.m_Radius = 6;
-//				m_SkillData.m_SkillType = SkillType.Shoot;
-			} 
-			else if (m_MainActor.m_Index == 2) 
-			{
-				m_SkillData = DataTables.GetSkillData (3);
-			}
-
-			Debug.Log ("InitSkill______________________________");
+//			if (m_MainActor.m_Index == 0) 
+//			{
+//				
+//			} 
+//			else if (m_MainActor.m_Index == 1) 
+//			{
+//				m_SkillData = DataTables.GetSkillData (2);
+//			} 
+//			else if (m_MainActor.m_Index == 2) 
+//			{
+//				m_SkillData = DataTables.GetSkillData (3);
+//			} 
+//			else 
+//			{
+//				m_SkillData = Global.Clone(DataTables.GetSkillData (1));
+//			}
+//			Debug.Log ("InitSkill______________________________");
 		}
 
 		public void StartSkill()
@@ -84,14 +84,22 @@ namespace GlobalGame
 		public void SkillTakeEffect()
 		{
 			if (m_SkillData.m_SkillType1 == (int)SkillType.Shoot) //远程根据是否打到计算伤害
-			{
-				Debug.Log ("SkillTakeEffect__________________________ count = "+m_SkillData.m_TargetObjList.Count);
+			{ 
+//				Debug.Log ("SkillTakeEffect__________________________ count = "+m_SkillData.m_TargetObjList.Count);
 				for (int i = 0; i < m_SkillData.m_TargetObjList.Count; i++) 
 				{
 					GameObject obj = m_SkillData.m_TargetObjList [i];
-					m_MainActor.ShootFront (obj);
+					m_MainActor.ShootFront (obj,m_SkillData);
 				}
 			} 
+			else if (m_SkillData.m_SkillType1 == (int)SkillType.Magic) 
+			{
+				for (int i = 0; i < m_SkillData.m_TargetObjList.Count; i++) 
+				{
+					GameObject obj = m_SkillData.m_TargetObjList [i];
+					m_MainActor.MagicZone (obj,m_SkillData);
+				}
+			}
 			else //近战直接计算伤害
 			{
 				for (int i = 0; i < m_SkillData.m_TargetObjList.Count; i++) 
@@ -114,8 +122,8 @@ namespace GlobalGame
 			m_SkillData.m_TargetActorList.Clear ();
 			m_SkillData.m_TargetObjList.Clear ();
 
-			GameObject obj = BattleScene.Active.GetCurrentMonsterObj ();
-			Monster monster = obj.GetComponent<Monster> ();
+			GameObject obj = m_MainActor.m_CurrentTarget;
+			Actor monster = m_MainActor.m_CurrentTargetActor;
 			m_SkillData.m_TargetActorList.Add(monster);
 			m_SkillData.m_TargetObjList.Add(obj);
 		}

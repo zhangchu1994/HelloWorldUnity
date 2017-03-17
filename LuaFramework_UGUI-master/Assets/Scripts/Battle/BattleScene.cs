@@ -24,7 +24,7 @@ namespace GlobalGame
 
 		public List<GameObject> m_monsterObjList = new List<GameObject>{};
 		public List<GameObject> m_actorObjList = new List<GameObject>{};
-		public List<Monster> m_monsterList = new List<Monster>{};
+		public List<Actor> m_monsterList = new List<Actor>{};//Monster
 		public List<Actor> m_actorList = new List<Actor>{};
 
 		public Material BasicOutLine;
@@ -138,7 +138,7 @@ namespace GlobalGame
 
 		public void DestoryMonster(GameObject monsterObj,Actor monster)
 		{
-			Debug.Log ("DestoryMonster = "+monsterObj.name);
+//			Debug.Log ("DestoryMonster = "+monsterObj.name);
 			Destroy (monsterObj);
 		}
 
@@ -235,16 +235,41 @@ namespace GlobalGame
 //			}
 //		}
 
-		public GameObject GetCurrentMonsterObj()
+		public GameObject GetCloseMonsterObj(GameObject selfObj,Actor.ActorType actorType)
 		{
-			for (int i = 0; i < m_monsterObjList.Count; i++) //m_actorList.Count
+			List<GameObject> objList = null;
+			List<Actor> actorList = null;
+
+			if (actorType == Actor.ActorType.Actor) 
 			{
-				GameObject monsterObj = m_monsterObjList [i];
-				Monster monster = m_monsterList [i];
-				if (monster.IsActorStatus (Actor.ActorStatus.Dead) == false)
-					return monsterObj;
+				objList = m_actorObjList;
+				actorList = m_actorList;
+			} 
+			else if (actorType == Actor.ActorType.Monster) 
+			{
+				objList = m_monsterObjList;
+				actorList = m_monsterList;
 			}
-			return null;
+
+			GameObject closeMonster = null;
+			float closeDis = 100000;
+			for (int i = 0; i < objList.Count; i++) //m_actorList.Count
+			{
+				GameObject monsterObj = objList [i];
+				Actor monster = actorList [i];
+				if (monsterObj == null || monster.IsActorStatus (Actor.ActorStatus.Dead) == true)
+					continue;
+				
+				float dis = Vector3.Distance (selfObj.transform.position,monsterObj.transform.position);
+
+				if (dis < closeDis) 
+				{
+					closeMonster = monsterObj;
+					closeDis = dis;
+				}
+					
+			}
+			return closeMonster;
 		}
 
 		public void CurrentMonsterDie()
@@ -275,7 +300,7 @@ namespace GlobalGame
 			bool hasAlive = false;
 			for (int i = 0; i < m_monsterList.Count; i++) 
 			{
-				Monster monster = m_monsterList [i];
+				Actor monster = (Actor)m_monsterList [i];
 				if (monster.IsActorStatus (Actor.ActorStatus.Dead) == false)
 					return true;
 			}

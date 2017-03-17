@@ -13,7 +13,7 @@
 return {
 	[1] = {
 		Id = 1,
-		Name = "Ian",
+		Name = "近战",
 		Professional = 11,
 		Life = 100,
 		Attack = 10,
@@ -21,11 +21,12 @@ return {
 		Speed = 10,
 		AttackSpeed = 10,
 		AttackDis = 10,
-		CD = 1,
+		CD = 2,
+		Skills = "1,2",
 	},
 	[2] = {
 		Id = 2,
-		Name = "xxx",
+		Name = "弹道",
 		Professional = 22,
 		Life = 100,
 		Attack = 10,
@@ -33,11 +34,12 @@ return {
 		Speed = 10,
 		AttackSpeed = 10,
 		AttackDis = 10,
-		CD = 1.5,
+		CD = 3,
+		Skills = "3,4",
 	},
 	[3] = {
 		Id = 3,
-		Name = "fff",
+		Name = "法师",
 		Professional = 33,
 		Life = 100,
 		Attack = 10,
@@ -45,6 +47,7 @@ return {
 		Speed = 10,
 		AttackSpeed = 10,
 		AttackDis = 10,
-		CD = 1.5,
+		CD = 4,
+		Skills = "5,6",
 	},
 }

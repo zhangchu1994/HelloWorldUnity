@@ -72,8 +72,9 @@ namespace GlobalGame
 
 				for (int i = 0; i < systems.Length; i++ )
 				{
-					systems[i].startSize = systems[i].startSize * SetScale;
-					systems[i].startSpeed = systems[i].startSpeed * SetScale;
+					ParticleSystem system = systems [i];
+					system.startSize = system.startSize * SetScale;
+					system.startSpeed = system.startSpeed * SetScale;
 				}
 
 				Obj.transform.localScale *= SetScale;
@@ -89,7 +90,7 @@ namespace GlobalGame
 		public static void BattleLog(Actor actor,string argString)
 		{
 			if (actor != null && actor.name == "Actor1")
-				Debug.Log ("Nmae = "+actor.name+" Info = "+argString);
+				Debug.Log (" ___________ "+argString);
 		}
 
 		public static bool isMobile()
