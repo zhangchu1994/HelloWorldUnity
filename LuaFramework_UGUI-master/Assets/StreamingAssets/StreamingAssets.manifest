@@ -1,0 +1,19 @@
+ManifestFileVersion: 0
+CRC: 2980497485
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: loginperfab.unity3d
+      Dependencies: {}
+    Info_1:
+      Name: maincityperfab.unity3d
+      Dependencies: {}
+    Info_2:
+      Name: battlefieldperfab.unity3d
+      Dependencies: {}
+    Info_3:
+      Name: maincityscene.unity3d
+      Dependencies: {}
+    Info_4:
+      Name: firstbattlescene.unity3d
+      Dependencies: {}
