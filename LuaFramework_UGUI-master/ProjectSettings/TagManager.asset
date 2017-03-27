@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Ground
   - LoseBloodText
+  - Actor
   layers:
   - Default
   - TransparentFX
