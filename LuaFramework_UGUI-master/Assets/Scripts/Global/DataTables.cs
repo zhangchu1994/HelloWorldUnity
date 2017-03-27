@@ -9,16 +9,37 @@ namespace GlobalGame
 	public class ActorData
 	{
 		public int m_Id;	
-		public string m_Name;	
+		public string m_Name;
+		public string m_Tip;
+		public int m_Quality;
+		public string m_Model;//模型位置
+		public string m_Img;
 		public int m_Professional;
-		public int m_MaxHp;
-		public int m_Attack;
-		public int m_Defence;
-		public int m_Speed;
-		public int m_AttackSpeed;	
-		public int m_AttackDis;
-		public float m_Cd;
+		public float m_MaxHp;
+		public float m_Attack;
+		public float m_Defence;
+		public float m_Range;
+		public int m_Speed;//移动速度
+		public int m_AttackSpeed;//普通攻击CD
+		public int m_AttackDis;//攻击距离
 		public string m_SkillIds;
+		public float m_Crit;// 暴击
+		public float m_CritHurt;//暴击伤害
+		public float m_Dodge;//闪避
+		public float m_InjuryFree;//免伤
+		public float m_AddHp;//生命成长
+		public float m_AddAttack;//攻击成长
+		public float m_AddRange;//攻击距离成长
+		public float m_AddAttackSpeed;//攻击速度成长
+		public float m_AddSpeed;//移动速度成长
+		public float m_AddDiscrit;//攻击距离成长
+		public float m_AddCrit; //暴击成长
+		public float m_AddCritHurt;//暴击伤害成长
+		public float m_AddDodge;//闪避成长
+		public float m_AddInjuryFree;//免伤成长
+		public float m_SynthChipNum;//合成需要碎片数量
+		public float m_GiveExp;//提供经验
+		public float m_ReturnDna;//返还DNA
 
 		//非表字段
 		public float m_CurCd = 0;
@@ -27,13 +48,45 @@ namespace GlobalGame
 
 	public class SkillData
 	{
-		public int m_Id;	
-		public string m_Name;	
-		public int m_SkillType1;	
-		public int m_SkillType2;	
-		public int m_Target;	
+		public int m_Id;
+		public string m_Name;
+		public string m_SkillDescription;
+		public string m_SkillIcon;
+		public int m_SkillLevel;
+		public int m_SkillAttckType;//技能攻击类型
+		public int m_SkillType;//技能分类
+		public int m_Priority;//施放优先级
+		public int m_CdTime;//冷却时间
+		public float m_InitialCDTime;//触发几率
+		public int m_MoveType;//位移类型
+		public int m_MoveDistance;//位移距离
+		public int m_Animation_Move;//位移动作
+		public int m_Animation_AfterMove;//位移后施法动作
+		public int m_MoveSpeed;//位移速度
+		public int m_TargetType;//影响目标类型
+		public int m_TargetChooseType;//目标选择方式
+		public int m_TargetChooseConitionValue;//目标选择条件数值
+		public int m_TargetEffectType;//影响范围类型
+		public float m_TargetEffectArea;//影响范围
+		public int m_HasBullet;//是否有子弹
+		public int m_BulletId;//技能子弹
+//		public int m_BulletSpeed;//子弹飞行速度
+		public int m_EffectID;//子弹效果ID
+		public int m_EffectTarget;//技能效果目标
+		public int m_Effecttype;//技能效果类型
+		public int m_EffectValue;//技能效果数值
+		public int m_RelativeAttributeID;//技能效果相关属性类型
+		public int m_RelativeAttributeFactor;//技能效果相关属性系数
+		public int m_EffectAttributeSource;//技能效果相关属性来源
+		public float m_Delay;//延迟时间
+		public int m_EffectPrefab;//技能效果特效
+		public int m_EffectFloatText;//技能效果提示
+
+//		public int m_SkillType1;
+//		public int m_SkillType2;
+		public int m_Target;
 		public int m_Range;
-		public float m_Radius;
+//		public float m_Radius;
 		public string m_EffectPath;
 		public float m_Scale;
 
@@ -42,6 +95,14 @@ namespace GlobalGame
 		public List<Actor> m_TargetActorList = new List<Actor>();
 	}
 
+	public class BulletData
+	{
+		public int m_BulletID;	
+		public int m_BulletSpeed;	
+		public int m_EffectID;	
+		public string m_EffectRoute;
+		public int m_FlyType;
+	}
 
 	public class DataTables 
 	{
@@ -50,6 +111,7 @@ namespace GlobalGame
 
 		private DataTables()
 		{
+			
 		}
 
 		public static DataTables Instance
@@ -66,12 +128,13 @@ namespace GlobalGame
 
 		private static Dictionary<int, SkillData> m_SkillTable = null;
 		private static Dictionary<int, ActorData> m_UserTable = null;
-		private LuaManager luaManager;
+		private static Dictionary<int, BulletData> m_BulletTable = null;
+		private LuaManager m_luaManager;
 
 		public void Init()
 		{
 			GameObject obj = GameObject.Find ("GameManager");
-			luaManager = obj.GetComponent<LuaManager> ();
+			m_luaManager = obj.GetComponent<LuaManager> ();
 
 			if (m_SkillTable == null)
 			{
@@ -83,12 +146,18 @@ namespace GlobalGame
 				ReadUserTable ();
 //				yield return Utility.CoroutineContainer.StartCoroutine(ReadUserTable());
 			}
-//			Debug.Log ("Init_____________________________________");
+			if (m_BulletTable == null)
+			{
+				ReadBulletTable ();
+				//				yield return Utility.CoroutineContainer.StartCoroutine(ReadUserTable());
+			}
+
+			Debug.Log ("Init_____________________________________");
 		}
 
 		private void ReadSkillTable()
 		{
-			object[] list = luaManager.GetLuaTable ("Skill.lua");
+			object[] list = m_luaManager.GetLuaTable ("Skill.lua");
 			m_SkillTable = new Dictionary<int, SkillData>();
 
 			for (int i = 0; i < list.Length; i++)
@@ -97,15 +166,46 @@ namespace GlobalGame
 				SkillData data = new SkillData();
 //				Debugger.Log ("{0},{1},{2}",row ["Id"],row ["Name"],row ["SkillType1"]);
 
-				data.m_Id = int.Parse (row ["Id"].ToString ());
-				data.m_Name = row ["Name"].ToString ();
-				data.m_SkillType1 = int.Parse(row ["SkillType1"].ToString ());
-				data.m_SkillType2 = int.Parse(row ["SkillType2"].ToString ());
-				data.m_Target = int.Parse(row ["Target"].ToString ());
-				data.m_Range = int.Parse(row ["Range"].ToString ());
-				data.m_Radius = float.Parse(row ["Radius"].ToString ());
-				data.m_EffectPath = row ["EffectPath"].ToString ();
-				data.m_Scale = float.Parse(row ["Scale"].ToString ());
+				data.m_Id = int.Parse (row ["skillID"].ToString ());
+				data.m_Name = row ["skillName"].ToString ();
+				data.m_SkillDescription = row ["skillDescription"].ToString ();
+				data.m_SkillIcon = row ["skillIcon"].ToString ();
+				data.m_SkillLevel = int.Parse(row ["skillLevel"].ToString ());
+				data.m_SkillAttckType = int.Parse(row ["SkillAttckType"].ToString ());
+				data.m_SkillType = int.Parse(row ["skillType"].ToString ());
+				data.m_Priority = int.Parse(row ["priority"].ToString ());
+				data.m_CdTime = int.Parse(row ["cdTime"].ToString ());
+				data.m_InitialCDTime = float.Parse(row ["initialCDTime"].ToString ());
+				data.m_MoveDistance = int.Parse(row ["moveDistance"].ToString ());
+				data.m_Animation_Move = int.Parse(row ["animation_Move"].ToString ());
+				data.m_Animation_AfterMove = int.Parse(row ["animation_AfterMove"].ToString ());
+				data.m_MoveSpeed = int.Parse(row ["moveSpeed"].ToString ());
+				data.m_MoveType = int.Parse(row ["moveType"].ToString ());
+				data.m_TargetType = int.Parse(row ["targetType"].ToString ());
+				data.m_TargetChooseType = int.Parse(row ["targetChooseType"].ToString ());
+				data.m_TargetChooseConitionValue = int.Parse(row ["targetChooseConitionValue"].ToString ());
+				data.m_TargetEffectType = int.Parse(row ["targetEffectType"].ToString ());
+				data.m_TargetEffectArea = int.Parse(row ["targetEffectArea"].ToString ());
+				data.m_HasBullet = int.Parse(row ["hasBullet"].ToString ());
+				data.m_BulletId = int.Parse(row ["bulletId"].ToString ());
+//				data.m_EffectID = int.Parse(row ["effectID"].ToString ());
+				data.m_EffectTarget = int.Parse(row ["effectTarget"].ToString ());
+				data.m_Effecttype = int.Parse(row ["effecttype"].ToString ());
+				data.m_EffectValue = int.Parse(row ["effectValue"].ToString ());
+				data.m_RelativeAttributeID = int.Parse(row ["relativeAttributeID"].ToString ());
+				data.m_RelativeAttributeFactor = int.Parse(row ["relativeAttributeFactor"].ToString ());
+				data.m_EffectAttributeSource = int.Parse(row ["effectAttributeSource"].ToString ());
+				data.m_Delay = float.Parse(row ["delay"].ToString ());
+				data.m_EffectPrefab = int.Parse(row ["effectPrefab"].ToString ());
+				data.m_EffectFloatText = int.Parse(row ["effectFloatText"].ToString ());
+
+//				data.m_SkillType1 = int.Parse(row ["SkillType1"].ToString ());
+//				data.m_SkillType2 = int.Parse(row ["SkillType2"].ToString ());
+//				data.m_Target = int.Parse(row ["Target"].ToString ());
+//				data.m_Range = int.Parse(row ["Range"].ToString ());
+//				data.m_Radius = float.Parse(row ["Radius"].ToString ());
+//				data.m_EffectPath = row ["EffectPath"].ToString ();
+//				data.m_Scale = float.Parse(row ["Scale"].ToString ());
 
 				m_SkillTable[data.m_Id] = data;
 			}
@@ -130,7 +230,7 @@ namespace GlobalGame
 
 		private void ReadUserTable()
 		{
-			object[] list = luaManager.GetLuaTable ("User.lua");
+			object[] list = m_luaManager.GetLuaTable ("Actor.lua");
 			m_UserTable = new Dictionary<int, ActorData>();
 
 			for (int i = 0; i < list.Length; i++)
@@ -138,17 +238,36 @@ namespace GlobalGame
 				LuaTable row = (LuaTable)list [i];
 				ActorData data = new ActorData();
 
-				data.m_Id = int.Parse (row ["Id"].ToString());
-				data.m_Name = (string)row ["Name"];	
-				data.m_Professional = int.Parse (row ["Professional"].ToString());
-				data.m_MaxHp = int.Parse (row ["Life"].ToString());
-				data.m_Attack =int.Parse (row ["Attack"].ToString());
-				data.m_Defence = int.Parse (row ["Defence"].ToString());
-				data.m_Speed = int.Parse (row ["Speed"].ToString());
-				data.m_AttackSpeed = int.Parse (row ["AttackSpeed"].ToString());
-				data.m_AttackDis = int.Parse (row ["AttackDis"].ToString());
-				data.m_Cd = float.Parse (row ["CD"].ToString());
-				data.m_SkillIds = row ["Skills"].ToString ();
+				data.m_Id = int.Parse (row ["id"].ToString ());
+				data.m_Name = (string)row ["name"];
+				data.m_Tip = (string)row ["tip"];
+				data.m_Quality = int.Parse (row ["quality"].ToString());
+				data.m_Model = (string)row ["animation"];
+				data.m_Img = (string)row ["img"];	
+				data.m_MaxHp = int.Parse (row ["hp"].ToString());
+				data.m_Attack =int.Parse (row ["attack"].ToString());
+				data.m_Range = float.Parse(row ["range"].ToString());
+				data.m_Defence = int.Parse (row ["defence"].ToString());
+				data.m_Speed = int.Parse (row ["speed"].ToString());
+				data.m_AttackSpeed = int.Parse (row ["attackSpeed"].ToString());
+				data.m_AttackDis = int.Parse (row ["range"].ToString());
+				data.m_SkillIds = row ["skillid"].ToString ();
+				data.m_Crit = float.Parse (row ["crit"].ToString());
+				data.m_Dodge = float.Parse (row ["dodge"].ToString());
+				data.m_InjuryFree = float.Parse (row ["injury_free"].ToString());
+				data.m_AddHp = float.Parse (row ["addhp"].ToString());
+				data.m_AddAttack = float.Parse (row ["addattack"].ToString());
+				data.m_AddRange = float.Parse (row ["addrange"].ToString());
+				data.m_AddAttackSpeed = float.Parse (row ["addattackSpeed"].ToString());
+				data.m_AddSpeed = float.Parse (row ["addspeed"].ToString());
+				data.m_AddDiscrit = float.Parse (row ["adddiscrit"].ToString());
+				data.m_AddCrit = float.Parse (row ["addcrit"].ToString());
+				data.m_AddCritHurt = float.Parse (row ["addcrithurt"].ToString());
+				data.m_AddDodge = float.Parse (row ["adddodge"].ToString());
+				data.m_AddInjuryFree = float.Parse (row ["addinjury_free"].ToString());
+				data.m_SynthChipNum = float.Parse (row ["synthChipNum"].ToString());
+				data.m_GiveExp = float.Parse (row ["giveexp"].ToString());
+				data.m_ReturnDna = float.Parse (row ["returndna"].ToString());
 
 				data.m_CurHp = data.m_MaxHp;
 				m_UserTable [data.m_Id] = data;
@@ -171,5 +290,38 @@ namespace GlobalGame
 			return null;
 		}
 
+		private void ReadBulletTable()
+		{
+			object[] list = m_luaManager.GetLuaTable ("skillbullet.lua");
+			m_BulletTable = new Dictionary<int, BulletData> ();
+
+			for (int i = 0; i < list.Length; i++) 
+			{
+				LuaTable row = (LuaTable)list [i];
+				BulletData data = new BulletData ();
+				data.m_BulletID = int.Parse (row ["bulletID"].ToString());
+				data.m_BulletSpeed = int.Parse (row ["bulletSpeed"].ToString());
+				data.m_EffectID = int.Parse (row ["effectID"].ToString());
+				data.m_EffectRoute = row ["effectRoute"].ToString();
+				data.m_FlyType = int.Parse (row ["FlyType"].ToString());		
+				m_BulletTable [data.m_BulletID] = data;
+			}
+		}
+
+		static public BulletData GetBulletData(int Id)
+		{
+			if (m_BulletTable != null && Id > 0)
+			{
+
+				BulletData sd;
+				if (m_BulletTable.TryGetValue(Id, out sd))
+				{
+					return sd;
+				}
+				return null;
+
+			}
+			return null;
+		}
 	}
 }

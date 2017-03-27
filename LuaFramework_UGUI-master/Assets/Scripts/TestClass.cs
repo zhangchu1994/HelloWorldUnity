@@ -34,7 +34,7 @@ namespace GlobalGame
 				t.transform.position = m_Start.transform.position;
 				Bullet bulletScripte = t.GetComponent<Bullet>();
 				//			GameObject monsterObject = m_actorObjList [0];
-				bulletScripte.InitBullet (m_Start, m_End);
+				bulletScripte.InitBullet (m_Start, m_End,null);
 			}
 
 		}

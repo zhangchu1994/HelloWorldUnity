@@ -14,7 +14,7 @@ namespace GlobalGame
 		void Awake()
 		{
 			m_MainActor = this.transform.GetComponent<Actor> ();
-			m_SkillList = new  List<Skill> ();
+			m_SkillList = new List<Skill> ();
 		}
 
 		// Use this for initialization
@@ -35,10 +35,74 @@ namespace GlobalGame
 
 		public void InitSkillManager()
 		{
-			string[] ids = m_MainActor.m_ActorData.m_SkillIds.Split(',');  
-			for (int i = 0; i < ids.Length; i++) 
+//			string[] ids = m_MainActor.m_ActorData.m_SkillIds.Split(',');  
+//			for (int i = 0; i < ids.Length; i++) 
+//			{
+//				int id = int.Parse (ids [i]);
+//				Skill skill = new Skill();
+//				skill.InitSkill (m_MainActor,id);
+//				m_SkillList.Add (skill);
+//			}
+			SortSkillList();
+			for (int i = 0; i < m_SkillList.Count; i++) 
 			{
-				int id = int.Parse (ids [i]);
+				Skill skill = m_SkillList [i];
+				Debug.Log ("_____________________________ Id = "+skill.m_SkillData.m_Id);
+			}
+			Debug.Log ("InitSkillManager__________________________________");
+		}
+
+//		List<ClientDefine.S_Item> SortByFightValue(List<ClientDefine.S_Item> m_EquipList)
+//		{
+//			List<int> m_FightValue = new List<int>();
+//			for(int i = 0; i < m_EquipList.Count; i++)
+//			{
+//				m_FightValue.Add(RefreshEquipFightValue(m_EquipList[i]));
+//			}
+//			for(int i = 0; i < m_EquipList.Count; i++)
+//			{
+//				ClientDefine.S_Item TempItem = new ClientDefine.S_Item();
+//				for (int j = i+1; j < m_EquipList.Count; j++)
+//				{
+//					if (m_FightValue[i] < m_FightValue[j])
+//					{
+//						TempItem = m_EquipList[i];
+//						m_EquipList[i] = m_EquipList[j];
+//						m_EquipList[j] = TempItem;
+//					}
+//				}
+//			}
+//			return m_EquipList;
+//		}
+
+		void SortSkillList()
+		{
+			string[] ids = m_MainActor.m_ActorData.m_SkillIds.Split(',');
+
+			int[] skillIdList = Global.StringArrayToIntArray (ids);
+			for(int i = 0; i < ids.Length; i++)
+			{
+				SkillData TempItem;
+				for (int j = i+1; j < ids.Length; j++)
+				{
+					int skillId0 = int.Parse(ids[i]);
+					int skillId1 = int.Parse(ids[j]);
+					SkillData skill0 = DataTables.GetSkillData(skillId0);
+					SkillData skill1 = DataTables.GetSkillData(skillId1);
+					if (skill0 == null || skill1 == null)
+						continue;
+					if (skill0.m_Priority < skill1.m_Priority)
+					{
+						TempItem = skill0;
+						skillIdList[i] = skill1.m_Id;
+						skillIdList[j] = TempItem.m_Id;
+					}
+				}
+			}
+
+			for (int i = 0; i < skillIdList.Length; i++) 
+			{
+				int id = skillIdList [i];
 				Skill skill = new Skill();
 				skill.InitSkill (m_MainActor,id);
 				m_SkillList.Add (skill);

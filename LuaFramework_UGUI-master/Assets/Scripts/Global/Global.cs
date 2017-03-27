@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using Newtonsoft.Json;
+//using UnityEngine.;
 
 namespace GlobalGame 
 {
@@ -79,6 +80,25 @@ namespace GlobalGame
 
 				Obj.transform.localScale *= SetScale;
 			}
+		}
+
+		public static bool IsRateTrigger(float rate)
+		{
+			bool isRate = true;
+			int rand = UnityEngine.Random.Range( 0,100);
+			if (rand <= rate)
+				isRate = false;
+			return isRate;
+		}
+
+		public static int[] StringArrayToIntArray(string[] strArray)
+		{
+			int[] intArray  = new int [strArray.Length] ;
+			for (int i = 0; i < strArray.Length; i++) 
+			{
+				intArray [i] = int.Parse (strArray [i]);
+			}
+			return intArray;
 		}
 
 		public static T Clone<T>(T source)

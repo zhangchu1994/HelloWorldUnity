@@ -31,6 +31,7 @@ namespace GlobalGame
 		public Material NormalMaterial;
 
 		public int m_FightIndex = 0;
+		public int m_BossPos = 2;
 
 		public enum BattleSequence
 		{
@@ -46,7 +47,7 @@ namespace GlobalGame
 				Active = this;
 		}
 
-		void Start () 
+		void Start()
 		{
 			m_Sequence = BattleSequence.ClockWise;
 
@@ -64,7 +65,7 @@ namespace GlobalGame
 		void InitBattleRole()
 		{
 			string[] names = {"Actor/Actor1/ch_pc_hou","Actor/Actor2","Actor/Actor2"};
-			for (int i = 0; i < 3; i++) 
+			for (int i = 0; i < 2; i++) 
 			{
 				Object res = Resources.Load (names[i]);
 				GameObject ActorObject = GameObject.Instantiate (res) as GameObject;
@@ -111,12 +112,12 @@ namespace GlobalGame
 			int monsterCount = GetMonsterCount ();
 			for (int i = 0; i < monsterCount; i++) 
 			{
-				if (m_FightIndex == 3)
+				if (m_FightIndex == m_BossPos)
 					name = "enemy/Boss";
 				Object monsterRes = Resources.Load (name);
 				GameObject monsterObject = GameObject.Instantiate (monsterRes) as GameObject;
 				//				GameObject monsterObject = GameObject.Find("Monster"+i.ToString());
-				if (m_FightIndex == 3)
+				if (m_FightIndex == m_BossPos)
 					monsterObject.transform.localScale = new Vector3 (3, 3, 3);
 				Monster monster = monsterObject.GetComponent<Monster>();
 				monster.name = Global.GetMonsterNmae (i);
@@ -130,7 +131,7 @@ namespace GlobalGame
 
 		int GetMonsterCount()
 		{
-			if (m_FightIndex == 3)
+			if (m_FightIndex == m_BossPos)
 				return 1;
 			else
 				return 5;
@@ -157,7 +158,7 @@ namespace GlobalGame
 	    {  
 	    	yield return new WaitForSeconds(0.2f);
 			InitBattleRole ();
-	    }  
+	    }
 
 //		void UpdateClick()
 //		{
@@ -235,49 +236,13 @@ namespace GlobalGame
 //			}
 //		}
 
-		public GameObject GetCloseMonsterObj(GameObject selfObj,Actor.ActorType actorType)
-		{
-			List<GameObject> objList = null;
-			List<Actor> actorList = null;
 
-			if (actorType == Actor.ActorType.Actor) 
-			{
-				objList = m_actorObjList;
-				actorList = m_actorList;
-			} 
-			else if (actorType == Actor.ActorType.Monster) 
-			{
-				objList = m_monsterObjList;
-				actorList = m_monsterList;
-			}
-
-			GameObject closeMonster = null;
-			float closeDis = 100000;
-			for (int i = 0; i < objList.Count; i++) //m_actorList.Count
-			{
-				GameObject monsterObj = objList [i];
-				Actor monster = actorList [i];
-				if (monsterObj == null || monster.IsActorStatus (Actor.ActorStatus.Dead) == true)
-					continue;
-				
-				float dis = Vector3.Distance (selfObj.transform.position,monsterObj.transform.position);
-
-				if (dis < closeDis) 
-				{
-					closeMonster = monsterObj;
-					closeDis = dis;
-				}
-					
-			}
-			return closeMonster;
-		}
 
 		public void CurrentMonsterDie()
 		{
 			if (IsCurrentMonsterHasAlive () == true)
 				return;
 				
-
 			if (m_FightIndex == m_MonsterPlaceCount-1) 
 			{
 				m_Sequence = BattleSequence.AntiClockWise;

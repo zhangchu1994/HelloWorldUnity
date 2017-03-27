@@ -28,6 +28,7 @@ namespace GlobalGame
 		#region Update
 		void Update () 
 		{
+//			return;
 			UpdataCD ();
 			UpdateAI ();
 		}
@@ -38,9 +39,11 @@ namespace GlobalGame
 				return;
 			
 			m_ActorData.m_CurCd += Time.deltaTime;
-//			if (this.name == "Monster1")
-//				Debug.Log ("Update____CurCd = "+m_ActorData.m_CurCd);
-			if (m_ActorData.m_CurCd >= m_ActorData.m_Cd ) 
+			Skill curSkill = m_MainActor.m_ActorSkillManager.GetCurrentSkill ();
+			if (this.name == "Actor1")
+				Debug.Log ("Update____CurCd = "+m_ActorData.m_CurCd+" status = "+m_MainActor.m_CurrentTargetActor.m_ActorStatus+" cd = "+curSkill.m_SkillData.m_CdTime);
+			
+			if (m_ActorData.m_CurCd >= curSkill.m_SkillData.m_CdTime) 
 			{
 				if (m_MainActor.m_CurrentTargetActor.IsActorStatus(Actor.ActorStatus.Dead) == true )
 					m_MainActor.SetActorStatus (Actor.ActorStatus.Stand);
@@ -58,7 +61,10 @@ namespace GlobalGame
 			{
 				if (m_MainActor.IsActorStatus (Actor.ActorStatus.Stand)) //当处于站立状态时 由主角来找要打的怪
 				{
-					GameObject monster = BattleScene.Active.GetCloseMonsterObj (m_MainActor.gameObject,Actor.ActorType.Monster);
+//					if (m_MainActor.gameObject.name == "Actor1")
+//						Debug.Log ("UpdateAI = "+m_MainActor.m_ActorStatus+" name = "+m_MainActor.gameObject.name);
+					
+					GameObject monster = GlobalBattle.GetCloseMonsterObj (m_MainActor.gameObject,Actor.ActorType.Monster);
 					m_MainActor.SetCurrentTarget (monster);
 					m_MainActor.MonsterToAttack (monster);
 //					Global.BattleLog (m_MainActor, "MonsterToAttack = " + monster.name);
@@ -106,14 +112,13 @@ namespace GlobalGame
 			Skill skill = m_MainActor.m_ActorSkillManager.GetCurrentSkill ();
 //			Debug.Log ("________________________________ name = "+target.name+" dis = "+distance+" Radius = "+skill.m_SkillData.m_Radius+" status = "+m_MainActor.m_ActorStatus);
 //			Global.BattleLog (m_MainActor, "distance = " + distance);
-			if (distance <= skill.m_SkillData.m_Radius)  //  当和主人之间的距离超过技能距离时跟随
+			if (distance <= m_ActorData.m_Range)  //  当和主人之间的距离超过技能距离时跟随
 			{
 				m_MainActor.m_ActorAgentManager.StopAgent ();
 				m_MainActor.gameObject.transform.LookAt (target.transform);
 				m_MainActor.SetCurrentTarget (target);
 				m_MainActor.StartAttack ();
 				m_MainActor.SetActorStatus(Actor.ActorStatus.Attack);
-
 			}
 		}
 

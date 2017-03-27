@@ -20,10 +20,11 @@ namespace GlobalGame
 			m_ActorObject = obj;
 			m_ActorData = Global.Clone(DataTables.GetUserData (1));
 			m_ActorType = ActorType.Monster;
-			if (BattleScene.Active.m_FightIndex == 3) 
+			if (BattleScene.Active.m_FightIndex == BattleScene.Active.m_BossPos) 
 			{
 				m_ActorData.m_CurHp = 500;
 				m_ActorData.m_MaxHp = 500;
+				m_ActorType = ActorType.Boss;
 			}
 				
 //			m_ActorAgentManager = m_ActorObject.AddComponent<ActorAgentManager> ();

@@ -72,7 +72,7 @@ namespace GlobalGame
 //			m_MainActor.SetActorStatus (Actor.ActorStatus.Agent);
 			agent.ResetPath();
 			agent.Resume ();
-			Global.BattleLog(m_MainActor,"SetDestination");
+//			Global.BattleLog(m_MainActor,"SetDestination");
 			RemoveAgentFlag();
 
 			if (m_MainActor.IsActorStatus (Actor.ActorStatus.AgentToAttack) == true) 
@@ -121,8 +121,8 @@ namespace GlobalGame
 
 		public void StopAgent()
 		{
-			Global.BattleLog (m_MainActor,"StopAgent");
-			agent.Stop (true);
+//			Global.BattleLog (m_MainActor,"StopAgent");
+			agent.Stop ();
 		}
 
 		void Update () 

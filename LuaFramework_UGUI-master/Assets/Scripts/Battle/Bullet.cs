@@ -32,6 +32,7 @@ namespace GlobalGame
 		Actor m_Defactor;
 		Skill m_Skill;
 		SkillData m_SkillData;
+		BulletData m_BulletData;
 
 		//抛物线相关参数
 		public float m_ParabolaGravity = 3.8f;  
@@ -44,12 +45,13 @@ namespace GlobalGame
 		private float m_ParabolaAngleSpeed;  
 		private float m_ParabolaAngle;  
 
+
 		void Start() 
 		{
 			
 		}
 		
-		public void InitBullet(GameObject attack,GameObject defender)
+		public void InitBullet(GameObject attack,GameObject defender,BulletData bulletData)
 		{
 	//		this.transform.LookAt(defender.transform);
 	//		this.transform.rotation = rotation;
@@ -61,8 +63,9 @@ namespace GlobalGame
 			this.transform.rotation = attack.transform.rotation;
 			m_Skill = m_AttActor.m_ActorSkillManager.GetCurrentSkill ();
 			m_SkillData = m_Skill.m_SkillData;
+			m_BulletData = bulletData;
 
-			m_type = (Type)m_SkillData.m_SkillType2;//Type.TARGET_RECTILINEAR_MOTION;
+			m_type = (Type)bulletData.m_FlyType;//Type.TARGET_RECTILINEAR_MOTION;
 
 			if (m_type == Type.NO_MOTION) 
 			{

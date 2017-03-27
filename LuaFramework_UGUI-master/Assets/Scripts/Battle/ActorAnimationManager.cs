@@ -9,7 +9,11 @@ namespace GlobalGame
 		public Animation animationController = null;
 		public Actor m_MainActor;
 
-		// Use this for initialization
+		void Awake()
+		{
+			
+		}
+
 		void Start () 
 		{
 			
@@ -19,6 +23,8 @@ namespace GlobalGame
 		{
 			m_MainActor = GetComponent<Actor> ();
 			animationController = m_MainActor.GetComponent<Animation>();
+			if (m_MainActor.m_ActorType != Actor.ActorType.Boss)
+				animationController["hurt"].speed = 2;
 			PlayAnimation (Global.BattleAnimationType.Stand,WrapMode.Loop);
 		}
 
@@ -30,18 +36,23 @@ namespace GlobalGame
 
 		public void PlayAnimation(Global.BattleAnimationType argType,WrapMode mode,bool isStop=false)
 		{
+			if (m_MainActor.name == "Monster1")
+				Debug.Log ("Name = "+m_MainActor.name+" Type = "+argType);
+			
+			if (m_MainActor.name == "Actor1" && argType == Global.BattleAnimationType.Dead)
+				return;
 			if (animationController.IsPlaying (Global.GetAnimation (argType)) == true)
 				return;
-//			if (m_MainActor.name == "Actor2")
-//				Debug.Log ("Name = "+m_MainActor.name+" Type = "+argType);
 			animationController.Stop ();
 			animationController.wrapMode = mode;
 			animationController.Play(Global.GetAnimation(argType));
 			if (argType == Global.BattleAnimationType.Dead)
-				StartCoroutine (WaitThenDoThings(animationController[Global.Die].length));
+				StartCoroutine (DieAnimationDone(animationController[Global.Die].length));
+			else if  (argType == Global.BattleAnimationType.Hurt)
+				StartCoroutine (HurtAnimationDone(animationController[Global.Hurt].length));
 		}
 
-		IEnumerator WaitThenDoThings(float time)
+		IEnumerator DieAnimationDone(float time)
 		{
 			yield return new WaitForSeconds(time);
 			m_MainActor.ActorDeadAnimationDone ();
@@ -49,6 +60,12 @@ namespace GlobalGame
 			// Now do some stuff...
 //			animation.CrossFade("anotherAnim", 0.5f);
 //			Debug.Log("Next Animation____"+time);
+		}
+
+		IEnumerator HurtAnimationDone(float time)
+		{
+			yield return new WaitForSeconds (time*0.6f);
+			m_MainActor.RestoreActorStatus ();
 		}
 
 		public void PlayAnimations(List<Global.BattleAnimationType> argTypes,WrapMode mode,bool isStop=false)

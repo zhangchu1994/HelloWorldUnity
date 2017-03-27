@@ -18,31 +18,49 @@ namespace GlobalGame
 		void Start () 
 		{
 			m_mainMonster.m_ActorAnimationManager.PlayAnimation (Global.BattleAnimationType.Stand, WrapMode.Loop);
+			m_mainMonster.SetActorStatus (Actor.ActorStatus.Stand);
 		}
 		
 		void Update () 
 		{
+			return;
 			if (m_mainMonster.IsActorStatus (Actor.ActorStatus.Dead) == true)
 				return;
 			UpdateRotation ();
 			UpdataCD ();
-//			UpdateAttck ();
+			UpdateAttck ();
 		}
 
 		void UpdataCD()
 		{
+//			if (this.name == "Monster1") 
+//			{
+//				Debug.Log ("Update____CurCd = "+m_ActorData.m_CurCd);
+//				Debug.Log ("UpdateAttck___"+ m_mainMonster.name+" status = "+m_mainMonster.m_ActorStatus);
+//			}
+
 			if (m_mainMonster.IsActorStatus (Actor.ActorStatus.Attack) == false)
 				return;
+			if (m_mainMonster.IsActorStatus (Actor.ActorStatus.Hurt) == true)
+				return;
+
+//			if (this.name == "Monster1") 
+//			{
+//				Debug.Log ("Update____CurCd = "+m_ActorData.m_CurCd+" status = "+m_mainMonster.m_ActorStatus);
+//			}
+
 
 			m_ActorData.m_CurCd += Time.deltaTime;
-			//			if (this.name == "Monster1")
-			//				Debug.Log ("Update____CurCd = "+m_ActorData.m_CurCd);
-			if (m_ActorData.m_CurCd >= m_ActorData.m_Cd ) 
+//			if (m_mainMonster.name == "Monster1")
+//				Debug.Log ("UpdataCD__________________________"+this.name+" m_ActorData.m_CurCd = "+m_ActorData.m_CurCd);
+			Skill curSkill = m_mainMonster.m_ActorSkillManager.GetCurrentSkill();
+			if (m_ActorData.m_CurCd >= curSkill.m_SkillData.m_CdTime )//m_ActorData.m_Cd 
 			{
-				if (m_mainMonster.m_CurrentTargetActor.IsActorStatus(Actor.ActorStatus.Dead) == true )
+				if (m_mainMonster.m_CurrentTargetActor.IsActorStatus (Actor.ActorStatus.Dead) == true)
 					m_mainMonster.SetActorStatus (Actor.ActorStatus.Stand);
-				else
+				else {
 					m_mainMonster.StartAttack();
+				}
 			}
 		}
 
@@ -60,14 +78,16 @@ namespace GlobalGame
 
 		void UpdateAttck()
 		{
-			GameObject obj = BattleScene.Active.GetCloseMonsterObj (m_mainMonster.gameObject, Actor.ActorType.Actor);
+//			Debug.Log ("UpdateAttck___"+ m_mainMonster.name+" status = "+m_mainMonster.m_ActorStatus);
+			GameObject obj = GlobalBattle.GetCloseMonsterObj (m_mainMonster.gameObject, Actor.ActorType.Actor);
 			float dis = Vector3.Distance (obj.transform.position, m_mainMonster.gameObject.transform.position);
-			if (dis < 2) 
+			if (dis < 2.5f) 
 			{
-				m_mainMonster.transform.LookAt (obj.transform);
+				m_mainMonster.SetActorStatus (Actor.ActorStatus.Attack);
+//				m_mainMonster.transform.LookAt (obj.transform);
 				m_mainMonster.SetCurrentTarget (obj);
-				m_mainMonster.StartAttack ();
-				m_mainMonster.SetActorStatus(Actor.ActorStatus.Attack);
+//				m_mainMonster.StartAttack ();
+//				m_mainMonster.SetActorStatus(Actor.ActorStatus.Attack);
 			}
 		}
 	}

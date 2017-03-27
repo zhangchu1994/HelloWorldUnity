@@ -10,6 +10,7 @@ namespace GlobalGame
 	{
 		public enum ActorStatus
 		{
+			None,
 			Stand,
 			Agent,
 			Attack,
@@ -26,6 +27,7 @@ namespace GlobalGame
 			Partner1,
 			Partner2,
 			Monster,
+			Boss,
 		}
 
 		public int m_Index;
@@ -48,6 +50,7 @@ namespace GlobalGame
 
 		public GameObject m_CurrentTarget;
 		public Actor m_CurrentTargetActor;
+		public Actor.ActorStatus m_lastActorStatus = Actor.ActorStatus.None;
 
 		#region Init
 		void Start()
@@ -115,7 +118,9 @@ namespace GlobalGame
 		{	
 			if (m_ActorStatus == status)
 				return;
-
+//			if (this.gameObject.name == "Actor1" && status == ActorStatus.Stand)
+//				Debug.Log ("SetActorStatus___________________________");
+								
 			//			Global.BattleLog (this, status.ToString());
 			m_ActorStatus = status;
 
@@ -129,10 +134,10 @@ namespace GlobalGame
 				{
 					m_ActorAnimationManager.PlayAnimation (Global.BattleAnimationType.Run, WrapMode.Loop);
 				} 
-				else if (status == Actor.ActorStatus.Dead ) 
+				else if (status == Actor.ActorStatus.Dead) 
 				{
 					m_ActorAnimationManager.PlayAnimation (Global.BattleAnimationType.Dead, WrapMode.Once);
-				}
+				} 
 			}
 		}
 		#endregion
@@ -161,10 +166,24 @@ namespace GlobalGame
 				SetActorStatus (Actor.ActorStatus.Dead, true);
 				BattleScene.Active.CurrentMonsterDie ();
 			} 
-			else 
+			else if (IsActorStatus (Actor.ActorStatus.Dead) == false)
 			{
+				if (this.name == "Monster1")
+					Debug.Log ("AddHp_________________________________________");
+				m_lastActorStatus = m_ActorStatus;
+				SetActorStatus (Actor.ActorStatus.Hurt, false);
 				m_ActorAnimationManager.PlayAnimation (Global.BattleAnimationType.Hurt,WrapMode.Once);
 			}
+		}
+
+
+		public void RestoreActorStatus()
+		{
+//			Debug.Log ("RestoreActorStatus m_ActorStatus = "+m_ActorStatus);
+			if (m_ActorStatus == Actor.ActorStatus.Dead)
+				return;
+			m_ActorStatus = m_lastActorStatus;
+			m_lastActorStatus = Actor.ActorStatus.None;
 		}
 
 		public void LoseBlood(Actor attacker,float damage)//怪物掉血
@@ -176,6 +195,8 @@ namespace GlobalGame
 		#region Attack
 		public void SetCurrentTarget(GameObject Obj)
 		{
+//			if (this.gameObject.CompareTag(Global.TagName_Actor))
+//				Debug.Log ("SetCurrentTarget________________________________ name = "+Obj.name);
 			m_CurrentTarget = Obj;
 			m_CurrentTargetActor = m_CurrentTarget.GetComponent<Actor>();
 		}
@@ -198,27 +219,32 @@ namespace GlobalGame
 			}
 		}
 
-		public void ShootFront(GameObject obj,SkillData data)//RaycastHit hit
+		public void ShootFront(GameObject obj,SkillData data,BulletData bulletData)//RaycastHit hit
 		{
 //			for (int j = 0; j < m_actorObjList.Count; j++) 
 //			{
 //				GameObject obj = m_actorObjList [j];
+			if (obj == null)
+				return;
 			Vector3 target = obj.transform.position;
 			Actor actor = this;
 			m_ActorObject.transform.LookAt (target);
 
-			Object psObj = Resources.Load (data.m_EffectPath);
+			Object psObj = Resources.Load (bulletData.m_EffectRoute);
 			GameObject t = Instantiate(psObj) as GameObject;
 			Global.ChangeParticleScale (t,data.m_Scale);
 			t.transform.position = m_ActorObject.transform.position;
 			Bullet bulletScripte = t.GetComponent<Bullet>();
 //			GameObject monsterObject = m_actorObjList [0];
-			bulletScripte.InitBullet (m_ActorObject, obj);
+			bulletScripte.InitBullet (m_ActorObject, obj,bulletData);
 //			actor.m_ActorAnimationManager.PlayAnimation (Global.BattleAnimationType.Attack, WrapMode.Loop, true);
 		}
 
 		public void MagicZone(GameObject obj,SkillData data)
 		{
+			if (obj == null)
+				return;
+			
 			Vector3 target = obj.transform.position;
 			Actor actor = this;
 			m_ActorObject.transform.LookAt (target);
@@ -227,9 +253,9 @@ namespace GlobalGame
 			GameObject t = Instantiate(psObj) as GameObject;
 			Global.ChangeParticleScale (t,data.m_Scale);
 			t.transform.position = obj.transform.position;
-//			Bullet bulletScripte = t.GetComponent<Bullet>();
+			MagicZone magicZone = t.GetComponent<MagicZone>();
 			//			GameObject monsterObject = m_actorObjList [0];
-//			bulletScripte.InitBullet (m_ActorObject, obj);
+			magicZone.InitMagicZoom(m_ActorObject,data);
 //			actor.m_ActorAnimationManager.PlayAnimation (Global.BattleAnimationType.Attack, WrapMode.Loop, true);
 		}
 
@@ -256,7 +282,6 @@ namespace GlobalGame
 
 
 		#endregion
-
 		public void ActorDeadAnimationDone()
 		{
 			BattleScene.Active.DestoryMonster (this.gameObject,this);
