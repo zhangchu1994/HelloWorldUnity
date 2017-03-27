@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 54104463788870884}
   m_Layer: 0
   m_Name: ch_pc_hou
-  m_TagString: Untagged
+  m_TagString: Actor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1240,6 +1240,7 @@ Animation:
   - {fileID: 7400000, guid: 3862d29e2f6a34251b09f603de342ec3, type: 2}
   - {fileID: 7400000, guid: 1f3a7a648a60047b4900a2cd505de9d4, type: 2}
   - {fileID: 7400000, guid: fb20a1f51e24d4b90a626f8d6b3ed4e7, type: 2}
+  - {fileID: 7400000, guid: c6f186538d765af45af5ede09a1366ea, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
@@ -1369,6 +1370,7 @@ MonoBehaviour:
   m_ActorType: 0
   m_CurrentTarget: {fileID: 0}
   m_CurrentTargetActor: {fileID: 0}
+  m_lastActorStatus: 0
 --- !u!195 &195439720165038104
 NavMeshAgent:
   m_ObjectHideFlags: 1

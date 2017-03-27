@@ -250,7 +250,7 @@ ModelImporter:
     7400012: attack4
     7400014: UniqueSkill
     7400016: Parry
-    7400018: Hurt
+    7400018: hurt
     7400020: Stun
     7400022: Die
     7400024: DieFly
@@ -1328,7 +1328,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Hurt
+      name: hurt
       takeName: Take 001
       firstFrame: 291
       lastFrame: 315

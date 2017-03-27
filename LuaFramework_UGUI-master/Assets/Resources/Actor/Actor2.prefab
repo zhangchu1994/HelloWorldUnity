@@ -1773,7 +1773,7 @@ GameObject:
   - component: {fileID: 54530446604671592}
   m_Layer: 0
   m_Name: Actor2
-  m_TagString: Untagged
+  m_TagString: Actor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3718,6 +3718,7 @@ MonoBehaviour:
   m_ActorType: 0
   m_CurrentTarget: {fileID: 0}
   m_CurrentTargetActor: {fileID: 0}
+  m_lastActorStatus: 0
 --- !u!195 &195391937914663036
 NavMeshAgent:
   m_ObjectHideFlags: 1
