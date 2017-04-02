@@ -23,10 +23,10 @@ namespace GlobalGame
 		
 		void Update () 
 		{
-			return;
 			if (m_mainMonster.IsActorStatus (Actor.ActorStatus.Dead) == true)
 				return;
 			UpdateRotation ();
+			return;
 			UpdataCD ();
 			UpdateAttck ();
 		}

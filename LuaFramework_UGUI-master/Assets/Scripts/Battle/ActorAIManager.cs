@@ -40,8 +40,8 @@ namespace GlobalGame
 			
 			m_ActorData.m_CurCd += Time.deltaTime;
 			Skill curSkill = m_MainActor.m_ActorSkillManager.GetCurrentSkill ();
-			if (this.name == "Actor1")
-				Debug.Log ("Update____CurCd = "+m_ActorData.m_CurCd+" status = "+m_MainActor.m_CurrentTargetActor.m_ActorStatus+" cd = "+curSkill.m_SkillData.m_CdTime);
+//			if (this.name == "Actor1")
+//				Debug.Log ("Update____CurCd = "+m_ActorData.m_CurCd+" status = "+m_MainActor.m_CurrentTargetActor.m_ActorStatus+" cd = "+curSkill.m_SkillData.m_CdTime);
 			
 			if (m_ActorData.m_CurCd >= curSkill.m_SkillData.m_CdTime) 
 			{
@@ -102,39 +102,41 @@ namespace GlobalGame
 
 		void ShouldAttack()
 		{
-			if (m_MainActor.IsActorStatus (Actor.ActorStatus.Attack) == true )
+			bool isRun = (m_MainActor.IsActorStatus (Actor.ActorStatus.Agent) == true || m_MainActor.IsActorStatus (Actor.ActorStatus.AgentToAttack) == true 
+				|| m_MainActor.IsActorStatus (Actor.ActorStatus.Follow) == true);
+
+			if (isRun == false)
 				return;
 			Actor actor = BattleScene.Active.m_actorList [0];
 			GameObject target = actor.m_CurrentTarget;
 			if (target == null)
 				return;
-			float distance = Vector3.Distance(transform.position, target.transform.position);
+			float distance = Vector3.Distance (transform.position, target.transform.position);
 			Skill skill = m_MainActor.m_ActorSkillManager.GetCurrentSkill ();
-//			Debug.Log ("________________________________ name = "+target.name+" dis = "+distance+" Radius = "+skill.m_SkillData.m_Radius+" status = "+m_MainActor.m_ActorStatus);
-//			Global.BattleLog (m_MainActor, "distance = " + distance);
+//				Global.BattleLog (m_MainActor, "distance = " + distance);
 			if (distance <= m_ActorData.m_Range)  //  当和主人之间的距离超过技能距离时跟随
-			{
+			{ 
+//				if (m_MainActor.gameObject.name == "Actor2")
+//					Debug.Log ("________________________________ name = " + target.name + " dis = " + distance + " Radius = " + m_ActorData.m_Range + " status = " + m_MainActor.m_ActorStatus);
 				m_MainActor.m_ActorAgentManager.StopAgent ();
 				m_MainActor.gameObject.transform.LookAt (target.transform);
 				m_MainActor.SetCurrentTarget (target);
 				m_MainActor.StartAttack ();
-				m_MainActor.SetActorStatus(Actor.ActorStatus.Attack);
+				m_MainActor.SetActorStatus (Actor.ActorStatus.Attack);
 			}
 		}
 
 		void FllowTarget()
 		{
-			if (m_MainActor.IsActorStatus (Actor.ActorStatus.Attack) == true)
+			if (m_MainActor.IsActorStatus (Actor.ActorStatus.Attack) == true || m_MainActor.IsActorStatus (Actor.ActorStatus.Hurt) == true)
 				return;
-//			if (m_MainActor.name == "Actor2")
-//				Debug.Log (m_MainActor.m_ActorStatus.ToString());
 			
 			Actor actor = BattleScene.Active.m_actorList [0];
-			GameObject target = null;// = BattleScene.Active.m_actorObjList [0];
-			if (m_MainActor.m_ActorType == Actor.ActorType.Partner1)
-				target = actor.m_Fllow1;
-			else if (m_MainActor.m_ActorType == Actor.ActorType.Partner2)	
-				target = actor.m_Fllow2;
+			GameObject target = actor.gameObject;// = BattleScene.Active.m_actorObjList [0];
+//			if (m_MainActor.m_ActorType == Actor.ActorType.Partner1)
+//				target = actor.m_Fllow1;
+//			else if (m_MainActor.m_ActorType == Actor.ActorType.Partner2)	
+//				target = actor.m_Fllow2;
 			
 			if (target == null)
 				return;

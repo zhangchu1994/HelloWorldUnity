@@ -15,10 +15,10 @@ namespace GlobalGame
 
 		}
 
-		public void InitActor (GameObject obj) 
+		public void InitActor (GameObject obj,ActorData actorData) 
 		{
 			m_ActorObject = obj;
-			m_ActorData = Global.Clone(DataTables.GetUserData (1));
+			m_ActorData = actorData;//DataTables.GetUserData (1);
 			m_ActorType = ActorType.Monster;
 			if (BattleScene.Active.m_FightIndex == BattleScene.Active.m_BossPos) 
 			{
@@ -42,8 +42,8 @@ namespace GlobalGame
 //
 			m_MonsterAIManager = m_ActorObject.AddComponent<MonsterAIManager> ();
 
-			m_ActorSkillManager = m_ActorObject.AddComponent<ActorSkillManager> ();
-			m_ActorSkillManager.InitSkillManager ();
+//			m_ActorSkillManager = m_ActorObject.AddComponent<ActorSkillManager> ();
+//			m_ActorSkillManager.InitSkillManager ();
 
 //			Util.CallMethod("FirstBattleScene", "ActorDone");
 		}

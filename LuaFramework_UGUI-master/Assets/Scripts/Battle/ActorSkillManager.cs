@@ -47,36 +47,15 @@ namespace GlobalGame
 			for (int i = 0; i < m_SkillList.Count; i++) 
 			{
 				Skill skill = m_SkillList [i];
-				Debug.Log ("_____________________________ Id = "+skill.m_SkillData.m_Id);
+//				Debug.Log ("_____________________________ Id = "+skill.m_SkillData.m_Id);
 			}
-			Debug.Log ("InitSkillManager__________________________________");
+//			Debug.Log ("InitSkillManager__________________________________ actorId = "+m_MainActor.m_ActorData.m_Id);
 		}
-
-//		List<ClientDefine.S_Item> SortByFightValue(List<ClientDefine.S_Item> m_EquipList)
-//		{
-//			List<int> m_FightValue = new List<int>();
-//			for(int i = 0; i < m_EquipList.Count; i++)
-//			{
-//				m_FightValue.Add(RefreshEquipFightValue(m_EquipList[i]));
-//			}
-//			for(int i = 0; i < m_EquipList.Count; i++)
-//			{
-//				ClientDefine.S_Item TempItem = new ClientDefine.S_Item();
-//				for (int j = i+1; j < m_EquipList.Count; j++)
-//				{
-//					if (m_FightValue[i] < m_FightValue[j])
-//					{
-//						TempItem = m_EquipList[i];
-//						m_EquipList[i] = m_EquipList[j];
-//						m_EquipList[j] = TempItem;
-//					}
-//				}
-//			}
-//			return m_EquipList;
-//		}
 
 		void SortSkillList()
 		{
+			if (m_MainActor.m_ActorData.m_SkillIds == "-1")
+				return;
 			string[] ids = m_MainActor.m_ActorData.m_SkillIds.Split(',');
 
 			int[] skillIdList = Global.StringArrayToIntArray (ids);

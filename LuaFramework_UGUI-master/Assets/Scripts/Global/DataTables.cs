@@ -6,6 +6,7 @@ using LuaInterface;
 
 namespace GlobalGame 
 {
+	#region Data
 	public class ActorData
 	{
 		public int m_Id;	
@@ -56,7 +57,7 @@ namespace GlobalGame
 		public int m_SkillAttckType;//技能攻击类型
 		public int m_SkillType;//技能分类
 		public int m_Priority;//施放优先级
-		public int m_CdTime;//冷却时间
+		public float m_CdTime;//冷却时间
 		public float m_InitialCDTime;//触发几率
 		public int m_MoveType;//位移类型
 		public int m_MoveDistance;//位移距离
@@ -70,7 +71,6 @@ namespace GlobalGame
 		public float m_TargetEffectArea;//影响范围
 		public int m_HasBullet;//是否有子弹
 		public int m_BulletId;//技能子弹
-//		public int m_BulletSpeed;//子弹飞行速度
 		public int m_EffectID;//子弹效果ID
 		public int m_EffectTarget;//技能效果目标
 		public int m_Effecttype;//技能效果类型
@@ -79,16 +79,9 @@ namespace GlobalGame
 		public int m_RelativeAttributeFactor;//技能效果相关属性系数
 		public int m_EffectAttributeSource;//技能效果相关属性来源
 		public float m_Delay;//延迟时间
-		public int m_EffectPrefab;//技能效果特效
+		public string m_EffectPrefab;//技能效果特效
 		public int m_EffectFloatText;//技能效果提示
 
-//		public int m_SkillType1;
-//		public int m_SkillType2;
-		public int m_Target;
-		public int m_Range;
-//		public float m_Radius;
-		public string m_EffectPath;
-		public float m_Scale;
 
 		//非表字段
 		public List<GameObject> m_TargetObjList = new List<GameObject>();
@@ -99,10 +92,32 @@ namespace GlobalGame
 	{
 		public int m_BulletID;	
 		public int m_BulletSpeed;	
-		public int m_EffectID;	
 		public string m_EffectRoute;
 		public int m_FlyType;
 	}
+														
+
+	public class PveData
+	{
+		public int	m_Id;	
+		public string m_Name;	
+		public string m_Tip;	
+		public int m_level;
+		public List<string> m_MonsterPosition = new List<string>();
+		public string m_Show;	
+		public string m_Drop;	
+		public float m_Exp;	
+		public float m_Gold;	
+		public int m_Monster;	
+		public string m_MonsterID;	
+		public int m_MonsterLevel;	
+		public int m_BossOdds;	
+		public int m_KillMonsterNum;	
+		public string m_BossID;	
+		public int m_Bosslevel;
+	}
+
+	#endregion
 
 	public class DataTables 
 	{
@@ -128,7 +143,10 @@ namespace GlobalGame
 
 		private static Dictionary<int, SkillData> m_SkillTable = null;
 		private static Dictionary<int, ActorData> m_UserTable = null;
+		private static Dictionary<int, ActorData> m_MonsterTable = null;
 		private static Dictionary<int, BulletData> m_BulletTable = null;
+		private static Dictionary<int, PveData> m_PveTable = null;
+
 		private LuaManager m_luaManager;
 
 		public void Init()
@@ -146,13 +164,23 @@ namespace GlobalGame
 				ReadUserTable ();
 //				yield return Utility.CoroutineContainer.StartCoroutine(ReadUserTable());
 			}
+			if (m_MonsterTable == null) 
+			{
+				ReadMonsterTable ();
+			}
+
 			if (m_BulletTable == null)
 			{
 				ReadBulletTable ();
-				//				yield return Utility.CoroutineContainer.StartCoroutine(ReadUserTable());
+//				yield return Utility.CoroutineContainer.StartCoroutine(ReadUserTable());
 			}
 
-			Debug.Log ("Init_____________________________________");
+			if (m_PveTable == null)
+			{
+				ReadPveTable ();
+			}
+
+//			Debug.Log ("Init_____________________________________");
 		}
 
 		private void ReadSkillTable()
@@ -164,7 +192,6 @@ namespace GlobalGame
 			{
 				LuaTable row = (LuaTable)list [i];
 				SkillData data = new SkillData();
-//				Debugger.Log ("{0},{1},{2}",row ["Id"],row ["Name"],row ["SkillType1"]);
 
 				data.m_Id = int.Parse (row ["skillID"].ToString ());
 				data.m_Name = row ["skillName"].ToString ();
@@ -174,7 +201,7 @@ namespace GlobalGame
 				data.m_SkillAttckType = int.Parse(row ["SkillAttckType"].ToString ());
 				data.m_SkillType = int.Parse(row ["skillType"].ToString ());
 				data.m_Priority = int.Parse(row ["priority"].ToString ());
-				data.m_CdTime = int.Parse(row ["cdTime"].ToString ());
+				data.m_CdTime = float.Parse(row ["cdTime"].ToString ());
 				data.m_InitialCDTime = float.Parse(row ["initialCDTime"].ToString ());
 				data.m_MoveDistance = int.Parse(row ["moveDistance"].ToString ());
 				data.m_Animation_Move = int.Parse(row ["animation_Move"].ToString ());
@@ -188,7 +215,6 @@ namespace GlobalGame
 				data.m_TargetEffectArea = int.Parse(row ["targetEffectArea"].ToString ());
 				data.m_HasBullet = int.Parse(row ["hasBullet"].ToString ());
 				data.m_BulletId = int.Parse(row ["bulletId"].ToString ());
-//				data.m_EffectID = int.Parse(row ["effectID"].ToString ());
 				data.m_EffectTarget = int.Parse(row ["effectTarget"].ToString ());
 				data.m_Effecttype = int.Parse(row ["effecttype"].ToString ());
 				data.m_EffectValue = int.Parse(row ["effectValue"].ToString ());
@@ -196,16 +222,8 @@ namespace GlobalGame
 				data.m_RelativeAttributeFactor = int.Parse(row ["relativeAttributeFactor"].ToString ());
 				data.m_EffectAttributeSource = int.Parse(row ["effectAttributeSource"].ToString ());
 				data.m_Delay = float.Parse(row ["delay"].ToString ());
-				data.m_EffectPrefab = int.Parse(row ["effectPrefab"].ToString ());
+				data.m_EffectPrefab = row ["effectPrefab"].ToString ();
 				data.m_EffectFloatText = int.Parse(row ["effectFloatText"].ToString ());
-
-//				data.m_SkillType1 = int.Parse(row ["SkillType1"].ToString ());
-//				data.m_SkillType2 = int.Parse(row ["SkillType2"].ToString ());
-//				data.m_Target = int.Parse(row ["Target"].ToString ());
-//				data.m_Range = int.Parse(row ["Range"].ToString ());
-//				data.m_Radius = float.Parse(row ["Radius"].ToString ());
-//				data.m_EffectPath = row ["EffectPath"].ToString ();
-//				data.m_Scale = float.Parse(row ["Scale"].ToString ());
 
 				m_SkillTable[data.m_Id] = data;
 			}
@@ -290,9 +308,73 @@ namespace GlobalGame
 			return null;
 		}
 
+
+		private void ReadMonsterTable()
+		{
+			object[] list = m_luaManager.GetLuaTable ("Monster.lua");
+			m_MonsterTable = new Dictionary<int, ActorData>();
+
+			for (int i = 0; i < list.Length; i++)
+			{
+				LuaTable row = (LuaTable)list [i];
+				ActorData data = new ActorData();
+
+				data.m_Id = int.Parse (row ["id"].ToString ());
+				data.m_Name = (string)row ["name"];
+				data.m_Tip = (string)row ["tip"];
+				data.m_Quality = int.Parse (row ["quality"].ToString());
+				data.m_Model = (string)row ["animation"];
+				data.m_Img = (string)row ["img"];	
+				data.m_MaxHp = int.Parse (row ["hp"].ToString());
+				data.m_Attack =int.Parse (row ["attack"].ToString());
+				data.m_Range = float.Parse(row ["range"].ToString());
+				data.m_Defence = int.Parse (row ["defence"].ToString());
+				data.m_Speed = int.Parse (row ["speed"].ToString());
+				data.m_AttackSpeed = int.Parse (row ["attackSpeed"].ToString());
+				data.m_AttackDis = int.Parse (row ["range"].ToString());
+				data.m_SkillIds = row ["skillid"].ToString ();
+				data.m_Crit = float.Parse (row ["crit"].ToString());
+				data.m_Dodge = float.Parse (row ["dodge"].ToString());
+				data.m_InjuryFree = float.Parse (row ["injury_free"].ToString());
+				data.m_AddHp = float.Parse (row ["addhp"].ToString());
+				data.m_AddAttack = float.Parse (row ["addattack"].ToString());
+				data.m_AddRange = float.Parse (row ["addrange"].ToString());
+				data.m_AddAttackSpeed = float.Parse (row ["addattackSpeed"].ToString());
+				data.m_AddSpeed = float.Parse (row ["addspeed"].ToString());
+				data.m_AddDiscrit = float.Parse (row ["adddiscrit"].ToString());
+				data.m_AddCrit = float.Parse (row ["addcrit"].ToString());
+				data.m_AddCritHurt = float.Parse (row ["addcrithurt"].ToString());
+				data.m_AddDodge = float.Parse (row ["adddodge"].ToString());
+				data.m_AddInjuryFree = float.Parse (row ["addinjury_free"].ToString());
+//				data.m_SynthChipNum = float.Parse (row ["synthChipNum"].ToString());
+//				data.m_GiveExp = float.Parse (row ["giveexp"].ToString());
+//				data.m_ReturnDna = float.Parse (row ["returndna"].ToString());
+
+				data.m_CurHp = data.m_MaxHp;
+				m_MonsterTable [data.m_Id] = data;
+			}
+		}
+
+
+		static public ActorData GetMonsterData(int Id)
+		{
+			if (m_MonsterTable != null && Id > 0)
+			{
+
+				ActorData sd;
+				if (m_MonsterTable.TryGetValue(Id, out sd))
+				{
+					return sd;
+				}
+				return null;
+
+			}
+			return null;
+		}
+
 		private void ReadBulletTable()
 		{
-			object[] list = m_luaManager.GetLuaTable ("skillbullet.lua");
+			object[] list = m_luaManager.GetLuaTable ("SkillBullet.lua");
 			m_BulletTable = new Dictionary<int, BulletData> ();
 
 			for (int i = 0; i < list.Length; i++) 
@@ -301,7 +383,7 @@ namespace GlobalGame
 				BulletData data = new BulletData ();
 				data.m_BulletID = int.Parse (row ["bulletID"].ToString());
 				data.m_BulletSpeed = int.Parse (row ["bulletSpeed"].ToString());
-				data.m_EffectID = int.Parse (row ["effectID"].ToString());
+//				data.m_EffectID = int.Parse (row ["effectID"].ToString());
 				data.m_EffectRoute = row ["effectRoute"].ToString();
 				data.m_FlyType = int.Parse (row ["FlyType"].ToString());		
 				m_BulletTable [data.m_BulletID] = data;
@@ -320,6 +402,59 @@ namespace GlobalGame
 				}
 				return null;
 
+			}
+			return null;
+		}
+
+		private void ReadPveTable()
+		{
+			object[] list = m_luaManager.GetLuaTable ("Pve.lua");
+			m_PveTable = new Dictionary<int, PveData> ();
+
+			for (int i = 0; i < list.Length; i++) 
+			{
+				LuaTable row = (LuaTable)list [i];
+				PveData data = new PveData ();
+
+				data.m_Id = int.Parse (row ["id"].ToString());	
+				data.m_Name = row ["name"].ToString();	
+				data.m_Tip = row ["tip"].ToString();	
+				data.m_level = int.Parse (row ["level"].ToString());
+				data.m_MonsterPosition.Add(row ["monsterPosition1"].ToString());
+				data.m_MonsterPosition.Add(row ["monsterPosition2"].ToString());
+				data.m_MonsterPosition.Add(row ["monsterPosition3"].ToString());
+				data.m_MonsterPosition.Add(row ["monsterPosition4"].ToString());
+				data.m_MonsterPosition.Add(row ["monsterPosition5"].ToString());
+				data.m_MonsterPosition.Add(row ["monsterPosition6"].ToString());
+				data.m_MonsterPosition.Add(row ["monsterPosition7"].ToString());
+				data.m_MonsterPosition.Add(row ["monsterPosition8"].ToString());
+				data.m_Show = row ["show"].ToString();	
+				data.m_Drop = row ["drop"].ToString();	
+				data.m_Exp = float.Parse (row ["exp"].ToString());	
+				data.m_Gold = float.Parse (row ["gold"].ToString());	
+				data.m_Monster = int.Parse (row ["monster"].ToString());	
+				data.m_MonsterID = row ["monsterID"].ToString();	
+				data.m_MonsterLevel = int.Parse (row ["monsterLevel"].ToString());	
+				data.m_BossOdds = int.Parse (row ["bossOdds"].ToString());	
+				data.m_KillMonsterNum = int.Parse (row ["killMonsterNum"].ToString());	
+				data.m_BossID = row ["bossID"].ToString();	
+				data.m_Bosslevel = int.Parse (row ["bosslevel"].ToString());
+
+				m_PveTable [data.m_Id] = data;
+			}
+		}
+
+		static public PveData GetPveData(int Id)
+		{
+			if (m_PveTable != null && Id > 0)
+			{
+
+				PveData sd;
+				if (m_PveTable.TryGetValue(Id, out sd))
+				{
+					return sd;
+				}
+				return null;
 			}
 			return null;
 		}

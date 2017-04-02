@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using GlobalGame;
 using UnityEngine.UI;
+using LuaFramework;
 
 namespace GlobalGame 
 {
@@ -17,11 +18,6 @@ namespace GlobalGame
 		public GameObject m_StartPoint;
 		public List<GameObject> m_MonsterPoints;
 
-//		public GameObject m_ActorObject;
-//		public Actor m_Actor;
-//		public GameObject m_ActorObject1;
-//		public Actor m_Actor1;
-
 		public List<GameObject> m_monsterObjList = new List<GameObject>{};
 		public List<GameObject> m_actorObjList = new List<GameObject>{};
 		public List<Actor> m_monsterList = new List<Actor>{};//Monster
@@ -30,8 +26,14 @@ namespace GlobalGame
 		public Material BasicOutLine;
 		public Material NormalMaterial;
 
+		private Dictionary<string,GameObject> m_PreLoadActor = new Dictionary<string,GameObject>();
+		private Dictionary<string,GameObject> m_PreLoadMonster = new Dictionary<string,GameObject>();
+
 		public int m_FightIndex = 0;
 		public int m_BossPos = 2;
+
+		public int ProloadCount = 0;
+		public PveData m_CurPveData;
 
 		public enum BattleSequence
 		{
@@ -49,53 +51,79 @@ namespace GlobalGame
 
 		void Start()
 		{
+			ProloadCount = 0;
 			m_Sequence = BattleSequence.ClockWise;
-
-			StartCoroutine(StartBattle());  
+			StartCoroutine(InitLua());  
 		}
 
-		public GameObject GetFllowActor()
+		void Update () 
 		{
-			if (m_actorObjList != null && m_actorObjList.Count >= 1)
-				return m_actorObjList [0];
-			else
-				return null;
+			//			UpdateClick ();
+			if (ProloadCount == -1)
+				return;
+			if (ProloadCount == 3) 
+			{
+				ProloadCount = -1;
+				InitBattleData ();
+				InitBattleRole ();
+				InitMonster ();
+			}
+		}
+
+		IEnumerator InitLua()
+		{
+			yield return new WaitForSeconds (0.5f);
+
+
+			PreloadActor();
+		}
+
+		void InitBattleData()
+		{
+			m_CurPveData = DataTables.GetPveData (1);
+		}
+
+
+
+		void PreloadActor()
+		{
+			int[] Ids = {1,2,3};//2,
+			for (int i = 0; i < Ids.Length; i++) 
+			{
+				ActorData actorData = DataTables.GetUserData (Ids[i]);
+				Dictionary<string,string> info1 = Global.CreateABInfo(actorData.m_Model,Global.GetAssetName(actorData.m_Model),AssetType.Perfab,i);
+				ResourceManager.Active.LoadPrefabWithInfo(info1, delegate(UnityEngine.Object[] objs,Dictionary<string,string> info) {
+					ProloadCount++;
+					string index = Global.getDicStrVaule(info1,Global.ABInfoKey_Index);
+
+					GameObject prefab = objs[0] as GameObject;
+					if (m_PreLoadActor.ContainsKey(Global.GetAssetName(actorData.m_Model)) == false)
+						m_PreLoadActor.Add(Global.GetAssetName(actorData.m_Model),prefab);
+				});
+			}
+//			InitBattleRole ();
 		}
 
 		void InitBattleRole()
 		{
-			string[] names = {"Actor/Actor1/ch_pc_hou","Actor/Actor2","Actor/Actor2"};
-			for (int i = 0; i < 2; i++) 
+			float num = 1.5f;
+			float[] xOffet = {0,-num,num };//,-num,num
+			float[] zOffet = {0,-num,-num };//,num,num
+
+			int[] Ids = {1,2,3};//2,
+			for (int i = 0; i < Ids.Length; i++) 
 			{
-				Object res = Resources.Load (names[i]);
-				GameObject ActorObject = GameObject.Instantiate (res) as GameObject;
+				ActorData actorData = DataTables.GetUserData (Ids[i]);
+
+				GameObject prefab = Global.getDicObjVaule(m_PreLoadActor,Global.GetAssetName(actorData.m_Model));
+				GameObject ActorObject = GameObject.Instantiate (prefab) as GameObject;
 				Actor actor = ActorObject.GetComponent<Actor>();
 				ActorObject.name = Global.GetActorNmae(i);
-				actor.InitActor (ActorObject,i);
+				actor.InitActor (ActorObject,i,actorData);
 				m_actorObjList.Add(ActorObject);
 				m_actorList.Add (actor);
-				ActorObject.transform.rotation = m_StartPoint.transform.rotation;
-
-				if (i == 0) 
-				{
-					ActorObject.transform.position = new Vector3 (m_StartPoint.transform.position.x, m_StartPoint.transform.position.y, m_StartPoint.transform.position.z);
-//					ActorObject.transform.rotation = new Vector3 (m_StartPoint.transform.Rotate, m_StartPoint.transform.position.y, m_StartPoint.transform.position.z);
-				}
-				else if (i == 1) 
-				{
-					GameObject ActorObject0 = m_actorObjList[0];
-					Actor actor0 = ActorObject0.GetComponent<Actor>();
-					ActorObject.transform.position = new Vector3 (actor0.m_Fllow1.transform.position.x, actor0.m_Fllow1.transform.position.y, actor0.m_Fllow1.transform.position.z);
-				} 
-				else if (i == 2) 
-				{
-					GameObject ActorObject0 = m_actorObjList[0];
-					Actor actor0 = ActorObject0.GetComponent<Actor>();
-					ActorObject.transform.position = new Vector3 (actor0.m_Fllow2.transform.position.x, actor0.m_Fllow2.transform.position.y, actor0.m_Fllow2.transform.position.z);
-				}
+				ActorObject.transform.position = new Vector3 (m_StartPoint.transform.position.x+xOffet[i], m_StartPoint.transform.position.y, m_StartPoint.transform.position.z+zOffet[i]);
 			}
-
-			InitMonster();
 		}
 
 		void InitMonster()
@@ -104,28 +132,40 @@ namespace GlobalGame
 			m_monsterObjList.Clear ();
 			m_monsterList.Clear ();
 			string[] nameList = { "enemy/01-FlowerMonster-Blue", "enemy/03-MaskedOrc-Grey","enemy/01-FlowerMonster-Blue","enemy/03-MaskedOrc-Grey" };
+
 			float num = 1.5f;
 			float[] xOffet = {0,-num,num,-num,num };
 			float[] zOffet = {0,-num,-num,num,num };
-			string name = nameList [m_FightIndex];
-			GameObject startPoint = m_MonsterPoints [m_FightIndex];
+//			string name = nameList [m_FightIndex];
+			GameObject startPoint = m_MonsterPoints[m_FightIndex];
 			int monsterCount = GetMonsterCount ();
 			for (int i = 0; i < monsterCount; i++) 
 			{
-				if (m_FightIndex == m_BossPos)
-					name = "enemy/Boss";
-				Object monsterRes = Resources.Load (name);
-				GameObject monsterObject = GameObject.Instantiate (monsterRes) as GameObject;
-				//				GameObject monsterObject = GameObject.Find("Monster"+i.ToString());
-				if (m_FightIndex == m_BossPos)
-					monsterObject.transform.localScale = new Vector3 (3, 3, 3);
-				Monster monster = monsterObject.GetComponent<Monster>();
-				monster.name = Global.GetMonsterNmae (i);
-				monster.InitActor (monsterObject);
-				m_monsterObjList.Add (monsterObject);
-				m_monsterList.Add (monster);
+//				if (m_FightIndex == m_BossPos)
+//					name = "enemy/Boss";
 
-				monsterObject.transform.position = new Vector3 (startPoint.transform.position.x+xOffet[i], startPoint.transform.position.y, startPoint.transform.position.z+zOffet[i]);
+				string abPath = "01-FlowerMonster-Blue";
+				Dictionary<string,string> info1 = Global.CreateABInfo ("modelenemy/"+abPath,abPath,AssetType.Perfab,i);
+				ResourceManager.Active.LoadPrefabWithInfo(info1, delegate(UnityEngine.Object[] objs,Dictionary<string,string> info) {
+					GameObject prefab = objs[0] as GameObject;
+
+					string indexStr = "";
+					info.TryGetValue("Index",out indexStr);
+					int index = int .Parse(indexStr);
+
+					GameObject monsterObject = GameObject.Instantiate (prefab) as GameObject;
+					ActorData actorData = DataTables.GetMonsterData (index);
+					if (m_FightIndex == m_BossPos)
+						monsterObject.transform.localScale = new Vector3 (3, 3, 3);
+					Monster monster = monsterObject.GetComponent<Monster>();
+//					Debug.Log("InitMonster  index = "+index+" name = ");//+Global.GetMonsterNmae (i)
+					monsterObject.name = Global.GetMonsterNmae (index);
+					monster.InitActor (monsterObject,actorData);
+					m_monsterObjList.Add (monsterObject);
+					m_monsterList.Add (monster);
+
+					monsterObject.transform.position = new Vector3 (startPoint.transform.position.x+xOffet[index], startPoint.transform.position.y, startPoint.transform.position.z+zOffet[index]);
+				});
 			}
 		}
 
@@ -154,11 +194,13 @@ namespace GlobalGame
 			}
 		}
 
-		IEnumerator StartBattle()  
-	    {  
-	    	yield return new WaitForSeconds(0.2f);
-			InitBattleRole ();
-	    }
+		public GameObject GetFllowActor()
+		{
+			if (m_actorObjList != null && m_actorObjList.Count >= 1)
+				return m_actorObjList [0];
+			else
+				return null;
+		}
 
 //		void UpdateClick()
 //		{
@@ -300,10 +342,7 @@ namespace GlobalGame
 //			}
 //		}
 
-		void Update () 
-		{
-//			UpdateClick ();
-		}
+
 	}
 }
 	

@@ -42,7 +42,10 @@ namespace GlobalGame
 
 		public void InitLoseBlood(float blood)
 		{
-			Object m_TextPrefab = Resources.Load ("BloodText");
+			if (blood == 0)
+				return;
+
+			Object m_TextPrefab = Resources.Load ("UI/BloodText");
 			GameObject t = Instantiate(m_TextPrefab) as GameObject;
 			t.transform.SetParent(m_CanvasParent.transform, false);
 //			t.name = "BloodText" + this.name+m_DamageText.Count.ToString();
@@ -52,6 +55,8 @@ namespace GlobalGame
 			Text text = t.GetComponent<Text> ();
 			text.text = blood.ToString();
 			m_DamageText.Add (t);
+			if (blood > 0)
+				text.color = Color.green;
 
 			Hashtable args = new Hashtable();
 			args["amount"] =  new Vector3(0,10,0);
@@ -73,7 +78,7 @@ namespace GlobalGame
 
 		public void InitActorBlood()
 		{
-			Object m_TextPrefab = Resources.Load ("Blood");
+			Object m_TextPrefab = Resources.Load ("UI/Blood");
 			m_Blood = Instantiate(m_TextPrefab) as GameObject;
 			m_Blood.transform.SetParent(m_CanvasParent.transform, false);
 			m_Blood.name = "Blood" + this.name;

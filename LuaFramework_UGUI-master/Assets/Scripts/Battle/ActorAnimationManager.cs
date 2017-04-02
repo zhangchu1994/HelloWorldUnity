@@ -36,8 +36,8 @@ namespace GlobalGame
 
 		public void PlayAnimation(Global.BattleAnimationType argType,WrapMode mode,bool isStop=false)
 		{
-			if (m_MainActor.name == "Monster1")
-				Debug.Log ("Name = "+m_MainActor.name+" Type = "+argType);
+//			if (m_MainActor.name == "Monster1")
+//				Debug.Log ("Name = "+m_MainActor.name+" Type = "+argType);
 			
 			if (m_MainActor.name == "Actor1" && argType == Global.BattleAnimationType.Dead)
 				return;

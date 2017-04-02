@@ -1918,7 +1918,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 862322747}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -16.77, y: 0, z: 3.32}
+  m_LocalPosition: {x: -11.76, y: 2.15, z: 6.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1042319957}
@@ -2264,6 +2264,8 @@ MonoBehaviour:
   BasicOutLine: {fileID: 2100000, guid: 011781635a5fed3409154d299f531be3, type: 2}
   NormalMaterial: {fileID: 2100000, guid: afddb109c6950934fb88faeef379b6ec, type: 2}
   m_FightIndex: 0
+  m_BossPos: 2
+  ProloadCount: 0
   m_Sequence: 0
 --- !u!114 &1157383832
 MonoBehaviour:

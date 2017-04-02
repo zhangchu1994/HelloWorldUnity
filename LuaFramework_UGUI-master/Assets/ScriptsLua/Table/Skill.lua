@@ -9,7 +9,7 @@
 -- SkillAttckType                   int                              技能攻击类型
 -- skillType                        int                              技能分类
 -- priority                         int                              施放优先级
--- cdTime                           int                              冷却时间
+-- cdTime                           float                            冷却时间
 -- initialCDTime                    float                            触发几率
 -- moveType                         int                              位移类型
 -- moveDistance                     int                              位移距离
@@ -30,7 +30,7 @@
 -- relativeAttributeFactor          int                              技能效果相关属性系数
 -- effectAttributeSource            int                              技能效果相关属性来源
 -- delay                            float                            延迟时间
--- effectPrefab                     int                              技能效果特效
+-- effectPrefab                     string                           技能效果特效
 -- effectFloatText                  int                              技能效果提示
 
 return {
@@ -66,7 +66,7 @@ return {
 		relativeAttributeFactor = 1,
 		effectAttributeSource = 0,
 		delay = 0.5,
-		effectPrefab = 1,
+		effectPrefab = "0",
 		effectFloatText = 10,
 	},
 	[2] = {
@@ -77,7 +77,7 @@ return {
 		skillLevel = 1,
 		UpdateCost = "gold,1066",
 		normalAttck = 1,
-		SkillAttckType = 1,
+		SkillAttckType = 0,
 		skillType = 0,
 		priority = 2,
 		cdTime = 1,
@@ -101,7 +101,7 @@ return {
 		relativeAttributeFactor = 1,
 		effectAttributeSource = 0,
 		delay = 1,
-		effectPrefab = 1,
+		effectPrefab = "0",
 		effectFloatText = 10,
 	},
 	[3] = {
@@ -115,7 +115,7 @@ return {
 		SkillAttckType = 1,
 		skillType = 0,
 		priority = 1,
-		cdTime = 1,
+		cdTime = 1.5,
 		initialCDTime = 1,
 		moveType = 0,
 		moveDistance = 0,
@@ -125,7 +125,7 @@ return {
 		targetType = 0,
 		targetChooseType = "0",
 		targetChooseConitionValue = 1,
-		targetEffectType = 0,
+		targetEffectType = -1,
 		targetEffectArea = 0,
 		hasBullet = 1,
 		bulletId = 1,
@@ -136,7 +136,7 @@ return {
 		relativeAttributeFactor = 1,
 		effectAttributeSource = 0,
 		delay = 1,
-		effectPrefab = 1,
+		effectPrefab = "0",
 		effectFloatText = 10,
 	},
 	[4] = {
@@ -150,7 +150,7 @@ return {
 		SkillAttckType = 1,
 		skillType = 0,
 		priority = 2,
-		cdTime = 1,
+		cdTime = 1.5,
 		initialCDTime = 1,
 		moveType = 0,
 		moveDistance = 0,
@@ -160,7 +160,7 @@ return {
 		targetType = 0,
 		targetChooseType = "0",
 		targetChooseConitionValue = 1,
-		targetEffectType = 0,
+		targetEffectType = -1,
 		targetEffectArea = 0,
 		hasBullet = 1,
 		bulletId = 2,
@@ -171,7 +171,7 @@ return {
 		relativeAttributeFactor = 1,
 		effectAttributeSource = 0,
 		delay = 1,
-		effectPrefab = 1,
+		effectPrefab = "0",
 		effectFloatText = 10,
 	},
 	[5] = {
@@ -185,7 +185,7 @@ return {
 		SkillAttckType = 1,
 		skillType = 0,
 		priority = 1,
-		cdTime = 1,
+		cdTime = 2,
 		initialCDTime = 1,
 		moveType = 0,
 		moveDistance = 0,
@@ -197,7 +197,7 @@ return {
 		targetChooseConitionValue = 1,
 		targetEffectType = 0,
 		targetEffectArea = 0,
-		hasBullet = 1,
+		hasBullet = 0,
 		bulletId = 0,
 		effectTarget = 0,
 		effecttype = 0,
@@ -206,7 +206,7 @@ return {
 		relativeAttributeFactor = 1,
 		effectAttributeSource = 0,
 		delay = 1,
-		effectPrefab = 1,
+		effectPrefab = "Effect/ArrowFX_FireRain",
 		effectFloatText = 10,
 	},
 	[6] = {
@@ -220,7 +220,7 @@ return {
 		SkillAttckType = 1,
 		skillType = 1,
 		priority = 2,
-		cdTime = 1,
+		cdTime = 2,
 		initialCDTime = 1,
 		moveType = 0,
 		moveDistance = 0,
@@ -232,7 +232,7 @@ return {
 		targetChooseConitionValue = 5,
 		targetEffectType = 1,
 		targetEffectArea = 5,
-		hasBullet = 1,
+		hasBullet = 0,
 		bulletId = 0,
 		effectTarget = 2,
 		effecttype = 1,
@@ -241,7 +241,7 @@ return {
 		relativeAttributeFactor = 1,
 		effectAttributeSource = 0,
 		delay = 1,
-		effectPrefab = 1,
+		effectPrefab = "Effect/ChargeFX_Wind01",
 		effectFloatText = 10,
 	},
 }

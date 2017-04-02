@@ -8,7 +8,8 @@ namespace GlobalGame
 	{
 		private float m_curEffectTime;
 		private Actor m_attacker;
-		private float m_EffectTime;
+//		private Actor m_defenser;
+		private SkillData m_SkillData;
 
 		void Awake()
 		{
@@ -19,13 +20,15 @@ namespace GlobalGame
 
 		void Start () 
 		{
-			m_EffectTime = 1.5f;
+			
 		}
 
 		public void InitMagicZoom(GameObject attackerObj,SkillData skillData)
 		{
 			m_curEffectTime = 0;
 			m_attacker = attackerObj.GetComponent<Actor> ();
+//			m_defenser = defenceObj.GetComponent<Actor> ();
+			m_SkillData = skillData;
 		}
 		
 		void Update () 
@@ -34,7 +37,7 @@ namespace GlobalGame
 			if (m_curEffectTime == -1)
 				return;
 			m_curEffectTime += Time.deltaTime;
-			if (m_curEffectTime >= m_EffectTime) 
+			if (m_curEffectTime >= m_SkillData.m_Delay) 
 			{
 				isEffect ();
 				m_curEffectTime = -1;
@@ -43,19 +46,29 @@ namespace GlobalGame
 
 		void isEffect()
 		{
-			List<GameObject> monsters = BattleScene.Active.m_monsterObjList;
-			for (int i = 0; i < monsters.Count; i++) 
+			for (int i = 0; i < m_SkillData.m_TargetObjList.Count; i++) 
 			{
-				GameObject obj = monsters [i];
-				if (obj == null)
-					continue;
-				float dis = Vector3.Distance (obj.gameObject.transform.position, this.gameObject.transform.position);
-				if (dis < 5) 
-				{
-					Monster monster = obj.gameObject.GetComponent<Monster> ();
-					monster.LoseBlood (m_attacker,-2f);
-				}
+				GameObject obj = m_SkillData.m_TargetObjList [i];
+//				Debug.Log ("MagicZone isEffect = "+obj.name);
+				Actor defenser = obj.gameObject.GetComponent<Actor> ();
+				float damage = GlobalBattle.GetSkillDamage (m_attacker,defenser,m_SkillData);
+				defenser.LoseBlood (m_attacker,damage);
 			}
+
+//			List<GameObject> monsters = BattleScene.Active.m_monsterObjList;
+//			for (int i = 0; i < monsters.Count; i++) 
+//			{
+//				GameObject obj = monsters [i];
+//				if (obj == null)
+//					continue;
+//				float dis = Vector3.Distance (obj.gameObject.transform.position, this.gameObject.transform.position);
+//				if (dis < 5) 
+//				{
+//					Monster monster = obj.gameObject.GetComponent<Monster> ();
+//					float damage = GlobalBattle.GetSkillDamage (m_attacker,m_defenser,m_SkillData);
+//					monster.LoseBlood (m_attacker,damage);
+//				}
+//			}
 		}
 	}
 }

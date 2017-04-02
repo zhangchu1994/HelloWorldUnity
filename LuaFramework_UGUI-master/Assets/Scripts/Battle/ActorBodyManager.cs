@@ -73,7 +73,7 @@ namespace GlobalGame
 			GameObject[] objects = new GameObject[4];
 			for (int i = 0; i < equipments.Length; i++) {
 
-				Object res = Resources.Load ("Actor/Actor1/" + equipments [i]);
+				Object res = Resources.Load ("ModelActor/Actor1/" + equipments [i]);
 				objects[i] = GameObject.Instantiate (res) as GameObject;
 				meshes[i] = objects[i].GetComponentInChildren<SkinnedMeshRenderer> ();
 			}
@@ -85,7 +85,7 @@ namespace GlobalGame
 				GameObject.DestroyImmediate (objects [i].gameObject);
 			}
 
-			Object res1 = Resources.Load ("Actor/Actor1/" + weapon);
+			Object res1 = Resources.Load ("ModelActor/Actor1/" + weapon);
 			WeaponInstance = GameObject.Instantiate (res1) as GameObject;
 
 			Transform[] transforms = this.transform.gameObject.GetComponentsInChildren<Transform>();

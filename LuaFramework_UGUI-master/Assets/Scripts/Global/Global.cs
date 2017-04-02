@@ -3,15 +3,51 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using Newtonsoft.Json;
-//using UnityEngine.;
+using LuaFramework;
 
 namespace GlobalGame 
 {
 	public class Global 
 	{
+		public static string ABInfoKey_Type = "ABType";
+		public static string ABInfoKey_ABName = "ABName";
+		public static string ABInfoKey_AssetName = "AssetName";
+		public static string ABInfoKey_Index = "Index";
+
 		public static string TagName_Enemy = "Enemy";
 		public static string TagName_Ground = "Ground";
 		public static string TagName_Actor = "Actor";
+
+		public static Dictionary<string,string> CreateABInfo(string ABName,string AssetName,AssetType Type,int Index)
+		{
+			Dictionary<string,string> info1 = new Dictionary<string,string>();//abFullName, assetName
+			int type = (int)Type;
+			info1.Add(ABInfoKey_Type,type.ToString());
+			info1.Add(ABInfoKey_ABName,ABName);
+			info1.Add(ABInfoKey_AssetName,AssetName);
+			info1.Add(ABInfoKey_Index,Index.ToString());
+			return info1;
+		}
+
+		public static string GetAssetName(string path)
+		{
+			string[] names = path.Split ('/');
+			return names[names.Length-1];
+		}
+
+		public static string getDicStrVaule(Dictionary<string,string> info,string Key)
+		{
+			string vaule = "";
+			info.TryGetValue (Key, out vaule);
+			return vaule;
+		}
+
+		public static GameObject getDicObjVaule(Dictionary<string,GameObject> info,string Key)
+		{
+			GameObject vaule = null;
+			info.TryGetValue (Key, out vaule);
+			return vaule;
+		}
 
 //		public static string ActorName = "Ian1970";
 
@@ -80,6 +116,18 @@ namespace GlobalGame
 
 				Obj.transform.localScale *= SetScale;
 			}
+		}
+
+		public static List<int> GetRandomNumber(int Range,int count)
+		{
+			List<int> list = new List<int>();
+			while(list.Count < count)
+			{
+				int num = UnityEngine.Random.Range( 0,Range);
+				if (list.Contains (num) == false)
+					list.Add (num);
+			}
+			return list;
 		}
 
 		public static bool IsRateTrigger(float rate)

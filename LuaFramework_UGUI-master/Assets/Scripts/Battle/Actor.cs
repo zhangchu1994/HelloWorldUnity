@@ -30,6 +30,13 @@ namespace GlobalGame
 			Boss,
 		}
 
+		public enum ActorAttributeType
+		{
+			Hp = 0,
+			Attack = 0,
+			Defence = 1,
+		}
+
 		public int m_Index;
 		public GameObject m_ActorObject = null;
 
@@ -41,8 +48,6 @@ namespace GlobalGame
 		public ActorAIManager m_ActorAIManager;
 		public MonsterAIManager m_MonsterAIManager;
 		public ActorSkillManager m_ActorSkillManager;
-		public GameObject m_Fllow1;
-		public GameObject m_Fllow2;
 
 		public ActorData m_ActorData;
 		public ActorStatus m_ActorStatus;
@@ -52,13 +57,16 @@ namespace GlobalGame
 		public Actor m_CurrentTargetActor;
 		public Actor.ActorStatus m_lastActorStatus = Actor.ActorStatus.None;
 
+
+		public List<float> m_AttributeList = new List<float>();
+
 		#region Init
 		void Start()
 		{
 
 		}
 
-		public void InitActor (GameObject obj,int argIndex) 
+		public void InitActor (GameObject obj,int argIndex,ActorData actorData) 
 		{
 			m_ActorStatus = ActorStatus.Stand;
 
@@ -72,14 +80,14 @@ namespace GlobalGame
 			m_Index = argIndex;
 			m_ActorObject = obj;
 
-			m_ActorData = DataTables.GetUserData (m_Index+1);
+			m_ActorData = actorData;
 
 			m_ActorAgentManager = m_ActorObject.AddComponent<ActorAgentManager> ();
-			if (argIndex == 0) 
-			{
-				m_ActorBodyManager = m_ActorObject.AddComponent<ActorBobyManager> ();
-				m_ActorBodyManager.InitBoby ();
-			}
+//			if (argIndex == 0) 
+//			{
+//				m_ActorBodyManager = m_ActorObject.AddComponent<ActorBobyManager> ();
+//				m_ActorBodyManager.InitBoby ();
+//			}
 
 			m_ActorUIManager = m_ActorObject.AddComponent<ActorUIManager> ();
 			m_ActorUIManager.InitActorBlood();
@@ -94,6 +102,11 @@ namespace GlobalGame
 			m_ActorSkillManager = m_ActorObject.AddComponent<ActorSkillManager> ();
 			m_ActorSkillManager.InitSkillManager ();
 //			Util.CallMethod("FirstBattleScene", "ActorDone");
+
+
+			m_AttributeList.Add (m_ActorData.m_MaxHp);
+			m_AttributeList.Add (m_ActorData.m_Attack);
+			m_AttributeList.Add (m_ActorData.m_Defence);
 		}
 		#endregion
 
@@ -168,11 +181,14 @@ namespace GlobalGame
 			} 
 			else if (IsActorStatus (Actor.ActorStatus.Dead) == false)
 			{
-				if (this.name == "Monster1")
-					Debug.Log ("AddHp_________________________________________");
+//				if (this.name == "Monster1")
+//					Debug.Log ("AddHp_________________________________________");
 				m_lastActorStatus = m_ActorStatus;
-				SetActorStatus (Actor.ActorStatus.Hurt, false);
-				m_ActorAnimationManager.PlayAnimation (Global.BattleAnimationType.Hurt,WrapMode.Once);
+				if (arghp < 0) 
+				{
+					SetActorStatus (Actor.ActorStatus.Hurt, false);
+					m_ActorAnimationManager.PlayAnimation (Global.BattleAnimationType.Hurt,WrapMode.Once);
+				}
 			}
 		}
 
@@ -219,6 +235,7 @@ namespace GlobalGame
 			}
 		}
 
+		#region 3种攻击方式
 		public void ShootFront(GameObject obj,SkillData data,BulletData bulletData)//RaycastHit hit
 		{
 //			for (int j = 0; j < m_actorObjList.Count; j++) 
@@ -230,14 +247,21 @@ namespace GlobalGame
 			Actor actor = this;
 			m_ActorObject.transform.LookAt (target);
 
-			Object psObj = Resources.Load (bulletData.m_EffectRoute);
-			GameObject t = Instantiate(psObj) as GameObject;
-			Global.ChangeParticleScale (t,data.m_Scale);
-			t.transform.position = m_ActorObject.transform.position;
-			Bullet bulletScripte = t.GetComponent<Bullet>();
-//			GameObject monsterObject = m_actorObjList [0];
-			bulletScripte.InitBullet (m_ActorObject, obj,bulletData);
-//			actor.m_ActorAnimationManager.PlayAnimation (Global.BattleAnimationType.Attack, WrapMode.Loop, true);
+			Dictionary<string,string> info1 = Global.CreateABInfo(bulletData.m_EffectRoute,Global.GetAssetName(bulletData.m_EffectRoute),AssetType.Perfab,-1);
+			ResourceManager.Active.LoadPrefabWithInfo (info1, delegate(UnityEngine.Object[] objs, Dictionary<string,string> info) {
+				int index = int.Parse (Global.getDicStrVaule (info1, Global.ABInfoKey_Index));
+				GameObject prefab = objs [0] as GameObject;
+
+				GameObject t = Instantiate(prefab) as GameObject;
+				//			Global.ChangeParticleScale (t,data.m_Scale);
+				t.transform.position = m_ActorObject.transform.position;
+				Bullet bulletScripte = t.GetComponent<Bullet>();
+				//			GameObject monsterObject = m_actorObjList [0];
+				bulletScripte.InitBullet (m_ActorObject, obj,bulletData);
+				//			actor.m_ActorAnimationManager.PlayAnimation (Global.BattleAnimationType.Attack, WrapMode.Loop, true);
+			});
+
+
 		}
 
 		public void MagicZone(GameObject obj,SkillData data)
@@ -249,15 +273,31 @@ namespace GlobalGame
 			Actor actor = this;
 			m_ActorObject.transform.LookAt (target);
 
-			Object psObj = Resources.Load (data.m_EffectPath);
-			GameObject t = Instantiate(psObj) as GameObject;
-			Global.ChangeParticleScale (t,data.m_Scale);
-			t.transform.position = obj.transform.position;
-			MagicZone magicZone = t.GetComponent<MagicZone>();
-			//			GameObject monsterObject = m_actorObjList [0];
-			magicZone.InitMagicZoom(m_ActorObject,data);
-//			actor.m_ActorAnimationManager.PlayAnimation (Global.BattleAnimationType.Attack, WrapMode.Loop, true);
+			Dictionary<string,string> info1 = Global.CreateABInfo(data.m_EffectPrefab,Global.GetAssetName(data.m_EffectPrefab),AssetType.Perfab,-1);
+			ResourceManager.Active.LoadPrefabWithInfo (info1, delegate(UnityEngine.Object[] objs, Dictionary<string,string> info) {
+				int index = int.Parse (Global.getDicStrVaule (info1, Global.ABInfoKey_Index));
+				GameObject prefab = objs [0] as GameObject;
+
+				GameObject t = Instantiate(prefab) as GameObject;
+//			Global.ChangeParticleScale (t,data.m_Scale);
+				t.transform.position = obj.transform.position;
+				MagicZone magicZone = t.GetComponent<MagicZone>();
+//			GameObject monsterObject = m_actorObjList [0];
+				magicZone.InitMagicZoom(m_ActorObject,data);
+
+			});
+			//			actor.m_ActorAnimationManager.PlayAnimation (Global.BattleAnimationType.Attack, WrapMode.Loop, true);
 		}
+
+		public void MeeleAttack(GameObject obj,SkillData data)
+		{
+			if (obj == null)
+				return;
+
+
+
+		}
+		#endregion
 
 		public void StartAttack()
 		{
