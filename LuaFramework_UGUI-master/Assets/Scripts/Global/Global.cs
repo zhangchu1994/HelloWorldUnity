@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using Newtonsoft.Json;
 using LuaFramework;
+using SimpleJson;
 
 namespace GlobalGame 
 {
@@ -149,11 +149,11 @@ namespace GlobalGame
 			return intArray;
 		}
 
-		public static T Clone<T>(T source)
-		{
-			var serialized = JsonConvert.SerializeObject(source);
-			return JsonConvert.DeserializeObject<T>(serialized);
-		}
+//		public static T Clone<T>(T source)
+//		{
+//			var serialized = JsonConvert.SerializeObject(source);
+//			return JsonConvert.DeserializeObject<T>(serialized);
+//		}
 
 		public static void BattleLog(Actor actor,string argString)
 		{
@@ -167,6 +167,17 @@ namespace GlobalGame
 				return true;
 			else
 				return false;
+		}
+
+		//------------------------------------------------------
+		public static JsonObject StrToJson(string str){
+			object a;
+			SimpleJson.SimpleJson.TryDeserializeObject (str, out a);
+			if (a != null) {
+				return (JsonObject)a;	
+			}
+
+			return null;
 		}
 	}
 }

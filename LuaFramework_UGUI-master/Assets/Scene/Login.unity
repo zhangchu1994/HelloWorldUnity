@@ -1163,6 +1163,7 @@ GameObject:
   - component: {fileID: 1138532776}
   - component: {fileID: 1138532775}
   - component: {fileID: 1138532780}
+  - component: {fileID: 1138532781}
   m_Layer: 0
   m_Name: UICamera
   m_TagString: Untagged
@@ -1253,6 +1254,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_InfoText: {fileID: 95821826}
   m_Silder: {fileID: 2116716839}
+--- !u!114 &1138532781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1138532774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44541d88793ee8040a743ae92e1cb245, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Button: {fileID: 327130872}
 --- !u!1 &1141883524
 GameObject:
   m_ObjectHideFlags: 0
