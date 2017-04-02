@@ -53,7 +53,8 @@ namespace LuaFramework {
 			string abFullName = abName.ToLower() + AppConst.ExtName;
 			if (Parent.FindChild(abName) != null) return;
 #if ASYNC_MODE
-			ResManager.LoadPrefab(abFullName, assetName, delegate(UnityEngine.Object[] objs) {
+			Dictionary<string,string> info1 = new Dictionary<string,string>();//abFullName, assetName
+			ResManager.LoadPrefabWithInfo(info1, delegate(UnityEngine.Object[] objs,Dictionary<string,string> info) {
                 if (objs.Length == 0) return;
                 GameObject prefab = objs[0] as GameObject;
                 if (prefab == null) return;

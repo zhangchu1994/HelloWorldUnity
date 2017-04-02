@@ -6,6 +6,7 @@ using System;
 using System.IO;
 using LuaInterface;
 using UObject = UnityEngine.Object;
+using GlobalGame;
 
 public class AssetBundleInfo {
     public AssetBundle m_AssetBundle;
@@ -26,7 +27,10 @@ namespace LuaFramework
 		ABManifest = 2
 	};
 
-    public class ResourceManager : Manager {
+    public class ResourceManager : Manager 
+	{
+		public static ResourceManager Active = null;
+
         string m_BaseDownloadingURL = "";
         string[] m_AllManifest = null;//所有的ab 包括代码的和美术的
 		AssetBundleManifest m_AssetBundleManifest = null;//所有ab的AssetBundleManifest
@@ -38,13 +42,22 @@ namespace LuaFramework
             public Type assetType;
             public string[] assetNames;
             public LuaFunction luaFunc;
-            public Action<UObject[]> sharpFunc;
-        }
+			public Action<UObject[],Dictionary<string,string>> sharpFunc;
+			public Dictionary<string,string> info;
+       }
+
+		void Awake()
+		{
+			if (Active == null)
+				Active = this;
+		}
 
         // Load AssetBundleManifest.
         public void Initialize(string manifestName, Action initOK) {
             m_BaseDownloadingURL = Util.GetRelativePath();
-			LoadAsset<AssetBundleManifest>(manifestName, new string[] { "AssetBundleManifest" },AssetType.ABManifest, delegate(UObject[] objs) {
+			Dictionary<string,string> info1 = Global.CreateABInfo (manifestName,"AssetBundleManifest",AssetType.ABManifest,-1);
+			LoadAsset<AssetBundleManifest>(info1, delegate(UObject[] objs,Dictionary<string,string> info) 
+				{
                 if (objs.Length > 0) {
                     m_AssetBundleManifest = objs[0] as AssetBundleManifest;
                     m_AllManifest = m_AssetBundleManifest.GetAllAssetBundles();
@@ -53,21 +66,40 @@ namespace LuaFramework
             });
         }
 
-		public void LoadSecne(string abName, string assetName, Action<UObject[]> func) {
-			LoadAsset<GameObject>(abName, new string[] { assetName }, AssetType.Scene,func);
+		public void LoadSecne(string abName, string assetName, Action<UObject[],Dictionary<string,string>> func) 
+		{
+			Dictionary<string,string> info1 = Global.CreateABInfo (abName, assetName, AssetType.Scene, -1);
+			LoadAsset<GameObject>(info1,func,null);
 		}
 
-        public void LoadPrefab(string abName, string assetName, Action<UObject[]> func) {
-			LoadAsset<GameObject>(abName, new string[] { assetName }, AssetType.Perfab,func);
+		public void LoadPrefabWithInfo(Dictionary<string,string> info, Action<UObject[],Dictionary<string,string>> func) //string abName, string assetName,
+		{
+			if (AppConst.ResourcesBundleMode == true) 
+			{
+				if (func != null) 
+				{
+					UObject m_TextPrefab = Resources.Load (Global.getDicStrVaule(info,Global.ABInfoKey_ABName));
+					List<UObject> result = new List<UObject>();
+					result.Add (m_TextPrefab);
+					func(result.ToArray(),info);
+				}
+			} 
+			else {
+				LoadAsset<GameObject>( info,func,null);//abName, new string[] { assetName },AssetType.Perfab,
+			}
         }
 
-        public void LoadPrefab(string abName, string[] assetNames, Action<UObject[]> func) {
-			LoadAsset<GameObject>(abName, assetNames,AssetType.Perfab, func);
-        }
-
-        public void LoadPrefab(string abName, string[] assetNames, LuaFunction func) {
-			LoadAsset<GameObject>(abName, assetNames, AssetType.Perfab,null, func);
-        }
+//		public void LoadPrefab(string abName, string assetName, Action<UObject[],Dictionary<string,string>> func) {
+//			LoadAsset<GameObject>(abName, new string[] { assetName },AssetType.Perfab,null, func,null);
+//		}
+//
+//		public void LoadPrefab(string abName, string[] assetNames, Action<UObject[],Dictionary<string,string>> func) {
+//			LoadAsset<GameObject>(abName, assetNames,AssetType.Perfab,null, func,null);
+//        }
+//
+//        public void LoadPrefab(string abName, string[] assetNames, LuaFunction func) {
+//			LoadAsset<GameObject>(abName, assetNames, AssetType.Perfab,null,null, func);
+//        }
 
         string GetRealAssetPath(string abName) {
             if (abName.Equals(AppConst.AssetDir)) {
@@ -95,33 +127,44 @@ namespace LuaFramework
         /// <summary>
         /// 载入素材
         /// </summary>
-		void LoadAsset<T>(string abName, string[] assetNames, AssetType assetType,Action<UObject[]> action = null, LuaFunction func = null) where T : UObject {
-            abName = GetRealAssetPath(abName);
+		void LoadAsset<T>(Dictionary<string,string> info,Action<UObject[],Dictionary<string,string>> action = null, LuaFunction func = null) where T : UObject 
+		{
+			//string abName, string[] assetNames, AssetType assetType,
+			string abName = Global.getDicStrVaule(info,Global.ABInfoKey_ABName);
+			string[] assetNames = {Global.getDicStrVaule(info,Global.ABInfoKey_AssetName)}; 
+			AssetType assetType = (AssetType)int.Parse(Global.getDicStrVaule(info,Global.ABInfoKey_Type));
+
+			abName = GetRealAssetPath(abName);
 
             LoadAssetRequest request = new LoadAssetRequest();
             request.assetType = typeof(T);
             request.assetNames = assetNames;
             request.luaFunc = func;
             request.sharpFunc = action;
+			if (info != null)	
+				request.info = info;
 
             List<LoadAssetRequest> requests = null;
-            if (!m_LoadRequests.TryGetValue(abName, out requests)) {
-                requests = new List<LoadAssetRequest>();
+            if (m_LoadRequests.TryGetValue(abName, out requests) == false) 
+			{
+				requests = new List<LoadAssetRequest>();
                 requests.Add(request);
                 m_LoadRequests.Add(abName, requests);
 				StartCoroutine(OnLoadAsset<T>(abName,assetType));
             } else {
-                requests.Add(request);
+				requests.Add(request);
             }
         }
 
 		IEnumerator OnLoadAsset<T>(string abName, AssetType assetType) where T : UObject {
-            AssetBundleInfo bundleInfo = GetLoadedAssetBundle(abName);
-            if (bundleInfo == null) {
+			AssetBundleInfo bundleInfo = GetLoadedAssetBundle(abName);
+            if (bundleInfo == null) 
+			{
                 yield return StartCoroutine(OnLoadAssetBundle(abName, typeof(T)));
 
                 bundleInfo = GetLoadedAssetBundle(abName);
-                if (bundleInfo == null) {
+                if (bundleInfo == null) 
+				{
                     m_LoadRequests.Remove(abName);
                     Debug.LogError("OnLoadAsset--->>>" + abName);
                     yield break;
@@ -132,31 +175,37 @@ namespace LuaFramework
                 m_LoadRequests.Remove(abName);
                 yield break;
             }
-            for (int i = 0; i < list.Count; i++) {
+            for (int i = 0; i < list.Count; i++) 
+			{
                 string[] assetNames = list[i].assetNames;
+				Dictionary<string,string> info = list[i].info;
+
                 List<UObject> result = new List<UObject>();
 
                 AssetBundle ab = bundleInfo.m_AssetBundle;
                 for (int j = 0; j < assetNames.Length; j++) 
 				{
 					string assetPath = assetNames[j];
-					Debug.Log ("assetPath = " + assetPath);
+//					Debug.Log ("assetPath = " + assetPath);
 					if (assetType != AssetType.Scene) 
 					{
 						AssetBundleRequest request = ab.LoadAssetAsync(assetPath, list[i].assetType);
 						yield return request;
 						result.Add(request.asset);
+
 					}
 
                     //T assetObj = ab.LoadAsset<T>(assetPath);
                     //result.Add(assetObj);
                 }
-                if (list[i].sharpFunc != null) {
-                    list[i].sharpFunc(result.ToArray());
+                if (list[i].sharpFunc != null) 
+				{
+                    list[i].sharpFunc(result.ToArray(),info);
                     list[i].sharpFunc = null;
                 }
-                if (list[i].luaFunc != null) {
-                    list[i].luaFunc.Call((object)result.ToArray());
+                if (list[i].luaFunc != null) 
+				{
+					list[i].luaFunc.Call((object)result.ToArray());
                     list[i].luaFunc.Dispose();
                     list[i].luaFunc = null;
                 }

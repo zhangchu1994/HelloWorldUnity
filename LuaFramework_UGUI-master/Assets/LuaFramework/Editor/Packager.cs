@@ -95,7 +95,25 @@ public class Packager {
 		AssetDatabase.Refresh();
     }
 
-    static void AddBuildMap(string bundleName, string pattern, string path)//1.ab名字 2.什么类型文件会被打爆 3.要打包文件的文件夹路径
+	static void AddBuildMap(string bundleName, string pattern, string path)//1.ab名字 2.什么类型文件会被打爆 3.要打包文件的文件夹路径(把文件夹下每个指定后缀名的文件单独打成AB)
+	{
+		string[] files = Directory.GetFiles(path, pattern);
+		if (files.Length == 0) return;
+
+		for (int i = 0; i < files.Length; i++) 
+		{
+			string name = Path.GetFileNameWithoutExtension (files[i]);
+
+			files[i] = files[i].Replace('\\', '/');
+			AssetBundleBuild build = new AssetBundleBuild();
+			build.assetBundleName = bundleName + name + AppConst.ExtName;
+			string[] files1 = { files [i] };
+			build.assetNames = files1;
+			maps.Add(build);
+		}
+	}
+
+	static void AddBuildMapFolder(string bundleName, string pattern, string path)//1.ab名字 2.什么类型文件会被打爆 3.要打包文件的文件夹路径(把文件夹下所有后缀文件打成一个AB)
 	{
         string[] files = Directory.GetFiles(path, pattern);
         if (files.Length == 0) return;
@@ -161,9 +179,9 @@ public class Packager {
             name = "lua/lua_" + name.ToLower() + AppConst.ExtName;
 
             string path = "Assets" + dirs[i].Replace(Application.dataPath, "");
-            AddBuildMap(name, "*.bytes", path);
+			AddBuildMapFolder(name, "*.bytes", path);
         }
-        AddBuildMap("lua/lua" + AppConst.ExtName, "*.bytes", "Assets/" + AppConst.LuaTempDir);
+		AddBuildMapFolder("lua/lua" + AppConst.ExtName, "*.bytes", "Assets/" + AppConst.LuaTempDir);
 
         //-------------------------------处理非Lua文件----------------------------------
         string luaPath = AppDataPath + "/StreamingAssets/lua/";
@@ -193,17 +211,32 @@ public class Packager {
 //		Util.Log ("HandleExampleBundle_______________________"+resPath);
         if (!Directory.Exists(resPath)) Directory.CreateDirectory(resPath);
 
-//        AddBuildMap("prompt" + AppConst.ExtName, "*.prefab", "Assets/LuaFramework/Examples/Builds/Prompt");
-//        AddBuildMap("message" + AppConst.ExtName, "*.prefab", "Assets/LuaFramework/Examples/Builds/Message");
+//		string uiPerfab = "Assets/Perfab/UI/";
+//		AddBuildMapFolder("LoginPerfab" + AppConst.ExtName, "*.prefab", uiPerfab + "Login");
+//		AddBuildMapFolder("MainCityPerfab" + AppConst.ExtName, "*.prefab", uiPerfab + "MainCity");
+//		AddBuildMapFolder("BattleFieldPerfab" + AppConst.ExtName, "*.prefab", uiPerfab + "BattleField");
 
-		string uiPerfab = "Assets/Perfab/UI/";
-		AddBuildMap("LoginPerfab" + AppConst.ExtName, "*.prefab", uiPerfab + "Login");
-		AddBuildMap("MainCityPerfab" + AppConst.ExtName, "*.prefab", uiPerfab + "MainCity");
-		AddBuildMap("BattleFieldPerfab" + AppConst.ExtName, "*.prefab", uiPerfab + "BattleField");
+		string actorPerfab = "Assets/Resources/ModelActor/";
+		AddBuildMap("ModelActor/", "*.prefab", actorPerfab);
 
-		string scene = "Assets/Scene/";
-		AddBuildMap("MainCityScene" + AppConst.ExtName, "*.unity", scene + "MainCity");
-		AddBuildMap("FirstBattleScene" + AppConst.ExtName, "*.unity", scene + "FirstBattle");
+		string actor1Perfab = "Assets/Resources/ModelActor/Actor1/";
+		AddBuildMap("ModelActor/Actor1/", "*.prefab", actor1Perfab);
+
+		string modelPerfab = "Assets/Resources/ModelEnemy/";
+		AddBuildMap("ModelEnemy/", "*.prefab", modelPerfab);
+
+		string effectPerfab = "Assets/Resources/Effect/";
+		AddBuildMap("Effect/", "*.prefab", effectPerfab);
+
+		string uIEffectPerfab = "Assets/Resources/UIEffect/";
+		AddBuildMap("UIEffect/", "*.prefab", uIEffectPerfab);
+
+		string uIPerfab = "Assets/Resources/UI/";
+		AddBuildMap("UI/", "*.prefab", uIPerfab);
+
+//		string scene = "Assets/Scene/";
+//		AddBuildMapFolder("MainCityScene" + AppConst.ExtName, "*.unity", scene + "MainCity");
+//		AddBuildMapFolder("FirstBattleScene" + AppConst.ExtName, "*.unity", scene + "FirstBattle");
 
 //		AddBuildMap("prompt_asset" + AppConst.ExtName, "*.png", "Assets/LuaFramework/Examples/Textures/Prompt");
 //        AddBuildMap("shared_asset" + AppConst.ExtName, "*.png", "Assets/LuaFramework/Examples/Textures/Shared");
