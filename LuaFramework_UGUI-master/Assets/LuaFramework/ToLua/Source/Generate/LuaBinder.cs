@@ -134,7 +134,7 @@ public static class LuaBinder
 		L.BeginModule("System");
 		L.RegFunction("Action", System_Action);
 		L.RegFunction("Action_NotiData", System_Action_NotiData);
-		L.RegFunction("Action_UnityEngine_Objects", System_Action_UnityEngine_Objects);
+		L.RegFunction("Action_UnityEngine_Objects_System_Collections_Generic_Dictionary_string_string", System_Action_UnityEngine_Objects_System_Collections_Generic_Dictionary_string_string);
 		L.EndModule();
 		L.EndModule();
 		Debugger.Log("Register lua type cost time: {0}", Time.realtimeSinceStartup - t);
@@ -465,7 +465,7 @@ public static class LuaBinder
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int System_Action_UnityEngine_Objects(IntPtr L)
+	static int System_Action_UnityEngine_Objects_System_Collections_Generic_Dictionary_string_string(IntPtr L)
 	{
 		try
 		{
@@ -474,13 +474,13 @@ public static class LuaBinder
 
 			if (count == 1)
 			{
-				Delegate arg1 = DelegateFactory.CreateDelegate(typeof(System.Action<UnityEngine.Object[]>), func);
+				Delegate arg1 = DelegateFactory.CreateDelegate(typeof(System.Action<UnityEngine.Object[],System.Collections.Generic.Dictionary<string,string>>), func);
 				ToLua.Push(L, arg1);
 			}
 			else
 			{
 				LuaTable self = ToLua.CheckLuaTable(L, 2);
-				Delegate arg1 = DelegateFactory.CreateDelegate(typeof(System.Action<UnityEngine.Object[]>), func, self);
+				Delegate arg1 = DelegateFactory.CreateDelegate(typeof(System.Action<UnityEngine.Object[],System.Collections.Generic.Dictionary<string,string>>), func, self);
 				ToLua.Push(L, arg1);
 			}
 			return 1;

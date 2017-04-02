@@ -10,6 +10,7 @@ public class LuaFramework_LuaManagerWrap
 		L.RegFunction("InitStart", InitStart);
 		L.RegFunction("DoFile", DoFile);
 		L.RegFunction("CallFunction", CallFunction);
+		L.RegFunction("GetLuaTable", GetLuaTable);
 		L.RegFunction("LuaGC", LuaGC);
 		L.RegFunction("Close", Close);
 		L.RegFunction("__eq", op_Equality);
@@ -61,6 +62,24 @@ public class LuaFramework_LuaManagerWrap
 			string arg0 = ToLua.CheckString(L, 2);
 			object[] arg1 = ToLua.ToParamsObject(L, 3, count - 2);
 			object[] o = obj.CallFunction(arg0, arg1);
+			ToLua.Push(L, o);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int GetLuaTable(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 2);
+			LuaFramework.LuaManager obj = (LuaFramework.LuaManager)ToLua.CheckObject(L, 1, typeof(LuaFramework.LuaManager));
+			string arg0 = ToLua.CheckString(L, 2);
+			object[] o = obj.GetLuaTable(arg0);
 			ToLua.Push(L, o);
 			return 1;
 		}

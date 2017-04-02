@@ -29,7 +29,7 @@ public static class DelegateFactory
 		dict.Add(typeof(UnityEngine.Events.UnityAction<UnityEngine.SceneManagement.Scene,UnityEngine.SceneManagement.Scene>), UnityEngine_Events_UnityAction_UnityEngine_SceneManagement_Scene_UnityEngine_SceneManagement_Scene);
 		dict.Add(typeof(UnityEngine.RectTransform.ReapplyDrivenProperties), UnityEngine_RectTransform_ReapplyDrivenProperties);
 		dict.Add(typeof(System.Action<NotiData>), System_Action_NotiData);
-		dict.Add(typeof(System.Action<UnityEngine.Object[]>), System_Action_UnityEngine_Objects);
+		dict.Add(typeof(System.Action<UnityEngine.Object[],System.Collections.Generic.Dictionary<string,string>>), System_Action_UnityEngine_Objects_System_Collections_Generic_Dictionary_string_string);
 	}
 
     [NoToLuaAttribute]
@@ -713,48 +713,50 @@ public static class DelegateFactory
 		}
 	}
 
-	class System_Action_UnityEngine_Objects_Event : LuaDelegate
+	class System_Action_UnityEngine_Objects_System_Collections_Generic_Dictionary_string_string_Event : LuaDelegate
 	{
-		public System_Action_UnityEngine_Objects_Event(LuaFunction func) : base(func) { }
-		public System_Action_UnityEngine_Objects_Event(LuaFunction func, LuaTable self) : base(func, self) { }
+		public System_Action_UnityEngine_Objects_System_Collections_Generic_Dictionary_string_string_Event(LuaFunction func) : base(func) { }
+		public System_Action_UnityEngine_Objects_System_Collections_Generic_Dictionary_string_string_Event(LuaFunction func, LuaTable self) : base(func, self) { }
 
-		public void Call(UnityEngine.Object[] param0)
+		public void Call(UnityEngine.Object[] param0, System.Collections.Generic.Dictionary<string,string> param1)
 		{
 			func.BeginPCall();
 			func.Push(param0);
+			func.PushObject(param1);
 			func.PCall();
 			func.EndPCall();
 		}
 
-		public void CallWithSelf(UnityEngine.Object[] param0)
+		public void CallWithSelf(UnityEngine.Object[] param0, System.Collections.Generic.Dictionary<string,string> param1)
 		{
 			func.BeginPCall();
 			func.Push(self);
 			func.Push(param0);
+			func.PushObject(param1);
 			func.PCall();
 			func.EndPCall();
 		}
 	}
 
-	public static Delegate System_Action_UnityEngine_Objects(LuaFunction func, LuaTable self, bool flag)
+	public static Delegate System_Action_UnityEngine_Objects_System_Collections_Generic_Dictionary_string_string(LuaFunction func, LuaTable self, bool flag)
 	{
 		if (func == null)
 		{
-			System.Action<UnityEngine.Object[]> fn = delegate(UnityEngine.Object[] param0) { };
+			System.Action<UnityEngine.Object[],System.Collections.Generic.Dictionary<string,string>> fn = delegate(UnityEngine.Object[] param0, System.Collections.Generic.Dictionary<string,string> param1) { };
 			return fn;
 		}
 
 		if(!flag)
 		{
-			System_Action_UnityEngine_Objects_Event target = new System_Action_UnityEngine_Objects_Event(func);
-			System.Action<UnityEngine.Object[]> d = target.Call;
+			System_Action_UnityEngine_Objects_System_Collections_Generic_Dictionary_string_string_Event target = new System_Action_UnityEngine_Objects_System_Collections_Generic_Dictionary_string_string_Event(func);
+			System.Action<UnityEngine.Object[],System.Collections.Generic.Dictionary<string,string>> d = target.Call;
 			target.method = d.Method;
 			return d;
 		}
 		else
 		{
-			System_Action_UnityEngine_Objects_Event target = new System_Action_UnityEngine_Objects_Event(func, self);
-			System.Action<UnityEngine.Object[]> d = target.CallWithSelf;
+			System_Action_UnityEngine_Objects_System_Collections_Generic_Dictionary_string_string_Event target = new System_Action_UnityEngine_Objects_System_Collections_Generic_Dictionary_string_string_Event(func, self);
+			System.Action<UnityEngine.Object[],System.Collections.Generic.Dictionary<string,string>> d = target.CallWithSelf;
 			target.method = d.Method;
 			return d;
 		}
