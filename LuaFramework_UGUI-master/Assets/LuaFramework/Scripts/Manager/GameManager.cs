@@ -266,7 +266,11 @@ namespace LuaFramework
             LuaManager.InitStart();
             LuaManager.DoFile("Logic/Game");         //加载游戏
             LuaManager.DoFile("Logic/Network");      //加载网络
-            NetManager.OnInit();                     //初始化网络
+
+			TextAsset message = Resources.Load<TextAsset>("StaticData/message");
+			WebManager.InitProtocol (message.text);
+
+			//初始化网络
 			DataTables.Instance.Init();
 
             Util.CallMethod("Game", "OnInitOK");     //初始化完成
@@ -323,8 +327,8 @@ namespace LuaFramework
         /// 析构函数
         /// </summary>
         void OnDestroy() {
-            if (NetManager != null) {
-                NetManager.Unload();
+			if (WebManager != null) {
+//				WebManager.Unload();
             }
             if (LuaManager != null) {
                 LuaManager.Close();

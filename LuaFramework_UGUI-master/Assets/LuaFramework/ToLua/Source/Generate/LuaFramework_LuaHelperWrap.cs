@@ -11,7 +11,7 @@ public class LuaFramework_LuaHelperWrap
 		L.RegFunction("GetPanelManager", GetPanelManager);
 		L.RegFunction("GetSceneManager", GetSceneManager);
 		L.RegFunction("GetResManager", GetResManager);
-		L.RegFunction("GetNetManager", GetNetManager);
+		L.RegFunction("GetWebManager", GetWebManager);
 		L.RegFunction("GetSoundManager", GetSoundManager);
 		L.RegFunction("OnCallLuaFunc", OnCallLuaFunc);
 		L.RegFunction("OnJsonCallFunc", OnJsonCallFunc);
@@ -84,12 +84,12 @@ public class LuaFramework_LuaHelperWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int GetNetManager(IntPtr L)
+	static int GetWebManager(IntPtr L)
 	{
 		try
 		{
 			ToLua.CheckArgsCount(L, 0);
-			LuaFramework.NetworkManager o = LuaFramework.LuaHelper.GetNetManager();
+			GlobalGame.WebManager o = LuaFramework.LuaHelper.GetWebManager();
 			ToLua.Push(L, o);
 			return 1;
 		}

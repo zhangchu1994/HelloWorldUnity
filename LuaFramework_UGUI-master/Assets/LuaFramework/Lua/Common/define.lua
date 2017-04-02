@@ -25,7 +25,7 @@ MySceneManager = LuaFramework.MySceneManager;
 resMgr = LuaHelper.GetResManager();
 panelMgr = LuaHelper.GetPanelManager();
 soundMgr = LuaHelper.GetSoundManager();
-networkMgr = LuaHelper.GetNetManager();
+networkMgr = LuaHelper.GetWebManager();
 sceneMgr = LuaHelper.GetSceneManager();
 
 WWW = UnityEngine.WWW;

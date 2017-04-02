@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using LuaInterface;
 using System;
+using GlobalGame;
 
 namespace LuaFramework {
     public static class LuaHelper {
@@ -47,8 +48,8 @@ namespace LuaFramework {
         /// <summary>
         /// 网络管理器
         /// </summary>
-        public static NetworkManager GetNetManager() {
-            return AppFacade.Instance.GetManager<NetworkManager>(ManagerName.Network);
+		public static WebManager GetWebManager() {
+			return AppFacade.Instance.GetManager<WebManager>(ManagerName.Network);
         }
 
         /// <summary>

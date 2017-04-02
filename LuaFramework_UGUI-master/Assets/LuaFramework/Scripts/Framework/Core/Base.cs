@@ -2,12 +2,13 @@
 using System.Collections;
 using LuaFramework;
 using System.Collections.Generic;
+using GlobalGame;
 
 public class Base : MonoBehaviour {
     private AppFacade m_Facade;
     private LuaManager m_LuaMgr;
     private ResourceManager m_ResMgr;
-    private NetworkManager m_NetMgr;
+    private WebManager m_WebMgr;
     private SoundManager m_SoundMgr;
     private TimerManager m_TimerMgr;
     private ThreadManager m_ThreadMgr;
@@ -61,12 +62,12 @@ public class Base : MonoBehaviour {
         }
     }
 
-    protected NetworkManager NetManager {
+	protected WebManager WebManager {
         get {
-            if (m_NetMgr == null) {
-                m_NetMgr = facade.GetManager<NetworkManager>(ManagerName.Network);
+			if (m_WebMgr == null) {
+				m_WebMgr = facade.GetManager<WebManager>(ManagerName.Network);
             }
-            return m_NetMgr;
+			return m_WebMgr;
         }
     }
 

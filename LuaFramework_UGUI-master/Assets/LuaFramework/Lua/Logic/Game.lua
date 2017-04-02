@@ -35,7 +35,7 @@ function Game.OnInitOK()
     -- log("Game.OnInitOK_____________");
     -- AppConst.SocketPort = 2012;
     -- AppConst.SocketAddress = "127.0.0.1";
-    networkMgr:SendConnect();
+    -- networkMgr:SendConnect();
 
     --注册LuaView--
     this.InitViewPanels();
