@@ -1,19 +1,14 @@
 require "Common/define"
 
-require "3rd/pblua/login_pb"
-require "3rd/pbc/protobuf"
-
-local sproto = require "3rd/sproto/sproto"
-local core = require "sproto.core"
-local print_r = require "3rd/sproto/print_r"
-
 Login = {};
 local this = Login;
 
 local m_LuaBehaviour;
 local m_transform;
 local m_gameObject;
-local m_firstCreate = false;
+-- local m_firstCreate = false;
+local m_userNameField;
+local m_passWordField;
 
 function Login.New()
     return this;
@@ -27,10 +22,6 @@ function Login.Start()
     -- log("Login.Start______________________________");
 end
 
--- function Login.Show()
---     panelMgr:CreatePanel('loginperfab', 'LoginPanel','Login', this.OnCreate);
--- end
-
 function Login.Update()
     -- if m_firstCreate == false then
     --     m_firstCreate = true;
@@ -41,31 +32,58 @@ end
 
 function Login.OnCreate(obj)
     -- log('Login.OnCreate____________');
-    -- resMgr:LoadPrefab('prompt', { 'PromptItem' }, this.InitPanel);
+    this.InitView(obj);
 end
 
-function Login.InitView()
+function Login.InitView(obj)
     -- log('Login.InitView____________');
-    m_gameObject = GameObject.Find("LoginCanvas");
-    m_transform =  GameObject.Find("LoginCanvas").transform;
+    m_gameObject = obj;
+    m_transform =  obj.transform;
+    m_LuaBehaviour = obj:GetComponent('LuaBehaviour');
+    log(m_gameObject.name);
 
-    m_LuaBehaviour = m_transform:GetComponent('LuaBehaviour');
+    local loginButton = m_transform:FindChild("Login").gameObject;
+    m_LuaBehaviour:AddClick(loginButton, this.OnLoginClick);
 
-    local loginPanel = m_transform:FindChild("Image/LoginPanel").gameObject;
-    loginPanel.SetActive(loginPanel,true);
+    local registerButton = m_transform:FindChild("Register").gameObject;
+    m_LuaBehaviour:AddClick(registerButton, this.OnRegisterClick);
 
-    local loginButton = m_transform:FindChild("Image/LoginPanel/Login").gameObject;
-    m_LuaBehaviour:AddClick(loginButton, this.OnClick);
+    m_userNameField = m_transform:FindChild("Name"):GetComponent('InputField');
+    m_passWordField = m_transform:FindChild("Password"):GetComponent('InputField');
 
-    local InfoPanel = m_transform:FindChild("Image/InfoPanel").gameObject;
-    InfoPanel.SetActive(InfoPanel,false);
+    log("Login.OnLoginClick_________________________________________________________");
+    LuaHelper.GetWebManager():AddCmdHandler("LC_LoginMsg","Login,LoginSucceess");
+    LuaHelper.GetWebManager():AddCmdHandler("LC_ReturnErrorMsg","Login,LoginError");
 end
 
 --单击事件--
-function Login.OnClick(go)
-    print("Login.OnClick_________________________________________________________");
-    sceneMgr:GoToScene('maincityscene',"MainCity","MainCityScene",this.SceneDone); 
+function Login.OnLoginClick(go)
+    local json = JsonObject.New();
+    json:set_Item("userName", m_userNameField.text);
+    json:set_Item("password", m_passWordField.text);
+    json:set_Item("deviceid", "Fuck");
+    json:set_Item("operatorId", "zhongqingsdk");
+    json:set_Item("ptId", "-1");
+    json:set_Item("playway", "android");
+    json:set_Item("language", 0);
+    json:set_Item("test", 0);
+    log(json:ToString());
+    LuaHelper.GetWebManager():CMD("CL_LoginMsg", json); 
+    -- sceneMgr:GoToScene('maincityscene',"MainCity","MainCityScene",this.SceneDone); 
     -- sceneMgr:GoToScene('firstbattlescene',"FirstBattle","FirstBattleScene",this.SceneDone); 
+end
+
+function Login.LoginSucceess(message)
+    log("Login.LoginSucceess_________________________"..tostring(message));
+end
+
+function Login.LoginError(message)
+    log("Login.LoginError_________________________"..tostring(message));
+end
+
+function Login.OnRegisterClick(go)
+    log("Login.OnRegisterClick_________________________________________________________");
+    panelMgr:CreatePanel('UI/Login/RegisterPanel', 'UICamera/LoginCanvas/Bg','Register', Register.OnCreate);
 end
 
 function Login.SceneDone(obj)
@@ -76,5 +94,3 @@ end
 function Login.Close()
     -- panelMgr:ClosePanel(CtrlNames.Prompt);
 end
-
-

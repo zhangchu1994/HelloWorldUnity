@@ -6,10 +6,12 @@ using WebSocketSharp;
 using SimpleJson;
 using UniLinq;
 using System.Xml;
+using LuaFramework;
 
 namespace GlobalGame 
 {
-	public class MessageInfo{
+	public class MessageInfo
+	{
 		public string onMessage;//1ScriptFunction
 		public object sender;
 		public Message msg;
@@ -53,7 +55,9 @@ namespace GlobalGame
 		public bool disconnect = false;
 
 
-		void OnApplicationQuit() {
+		void OnApplicationQuit() 
+		{
+			
 		}
 
 		void OnApplicationFocus(bool focusStatus) 
@@ -62,7 +66,8 @@ namespace GlobalGame
 		}
 
 		// Use this for initialization
-		void Start () {
+		void Start () 
+		{
 			XmlDocument xmldoc = new XmlDocument();
 			string localResUrl = "";
 			#if UNITY_ANDROID 
@@ -88,8 +93,8 @@ namespace GlobalGame
 		}
 
 		// Update is called once per frame
-		void Update () {	
-
+		void Update () 
+		{
 			if (isConnecting) {
 				return;		
 			}
@@ -100,6 +105,9 @@ namespace GlobalGame
 
 			while (_toDoMessage.Count > 0) {
 				MessageInfo todo = _toDoMessage.Dequeue();
+				string classStr = todo.onMessage.Split (',')[0];
+				string funStr = todo.onMessage.Split (',')[1];
+				Util.CallMethod (classStr,funStr,todo.jsonobj);
 //				((ScriptFunction)todo.onMessage).call(todo.jsonobj);//4
 			}
 		}

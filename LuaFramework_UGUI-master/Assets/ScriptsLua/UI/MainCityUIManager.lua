@@ -1,11 +1,6 @@
 require "Common/define"
 
-require "3rd/pblua/login_pb"
-require "3rd/pbc/protobuf"
 
-local sproto = require "3rd/sproto/sproto"
-local core = require "sproto.core"
-local print_r = require "3rd/sproto/print_r"
 
 MainCityUIManager = {};
 local this = MainCityUIManager;
@@ -17,6 +12,7 @@ local m_gameObject;
 local m_Canvas;
 local m_CanvasTransform;
 local m_firstCreate = false;
+
 
 function MainCityUIManager.New()
     return this;
@@ -36,16 +32,16 @@ function MainCityUIManager.Show()
 end
 
 function MainCityUIManager.Update()
-    -- print("Update m_firstCreate = "..tostring(m_firstCreate))
-    -- if m_firstCreate == false then
-    --     m_firstCreate = true;
-    --     this.InitView();
-    -- end
+    print("Update m_firstCreate = "..tostring(m_firstCreate))
+    if m_firstCreate == false then
+        m_firstCreate = true;
+        this.InitView();
+    end
 end
 
-function MainCityUIManager.OnCreate(obj)
+-- function MainCityUIManager.OnCreate(obj)
 
-end
+-- end
 
 function MainCityUIManager.InitView()
     log('MainCityUIManager.OnCreate____________');
@@ -62,14 +58,20 @@ function MainCityUIManager.InitView()
     for i=1,7 do
         -- log("Left"..tostring(i));
         local loginButton = m_transform:FindChild("Left"..tostring(i)).gameObject;
-        m_LuaBehaviour:AddClick(loginButton, this.OnClick);
+        m_LuaBehaviour:AddClick(loginButton, this.OnLeftClick);
+    end
+
+    for i=1,5 do
+        -- log("Left"..tostring(i));
+        local loginButton = m_transform:FindChild("Down"..tostring(i)).gameObject;
+        m_LuaBehaviour:AddClick(loginButton, this.OnDownClick);
     end
     -- resMgr:LoadPrefab('prompt', { 'PromptItem' }, this.InitPanel);
 end
 
 --单击事件--
-function MainCityUIManager.OnClick(go)
-    log("________________________"..go.name);--
+function MainCityUIManager.OnLeftClick(go)
+    -- log("________________________"..go.name);--
     if (go.name == "Left6") then
         sceneMgr:GoToScene('firstbattlescene',"FirstBattle","FirstBattleScene",this.SceneDone); 
     elseif (go.name == "Left7") then
@@ -85,7 +87,20 @@ function MainCityUIManager.OnClick(go)
         local ShopPanel = m_CanvasTransform:FindChild("ShopPanel").gameObject;
         ShopPanel.SetActive(ShopPanel,true);
     end
-    -- sceneMgr:GoToScene('maincityscene',"MainCity","MainCityScene",this.SceneDone); 
+end
+
+function MainCityUIManager.OnDownClick(go)
+    if (go.name == "Down1") then
+        panelMgr:CreatePanel('UI/SystemMainPanel', 'UICamera/Canvas','RoleMainPanel', RoleMainPanel.OnCreate);
+    elseif (go.name == "Down2") then
+        panelMgr:CreatePanel('UI/SystemMainPanel', 'UICamera/Canvas','SkillMainPanel', SkillMainPanel.OnCreate);
+    elseif (go.name == "Down3") then
+
+    elseif (go.name == "Down4") then
+
+    elseif (go.name == "Down5") then
+
+    end
 end
 
 function MainCityUIManager.InitGetItemAlert()
