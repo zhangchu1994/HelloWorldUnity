@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using LuaInterface;
 using LuaFramework;
 using GlobalGame;
+using SimpleJson;
 
 using BindType = ToLuaMenu.BindType;
 using UnityEngine.UI;
@@ -147,10 +148,13 @@ public static class CustomSettings
 		_GT(typeof(iTween)),
 		//for self code
 //		_GT(typeof(Actor)),
+		_GT(typeof(JsonObject)),
 
         //for LuaFramework
         _GT(typeof(RectTransform)),
         _GT(typeof(Text)),
+		_GT(typeof(InputField)),
+
 
         _GT(typeof(Util)),
         _GT(typeof(AppConst)),

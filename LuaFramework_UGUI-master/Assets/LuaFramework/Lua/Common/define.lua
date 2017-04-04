@@ -1,11 +1,3 @@
-
-
-
--- PanelNames = {
--- 	"PromptPanel",	
--- 	"MessagePanel",
--- }
-
 --协议类型--
 ProtocalType = {
 	BINARY = 0,
@@ -21,6 +13,7 @@ AppConst = LuaFramework.AppConst;
 LuaHelper = LuaFramework.LuaHelper;
 ByteBuffer = LuaFramework.ByteBuffer;
 MySceneManager = LuaFramework.MySceneManager;
+JsonObject = SimpleJson.JsonObject;
 
 resMgr = LuaHelper.GetResManager();
 panelMgr = LuaHelper.GetPanelManager();

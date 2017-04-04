@@ -207,7 +207,7 @@ namespace LuaInterface
 #if UNITY_EDITOR
             beStart = true;
 #endif
-            Debugger.Log("LuaState start");
+//            Debugger.Log("LuaState start");
             OpenBaseLuaLibs();
             PackBounds = GetFuncRef("Bounds.New");
             UnpackBounds = GetFuncRef("Bounds.Get");

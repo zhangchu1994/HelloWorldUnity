@@ -4,61 +4,29 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using LuaInterface;
 using UnityEngine.SceneManagement;
+using GlobalGame;
 
 namespace LuaFramework {
-    public class PanelManager : Manager {
-        private Transform parent;
-
-        Transform Parent {
-            get {
-                if (parent == null) {
-                    GameObject go = GameObject.FindWithTag("GuiCamera");
-                    if (go != null) parent = go.transform;
-                }
-                return parent;
-            }
-        }
-
-
-//		public void GoToScene(string abName, string assetname,string luaName = null,LuaFunction func = null)
-//		{
-//			Debug.Log ("GoToScene1_________________________________");
-//			ResManager.LoadSecne(abName, assetname, delegate(UnityEngine.Object[] objs) {
-//				Debug.Log ("GoToScene2_________________________________");
-//				SceneManager.LoadScene(assetname); 
-////				SceneManager.LoadSceneAsync
-//
-//				GameObject go = new GameObject();
-//				go.name = luaName;
-//				go.layer = LayerMask.NameToLayer("Default");
-////				go.transform.SetParent(Parent);
-//				go.transform.localScale = Vector3.one;
-//				go.transform.localPosition = Vector3.zero;
-//				LuaBehaviour luaBehaviour = go.AddComponent<LuaBehaviour>();
-//				luaBehaviour.abName = abName;
-//				luaBehaviour.luaName = luaName;
-//
-//				if (func != null) func.Call();
-//			});
-//		}
-//
-        /// <summary>
-        /// 创建面板，请求资源管理器
-        /// </summary>C
-        /// <param name="type"></param>
-		public void CreatePanel(string abName,string assetName,string luaName = null, LuaFunction func = null) 
+    public class PanelManager : Manager 
+	{
+		public void CreatePanel(string abName,string parentName,string luaName = null, LuaFunction func = null) 
 		{
 //			Debug.Log ("CreatePanel__________"+name);
-//            string assetName = name + "Panel";
-			string abFullName = abName.ToLower() + AppConst.ExtName;
-			if (Parent.FindChild(abName) != null) return;
-#if ASYNC_MODE
-			Dictionary<string,string> info1 = new Dictionary<string,string>();//abFullName, assetName
-			ResManager.LoadPrefabWithInfo(info1, delegate(UnityEngine.Object[] objs,Dictionary<string,string> info) {
-                if (objs.Length == 0) return;
-                GameObject prefab = objs[0] as GameObject;
-                if (prefab == null) return;
+			Transform Parent = GameObject.Find (parentName).transform;
+			if (Parent.FindChild (luaName) != null) 
+			{
+				GameObject obj = GameObject.Find (parentName + "/"+luaName);
+				if (obj.activeInHierarchy == false)
+					obj.SetActive (true);
+				if (func != null) func.Call(null);
+				return;
+			}
+				
 
+			Dictionary<string,string> info1 = Global.CreateABInfo(abName,Global.GetAssetName(abName),AssetType.Perfab,0);
+			ResManager.LoadPrefabWithInfo(info1, delegate(UnityEngine.Object[] objs,Dictionary<string,string> info) 
+			{
+                GameObject prefab = objs[0] as GameObject;
                 GameObject go = Instantiate(prefab) as GameObject;
 				go.name = luaName;
                 go.layer = LayerMask.NameToLayer("Default");
@@ -68,39 +36,17 @@ namespace LuaFramework {
 				LuaBehaviour luaBehaviour = go.AddComponent<LuaBehaviour>();
 				luaBehaviour.abName = abName;
 				luaBehaviour.luaName = luaName;
-               if (func != null) func.Call(go);
-
+               	if (func != null) func.Call(go);
                 Debug.LogWarning("CreatePanel::>> " + name + " " + prefab);
-
             });
-#else
-            GameObject prefab = ResManager.LoadAsset<GameObject>(name, assetName);
-            if (prefab == null) return;
-
-            GameObject go = Instantiate(prefab) as GameObject;
-            go.name = assetName;
-            go.layer = LayerMask.NameToLayer("Default");
-            go.transform.SetParent(Parent);
-            go.transform.localScale = Vector3.one;
-            go.transform.localPosition = Vector3.zero;
-            go.AddComponent<LuaBehaviour>();
-
-            if (func != null) func.Call(go);
-            Debug.LogWarning("CreatePanel::>> " + name + " " + prefab);
-#endif
         }
 
-
-
-        /// <summary>
-        /// 关闭面板
-        /// </summary>
-        /// <param name="name"></param>
-        public void ClosePanel(string name) {
-            var panelName = name + "Panel";
-            var panelObj = Parent.FindChild(panelName);
-            if (panelObj == null) return;
-            Destroy(panelObj.gameObject);
+        public void ClosePanel(string name) 
+		{
+//            var panelName = name + "Panel";
+//            var panelObj = Parent.FindChild(panelName);
+//            if (panelObj == null) return;
+//            Destroy(panelObj.gameObject);
         }
     }
 }

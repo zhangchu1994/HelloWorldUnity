@@ -265,7 +265,6 @@ namespace LuaFramework
 		{
             LuaManager.InitStart();
             LuaManager.DoFile("Logic/Game");         //加载游戏
-            LuaManager.DoFile("Logic/Network");      //加载网络
 
 			TextAsset message = Resources.Load<TextAsset>("StaticData/message");
 			WebManager.InitProtocol (message.text);
