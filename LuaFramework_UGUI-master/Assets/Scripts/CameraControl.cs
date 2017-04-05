@@ -11,6 +11,7 @@ namespace GlobalGame
 		public float minFov = 15f;
 		public float maxFov = 90f;
 		public float sensitivity = 10f;
+		public static bool isEffective = true;
 
 		void Awake()
 		{
@@ -19,7 +20,8 @@ namespace GlobalGame
 
 		void Update()
 		{
-
+			if (isEffective == false)
+				return;
 			if (Global.isMobile () == true) 
 			{
 				FingerZoom ();
