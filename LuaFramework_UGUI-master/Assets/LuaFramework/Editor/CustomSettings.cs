@@ -149,6 +149,8 @@ public static class CustomSettings
 		//for self code
 //		_GT(typeof(Actor)),
 		_GT(typeof(JsonObject)),
+		_GT(typeof(CameraControl)),
+
 
         //for LuaFramework
         _GT(typeof(RectTransform)),

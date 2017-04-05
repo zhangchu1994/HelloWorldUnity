@@ -36,7 +36,9 @@ Shader = UnityEngine.Shader;
 Texture2D = UnityEngine.Texture2D;
 TextureFormat = UnityEngine.TextureFormat;
 Mesh = UnityEngine.Mesh;
+Text = UnityEngine.UI.Text;
 
 
 -- Actor1 = GlobalGame.Actor1;
+CameraControl = GlobalGame.CameraControl;
 

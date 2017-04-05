@@ -1,28 +1,35 @@
 require "Common/define"
--- require "Controller/PromptCtrl"
--- require "Controller/MessageCtrl"
-require "UI/Register"
-require "UI/Login"
 require "UI/MainCityUIManager"
 require "UI/BattleSceneUIManager"
 require "UI/BossPanel"
-require "UI/ShopPanel"
 require "UI/BigWorld"
 require "UI/SystemMainPanel"
-require "UI/RoleMainPanel"
-require "UI/RoleMeridiansPanel"
-require "UI/RolePanel"
-require "UI/RoleReLivePanel"
-require "UI/RoleWingsPanel"
-require "UI/SkillBreakPanel"
-require "UI/SkillMainPanel"
-require "UI/SkillPanel"
-require "UI/SkillSecretPanel"
+require "UI/Login/Register"
+require "UI/Login/Login"
+require "UI/Role/RoleMainPanel"
+require "UI/Role/RoleMeridiansPanel"
+require "UI/Role/RolePanel"
+require "UI/Role/RoleReLivePanel"
+require "UI/Role/RoleWingsPanel"
+require "UI/Skill/SkillBreakPanel"
+require "UI/Skill/SkillMainPanel"
+require "UI/Skill/SkillPanel"
+require "UI/Skill/SkillSecretPanel"
+require "UI/Smith/SmithMainPanel"
+require "UI/Smith/SmithPanel"
+require "UI/Bag/BagMainPanel"
+require "UI/Bag/BagPanel"
+require "UI/Shop/ShopPanel"
+require "UI/Shop/ShopMainPanel"
 
+require "UI/Common/ItemInfoPanel"
 
 CtrlManager = {};
 local this = CtrlManager;
 local ctrlList = {};	--控制器列表--
+
+local m_TableSystemInfo;
+
 
 function CtrlManager.Init()
 	-- logWarn("CtrlManager.Init----->>>");
@@ -43,9 +50,22 @@ function CtrlManager.Init()
 	ctrlList["SkillSecretPanel"] = SkillSecretPanel.New();
 	ctrlList["SkillBreakPanel"] = SkillBreakPanel.New();
 
-	ctrlList["BossPanel"] = BossPanel.New();
+	ctrlList["SmithMainPanel"] = SmithMainPanel.New();
+	ctrlList["SmithPanel"] = SmithPanel.New();
+
+	ctrlList["BagMainPanel"] = BagMainPanel.New();
+	ctrlList["BagPanel"] = BagPanel.New();
+
+	ctrlList["ShopMainPanel"] = ShopMainPanel.New();
 	ctrlList["ShopPanel"] = ShopPanel.New();
+
+	ctrlList["BossPanel"] = BossPanel.New();
 	ctrlList["BigWorld"] = BigWorld.New();
+
+	ctrlList["ItemInfoPanel"] = ItemInfoPanel.New();
+
+	
+	m_TableSystemInfo = dofile("Table/SystemInfo");
 
 	-- setmetatable(ctrlList["SkillMainPanel"] , ctrlList["SystemMainPanel"]);
 
@@ -65,6 +85,15 @@ end
 --移除控制器--
 function CtrlManager.RemoveCtrl(ctrlName)
 	ctrlList[ctrlName] = nil;
+end
+
+function CtrlManager.GetTableSystemInfo(argIndex)
+	for index,systemInfo in pairs(m_TableSystemInfo) do
+		if index == argIndex then
+			return systemInfo;
+		end
+	end
+	
 end
 
 --关闭控制器--
