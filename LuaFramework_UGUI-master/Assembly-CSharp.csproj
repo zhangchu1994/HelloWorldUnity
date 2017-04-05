@@ -46,13 +46,26 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Lib\SimpleJson.cs" />
+     <Compile Include="Assets\Lib\UniLinq\Check.cs" />
+     <Compile Include="Assets\Lib\UniLinq\Enumerable.cs" />
+     <Compile Include="Assets\Lib\UniLinq\Grouping.cs" />
+     <Compile Include="Assets\Lib\UniLinq\IGrouping.cs" />
+     <Compile Include="Assets\Lib\UniLinq\ILookup.cs" />
+     <Compile Include="Assets\Lib\UniLinq\IOrderedEnumerable.cs" />
+     <Compile Include="Assets\Lib\UniLinq\Lookup.cs" />
+     <Compile Include="Assets\Lib\UniLinq\OrderedEnumerable.cs" />
+     <Compile Include="Assets\Lib\UniLinq\OrderedSequence.cs" />
+     <Compile Include="Assets\Lib\UniLinq\QuickSort.cs" />
+     <Compile Include="Assets\Lib\UniLinq\SortContext.cs" />
+     <Compile Include="Assets\Lib\UniLinq\SortDirection.cs" />
+     <Compile Include="Assets\Lib\UniLinq\SortSequenceContext.cs" />
      <Compile Include="Assets\Lib\iTween\iTween.cs" />
      <Compile Include="Assets\LuaFramework\Scripts\Common\LuaBehaviour.cs" />
      <Compile Include="Assets\LuaFramework\Scripts\Common\LuaLoader.cs" />
      <Compile Include="Assets\LuaFramework\Scripts\ConstDefine\AppConst.cs" />
      <Compile Include="Assets\LuaFramework\Scripts\ConstDefine\ManagerName.cs" />
      <Compile Include="Assets\LuaFramework\Scripts\ConstDefine\NotiConst.cs" />
-     <Compile Include="Assets\LuaFramework\Scripts\Controller\Command\SocketCommand.cs" />
      <Compile Include="Assets\LuaFramework\Scripts\Controller\Command\StartUpCommand.cs" />
      <Compile Include="Assets\LuaFramework\Scripts\Framework\AppFacade.cs" />
      <Compile Include="Assets\LuaFramework\Scripts\Framework\Core\Base.cs" />
@@ -71,17 +84,12 @@
      <Compile Include="Assets\LuaFramework\Scripts\Manager\Interface\ITimerBehaviour.cs" />
      <Compile Include="Assets\LuaFramework\Scripts\Manager\LuaManager.cs" />
      <Compile Include="Assets\LuaFramework\Scripts\Manager\MySceneManager.cs" />
-     <Compile Include="Assets\LuaFramework\Scripts\Manager\NetworkManager.cs" />
      <Compile Include="Assets\LuaFramework\Scripts\Manager\ObjectPoolManager.cs" />
      <Compile Include="Assets\LuaFramework\Scripts\Manager\PanelManager.cs" />
      <Compile Include="Assets\LuaFramework\Scripts\Manager\ResourceManager.cs" />
      <Compile Include="Assets\LuaFramework\Scripts\Manager\SoundManager.cs" />
      <Compile Include="Assets\LuaFramework\Scripts\Manager\ThreadManager.cs" />
      <Compile Include="Assets\LuaFramework\Scripts\Manager\TimerManager.cs" />
-     <Compile Include="Assets\LuaFramework\Scripts\Network\ByteBuffer.cs" />
-     <Compile Include="Assets\LuaFramework\Scripts\Network\Converter.cs" />
-     <Compile Include="Assets\LuaFramework\Scripts\Network\Protocal.cs" />
-     <Compile Include="Assets\LuaFramework\Scripts\Network\SocketClient.cs" />
      <Compile Include="Assets\LuaFramework\Scripts\ObjectPool\GameObjectPool.cs" />
      <Compile Include="Assets\LuaFramework\Scripts\ObjectPool\ObjectPool.cs" />
      <Compile Include="Assets\LuaFramework\Scripts\ObjectPool\TestObjectClass.cs" />
@@ -180,15 +188,16 @@
      <Compile Include="Assets\LuaFramework\ToLua\Reflection\LuaReflection.cs" />
      <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\BaseWrap.cs" />
      <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\DelegateFactory.cs" />
+     <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\GlobalGame_ByteBufferWrap.cs" />
+     <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\GlobalGame_CameraControlWrap.cs" />
+     <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\GlobalGame_WebManagerWrap.cs" />
      <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\LuaBinder.cs" />
      <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\LuaFramework_AppConstWrap.cs" />
-     <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\LuaFramework_ByteBufferWrap.cs" />
      <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\LuaFramework_GameManagerWrap.cs" />
      <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\LuaFramework_LuaBehaviourWrap.cs" />
      <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\LuaFramework_LuaHelperWrap.cs" />
      <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\LuaFramework_LuaManagerWrap.cs" />
      <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\LuaFramework_MySceneManagerWrap.cs" />
-     <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\LuaFramework_NetworkManagerWrap.cs" />
      <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\LuaFramework_PanelManagerWrap.cs" />
      <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\LuaFramework_ResourceManagerWrap.cs" />
      <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\LuaFramework_SoundManagerWrap.cs" />
@@ -197,6 +206,7 @@
      <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\LuaFramework_UtilWrap.cs" />
      <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\LuaInterface_DebuggerWrap.cs" />
      <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\ManagerWrap.cs" />
+     <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\SimpleJson_JsonObjectWrap.cs" />
      <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\UnityEngine_AI_NavMeshAgentWrap.cs" />
      <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\UnityEngine_AI_NavMeshPathStatusWrap.cs" />
      <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\UnityEngine_AnimationBlendModeWrap.cs" />
@@ -260,7 +270,9 @@
      <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\UnityEngine_TrackedReferenceWrap.cs" />
      <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\UnityEngine_TransformWrap.cs" />
      <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\UnityEngine_UI_GraphicWrap.cs" />
+     <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\UnityEngine_UI_InputFieldWrap.cs" />
      <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\UnityEngine_UI_MaskableGraphicWrap.cs" />
+     <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\UnityEngine_UI_SelectableWrap.cs" />
      <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\UnityEngine_UI_TextWrap.cs" />
      <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\UnityEngine_WWWWrap.cs" />
      <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\UnityEngine_WrapModeWrap.cs" />
@@ -295,10 +307,14 @@
      <Compile Include="Assets\Scripts\Global\RemovePS.cs" />
      <Compile Include="Assets\Scripts\Global\SetRenderQ.cs" />
      <Compile Include="Assets\Scripts\Global\Utility.cs" />
+     <Compile Include="Assets\Scripts\NetWork\ByteBuffer.cs" />
+     <Compile Include="Assets\Scripts\NetWork\Message.cs" />
+     <Compile Include="Assets\Scripts\NetWork\WebManager.cs" />
      <Compile Include="Assets\Scripts\TestClass.cs" />
+     <None Include="Assets\Lib\UniLinq\LICENSE.txt" />
      <None Include="Assets\Art\ModelActor\Actor2\5_Materials\Shader\Toony-Basic.shader" />
      <None Include="Assets\Shader\Toony-BasicOutline.shader" />
-     <None Include="Assets\Plugins\NewtonJson\Newtonsoft.Json.xml" />
+     <None Include="Assets\Resources\StaticData\message.xml" />
      <None Include="Assets\Shader\Toony-Basic.shader" />
      <None Include="Assets\StreamingAssets\files.txt" />
      <None Include="Assets\LuaFramework\ToLua\readme.txt" />
@@ -323,8 +339,8 @@
  <Reference Include="Debugger">
  <HintPath>E:/WorkSpace_Demo/trunk/LuaFramework_UGUI-master/Assets/Plugins/Debugger.dll</HintPath>
  </Reference>
- <Reference Include="Newtonsoft.Json">
- <HintPath>E:/WorkSpace_Demo/trunk/LuaFramework_UGUI-master/Assets/Plugins/NewtonJson/Newtonsoft.Json.dll</HintPath>
+ <Reference Include="websocket-sharp">
+ <HintPath>E:/WorkSpace_Demo/trunk/LuaFramework_UGUI-master/Assets/Plugins/websocket-sharp.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

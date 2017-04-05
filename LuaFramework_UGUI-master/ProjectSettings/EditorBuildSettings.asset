@@ -5,13 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scene/Login.unity
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scene/Loading/Loading.unity
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scene/MainCity/MainCity.unity
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scene/BigWorld.unity
   - enabled: 1
     path: Assets/Scene/FirstBattle/FirstBattle.unity
