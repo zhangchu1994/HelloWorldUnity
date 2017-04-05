@@ -2307,11 +2307,12 @@ MonoBehaviour:
   m_ActorAIManager: {fileID: 0}
   m_MonsterAIManager: {fileID: 0}
   m_ActorSkillManager: {fileID: 0}
-  m_Fllow1: {fileID: 0}
-  m_Fllow2: {fileID: 0}
   m_ActorStatus: 0
   m_ActorType: 0
   m_CurrentTarget: {fileID: 0}
+  m_CurrentTargetActor: {fileID: 0}
+  m_lastActorStatus: 0
+  m_AttributeList: []
   m_isHightLight: 0
 --- !u!137 &137376770432930932
 SkinnedMeshRenderer:
