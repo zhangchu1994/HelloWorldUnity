@@ -1,7 +1,7 @@
 require "Common/define"
 
-RolePanel = {};
-local this = RolePanel;
+SmithPanel = {};
+local this = SmithPanel;
 
 local m_LuaBehaviour;
 local m_transform;
@@ -13,33 +13,33 @@ local m_passWord;
 local m_passWord1;
 
 
-function RolePanel.New()
+function SmithPanel.New()
     return this;
 end
 
-function RolePanel.Awake()
-    -- log("RolePanel.Awake______________________________");
+function SmithPanel.Awake()
+    -- log("SmithPanel.Awake______________________________");
 end
 
-function RolePanel.Start()
-    -- log("RolePanel.Start______________________________");
+function SmithPanel.Start()
+    -- log("SmithPanel.Start______________________________");
 end
 
-function RolePanel.Update()
+function SmithPanel.Update()
     -- if m_firstCreate == false then
     --     m_firstCreate = true;
     --     this.InitView();
     -- end
-    -- log("RolePanel.Update______________________________");
+    -- log("SmithPanel.Update______________________________");
 end
 
-function RolePanel.OnCreate(obj)
-    -- log('RolePanel.OnCreate____________');
+function SmithPanel.OnCreate(obj)
+    -- log('SmithPanel.OnCreate____________');
     this.InitView(obj);
 end
 
-function RolePanel.InitView(obj)
-    -- log('RolePanel.InitView____________');
+function SmithPanel.InitView(obj)
+    -- log('SmithPanel.InitView____________');
     m_gameObject = obj;
     m_transform =  obj.transform;
     m_LuaBehaviour = obj:GetComponent('LuaBehaviour');
@@ -59,16 +59,16 @@ function RolePanel.InitView(obj)
     -- m_passWor1 = m_transform:FindChild("PassWordConfirm/InputField"):GetComponent('InputField');
 
 
-    -- LuaHelper.GetWebManager():AddCmdHandler("LC_RegisterUserMsg","RolePanel,RegisterSuccess");
+    -- LuaHelper.GetWebManager():AddCmdHandler("LC_RegisterUserMsg","SmithPanel,RegisterSuccess");
 end
 
-function RolePanel.OnCancelClick(obj)
+function SmithPanel.OnCancelClick(obj)
     m_gameObject:SetActive(false);
 end
 
 --单击事件--
-function RolePanel.OnRegisterClick(go)
-    -- log("RolePanel.OnRegisterClick_________________________________________________________");
+function SmithPanel.OnRegisterClick(go)
+    -- log("SmithPanel.OnRegisterClick_________________________________________________________");
     -- sceneMgr:GoToScene('maincityscene',"MainCity","MainCityScene",this.SceneDone); 
     -- sceneMgr:GoToScene('firstbattlescene',"FirstBattle","FirstBattleScene",this.SceneDone); 
     if (m_passWord.text ~= m_passWor1.text) then
@@ -82,15 +82,15 @@ function RolePanel.OnRegisterClick(go)
     LuaHelper.GetWebManager():CMD("CL_RegisterUserMsg", json);
 end
 
-function RolePanel.RegisterSuccess(message)
+function SmithPanel.RegisterSuccess(message)
     -- log("RegisterSuccess = "..tostring(message));
 end
 
-function RolePanel.SceneDone(obj)
+function SmithPanel.SceneDone(obj)
     
 end
 
 --关闭事件--
-function RolePanel.Close()
+function SmithPanel.Close()
     -- panelMgr:ClosePanel(CtrlNames.Prompt);
 end

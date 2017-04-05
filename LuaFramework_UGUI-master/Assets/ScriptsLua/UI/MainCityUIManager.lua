@@ -19,16 +19,11 @@ function MainCityUIManager.New()
 end
 
 function MainCityUIManager.Awake()
-    log("MainCityUIManager.Awake______________________________");
+
 end
 
 function MainCityUIManager.Start()
-    log("MainCityUIManager.Start______________________________");
     this.InitView();
-end
-
-function MainCityUIManager.Show()
-    -- panelMgr:CreatePanel('loginperfab', 'LoginPanel','Login', this.OnCreate);
 end
 
 function MainCityUIManager.Update()
@@ -39,12 +34,8 @@ function MainCityUIManager.Update()
     end
 end
 
--- function MainCityUIManager.OnCreate(obj)
-
--- end
-
 function MainCityUIManager.InitView()
-    log('MainCityUIManager.OnCreate____________');
+    -- log('MainCityUIManager.OnCreate____________');
 
     m_gameObject = GameObject.Find("UICamera/Canvas/MainCityPanel");
     m_transform = m_gameObject.transform;
@@ -90,16 +81,17 @@ function MainCityUIManager.OnLeftClick(go)
 end
 
 function MainCityUIManager.OnDownClick(go)
+    log("MainCityUIManager.OnDownClick______________"..go.name)
     if (go.name == "Down1") then
-        panelMgr:CreatePanel('UI/SystemMainPanel', 'UICamera/Canvas','RoleMainPanel', RoleMainPanel.OnCreate);
+        panelMgr:CreatePanel('UI/Common/SystemMainPanel', 'UICamera/Canvas','RoleMainPanel','RoleMainPanel', RoleMainPanel.OnCreate);
     elseif (go.name == "Down2") then
-        panelMgr:CreatePanel('UI/SystemMainPanel', 'UICamera/Canvas','SkillMainPanel', SkillMainPanel.OnCreate);
+        panelMgr:CreatePanel('UI/Common/SystemMainPanel', 'UICamera/Canvas','SkillMainPanel','SkillMainPanel', SkillMainPanel.OnCreate);
     elseif (go.name == "Down3") then
-
+        panelMgr:CreatePanel('UI/Common/SystemMainPanel', 'UICamera/Canvas','SmithMainPanel','SmithMainPanel', SmithMainPanel.OnCreate);
     elseif (go.name == "Down4") then
-
+        panelMgr:CreatePanel('UI/Common/SystemMainPanel', 'UICamera/Canvas','BagMainPanel','BagMainPanel', BagMainPanel.OnCreate);
     elseif (go.name == "Down5") then
-
+        panelMgr:CreatePanel('UI/Common/SystemMainPanel', 'UICamera/Canvas','ShopMainPanel','ShopMainPanel', ShopMainPanel.OnCreate);
     end
 end
 

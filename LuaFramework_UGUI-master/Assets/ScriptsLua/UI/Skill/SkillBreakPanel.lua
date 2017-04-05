@@ -62,21 +62,7 @@ function SkillBreakPanel.InitView(obj)
     end
 end
 
-function SkillBreakPanel.OnTapClick(go)
-    -- log("SkillBreakPanel.OnTapClick = "..go.name);
-    local str = string.gsub(go.name, "DownButton", "");
-    
-    m_ViewIndex = tonumber(str); 
-    if (m_ViewIndex == 1) then
-        panelMgr:CreatePanel('UI/Role/RolePanel', 'UICamera/Canvas/SkillBreakPanel','RolePanel', this.OnCreate1);
-    elseif (m_ViewIndex == 2) then
-        panelMgr:CreatePanel('UI/Role/RoleReLivePanel', 'UICamera/Canvas/SkillBreakPanel','RoleReLivePanel', this.OnCreate1);
-    elseif (m_ViewIndex == 3) then
-        panelMgr:CreatePanel('UI/Role/RoleWingsPanel', 'UICamera/Canvas/SkillBreakPanel','RoleWingsPanel', this.OnCreate1);
-    elseif (m_ViewIndex == 4) then
-        panelMgr:CreatePanel('UI/Role/RoleMeridiansPanel', 'UICamera/Canvas/SkillBreakPanel','RoleMeridiansPanel', this.OnCreate1);
-    end
-end
+
 
 function SkillBreakPanel.OnCreate1(obj)
     -- if m_CurrentObj ~= nil then

@@ -26,13 +26,16 @@ function SystemMainPanel.Update()
 
 end
 
-function SystemMainPanel.InitView(obj,delegate,argCount)
+function SystemMainPanel.InitView(obj,delegate,Index)
     -- log('Register.InitView____________');
     m_gameObject = obj;
     m_transform =  obj.transform;
     m_LuaBehaviour = obj:GetComponent('LuaBehaviour');
     m_DelegateObj = delegate;
+    CameraControl.isEffective = false;
 
+
+    local systeminfo = CtrlManager.GetTableSystemInfo(Index);
     -- log(m_gameObject.name);
 
     local bgButton = m_transform:FindChild("BgCover").gameObject;
@@ -44,11 +47,19 @@ function SystemMainPanel.InitView(obj,delegate,argCount)
     -- local registerButton = m_transform:FindChild("Confirm").gameObject;
     -- m_LuaBehaviour:AddClick(registerButton, this.OnRegisterClick);
 
-    for i=1,argCount do
+    for i=1,4 do
         local button = m_transform:FindChild("DownButton"..i).gameObject;
-        m_LuaBehaviour:AddClick(button, this.OnDownButtonClick);
-        if i == 1 then
-            this.OnDownButtonClick(button);
+        if i > #systeminfo.SubSystem then
+            button:SetActive(false);
+        else
+            button:SetActive(true);
+            local text = button.transform:FindChild("Text"):GetComponent("Text");
+            text.text = systeminfo.SubSystem[i];
+            m_LuaBehaviour:AddClick(button, this.OnDownButtonClick);
+
+            if i == 1 then
+                this.OnDownButtonClick(button);
+            end
         end
     end
 end
@@ -76,10 +87,15 @@ function SystemMainPanel.OnSubViewCreate(obj)
 
     m_DelegateObj.InitView(obj,m_ViewIndex);
 
+    -- log("SystemMainPanel.OnDownButtonClick_________ = "..obj.name);
+    local rectTransform = obj:GetComponent("RectTransform")
+    rectTransform.anchoredPosition =  Vector2.New(0,50);
+
 end
 
 function SystemMainPanel.OnCancelClick(obj)
     destroy(m_gameObject);
     m_ViewList = {};
+    CameraControl.isEffective = true;
     -- m_gameObject:SetActive(false);
 end
