@@ -11,6 +11,8 @@ require "UI/Role/RoleMeridiansPanel"
 require "UI/Role/RolePanel"
 require "UI/Role/RoleReLivePanel"
 require "UI/Role/RoleWingsPanel"
+require "UI/Role/RoleDressMainPanel"
+require "UI/Role/RoleDressPanel"
 require "UI/Skill/SkillBreakPanel"
 require "UI/Skill/SkillMainPanel"
 require "UI/Skill/SkillPanel"
@@ -44,6 +46,8 @@ function CtrlManager.Init()
 	ctrlList["RolePanel"] = RolePanel.New();
 	ctrlList["RoleReLivePanel"] = RoleReLivePanel.New();
 	ctrlList["RoleWingsPanel"] = RoleWingsPanel.New();
+	ctrlList["RoleDressMainPanel"] = RoleDressMainPanel.New();
+	ctrlList["RoleDressPanel"] = RoleDressMainPanel.New();
 
 	ctrlList["SkillMainPanel"] = SkillMainPanel.New();
 	ctrlList["SkillPanel"] = SkillPanel.New();
@@ -61,6 +65,7 @@ function CtrlManager.Init()
 
 	ctrlList["BossPanel"] = BossPanel.New();
 	ctrlList["BigWorld"] = BigWorld.New();
+
 
 	ctrlList["ItemInfoPanel"] = ItemInfoPanel.New();
 

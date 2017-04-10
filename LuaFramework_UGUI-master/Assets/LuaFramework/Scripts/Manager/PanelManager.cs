@@ -9,7 +9,7 @@ using GlobalGame;
 namespace LuaFramework {
     public class PanelManager : Manager 
 	{
-		public void CreatePanel(string abName,string parentName,string luaName = null,string name = null, LuaFunction func = null) 
+		public void CreatePanel(string abName,string parentName,string luaName,string name,Vector3 pos, LuaFunction func = null) 
 		{
 //			Debug.Log ("CreatePanel__________"+name);
 			Transform Parent = GameObject.Find (parentName).transform;
@@ -29,10 +29,10 @@ namespace LuaFramework {
                 GameObject prefab = objs[0] as GameObject;
                 GameObject go = Instantiate(prefab) as GameObject;
 				go.name = name;
-                go.layer = LayerMask.NameToLayer("Default");
+                go.layer = LayerMask.NameToLayer("UI");
                 go.transform.SetParent(Parent);
                 go.transform.localScale = Vector3.one;
-                go.transform.localPosition = Vector3.zero;
+				go.transform.localPosition = pos;
 				LuaBehaviour luaBehaviour = go.AddComponent<LuaBehaviour>();
 				luaBehaviour.abName = abName;
 				luaBehaviour.luaName = luaName;
