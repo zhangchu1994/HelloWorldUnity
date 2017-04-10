@@ -68,8 +68,8 @@ end
 
 --初始化面板--
 function ShopPanel.InitScrollView()
-    local count = 6; 
-    local parent = m_ScrollView.transform:FindChild('Grid');
+    local count = 20; 
+    local parent = m_ScrollView.transform:FindChild('Background/Grid');
     for i = 1, count do
         local prefab = Resources.Load("UI/Shop/ShopPanelItem");
         local go = GameObject.Instantiate(prefab);
@@ -77,9 +77,9 @@ function ShopPanel.InitScrollView()
         go.transform:SetParent(parent);
         go.transform.localScale = Vector3.one;
         go.transform.localPosition = Vector3.zero;
-        -- print(tostring(go));
-        -- print(tostring(m_LuaBehaviour));
-        m_LuaBehaviour:AddClick(go, this.OnItemClick);
+        -- -- print(tostring(go));
+        -- -- print(tostring(m_LuaBehaviour));
+        -- m_LuaBehaviour:AddClick(go, this.OnItemClick);
 
     --     local label = go.transform:FindChild('Text');
     --     label:GetComponent('Text').text = tostring(i);

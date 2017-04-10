@@ -45,12 +45,25 @@ function RolePanel.InitView(obj)
     m_LuaBehaviour = obj:GetComponent('LuaBehaviour');
     -- log(m_gameObject.name);
 
+
+    panelMgr:CreatePanel('UI/Common/RoleList', 'UICamera/SystemCanvas/RoleMainPanel/RolePanel','RoleList','RoleList',Vector3.New(0,270,0), RolePanel.OnCreateRoleList);--
+
     for i=1,8 do
-        -- log("Left"..tostring(i));
         local equipmentItem = m_transform:FindChild("EquipmentItem"..tostring(i)).gameObject;
         m_LuaBehaviour:AddClick(equipmentItem, this.OnEquipmentItemClick);
     end
+
+    local DressUp = m_transform:FindChild("DressUp").gameObject;
+    m_LuaBehaviour:AddClick(DressUp, this.OnDressUpClick);
+
+    local Title = m_transform:FindChild("RoleTitle").gameObject;
+    m_LuaBehaviour:AddClick(Title, this.OnTitleClick);
     
+    local Soul = m_transform:FindChild("Soul").gameObject;
+    m_LuaBehaviour:AddClick(Soul, this.OnSoulClick);
+    
+    local Orange = m_transform:FindChild("Orange").gameObject;
+    m_LuaBehaviour:AddClick(Orange, this.OnOrangeClick);
 
     -- local bgButton = m_transform:FindChild("Bg").gameObject;
     -- m_LuaBehaviour:AddClick(bgButton, this.OnCancelClick);
@@ -69,8 +82,28 @@ function RolePanel.InitView(obj)
     -- LuaHelper.GetWebManager():AddCmdHandler("LC_RegisterUserMsg","RolePanel,RegisterSuccess");
 end
 
+function RolePanel.OnCreateRoleList(obj)
+    obj.transform:SetSiblingIndex (0);
+end
+
 function RolePanel.OnEquipmentItemClick(go)
-    panelMgr:CreatePanel('UI/Common/ItemInfoPanel', 'UICamera/Canvas','ItemInfoPanel','ItemInfoPanel', ItemInfoPanel.OnCreate);
+    panelMgr:CreatePanel('UI/Common/ItemInfoPanel', 'UICamera/SystemCanvas','ItemInfoPanel','ItemInfoPanel',Vector3.New(0,0,0), ItemInfoPanel.OnCreate);
+end
+
+function RolePanel.OnDressUpClick(go)
+    panelMgr:CreatePanel('UI/Common/SystemMainPanel', 'UICamera/SystemCanvas','RoleDressMainPanel','RoleDressMainPanel',Vector3.New(0,0,0), RoleDressMainPanel.OnCreate);
+end
+
+function RolePanel.OnTitleClick(go)
+    log("RolePanel.OnTitleClick");
+end
+
+function RolePanel.OnSoulClick(go)
+    log("RolePanel.OnSoulClick");
+end
+
+function RolePanel.OnOrangeClick(go)
+    log("RolePanel.OnOrangeClick");
 end
 
 function RolePanel.OnCancelClick(obj)

@@ -37,10 +37,10 @@ end
 function MainCityUIManager.InitView()
     -- log('MainCityUIManager.OnCreate____________');
 
-    m_gameObject = GameObject.Find("UICamera/Canvas/MainCityPanel");
+    m_gameObject = GameObject.Find("UICamera/MainCanvas/MainCityPanel");
     m_transform = m_gameObject.transform;
 
-    m_Canvas = GameObject.Find("Canvas");
+    m_Canvas = GameObject.Find("MainCanvas");
     m_CanvasTransform = m_Canvas.transform;
 
     -- m_panel = m_transform:GetComponent('loginPanel');
@@ -83,15 +83,15 @@ end
 function MainCityUIManager.OnDownClick(go)
     log("MainCityUIManager.OnDownClick______________"..go.name)
     if (go.name == "Down1") then
-        panelMgr:CreatePanel('UI/Common/SystemMainPanel', 'UICamera/Canvas','RoleMainPanel','RoleMainPanel', RoleMainPanel.OnCreate);
+        panelMgr:CreatePanel('UI/Common/SystemMainPanel', 'UICamera/SystemCanvas','RoleMainPanel','RoleMainPanel',Vector3.New(0,0,0), RoleMainPanel.OnCreate);
     elseif (go.name == "Down2") then
-        panelMgr:CreatePanel('UI/Common/SystemMainPanel', 'UICamera/Canvas','SkillMainPanel','SkillMainPanel', SkillMainPanel.OnCreate);
+        panelMgr:CreatePanel('UI/Common/SystemMainPanel', 'UICamera/SystemCanvas','SkillMainPanel','SkillMainPanel',Vector3.New(0,0,0), SkillMainPanel.OnCreate);
     elseif (go.name == "Down3") then
-        panelMgr:CreatePanel('UI/Common/SystemMainPanel', 'UICamera/Canvas','SmithMainPanel','SmithMainPanel', SmithMainPanel.OnCreate);
+        panelMgr:CreatePanel('UI/Common/SystemMainPanel', 'UICamera/SystemCanvas','SmithMainPanel','SmithMainPanel',Vector3.New(0,0,0), SmithMainPanel.OnCreate);
     elseif (go.name == "Down4") then
-        panelMgr:CreatePanel('UI/Common/SystemMainPanel', 'UICamera/Canvas','BagMainPanel','BagMainPanel', BagMainPanel.OnCreate);
+        panelMgr:CreatePanel('UI/Common/SystemMainPanel', 'UICamera/SystemCanvas','BagMainPanel','BagMainPanel',Vector3.New(0,0,0), BagMainPanel.OnCreate);
     elseif (go.name == "Down5") then
-        panelMgr:CreatePanel('UI/Common/SystemMainPanel', 'UICamera/Canvas','ShopMainPanel','ShopMainPanel', ShopMainPanel.OnCreate);
+        panelMgr:CreatePanel('UI/Common/SystemMainPanel', 'UICamera/SystemCanvas','ShopMainPanel','ShopMainPanel',Vector3.New(0,0,0), ShopMainPanel.OnCreate);
     end
 end
 

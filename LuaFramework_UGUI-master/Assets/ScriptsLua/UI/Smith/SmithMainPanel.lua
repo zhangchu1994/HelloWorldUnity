@@ -27,16 +27,16 @@ end
 
 function SmithMainPanel.OnCreate(obj)
     m_SystemMainPanel = CtrlManager.GetCtrl("SystemMainPanel");
-    m_SystemMainPanel.InitView(obj,this,3);
+    m_SystemMainPanel.InitView(obj,this,3,0);
 end
 
 function SmithMainPanel.OnDownButtonClick(go,argIndex)
     if (argIndex == 1) then
-        panelMgr:CreatePanel('UI/Smith/SmithPanel', 'UICamera/Canvas/SmithMainPanel',"SmithPanel",'StrengthPanel', m_SystemMainPanel.OnSubViewCreate);
+        panelMgr:CreatePanel('UI/Smith/SmithPanel', 'UICamera/SystemCanvas/SmithMainPanel',"SmithPanel",'StrengthPanel',Vector3.New(0,0,0), m_SystemMainPanel.OnSubViewCreate);
     elseif (argIndex == 2) then
-        panelMgr:CreatePanel('UI/Smith/SmithPanel', 'UICamera/Canvas/SmithMainPanel',"SmithPanel",'GemPanel', m_SystemMainPanel.OnSubViewCreate);
+        panelMgr:CreatePanel('UI/Smith/SmithPanel', 'UICamera/SystemCanvas/SmithMainPanel',"SmithPanel",'GemPanel',Vector3.New(0,0,0), m_SystemMainPanel.OnSubViewCreate);
     elseif (argIndex == 3) then
-        panelMgr:CreatePanel('UI/Smith/SmithPanel', 'UICamera/Canvas/SmithMainPanel',"SmithPanel",'AddSpiritPanel', m_SystemMainPanel.OnSubViewCreate);
+        panelMgr:CreatePanel('UI/Smith/SmithPanel', 'UICamera/SystemCanvas/SmithMainPanel',"SmithPanel",'AddSpiritPanel',Vector3.New(0,0,0), m_SystemMainPanel.OnSubViewCreate);
     end
 end
 

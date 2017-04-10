@@ -83,7 +83,7 @@ end
 
 function Login.OnRegisterClick(go)
     log("Login.OnRegisterClick_________________________________________________________");
-    panelMgr:CreatePanel('UI/Login/RegisterPanel', 'UICamera/LoginCanvas/Bg','Register','Register', Register.OnCreate);
+    panelMgr:CreatePanel('UI/Login/RegisterPanel', 'UICamera/LoginCanvas/Bg','Register','Register',Vector3.New(0,0,0), Register.OnCreate);
 end
 
 function Login.SceneDone(obj)

@@ -68,13 +68,13 @@ function SkillSecretPanel.OnTapClick(go)
     
     m_ViewIndex = tonumber(str); 
     if (m_ViewIndex == 1) then
-        panelMgr:CreatePanel('UI/Role/RolePanel', 'UICamera/Canvas/SkillSecretPanel','RolePanel', this.OnCreate1);
+        panelMgr:CreatePanel('UI/Role/RolePanel', 'UICamera/Canvas/SkillSecretPanel','RolePanel',Vector3.New(0,0,0), this.OnCreate1);
     elseif (m_ViewIndex == 2) then
-        panelMgr:CreatePanel('UI/Role/RoleReLivePanel', 'UICamera/Canvas/SkillSecretPanel','RoleReLivePanel', this.OnCreate1);
+        panelMgr:CreatePanel('UI/Role/RoleReLivePanel', 'UICamera/Canvas/SkillSecretPanel','RoleReLivePanel',Vector3.New(0,0,0), this.OnCreate1);
     elseif (m_ViewIndex == 3) then
-        panelMgr:CreatePanel('UI/Role/RoleWingsPanel', 'UICamera/Canvas/SkillSecretPanel','RoleWingsPanel', this.OnCreate1);
+        panelMgr:CreatePanel('UI/Role/RoleWingsPanel', 'UICamera/Canvas/SkillSecretPanel','RoleWingsPanel',Vector3.New(0,0,0), this.OnCreate1);
     elseif (m_ViewIndex == 4) then
-        panelMgr:CreatePanel('UI/Role/RoleMeridiansPanel', 'UICamera/Canvas/SkillSecretPanel','RoleMeridiansPanel', this.OnCreate1);
+        panelMgr:CreatePanel('UI/Role/RoleMeridiansPanel', 'UICamera/Canvas/SkillSecretPanel','RoleMeridiansPanel',Vector3.New(0,0,0), this.OnCreate1);
     end
 end
 
