@@ -35,29 +35,36 @@ function MainCityUIManager.Update()
 end
 
 function MainCityUIManager.InitView()
-    -- log('MainCityUIManager.OnCreate____________');
-
     m_gameObject = GameObject.Find("UICamera/MainCanvas/MainCityPanel");
     m_transform = m_gameObject.transform;
 
     m_Canvas = GameObject.Find("MainCanvas");
     m_CanvasTransform = m_Canvas.transform;
 
-    -- m_panel = m_transform:GetComponent('loginPanel');
     m_LuaBehaviour = m_transform:GetComponent('LuaBehaviour');
+    
+
+    local UserName = GameClient.GetUserInfo();
+    local nameObj = m_transform:FindChild("HeadBar/Name"):GetComponent('Text');
+    nameObj.text = UserName;
+
+    local levelObj = m_transform:FindChild("HeadBar/Level"):GetComponent('Text');
+    levelObj.text = StringTable.string24;
 
     for i=1,7 do
-        -- log("Left"..tostring(i));
         local loginButton = m_transform:FindChild("Left"..tostring(i)).gameObject;
         m_LuaBehaviour:AddClick(loginButton, this.OnLeftClick);
     end
 
     for i=1,5 do
-        -- log("Left"..tostring(i));
         local loginButton = m_transform:FindChild("Down"..tostring(i)).gameObject;
         m_LuaBehaviour:AddClick(loginButton, this.OnDownClick);
     end
-    -- resMgr:LoadPrefab('prompt', { 'PromptItem' }, this.InitPanel);
+
+    for i=1,7 do
+        local loginButton = m_transform:FindChild("Below"..tostring(i)).gameObject;
+        m_LuaBehaviour:AddClick(loginButton, this.OnBelowClick);
+    end
 end
 
 --单击事件--
@@ -80,8 +87,26 @@ function MainCityUIManager.OnLeftClick(go)
     end
 end
 
+function MainCityUIManager.OnBelowClick(go)
+    if (go.name == "Below1") then
+        panelMgr:CreatePanel('UI/Common/SystemMainPanel', 'UICamera/SystemCanvas','PartnerMainPanel','PartnerMainPanel',Vector3.New(0,0,0), PartnerMainPanel.OnCreate);
+    elseif (go.name == "Below2") then
+        -- panelMgr:CreatePanel('UI/Common/SystemMainPanel', 'UICamera/SystemCanvas','SkillMainPanel','SkillMainPanel',Vector3.New(0,0,0), SkillMainPanel.OnCreate);
+    elseif (go.name == "Below3") then
+        -- panelMgr:CreatePanel('UI/Common/SystemMainPanel', 'UICamera/SystemCanvas','SmithMainPanel','SmithMainPanel',Vector3.New(0,0,0), SmithMainPanel.OnCreate);
+    elseif (go.name == "Below4") then
+        panelMgr:CreatePanel('UI/Common/SystemMainPanel', 'UICamera/SystemCanvas','BossMainPanel','BossMainPanel',Vector3.New(0,0,0), BossMainPanel.OnCreate);
+    elseif (go.name == "Below5") then
+        panelMgr:CreatePanel('UI/Common/SystemMainPanel', 'UICamera/SystemCanvas','EncounterMainPanel','EncounterMainPanel',Vector3.New(0,0,0), EncounterMainPanel.OnCreate);
+    elseif (go.name == "Below6") then
+        panelMgr:CreatePanel('UI/Common/SystemMainPanel', 'UICamera/SystemCanvas','InstanceMainPanel','InstanceMainPanel',Vector3.New(0,0,0), InstanceMainPanel.OnCreate);
+    elseif (go.name == "Below7") then
+        -- panelMgr:CreatePanel('UI/Common/SystemMainPanel', 'UICamera/SystemCanvas','ShopMainPanel','ShopMainPanel',Vector3.New(0,0,0), ShopMainPanel.OnCreate);
+    end
+end
+
 function MainCityUIManager.OnDownClick(go)
-    log("MainCityUIManager.OnDownClick______________"..go.name)
+    -- log("MainCityUIManager.OnDownClick______________"..go.name)
     if (go.name == "Down1") then
         panelMgr:CreatePanel('UI/Common/SystemMainPanel', 'UICamera/SystemCanvas','RoleMainPanel','RoleMainPanel',Vector3.New(0,0,0), RoleMainPanel.OnCreate);
     elseif (go.name == "Down2") then

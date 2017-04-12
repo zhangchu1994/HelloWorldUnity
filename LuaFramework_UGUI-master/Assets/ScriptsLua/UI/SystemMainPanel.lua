@@ -69,6 +69,9 @@ function SystemMainPanel.InitView(obj,delegate,sysIndex,Index)
             end
         end
     end
+    if #systeminfo.SubSystem == 0 then
+        m_DelegateObj[m_DepthIndex].OnDownButtonClick(nil,1);
+    end
 end
 
 function SystemMainPanel.OnDownButtonClick(go)

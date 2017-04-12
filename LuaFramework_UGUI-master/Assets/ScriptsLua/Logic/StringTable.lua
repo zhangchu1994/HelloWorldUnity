@@ -1,0 +1,23 @@
+StringTable = {}
+
+StringTable.string1 = "网络连接异常，请检查后重新开始游戏"
+StringTable.string2 = "是否开启音效？"
+StringTable.string3 = "写入文件失败"
+StringTable.string4 = "写入文件失败, 请检查SD卡后重试"
+StringTable.string7 = "网络异常，请检查网络后重新登陆"
+StringTable.string8 = "正在更新资源（"
+StringTable.string9 = "/"
+StringTable.string10 = "）…"
+StringTable.string11 = "未检测到WIFI网络，是否使用现有网络下载。更新资源大小："
+StringTable.string12 = "网络异常，请检查网络后重新登陆"
+StringTable.string13 = "正在检测更新中，请保持网络通畅"
+StringTable.string14 = "输入账号："
+StringTable.string15 = "输入密码："
+StringTable.string16 = "网络不给力, 正在重连"
+StringTable.string18 = "网络不给力, 正在重连"
+StringTable.string20 = "登录失败"
+StringTable.string21 = ""
+StringTable.string22 = "您已断线，是否重新登录"
+StringTable.string23 = "网络异常，请检查网络设置"
+StringTable.string24 = "测试文字"
+
