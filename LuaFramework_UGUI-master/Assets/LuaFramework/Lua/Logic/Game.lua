@@ -13,7 +13,8 @@ local WWW = UnityEngine.WWW;
 
 function Game.OnInitOK()
     CtrlManager.Init();
- 
+    GameClient.SetUserInfo();
+
     local ctrl = CtrlManager.GetCtrl("Login");
     local scene = SceneManager.GetActiveScene();
     if ctrl ~= nil and AppConst.ExampleMode == 1 and scene.name == "Login" then

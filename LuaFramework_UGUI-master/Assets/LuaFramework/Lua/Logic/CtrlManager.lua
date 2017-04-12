@@ -13,6 +13,8 @@ require "UI/Role/RoleReLivePanel"
 require "UI/Role/RoleWingsPanel"
 require "UI/Role/RoleDressMainPanel"
 require "UI/Role/RoleDressPanel"
+require "UI/Role/RoleTitleMainPanel"
+require "UI/Role/RoleTitlePanel"
 require "UI/Skill/SkillBreakPanel"
 require "UI/Skill/SkillMainPanel"
 require "UI/Skill/SkillPanel"
@@ -23,8 +25,21 @@ require "UI/Bag/BagMainPanel"
 require "UI/Bag/BagPanel"
 require "UI/Shop/ShopPanel"
 require "UI/Shop/ShopMainPanel"
-
+require "UI/Partner/PartnerMainPanel"
+require "UI/Partner/PartnerPanel"
+require "UI/Instance/ChallengeInstancePanel"
+require "UI/Instance/InstanceMainPanel"
+require "UI/Instance/MaterialInstancePanel"
+require "UI/Encounter/EncounterMainPanel"
+require "UI/Encounter/MineEncounterPanel"
+require "UI/Encounter/WildEncounterPanel"
+require "UI/Boss/BossMainPanel"
+require "UI/Boss/PersonalBossPanel"
+require "UI/Boss/ReLiveBossPanel"
+require "UI/Boss/WorldBossPanel"
 require "UI/Common/ItemInfoPanel"
+require "Logic/GameClient"
+require "Logic/StringTable"
 
 CtrlManager = {};
 local this = CtrlManager;
@@ -34,7 +49,7 @@ local m_TableSystemInfo;
 
 
 function CtrlManager.Init()
-	-- logWarn("CtrlManager.Init----->>>");
+	log("CtrlManager.Init----->>>");
 	ctrlList["Login"] = Login.New();
 	ctrlList["Register"] = Register.New();
 	ctrlList["MainCityUIManager"] = MainCityUIManager.New();
@@ -47,7 +62,9 @@ function CtrlManager.Init()
 	ctrlList["RoleReLivePanel"] = RoleReLivePanel.New();
 	ctrlList["RoleWingsPanel"] = RoleWingsPanel.New();
 	ctrlList["RoleDressMainPanel"] = RoleDressMainPanel.New();
-	ctrlList["RoleDressPanel"] = RoleDressMainPanel.New();
+	ctrlList["RoleDressPanel"] = RoleDressPanel.New();
+	ctrlList["RoleTitleMainPanel"] = RoleTitleMainPanel.New();
+	ctrlList["RoleTitlePanel"] = RoleTitlePanel.New();
 
 	ctrlList["SkillMainPanel"] = SkillMainPanel.New();
 	ctrlList["SkillPanel"] = SkillPanel.New();
@@ -63,11 +80,28 @@ function CtrlManager.Init()
 	ctrlList["ShopMainPanel"] = ShopMainPanel.New();
 	ctrlList["ShopPanel"] = ShopPanel.New();
 
-	ctrlList["BossPanel"] = BossPanel.New();
+
+
+	ctrlList["PartnerMainPanel"] = PartnerMainPanel.New();
+	ctrlList["PartnerPanel"] = PartnerPanel.New();
+
+	ctrlList["ChallengeInstancePanel"] = ChallengeInstancePanel.New();
+	ctrlList["MaterialInstancePanel"] = MaterialInstancePanel.New();
+	ctrlList["InstanceMainPanel"] = InstanceMainPanel.New();
+
+	ctrlList["MineEncounterPanel"] = MineEncounterPanel.New();
+	ctrlList["WildEncounterPanel"] = WildEncounterPanel.New();
+	ctrlList["EncounterMainPanel"] = EncounterMainPanel.New();
+
+	ctrlList["BossMainPanel"] = BossMainPanel.New();
+	ctrlList["PersonalBossPanel"] = PersonalBossPanel.New();
+	ctrlList["ReLiveBossPanel"] = ReLiveBossPanel.New();
+	ctrlList["WorldBossPanel"] = WorldBossPanel.New();
+
 	ctrlList["BigWorld"] = BigWorld.New();
-
-
 	ctrlList["ItemInfoPanel"] = ItemInfoPanel.New();
+
+	ctrlList["GameClient"] = GameClient.New();
 
 	
 	m_TableSystemInfo = dofile("Table/SystemInfo");
@@ -98,7 +132,6 @@ function CtrlManager.GetTableSystemInfo(argIndex)
 			return systemInfo;
 		end
 	end
-	
 end
 
 --关闭控制器--

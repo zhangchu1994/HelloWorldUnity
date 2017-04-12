@@ -74,7 +74,12 @@ namespace LuaFramework {
         public void AddClick(GameObject go, LuaFunction luafunc) 
 		{
             if (go == null || luafunc == null) return;
-            buttons.Add(go.name, luafunc);
+			LuaFunction tempLuafunc = null;
+			if (buttons.TryGetValue (go.name, out tempLuafunc) == true) 
+			{
+				buttons.Remove (go.name);
+			} 
+			buttons.Add (go.name, luafunc);
             go.GetComponent<Button>().onClick.AddListener(
                 delegate() {
                     luafunc.Call(go);
@@ -90,6 +95,7 @@ namespace LuaFramework {
             if (go == null) return;
             LuaFunction luafunc = null;
             if (buttons.TryGetValue(go.name, out luafunc)) {
+				luafunc.EndPCall ();
                 luafunc.Dispose();
                 luafunc = null;
                 buttons.Remove(go.name);
@@ -102,6 +108,7 @@ namespace LuaFramework {
         public void ClearClick() {
             foreach (var de in buttons) {
                 if (de.Value != null) {
+					de.Value.EndPCall ();
                     de.Value.Dispose();
                 }
             }

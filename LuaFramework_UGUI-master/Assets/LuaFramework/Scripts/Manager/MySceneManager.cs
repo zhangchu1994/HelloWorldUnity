@@ -25,7 +25,6 @@ namespace LuaFramework {
 			m_luaName = luaName;
 			m_func = func;
 
-
 			SceneManager.LoadScene("Loading");
 		}
     }
