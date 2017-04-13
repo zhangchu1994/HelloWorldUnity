@@ -42,11 +42,11 @@ namespace LuaFramework {
 
 		protected void Update()
 		{
-			if (m_TestIndex <= 3) 
-			{
+//			if (m_TestIndex <= 3) 
+//			{
 				Util.CallMethod(luaName, "Update");
 				m_TestIndex++;
-			}
+//			}
 		}
 
 

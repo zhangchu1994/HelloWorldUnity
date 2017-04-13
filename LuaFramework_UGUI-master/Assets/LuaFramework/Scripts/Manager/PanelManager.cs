@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using LuaInterface;
 using UnityEngine.SceneManagement;
 using GlobalGame;
+using DG.Tweening;
 
 namespace LuaFramework {
     public class PanelManager : Manager 
@@ -40,6 +41,14 @@ namespace LuaFramework {
                 Debug.LogWarning("CreatePanel::>> " + name + " " + prefab);
             });
         }
+
+		public void Move(ScrollRect scrollRect)
+		{
+			DG.Tweening.ShortcutExtensions46.DOHorizontalNormalizedPos (scrollRect,1,3,false);
+			//			scrollRect.do ();
+//			scrollRect.DOHorizontalNormalizedPos (scrollRect,1,3,false);
+			//			DOTween.
+		}
 
         public void ClosePanel(string name) 
 		{

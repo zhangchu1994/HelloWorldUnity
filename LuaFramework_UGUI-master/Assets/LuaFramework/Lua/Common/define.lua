@@ -37,7 +37,11 @@ Texture2D = UnityEngine.Texture2D;
 TextureFormat = UnityEngine.TextureFormat;
 Mesh = UnityEngine.Mesh;
 Text = UnityEngine.UI.Text;
-
+ScrollRect = UnityEngine.UI.ScrollRect;
+Canvas = UnityEngine.Canvas;
+Mathf = UnityEngine.Mathf;
+DGTween  = DG.Tweening;
+DGTween46 = DG.Tweening.ShortcutExtensions46;
 
 -- Actor1 = GlobalGame.Actor1;
 CameraControl = GlobalGame.CameraControl;

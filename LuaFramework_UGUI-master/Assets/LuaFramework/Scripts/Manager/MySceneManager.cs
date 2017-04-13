@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.AI;
 
 
+
 namespace LuaFramework {
 	public class MySceneManager : Manager 
 	{
@@ -25,7 +26,13 @@ namespace LuaFramework {
 			m_luaName = luaName;
 			m_func = func;
 
+//			ScrollRect x;
+//			x.verticalNormalizedPosition = 0.5f;
+//			x.horizontalNormalizedPosition = 0.5f;
+
 			SceneManager.LoadScene("Loading");
 		}
+
+
     }
 }

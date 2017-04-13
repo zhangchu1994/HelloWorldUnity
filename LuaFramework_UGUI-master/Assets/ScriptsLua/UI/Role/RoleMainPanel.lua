@@ -28,6 +28,8 @@ end
 function RoleMainPanel.OnCreate(obj)
     -- log('RoleMainPanel.OnCreate____________');
     m_SystemMainPanel = CtrlManager.GetCtrl("SystemMainPanel");
+    log("________________3213________________________");
+    log(tostring(m_SystemMainPanel));
     m_SystemMainPanel.InitView(obj,this,1,0);--1角色 2转生 3羽翼 4经脉
 end
 

@@ -50,6 +50,9 @@ function RolePanel.InitView(obj)
     
     local Orange = m_transform:FindChild("Orange").gameObject;
     m_LuaBehaviour:AddClick(Orange, this.OnOrangeClick);
+
+    local Info = m_transform:FindChild("FightVaule/Button").gameObject;
+    m_LuaBehaviour:AddClick(Info, this.OnInfoClick);
 end
 
 function RolePanel.OnCreateRoleList(obj)
@@ -66,6 +69,10 @@ end
 
 function RolePanel.OnTitleClick(go)
     panelMgr:CreatePanel('UI/Common/SystemMainPanel', 'UICamera/SystemCanvas','RoleTitleMainPanel','RoleTitleMainPanel',Vector3.New(0,0,0), RoleTitleMainPanel.OnCreate);
+end
+
+function RolePanel.OnInfoClick(go)
+    panelMgr:CreatePanel('UI/Role/RoleInfoPanel', 'UICamera/SystemCanvas','RoleInfoPanel','RoleInfoPanel',Vector3.New(0,0,0), RoleInfoPanel.OnCreate);
 end
 
 function RolePanel.OnSoulClick(go)

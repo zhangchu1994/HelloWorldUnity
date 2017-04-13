@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿#define USING_DOTWEENING
+
+using UnityEngine;
 using System;
 using System.Collections.Generic;
 using LuaInterface;
@@ -10,6 +12,8 @@ using BindType = ToLuaMenu.BindType;
 using UnityEngine.UI;
 using System.Reflection;
 using UnityEngine.SceneManagement;
+
+
 
 public static class CustomSettings
 {
@@ -64,6 +68,7 @@ public static class CustomSettings
         _GT(typeof(DG.Tweening.PathMode)),
         _GT(typeof(DG.Tweening.PathType)),
         _GT(typeof(DG.Tweening.RotateMode)),
+		_GT(typeof(DG.Tweening.ShortcutExtensions46)),
         _GT(typeof(Component)).AddExtendType(typeof(DG.Tweening.ShortcutExtensions)),
         _GT(typeof(Transform)).AddExtendType(typeof(DG.Tweening.ShortcutExtensions)),
         _GT(typeof(Light)).AddExtendType(typeof(DG.Tweening.ShortcutExtensions)),
@@ -150,12 +155,17 @@ public static class CustomSettings
 //		_GT(typeof(Actor)),
 		_GT(typeof(JsonObject)),
 		_GT(typeof(CameraControl)),
+		_GT(typeof(Mathf)),
+
 
 
         //for LuaFramework
         _GT(typeof(RectTransform)),
         _GT(typeof(Text)),
 		_GT(typeof(InputField)),
+		_GT(typeof(ScrollRect)),
+		_GT(typeof(Canvas)),
+
 
 
         _GT(typeof(Util)),

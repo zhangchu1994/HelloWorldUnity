@@ -191,13 +191,15 @@ namespace LuaFramework {
         public static string DataPath {
             get {
                 string game = AppConst.AppName.ToLower();
-                if (Application.isMobilePlatform) {
+                if (Application.isMobilePlatform) 
+				{
                     return Application.persistentDataPath + "/" + game + "/";
                 }
-                if (AppConst.DebugMode) {
-                    return Application.dataPath + "/" + AppConst.AssetDir + "/";
-                }
-                if (Application.platform == RuntimePlatform.OSXEditor) {
+//                if (AppConst.DebugMode) {
+//                    return Application.dataPath + "/" + AppConst.AssetDir + "/";
+//                }
+                if (Application.platform == RuntimePlatform.OSXEditor) 
+				{
                     int i = Application.dataPath.LastIndexOf('/');
                     return Application.dataPath.Substring(0, i + 1) + game + "/";
                 }
@@ -322,7 +324,7 @@ namespace LuaFramework {
                 EditorApplication.isPlaying = false;
                 return false;
             }
-            if (Application.loadedLevelName == "Test" && !AppConst.DebugMode) {
+			if (Application.loadedLevelName == "Test" ) {//&& !AppConst.DebugMode
                 Debug.LogError("测试场景，必须打开调试模式，AppConst.DebugMode = true！！");
                 EditorApplication.isPlaying = false;
                 return false;

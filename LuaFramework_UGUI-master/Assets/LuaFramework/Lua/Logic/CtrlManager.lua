@@ -1,7 +1,6 @@
 require "Common/define"
 require "UI/MainCityUIManager"
 require "UI/BattleSceneUIManager"
-require "UI/BossPanel"
 require "UI/BigWorld"
 require "UI/SystemMainPanel"
 require "UI/Login/Register"
@@ -15,6 +14,8 @@ require "UI/Role/RoleDressMainPanel"
 require "UI/Role/RoleDressPanel"
 require "UI/Role/RoleTitleMainPanel"
 require "UI/Role/RoleTitlePanel"
+require "UI/Role/RoleInfoPanel"
+require "UI/Role/RoleList"
 require "UI/Skill/SkillBreakPanel"
 require "UI/Skill/SkillMainPanel"
 require "UI/Skill/SkillPanel"
@@ -49,13 +50,12 @@ local m_TableSystemInfo;
 
 
 function CtrlManager.Init()
-	log("CtrlManager.Init----->>>");
+	log("CtrlManager.Init______________________________________");
 	ctrlList["Login"] = Login.New();
 	ctrlList["Register"] = Register.New();
 	ctrlList["MainCityUIManager"] = MainCityUIManager.New();
 	ctrlList["SystemMainPanel"] = SystemMainPanel.New();
 
-	-- setmetatable(SystemMainPanel,RoleMainPanel );
 	ctrlList["RoleMainPanel"] = RoleMainPanel.New();
 	ctrlList["RoleMeridiansPanel"] = RoleMeridiansPanel.New();
 	ctrlList["RolePanel"] = RolePanel.New();
@@ -65,6 +65,8 @@ function CtrlManager.Init()
 	ctrlList["RoleDressPanel"] = RoleDressPanel.New();
 	ctrlList["RoleTitleMainPanel"] = RoleTitleMainPanel.New();
 	ctrlList["RoleTitlePanel"] = RoleTitlePanel.New();
+	ctrlList["RoleInfoPanel"] = RoleInfoPanel.New();
+	ctrlList["RoleList"] = RoleList.New();
 
 	ctrlList["SkillMainPanel"] = SkillMainPanel.New();
 	ctrlList["SkillPanel"] = SkillPanel.New();
@@ -105,8 +107,6 @@ function CtrlManager.Init()
 
 	
 	m_TableSystemInfo = dofile("Table/SystemInfo");
-
-	-- setmetatable(ctrlList["SkillMainPanel"] , ctrlList["SystemMainPanel"]);
 
 	return this;
 end

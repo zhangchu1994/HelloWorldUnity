@@ -3,6 +3,7 @@ using LuaInterface;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using GlobalGame;
 
 namespace LuaFramework {
     public class LuaManager : Manager {
@@ -70,22 +71,15 @@ namespace LuaFramework {
         /// <summary>
         /// 初始化Lua代码加载路径
         /// </summary>
-        void InitLuaPath() {
-            if (AppConst.DebugMode) 
+        void InitLuaPath() 
+		{
+			if (Global.isMobile() == false) 
 			{
-                string rootPath = AppConst.FrameworkRoot;
-                lua.AddSearchPath(rootPath + "/Lua");
-                lua.AddSearchPath(rootPath + "/ToLua/Lua");
-            } 
-			else 
-			{
-				if (GlobalGame.Global.isMobile() == false) 
-				{
-					lua.AddSearchPath(Application.dataPath + "/ScriptsLua");
-					lua.AddSearchPath(Application.dataPath + "/ScriptsLua/Table");
-				}
-				lua.AddSearchPath(Util.DataPath + "lua");
-            }
+				lua.AddSearchPath(Application.dataPath + "/ScriptsLua");
+				lua.AddSearchPath(Application.dataPath + "/ScriptsLua/Table");
+			}
+			lua.AddSearchPath(Util.DataPath + "lua");
+			lua.AddSearchPath(Util.DataPath + "lua/Table");
         }
 
         /// <summary>

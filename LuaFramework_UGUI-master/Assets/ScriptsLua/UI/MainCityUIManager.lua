@@ -27,7 +27,7 @@ function MainCityUIManager.Start()
 end
 
 function MainCityUIManager.Update()
-    print("Update m_firstCreate = "..tostring(m_firstCreate))
+    -- print("Update m_firstCreate = "..tostring(m_firstCreate))
     if m_firstCreate == false then
         m_firstCreate = true;
         this.InitView();
@@ -38,7 +38,7 @@ function MainCityUIManager.InitView()
     m_gameObject = GameObject.Find("UICamera/MainCanvas/MainCityPanel");
     m_transform = m_gameObject.transform;
 
-    m_Canvas = GameObject.Find("MainCanvas");
+    m_Canvas = GameObject.Find("UICamera/MainCanvas");
     m_CanvasTransform = m_Canvas.transform;
 
     m_LuaBehaviour = m_transform:GetComponent('LuaBehaviour');
