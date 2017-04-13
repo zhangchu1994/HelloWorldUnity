@@ -8,6 +8,7 @@ public class LuaFramework_PanelManagerWrap
 	{
 		L.BeginClass(typeof(LuaFramework.PanelManager), typeof(Manager));
 		L.RegFunction("CreatePanel", CreatePanel);
+		L.RegFunction("Move", Move);
 		L.RegFunction("ClosePanel", ClosePanel);
 		L.RegFunction("__eq", op_Equality);
 		L.RegFunction("__tostring", ToLua.op_ToString);
@@ -28,6 +29,23 @@ public class LuaFramework_PanelManagerWrap
 			UnityEngine.Vector3 arg4 = ToLua.ToVector3(L, 6);
 			LuaFunction arg5 = ToLua.CheckLuaFunction(L, 7);
 			obj.CreatePanel(arg0, arg1, arg2, arg3, arg4, arg5);
+			return 0;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int Move(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 2);
+			LuaFramework.PanelManager obj = (LuaFramework.PanelManager)ToLua.CheckObject(L, 1, typeof(LuaFramework.PanelManager));
+			UnityEngine.UI.ScrollRect arg0 = (UnityEngine.UI.ScrollRect)ToLua.CheckUnityObject(L, 2, typeof(UnityEngine.UI.ScrollRect));
+			obj.Move(arg0);
 			return 0;
 		}
 		catch(Exception e)
